@@ -1,6 +1,6 @@
 ==========================================
-dxklib - pure data external library
-by Derek Kwan
+dxklib v0.1 - pure data external library
+by Derek Kwan, 2016
 ==========================================
 
 OBJECTS:
