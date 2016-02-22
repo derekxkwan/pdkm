@@ -1,0 +1,56 @@
+#N canvas 565 117 612 604 10;
+#X obj 157 548 dac~ 1 2;
+#X msg 131 442 1;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array \$0-array 64 float 3;
+#A 0 -0.127688 -0.316785 -0.394879 -0.402979 -0.194942 -0.0928473 0.0155435
+-0.061129 0.144658 0.287624 0.164166 0.29241 0.135511 0.214349 0.222162
+0.422389 0.241586 0.039472 0.0267902 -0.00080221 0.148212 0.31025 0.171902
+0.102991 0.280391 0.0715072 0.0535069 -0.0574244 -0.14328 -0.143354
+-0.324426 -0.18866 -0.246896 -0.132948 -0.187924 -0.382116 -0.348193
+-0.440235 -0.38651 -0.168497 -0.0683562 -0.0959173 -0.174147 -0.0721786
+0.111172 0.156069 0.292033 0.125986 0.267128 0.141157 0.306234 0.137138
+0.31814 0.164005 0.332363 0.351342 0.203906 0.255291 0.165218 0.0471688
+0.146601 0.131411 0.285301 0.108779;
+#X coords 0 1 64 -1 200 140 1 0 0;
+#X restore 13 92 graph;
+#X obj 133 408 loadbang;
+#X obj 309 301 vsl 30 256 0 1 0 0 empty empty redness 0 -9 0 10 -258113
+-1 -1 12750 1;
+#X floatatom 309 571 5 0 0 0 - - -, f 5;
+#X obj 41 469 metro 25;
+#X obj 38 500 tabwrite~ \$0-array;
+#X obj 266 302 vsl 30 256 0 1 0 0 empty empty vol 0 -9 0 10 -33289
+-258113 -258113 25500 1;
+#X floatatom 267 571 5 0 0 0 - - -, f 5;
+#X obj 158 517 *~ 1;
+#X msg 168 444 0.5;
+#X text 237 92 Generates noise with a variable amount of "redness"
+through the given recurrence relation:;
+#X text 303 173 x[0] = w[0];
+#X text 300 187 x[i] = r*x[i-1] + w[i]*(1-r^2)^0.5;
+#X text 243 225 where w[i] is a sequence of uniformly random numbers
+\, r is the "redness" factor such that 0 <= r <= 1 \, and x[i] is the
+output. Note that when r = 0 \, x[i] is white noise and when r = 1
+\, x[i] is 0 for all x[i].;
+#X obj 160 479 dxklib/red~ 0.5;
+#X obj 8 6 cnv 15 400 30 empty empty dxklib 20 12 0 20 -261682 -66577
+0;
+#X text 305 10 Derek Kwan \, 2016;
+#X obj 8 36 cnv 15 400 30 empty empty red~ 20 12 0 20 -232576 -66577
+0;
+#X text 190 40 noise of varying degrees of redness;
+#X connect 1 0 6 0;
+#X connect 1 0 8 0;
+#X connect 3 0 1 0;
+#X connect 3 0 11 0;
+#X connect 4 0 5 0;
+#X connect 4 0 16 1;
+#X connect 6 0 7 0;
+#X connect 8 0 9 0;
+#X connect 8 0 10 1;
+#X connect 10 0 0 0;
+#X connect 10 0 0 1;
+#X connect 11 0 4 0;
+#X connect 16 0 7 0;
+#X connect 16 0 10 0;
