@@ -135,415 +135,6 @@ static void scaledeg_float(t_scaledeg *x, t_float f){
 
 
 static void scaledeg_pickscale(t_scaledeg *x, t_symbol *s){
-	char sname[10];
-	memcpy(sname, s->s_name, strlen(s->s_name) + 1);
-	memcpy(x->scalename, sname, strlen(sname)+1);
-	if((strcmp(sname, "major") == 0)||(strcmp(sname, "ionian") == 0)){
-		memcpy(x->curscale, x->ionian, sizeof(x->ionian));
-		post("major scale");
-	}
-	else if(strcmp(sname, "dorian") == 0){
-		memcpy(x->curscale, x->dorian, sizeof(x->dorian));
-		post("dorian scale");
-	}
-	else if(strcmp(sname, "phrygian") == 0){
-		memcpy(x->curscale, x->phrygian, sizeof(x->phrygian));
-		post("phrygian scale");
-	}
-	else if(strcmp(sname, "lydian") == 0){
-		memcpy(x->curscale, x->lydian, sizeof(x->lydian));
-		post("lydian scale");
-	}
-	else if(strcmp(sname, "mixo") == 0){
-		memcpy(x->curscale, x->mixo, sizeof(x->mixo));
-		post("mixo scale");
-	}
-	else if((strcmp(sname, "aeolian") == 0)||(strcmp(sname, "minor") == 0)){
-		memcpy(x->curscale, x->aeolian, sizeof(x->aeolian));
-		post("aeolian scale");
-	}
-	else if(strcmp(sname, "locrian") == 0){
-		memcpy(x->curscale, x->locrian, sizeof(x->locrian));
-		post("locrian scale");
-	}
-	else if(strcmp(sname, "harminor") == 0){
-		memcpy(x->curscale, x->harminor, sizeof(x->harminor));
-		post("harmonic minor scale");
-	}
-	else if(strcmp(sname, "melminor") == 0){
-		memcpy(x->curscale, x->melminor, sizeof(x->melminor));
-		post("melodic minor scale");
-	}
-	else if(strcmp(sname, "bartok") == 0){
-		memcpy(x->curscale, x->bartok, sizeof(x->bartok));
-		post("bartok scale");
-	}
-	else if(strcmp(sname, "neapminor") == 0){
-		memcpy(x->curscale, x->neapminor, sizeof(x->neapminor));
-		post("neapolitan minor scale");
-	}
-	else if(strcmp(sname, "neapmajor") == 0){
-		memcpy(x->curscale, x->neapmajor, sizeof(x->neapmajor));
-		post("neapolitan major scale");
-	}
-	else if(strcmp(sname, "rominor") == 0){
-		memcpy(x->curscale, x->rominor, sizeof(x->rominor));
-		post("romanian minor scale");
-	}
-	else if(strcmp(sname, "superlocrian") == 0){
-		memcpy(x->curscale, x->superloc, sizeof(x->superloc));
-		post("superlocrian scale");
-	}
-	else if(strcmp(sname, "spanish") == 0){
-		memcpy(x->curscale, x->spanish, sizeof(x->spanish));
-		post("spanish scale");
-	}
-	else if(strcmp(sname, "enigmatic") == 0){
-		memcpy(x->curscale, x->enigmatic, sizeof(x->enigmatic));
-		post("enigmatic scale");
-	}
-	else if(strcmp(sname, "todi") == 0){
-		memcpy(x->curscale, x->todi, sizeof(x->todi));
-		post("todi scale");
-	}
-	else if(strcmp(sname, "purvi") == 0){
-		memcpy(x->curscale, x->purvi, sizeof(x->purvi));
-		post("purvi scale");
-	}
-	else if(strcmp(sname, "marva") == 0){
-		memcpy(x->curscale, x->marva, sizeof(x->marva));
-		post("marva scale");
-	}
-	else if(strcmp(sname, "bhairav") == 0){
-		memcpy(x->curscale, x->bhairav, sizeof(x->bhairav));
-		post("bhairav scale");
-	}
-	else if(strcmp(sname, "ahirbhairav") == 0){
-		memcpy(x->curscale, x->ahirbhairav, sizeof(x->ahirbhairav));
-		post("ahirbhairav scale");
-	}
-	else if(strcmp(sname, "leadingwhole") == 0){
-		memcpy(x->curscale, x->leadwhole, sizeof(x->leadwhole));
-		post("leading whole-note scale");
-	}
-	else if(strcmp(sname, "lydianminor") == 0){
-		memcpy(x->curscale, x->lydianminor, sizeof(x->lydianminor));
-		post("lydian minor scale");
-	}
-	else if(strcmp(sname, "locrianmajor") == 0){
-		memcpy(x->curscale, x->locrianmajor, sizeof(x->locrianmajor));
-		post("locrian major scale");
-	}
-	else if(strcmp(sname, "dim1") == 0){
-		memcpy(x->curscale, x->dim1, sizeof(x->dim1));
-		post("diminished 1 scale");
-	}
-	else if(strcmp(sname, "dim2") == 0){
-		memcpy(x->curscale, x->dim2, sizeof(x->dim2));
-		post("diminished 2 scale");
-	}
-	else if(strcmp(sname, "whole") == 0){
-		memcpy(x->curscale, x->whole, sizeof(x->whole));
-		post("whole tone scale");
-	}
-	else if(strcmp(sname, "hexmajor7") == 0){
-		memcpy(x->curscale, x->hexmajor7, sizeof(x->hexmajor7));
-		post("hex major 7 scale");
-	}
-	else if(strcmp(sname, "hexdorian") == 0){
-		memcpy(x->curscale, x->hexdorian, sizeof(x->hexdorian));
-		post("hex dorian scale");
-	}
-	else if(strcmp(sname, "hexphrygian") == 0){
-		memcpy(x->curscale, x->hexphrygian, sizeof(x->hexphrygian));
-		post("hex phrygian scale");
-	}
-	else if(strcmp(sname, "hexsus") == 0){
-		memcpy(x->curscale, x->hexsus, sizeof(x->hexsus));
-		post("hex sus scale");
-	}
-	else if(strcmp(sname, "hexmajor") == 0){
-		memcpy(x->curscale, x->hexmajor, sizeof(x->hexmajor));
-		post("hex major scale");
-	}
-	else if(strcmp(sname, "hexaeolian") == 0){
-		memcpy(x->curscale, x->hexaeolian, sizeof(x->hexaeolian));
-		post("hex aeolian scale");
-	}
-	else if(strcmp(sname, "yu") == 0){
-		memcpy(x->curscale, x->yu, sizeof(x->yu));
-		post("yu scale");
-	}
-	else if(strcmp(sname, "zhi") == 0){
-		memcpy(x->curscale, x->zhi, sizeof(x->zhi));
-		post("zhi scale");
-	}
-	else if(strcmp(sname, "jiao") == 0){
-		memcpy(x->curscale, x->jiao, sizeof(x->jiao));
-		post("jiao scale");
-	}
-	else if(strcmp(sname, "shang") == 0){
-		memcpy(x->curscale, x->shang, sizeof(x->shang));
-		post("shang scale");
-	}
-	else if(strcmp(sname, "gong") == 0){
-		memcpy(x->curscale, x->gong, sizeof(x->gong));
-		post("gong scale");
-	}
-	else if(strcmp(sname, "minorpent") == 0){
-		memcpy(x->curscale, x->minorpent, sizeof(x->minorpent));
-		post("minorpent scale");
-	}
-	else if(strcmp(sname, "majorpent") == 0){
-		memcpy(x->curscale, x->majorpent, sizeof(x->majorpent));
-		post("majorpent scale");
-	}
-	else if(strcmp(sname, "ritusen") == 0){
-		memcpy(x->curscale, x->ritusen, sizeof(x->ritusen));
-		post("ritusen scale");
-	}
-	else if(strcmp(sname, "egyptian") == 0){
-		memcpy(x->curscale, x->egyptian, sizeof(x->egyptian));
-		post("egyptian scale");
-	}
-	else if(strcmp(sname, "kumoi") == 0){
-		memcpy(x->curscale, x->kumoi, sizeof(x->kumoi));
-		post("kumoi scale");
-	}
-	else if(strcmp(sname, "hirajoshi") == 0){
-		memcpy(x->curscale, x->hirajoshi, sizeof(x->hirajoshi));
-		post("hirajoshi scale");
-	}
-	else if(strcmp(sname, "iwato") == 0){
-		memcpy(x->curscale, x->iwato, sizeof(x->iwato));
-		post("iwato scale");
-	}
-	else if(strcmp(sname, "chinese") == 0){
-		memcpy(x->curscale, x->chinese, sizeof(x->chinese));
-		post("chinese scale");
-	}
-	else if(strcmp(sname, "indian") == 0){
-		memcpy(x->curscale, x->indian, sizeof(x->indian));
-		post("indian scale");
-	}
-	else if(strcmp(sname, "pelog") == 0){
-		memcpy(x->curscale, x->pelog, sizeof(x->pelog));
-		post("pelog scale");
-	}
-	else if(strcmp(sname, "prometheus") == 0){
-		memcpy(x->curscale, x->prometheus, sizeof(x->prometheus));
-		post("prometheus scale");
-	}
-	else if(strcmp(sname, "kumoi") == 0){
-		memcpy(x->curscale, x->kumoi, sizeof(x->kumoi));
-		post("kumoi scale");
-	}
-	else if(strcmp(sname, "partch_o1") == 0){
-		memcpy(x->curscale, x->partch_o1, sizeof(x->partch_o1));
-		post("partch_o1 scale");
-	}
-	else if(strcmp(sname, "partch_o2") == 0){
-		memcpy(x->curscale, x->partch_o2, sizeof(x->partch_o2));
-		post("partch_o2 scale");
-	}
-	else if(strcmp(sname, "partch_o3") == 0){
-		memcpy(x->curscale, x->partch_o3, sizeof(x->partch_o3));
-		post("partch_o3 scale");
-	}
-	else if(strcmp(sname, "partch_o4") == 0){
-		memcpy(x->curscale, x->partch_o4, sizeof(x->partch_o4));
-		post("partch_o4 scale");
-	}
-	else if(strcmp(sname, "partch_o5") == 0){
-		memcpy(x->curscale, x->partch_o5, sizeof(x->partch_o5));
-		post("partch_o5 scale");
-	}
-	else if(strcmp(sname, "partch_o6") == 0){
-		memcpy(x->curscale, x->partch_o6, sizeof(x->partch_o6));
-		post("partch_o6 scale");
-	}
-	else if(strcmp(sname, "partch_u1") == 0){
-		memcpy(x->curscale, x->partch_u1, sizeof(x->partch_u1));
-		post("partch_u1 scale");
-	}
-	else if(strcmp(sname, "partch_u2") == 0){
-		memcpy(x->curscale, x->partch_u2, sizeof(x->partch_u2));
-		post("partch_u2 scale");
-	}
-	else if(strcmp(sname, "partch_u3") == 0){
-		memcpy(x->curscale, x->partch_u3, sizeof(x->partch_u3));
-		post("partch_u3 scale");
-	}
-	else if(strcmp(sname, "partch_u4") == 0){
-		memcpy(x->curscale, x->partch_u4, sizeof(x->partch_u4));
-		post("partch_u4 scale");
-	}
-	else if(strcmp(sname, "partch_u5") == 0){
-		memcpy(x->curscale, x->partch_u5, sizeof(x->partch_u5));
-		post("partch_u5 scale");
-	}
-	else if(strcmp(sname, "partch_u6") == 0){
-		memcpy(x->curscale, x->partch_u6, sizeof(x->partch_u6));
-		post("partch_u6 scale");
-	}
-	else if(strcmp(sname, "ajam") == 0){
-		memcpy(x->curscale, x->ajam, sizeof(x->ajam));
-		post("ajam scale");
-	}
-	else if(strcmp(sname, "jiharkah") == 0){
-		memcpy(x->curscale, x->jiharkah, sizeof(x->jiharkah));
-		post("jiharkah scale");
-	}
-	else if(strcmp(sname, "shawqAfza") == 0){
-		memcpy(x->curscale, x->shawqAfza, sizeof(x->shawqAfza));
-		post("shawqAfza scale");
-	}
-	else if(strcmp(sname, "sikah") == 0){
-		memcpy(x->curscale, x->sikah, sizeof(x->sikah));
-		post("sikah scale");
-	}
-	else if(strcmp(sname, "sikahDesc") == 0){
-		memcpy(x->curscale, x->sikahDesc, sizeof(x->sikahDesc));
-		post("sikahDesc scale");
-	}
-	else if(strcmp(sname, "huzam") == 0){
-		memcpy(x->curscale, x->huzam, sizeof(x->huzam));
-		post("huzam scale");
-	}
-	else if(strcmp(sname, "iraq") == 0){
-		memcpy(x->curscale, x->iraq, sizeof(x->iraq));
-		post("iraq scale");
-	}
-	else if(strcmp(sname, "partch_u6") == 0){
-		memcpy(x->curscale, x->partch_u6, sizeof(x->partch_u6));
-		post("partch_u6 scale");
-	}
-	else if(strcmp(sname, "bastanikar") == 0){
-		memcpy(x->curscale, x->bastanikar, sizeof(x->bastanikar));
-		post("bastanikar scale");
-	}
-	else if(strcmp(sname, "mustar") == 0){
-		memcpy(x->curscale, x->mustar, sizeof(x->mustar));
-		post("mustar scale");
-	}
-	else if(strcmp(sname, "bayati") == 0){
-		memcpy(x->curscale, x->bayati, sizeof(x->bayati));
-		post("bayati scale");
-	}
-	else if(strcmp(sname, "karjighar") == 0){
-		memcpy(x->curscale, x->karjighar, sizeof(x->karjighar));
-		post("karjighar scale");
-	}
-	else if(strcmp(sname, "husseini") == 0){
-		memcpy(x->curscale, x->husseini, sizeof(x->husseini));
-		post("husseini scale");
-	}
-	else if(strcmp(sname, "nahawand") == 0){
-		memcpy(x->curscale, x->nahawand, sizeof(x->nahawand));
-		post("nahawand scale");
-	}
-	else if(strcmp(sname, "nahawandDesc") == 0){
-		memcpy(x->curscale, x->nahawandDesc, sizeof(x->nahawandDesc));
-		post("nahawandDesc scale");
-	}
-	else if(strcmp(sname, "farahfaza") == 0){
-		memcpy(x->curscale, x->farahfaza, sizeof(x->farahfaza));
-		post("farahfaza scale");
-	}
-	else if(strcmp(sname, "murassah") == 0){
-		memcpy(x->curscale, x->murassah, sizeof(x->murassah));
-		post("murassah scale");
-	}
-	else if(strcmp(sname, "ushaqMashri") == 0){
-		memcpy(x->curscale, x->ushaqMashri, sizeof(x->ushaqMashri));
-		post("ushaqMashri scale");
-	}
-	else if(strcmp(sname, "rast") == 0){
-		memcpy(x->curscale, x->rast, sizeof(x->rast));
-		post("rast scale");
-	}
-	else if(strcmp(sname, "rastDesc") == 0){
-		memcpy(x->curscale, x->rastDesc, sizeof(x->rastDesc));
-		post("rastDesc scale");
-	}
-	else if(strcmp(sname, "suznak") == 0){
-		memcpy(x->curscale, x->suznak, sizeof(x->suznak));
-		post("suznak scale");
-	}
-	else if(strcmp(sname, "nairuz") == 0){
-		memcpy(x->curscale, x->nairuz, sizeof(x->nairuz));
-		post("nairuz scale");
-	}
-	else if(strcmp(sname, "yakah") == 0){
-		memcpy(x->curscale, x->yakah, sizeof(x->yakah));
-		post("yakah scale");
-	}
-	else if(strcmp(sname, "yakahDesc") == 0){
-		memcpy(x->curscale, x->yakahDesc, sizeof(x->yakahDesc));
-		post("yakahDesc scale");
-	}
-	else if(strcmp(sname, "mahur") == 0){
-		memcpy(x->curscale, x->mahur, sizeof(x->mahur));
-		post("mahur scale");
-	}
-	else if(strcmp(sname, "hijaz") == 0){
-		memcpy(x->curscale, x->hijaz, sizeof(x->hijaz));
-		post("hijaz scale");
-	}
-	else if(strcmp(sname, "hijazDesc") == 0){
-		memcpy(x->curscale, x->hijazDesc, sizeof(x->hijazDesc));
-		post("hijazDesc scale");
-	}
-	else if(strcmp(sname, "zanjaran") == 0){
-		memcpy(x->curscale, x->zanjaran, sizeof(x->zanjaran));
-		post("zanjaran scale");
-	}
-	else if(strcmp(sname, "zanjaran2") == 0){
-		memcpy(x->curscale, x->zanjaran2, sizeof(x->zanjaran2));
-		post("zanjaran2 scale");
-	}
-	else if(strcmp(sname, "saba") == 0){
-		memcpy(x->curscale, x->saba, sizeof(x->saba));
-		post("saba scale");
-	}
-	else if(strcmp(sname, "zamzam") == 0){
-		memcpy(x->curscale, x->zamzam, sizeof(x->zamzam));
-		post("zamzam scale");
-	}
-	else if(strcmp(sname, "kurd") == 0){
-		memcpy(x->curscale, x->kurd, sizeof(x->kurd));
-		post("kurd scale");
-	}
-	else if(strcmp(sname, "kijazKarKurd") == 0){
-		memcpy(x->curscale, x->kijazKarKurd, sizeof(x->kijazKarKurd));
-		post("kijazKarKurd scale");
-	}
-	else if(strcmp(sname, "nawaAthar") == 0){
-		memcpy(x->curscale, x->nawaAthar, sizeof(x->nawaAthar));
-		post("nawaAthar scale");
-	}
-	else if(strcmp(sname, "nikriz") == 0){
-		memcpy(x->curscale, x->nikriz, sizeof(x->nikriz));
-		post("nikriz scale");
-	}
-	else if(strcmp(sname, "atharKurd") == 0){
-		memcpy(x->curscale, x->atharKurd, sizeof(x->atharKurd));
-		post("atharKurd scale");
-	}
-	else if(strcmp(sname, "aug1") == 0){
-		memcpy(x->curscale, x->aug1, sizeof(x->aug1));
-		post("aug1 scale");
-	}
-	else if(strcmp(sname, "aug2") == 0){
-		memcpy(x->curscale, x->aug2, sizeof(x->aug2));
-		post("aug2 scale");
-	};
-
-}
-
-static void *scaledeg_new(t_symbol *s, t_floatarg f){
-	t_scaledeg *x = (t_scaledeg *)pd_new(scaledeg_class);
-	char sname[10];
 	int	ionian[9] = {7,12,0,2,4,5,7,9,11};
 	int	dorian[9] = {7,12,0,2,3,5,7,9,10};
 	int	phrygian[9] = {7,12,0,1,3,5,7,8,10};
@@ -643,109 +234,412 @@ static void *scaledeg_new(t_symbol *s, t_floatarg f){
 	int atharKurd[9] = {7,24,0,2,6,12,14,16,22};
 	int aug1[8] = {6,12,0,3,4,7,8,11};
 	int aug2[8] = {6,12,0,1,4,5,8,9};
-	memcpy(x->ionian,ionian,sizeof(ionian));
-	memcpy(x->dorian,dorian,sizeof(dorian));
-	memcpy(x->phrygian,phrygian,sizeof(phrygian));
-	memcpy(x->lydian,lydian,sizeof(lydian));
-	memcpy(x->mixo,mixo,sizeof(mixo));
-	memcpy(x->aeolian,aeolian,sizeof(aeolian));
-	memcpy(x->locrian,locrian,sizeof(locrian));
-	memcpy(x->harminor,harminor,sizeof(harminor));
-	memcpy(x->melminor,melminor,sizeof(melminor));
-	memcpy(x->bartok,bartok,sizeof(bartok));
-	memcpy(x->neapminor,neapminor,sizeof(neapminor));
-	memcpy(x->neapmajor,neapmajor,sizeof(neapmajor));
-	memcpy(x->rominor,rominor,sizeof(rominor));
-	memcpy(x->superloc,superloc,sizeof(superloc));
-	memcpy(x->spanish,spanish,sizeof(spanish));
-	memcpy(x->enigmatic,enigmatic,sizeof(enigmatic));
-	memcpy(x->todi,todi,sizeof(todi));
-	memcpy(x->purvi,purvi,sizeof(purvi));
-	memcpy(x->marva,marva,sizeof(marva));
-	memcpy(x->bhairav,bhairav,sizeof(bhairav));
-	memcpy(x->ahirbhairav,ahirbhairav,sizeof(ahirbhairav));
-	memcpy(x->leadwhole,leadwhole,sizeof(leadwhole));
-	memcpy(x->lydianminor,lydianminor,sizeof(lydianminor));
-	memcpy(x->locrianmajor,locrianmajor,sizeof(locrianmajor));
-	memcpy(x->dim1,dim1,sizeof(dim1));
-	memcpy(x->dim2,dim2,sizeof(dim2));
-	memcpy(x->whole,whole,sizeof(whole));
-	memcpy(x->hexmajor7,hexmajor7,sizeof(hexmajor7));
-	memcpy(x->hexdorian,hexdorian,sizeof(hexdorian));
-	memcpy(x->hexphrygian,hexphrygian,sizeof(hexphrygian));
-	memcpy(x->hexsus,hexsus,sizeof(hexsus));
-	memcpy(x->hexmajor,hexmajor,sizeof(hexmajor));
-	memcpy(x->hexaeolian,hexaeolian,sizeof(hexaeolian));
-	memcpy(x->yu,yu,sizeof(yu));
-	memcpy(x->zhi,zhi,sizeof(zhi));
-	memcpy(x->jiao,jiao,sizeof(jiao));
-	memcpy(x->shang,shang,sizeof(shang));
-	memcpy(x->gong,gong,sizeof(gong));
-	memcpy(x->minorpent,minorpent,sizeof(minorpent));
-	memcpy(x->majorpent,majorpent,sizeof(majorpent));
-	memcpy(x->ritusen,ritusen,sizeof(ritusen));
-	memcpy(x->egyptian,egyptian,sizeof(egyptian));
-	memcpy(x->kumoi,kumoi,sizeof(kumoi));
-	memcpy(x->hirajoshi,hirajoshi,sizeof(hirajoshi));
-	memcpy(x->iwato,iwato,sizeof(iwato));
-	memcpy(x->chinese,chinese,sizeof(chinese));
-	memcpy(x->indian,indian,sizeof(indian));
-	memcpy(x->pelog,pelog,sizeof(pelog));
-	memcpy(x->prometheus,prometheus,sizeof(prometheus));
-	memcpy(x->scriabin,scriabin,sizeof(scriabin));
-	memcpy(x->partch_o1,partch_o1,sizeof(partch_o1));
-	memcpy(x->partch_o2,partch_o2,sizeof(partch_o2));
-	memcpy(x->partch_o3,partch_o3,sizeof(partch_o3));
-	memcpy(x->partch_o4,partch_o4,sizeof(partch_o4));
-	memcpy(x->partch_o5,partch_o5,sizeof(partch_o5));
-	memcpy(x->partch_o6,partch_o6,sizeof(partch_o6));
-	memcpy(x->partch_u1,partch_u1,sizeof(partch_u1));
-	memcpy(x->partch_u2,partch_u2,sizeof(partch_u2));
-	memcpy(x->partch_u3,partch_u3,sizeof(partch_u3));
-	memcpy(x->partch_u4,partch_u4,sizeof(partch_u4));
-	memcpy(x->partch_u5,partch_u5,sizeof(partch_u5));
-	memcpy(x->partch_u6,partch_u6,sizeof(partch_u6));
-	memcpy(x->ajam,ajam,sizeof(ajam));
-	memcpy(x->jiharkah,jiharkah,sizeof(jiharkah));
-	memcpy(x->shawqAfza,shawqAfza,sizeof(shawqAfza));
-	memcpy(x->sikah,sikah,sizeof(sikah));
-	memcpy(x->sikahDesc,sikahDesc,sizeof(sikahDesc));
-	memcpy(x->huzam,huzam,sizeof(huzam));
-	memcpy(x->iraq,iraq,sizeof(iraq));
-	memcpy(x->bastanikar,bastanikar,sizeof(bastanikar));
-	memcpy(x->mustar,mustar,sizeof(mustar));
-	memcpy(x->bayati,bayati,sizeof(bayati));
-	memcpy(x->karjighar,karjighar,sizeof(karjighar));
-	memcpy(x->husseini,husseini,sizeof(husseini));
-	memcpy(x->nahawand,nahawand,sizeof(nahawand));
-	memcpy(x->nahawandDesc,nahawandDesc,sizeof(nahawandDesc));
-	memcpy(x->farahfaza,farahfaza,sizeof(farahfaza));
-	memcpy(x->murassah,murassah,sizeof(murassah));
-	memcpy(x->ushaqMashri,ushaqMashri,sizeof(ushaqMashri));
-	memcpy(x->rast,rast,sizeof(rast));
-	memcpy(x->rastDesc,rastDesc,sizeof(rastDesc));
-	memcpy(x->suznak,suznak,sizeof(suznak));
-	memcpy(x->nairuz,nairuz,sizeof(nairuz));
-	memcpy(x->yakah,yakah,sizeof(yakah));
-	memcpy(x->yakahDesc,yakahDesc,sizeof(yakahDesc));
-	memcpy(x->mahur,mahur,sizeof(mahur));
-	memcpy(x->hijaz,hijaz,sizeof(hijaz));
-	memcpy(x->hijazDesc,hijazDesc,sizeof(hijazDesc));
-	memcpy(x->zanjaran,zanjaran,sizeof(zanjaran));
-	memcpy(x->zanjaran2,zanjaran2,sizeof(zanjaran2));
-	memcpy(x->saba,saba,sizeof(saba));
-	memcpy(x->zamzam,zamzam,sizeof(zamzam));
-	memcpy(x->kurd,kurd,sizeof(kurd));
-	memcpy(x->kijazKarKurd,kijazKarKurd,sizeof(kijazKarKurd));
-	memcpy(x->nawaAthar,nawaAthar,sizeof(nawaAthar));
-	memcpy(x->nikriz,nikriz,sizeof(nikriz));
-	memcpy(x->atharKurd,atharKurd,sizeof(atharKurd));
-	memcpy(x->aug1,aug1,sizeof(aug1));
-	memcpy(x->aug2,aug2,sizeof(aug2));
 	
+	if((strcmp(s->s_name, "major") == 0)||(strcmp(s->s_name, "ionian") == 0)){
+		memcpy(x->curscale, ionian, sizeof(x->ionian));
+		post("major scale");
+	}
+	else if(strcmp(s->s_name, "dorian") == 0){
+		memcpy(x->curscale, dorian, sizeof(x->dorian));
+		post("dorian scale");
+	}
+	else if(strcmp(s->s_name, "phrygian") == 0){
+		memcpy(x->curscale, phrygian, sizeof(x->phrygian));
+		post("phrygian scale");
+	}
+	else if(strcmp(s->s_name, "lydian") == 0){
+		memcpy(x->curscale, lydian, sizeof(x->lydian));
+		post("lydian scale");
+	}
+	else if(strcmp(s->s_name, "mixo") == 0){
+		memcpy(x->curscale, mixo, sizeof(x->mixo));
+		post("mixo scale");
+	}
+	else if((strcmp(s->s_name, "aeolian") == 0)||(strcmp(s->s_name, "minor") == 0)){
+		memcpy(x->curscale, aeolian, sizeof(x->aeolian));
+		post("aeolian scale");
+	}
+	else if(strcmp(s->s_name, "locrian") == 0){
+		memcpy(x->curscale, locrian, sizeof(x->locrian));
+		post("locrian scale");
+	}
+	else if(strcmp(s->s_name, "harminor") == 0){
+		memcpy(x->curscale, harminor, sizeof(x->harminor));
+		post("harmonic minor scale");
+	}
+	else if(strcmp(s->s_name, "melminor") == 0){
+		memcpy(x->curscale, melminor, sizeof(x->melminor));
+		post("melodic minor scale");
+	}
+	else if(strcmp(s->s_name, "bartok") == 0){
+		memcpy(x->curscale, bartok, sizeof(x->bartok));
+		post("bartok scale");
+	}
+	else if(strcmp(s->s_name, "neapminor") == 0){
+		memcpy(x->curscale, neapminor, sizeof(x->neapminor));
+		post("neapolitan minor scale");
+	}
+	else if(strcmp(s->s_name, "neapmajor") == 0){
+		memcpy(x->curscale, neapmajor, sizeof(x->neapmajor));
+		post("neapolitan major scale");
+	}
+	else if(strcmp(s->s_name, "rominor") == 0){
+		memcpy(x->curscale, rominor, sizeof(x->rominor));
+		post("romanian minor scale");
+	}
+	else if(strcmp(s->s_name, "superlocrian") == 0){
+		memcpy(x->curscale, superloc, sizeof(x->superloc));
+		post("superlocrian scale");
+	}
+	else if(strcmp(s->s_name, "spanish") == 0){
+		memcpy(x->curscale, spanish, sizeof(x->spanish));
+		post("spanish scale");
+	}
+	else if(strcmp(s->s_name, "enigmatic") == 0){
+		memcpy(x->curscale, enigmatic, sizeof(x->enigmatic));
+		post("enigmatic scale");
+	}
+	else if(strcmp(s->s_name, "todi") == 0){
+		memcpy(x->curscale, todi, sizeof(x->todi));
+		post("todi scale");
+	}
+	else if(strcmp(s->s_name, "purvi") == 0){
+		memcpy(x->curscale, purvi, sizeof(x->purvi));
+		post("purvi scale");
+	}
+	else if(strcmp(s->s_name, "marva") == 0){
+		memcpy(x->curscale, marva, sizeof(x->marva));
+		post("marva scale");
+	}
+	else if(strcmp(s->s_name, "bhairav") == 0){
+		memcpy(x->curscale, bhairav, sizeof(x->bhairav));
+		post("bhairav scale");
+	}
+	else if(strcmp(s->s_name, "ahirbhairav") == 0){
+		memcpy(x->curscale, ahirbhairav, sizeof(x->ahirbhairav));
+		post("ahirbhairav scale");
+	}
+	else if(strcmp(s->s_name, "leadingwhole") == 0){
+		memcpy(x->curscale, leadwhole, sizeof(x->leadwhole));
+		post("leading wholenote scale");
+	}
+	else if(strcmp(s->s_name, "lydianminor") == 0){
+		memcpy(x->curscale, lydianminor, sizeof(x->lydianminor));
+		post("lydian minor scale");
+	}
+	else if(strcmp(s->s_name, "locrianmajor") == 0){
+		memcpy(x->curscale, locrianmajor, sizeof(x->locrianmajor));
+		post("locrian major scale");
+	}
+	else if(strcmp(s->s_name, "dim1") == 0){
+		memcpy(x->curscale, dim1, sizeof(x->dim1));
+		post("diminished 1 scale");
+	}
+	else if(strcmp(s->s_name, "dim2") == 0){
+		memcpy(x->curscale, dim2, sizeof(x->dim2));
+		post("diminished 2 scale");
+	}
+	else if(strcmp(s->s_name, "whole") == 0){
+		memcpy(x->curscale, whole, sizeof(x->whole));
+		post("whole tone scale");
+	}
+	else if(strcmp(s->s_name, "hexmajor7") == 0){
+		memcpy(x->curscale, hexmajor7, sizeof(x->hexmajor7));
+		post("hex major 7 scale");
+	}
+	else if(strcmp(s->s_name, "hexdorian") == 0){
+		memcpy(x->curscale, hexdorian, sizeof(x->hexdorian));
+		post("hex dorian scale");
+	}
+	else if(strcmp(s->s_name, "hexphrygian") == 0){
+		memcpy(x->curscale, hexphrygian, sizeof(x->hexphrygian));
+		post("hex phrygian scale");
+	}
+	else if(strcmp(s->s_name, "hexsus") == 0){
+		memcpy(x->curscale, hexsus, sizeof(x->hexsus));
+		post("hex sus scale");
+	}
+	else if(strcmp(s->s_name, "hexmajor") == 0){
+		memcpy(x->curscale, hexmajor, sizeof(x->hexmajor));
+		post("hex major scale");
+	}
+	else if(strcmp(s->s_name, "hexaeolian") == 0){
+		memcpy(x->curscale, hexaeolian, sizeof(x->hexaeolian));
+		post("hex aeolian scale");
+	}
+	else if(strcmp(s->s_name, "yu") == 0){
+		memcpy(x->curscale, yu, sizeof(x->yu));
+		post("yu scale");
+	}
+	else if(strcmp(s->s_name, "zhi") == 0){
+		memcpy(x->curscale, zhi, sizeof(x->zhi));
+		post("zhi scale");
+	}
+	else if(strcmp(s->s_name, "jiao") == 0){
+		memcpy(x->curscale, jiao, sizeof(x->jiao));
+		post("jiao scale");
+	}
+	else if(strcmp(s->s_name, "shang") == 0){
+		memcpy(x->curscale, shang, sizeof(x->shang));
+		post("shang scale");
+	}
+	else if(strcmp(s->s_name, "gong") == 0){
+		memcpy(x->curscale, gong, sizeof(x->gong));
+		post("gong scale");
+	}
+	else if(strcmp(s->s_name, "minorpent") == 0){
+		memcpy(x->curscale, minorpent, sizeof(x->minorpent));
+		post("minorpent scale");
+	}
+	else if(strcmp(s->s_name, "majorpent") == 0){
+		memcpy(x->curscale, majorpent, sizeof(x->majorpent));
+		post("majorpent scale");
+	}
+	else if(strcmp(s->s_name, "ritusen") == 0){
+		memcpy(x->curscale, ritusen, sizeof(x->ritusen));
+		post("ritusen scale");
+	}
+	else if(strcmp(s->s_name, "egyptian") == 0){
+		memcpy(x->curscale, egyptian, sizeof(x->egyptian));
+		post("egyptian scale");
+	}
+	else if(strcmp(s->s_name, "kumoi") == 0){
+		memcpy(x->curscale, kumoi, sizeof(x->kumoi));
+		post("kumoi scale");
+	}
+	else if(strcmp(s->s_name, "hirajoshi") == 0){
+		memcpy(x->curscale, hirajoshi, sizeof(x->hirajoshi));
+		post("hirajoshi scale");
+	}
+	else if(strcmp(s->s_name, "iwato") == 0){
+		memcpy(x->curscale, iwato, sizeof(x->iwato));
+		post("iwato scale");
+	}
+	else if(strcmp(s->s_name, "chinese") == 0){
+		memcpy(x->curscale, chinese, sizeof(x->chinese));
+		post("chinese scale");
+	}
+	else if(strcmp(s->s_name, "indian") == 0){
+		memcpy(x->curscale, indian, sizeof(x->indian));
+		post("indian scale");
+	}
+	else if(strcmp(s->s_name, "pelog") == 0){
+		memcpy(x->curscale, pelog, sizeof(x->pelog));
+		post("pelog scale");
+	}
+	else if(strcmp(s->s_name, "prometheus") == 0){
+		memcpy(x->curscale, prometheus, sizeof(x->prometheus));
+		post("prometheus scale");
+	}
+	else if(strcmp(s->s_name, "scriabin") == 0){
+		memcpy(x->curscale, scriabin, sizeof(x->kumoi));
+		post("scriabin scale");
+	}
+	else if(strcmp(s->s_name, "partch_o1") == 0){
+		memcpy(x->curscale, partch_o1, sizeof(x->partch_o1));
+		post("partch_o1 scale");
+	}
+	else if(strcmp(s->s_name, "partch_o2") == 0){
+		memcpy(x->curscale, partch_o2, sizeof(x->partch_o2));
+		post("partch_o2 scale");
+	}
+	else if(strcmp(s->s_name, "partch_o3") == 0){
+		memcpy(x->curscale, partch_o3, sizeof(x->partch_o3));
+		post("partch_o3 scale");
+	}
+	else if(strcmp(s->s_name, "partch_o4") == 0){
+		memcpy(x->curscale, partch_o4, sizeof(x->partch_o4));
+		post("partch_o4 scale");
+	}
+	else if(strcmp(s->s_name, "partch_o5") == 0){
+		memcpy(x->curscale, partch_o5, sizeof(x->partch_o5));
+		post("partch_o5 scale");
+	}
+	else if(strcmp(s->s_name, "partch_o6") == 0){
+		memcpy(x->curscale, partch_o6, sizeof(x->partch_o6));
+		post("partch_o6 scale");
+	}
+	else if(strcmp(s->s_name, "partch_u1") == 0){
+		memcpy(x->curscale, partch_u1, sizeof(x->partch_u1));
+		post("partch_u1 scale");
+	}
+	else if(strcmp(s->s_name, "partch_u2") == 0){
+		memcpy(x->curscale, partch_u2, sizeof(x->partch_u2));
+		post("partch_u2 scale");
+	}
+	else if(strcmp(s->s_name, "partch_u3") == 0){
+		memcpy(x->curscale, partch_u3, sizeof(x->partch_u3));
+		post("partch_u3 scale");
+	}
+	else if(strcmp(s->s_name, "partch_u4") == 0){
+		memcpy(x->curscale, partch_u4, sizeof(x->partch_u4));
+		post("partch_u4 scale");
+	}
+	else if(strcmp(s->s_name, "partch_u5") == 0){
+		memcpy(x->curscale, partch_u5, sizeof(x->partch_u5));
+		post("partch_u5 scale");
+	}
+	else if(strcmp(s->s_name, "partch_u6") == 0){
+		memcpy(x->curscale, partch_u6, sizeof(x->partch_u6));
+		post("partch_u6 scale");
+	}
+	else if(strcmp(s->s_name, "ajam") == 0){
+		memcpy(x->curscale, ajam, sizeof(x->ajam));
+		post("ajam scale");
+	}
+	else if(strcmp(s->s_name, "jiharkah") == 0){
+		memcpy(x->curscale, jiharkah, sizeof(x->jiharkah));
+		post("jiharkah scale");
+	}
+	else if(strcmp(s->s_name, "shawqAfza") == 0){
+		memcpy(x->curscale, shawqAfza, sizeof(x->shawqAfza));
+		post("shawqAfza scale");
+	}
+	else if(strcmp(s->s_name, "sikah") == 0){
+		memcpy(x->curscale, sikah, sizeof(x->sikah));
+		post("sikah scale");
+	}
+	else if(strcmp(s->s_name, "sikahDesc") == 0){
+		memcpy(x->curscale, sikahDesc, sizeof(x->sikahDesc));
+		post("sikahDesc scale");
+	}
+	else if(strcmp(s->s_name, "huzam") == 0){
+		memcpy(x->curscale, huzam, sizeof(x->huzam));
+		post("huzam scale");
+	}
+	else if(strcmp(s->s_name, "iraq") == 0){
+		memcpy(x->curscale, iraq, sizeof(x->iraq));
+		post("iraq scale");
+	}
+	else if(strcmp(s->s_name, "partch_u6") == 0){
+		memcpy(x->curscale, partch_u6, sizeof(x->partch_u6));
+		post("partch_u6 scale");
+	}
+	else if(strcmp(s->s_name, "bastanikar") == 0){
+		memcpy(x->curscale, bastanikar, sizeof(x->bastanikar));
+		post("bastanikar scale");
+	}
+	else if(strcmp(s->s_name, "mustar") == 0){
+		memcpy(x->curscale, mustar, sizeof(x->mustar));
+		post("mustar scale");
+	}
+	else if(strcmp(s->s_name, "bayati") == 0){
+		memcpy(x->curscale, bayati, sizeof(x->bayati));
+		post("bayati scale");
+	}
+	else if(strcmp(s->s_name, "karjighar") == 0){
+		memcpy(x->curscale, karjighar, sizeof(x->karjighar));
+		post("karjighar scale");
+	}
+	else if(strcmp(s->s_name, "husseini") == 0){
+		memcpy(x->curscale, husseini, sizeof(x->husseini));
+		post("husseini scale");
+	}
+	else if(strcmp(s->s_name, "nahawand") == 0){
+		memcpy(x->curscale, nahawand, sizeof(x->nahawand));
+		post("nahawand scale");
+	}
+	else if(strcmp(s->s_name, "nahawandDesc") == 0){
+		memcpy(x->curscale, nahawandDesc, sizeof(x->nahawandDesc));
+		post("nahawandDesc scale");
+	}
+	else if(strcmp(s->s_name, "farahfaza") == 0){
+		memcpy(x->curscale, farahfaza, sizeof(x->farahfaza));
+		post("farahfaza scale");
+	}
+	else if(strcmp(s->s_name, "murassah") == 0){
+		memcpy(x->curscale, murassah, sizeof(x->murassah));
+		post("murassah scale");
+	}
+	else if(strcmp(s->s_name, "ushaqMashri") == 0){
+		memcpy(x->curscale, ushaqMashri, sizeof(x->ushaqMashri));
+		post("ushaqMashri scale");
+	}
+	else if(strcmp(s->s_name, "rast") == 0){
+		memcpy(x->curscale, rast, sizeof(x->rast));
+		post("rast scale");
+	}
+	else if(strcmp(s->s_name, "rastDesc") == 0){
+		memcpy(x->curscale, rastDesc, sizeof(x->rastDesc));
+		post("rastDesc scale");
+	}
+	else if(strcmp(s->s_name, "suznak") == 0){
+		memcpy(x->curscale, suznak, sizeof(x->suznak));
+		post("suznak scale");
+	}
+	else if(strcmp(s->s_name, "nairuz") == 0){
+		memcpy(x->curscale, nairuz, sizeof(x->nairuz));
+		post("nairuz scale");
+	}
+	else if(strcmp(s->s_name, "yakah") == 0){
+		memcpy(x->curscale, yakah, sizeof(x->yakah));
+		post("yakah scale");
+	}
+	else if(strcmp(s->s_name, "yakahDesc") == 0){
+		memcpy(x->curscale, yakahDesc, sizeof(x->yakahDesc));
+		post("yakahDesc scale");
+	}
+	else if(strcmp(s->s_name, "mahur") == 0){
+		memcpy(x->curscale, mahur, sizeof(x->mahur));
+		post("mahur scale");
+	}
+	else if(strcmp(s->s_name, "hijaz") == 0){
+		memcpy(x->curscale, hijaz, sizeof(x->hijaz));
+		post("hijaz scale");
+	}
+	else if(strcmp(s->s_name, "hijazDesc") == 0){
+		memcpy(x->curscale, hijazDesc, sizeof(x->hijazDesc));
+		post("hijazDesc scale");
+	}
+	else if(strcmp(s->s_name, "zanjaran") == 0){
+		memcpy(x->curscale, zanjaran, sizeof(x->zanjaran));
+		post("zanjaran scale");
+	}
+	else if(strcmp(s->s_name, "zanjaran2") == 0){
+		memcpy(x->curscale, zanjaran2, sizeof(x->zanjaran2));
+		post("zanjaran2 scale");
+	}
+	else if(strcmp(s->s_name, "saba") == 0){
+		memcpy(x->curscale, saba, sizeof(x->saba));
+		post("saba scale");
+	}
+	else if(strcmp(s->s_name, "zamzam") == 0){
+		memcpy(x->curscale, zamzam, sizeof(x->zamzam));
+		post("zamzam scale");
+	}
+	else if(strcmp(s->s_name, "kurd") == 0){
+		memcpy(x->curscale, kurd, sizeof(x->kurd));
+		post("kurd scale");
+	}
+	else if(strcmp(s->s_name, "kijazKarKurd") == 0){
+		memcpy(x->curscale, kijazKarKurd, sizeof(x->kijazKarKurd));
+		post("kijazKarKurd scale");
+	}
+	else if(strcmp(s->s_name, "nawaAthar") == 0){
+		memcpy(x->curscale, nawaAthar, sizeof(x->nawaAthar));
+		post("nawaAthar scale");
+	}
+	else if(strcmp(s->s_name, "nikriz") == 0){
+		memcpy(x->curscale, nikriz, sizeof(x->nikriz));
+		post("nikriz scale");
+	}
+	else if(strcmp(s->s_name, "atharKurd") == 0){
+		memcpy(x->curscale, atharKurd, sizeof(x->atharKurd));
+		post("atharKurd scale");
+	}
+	else if(strcmp(s->s_name, "aug1") == 0){
+		memcpy(x->curscale, aug1, sizeof(x->aug1));
+		post("aug1 scale");
+	}
+	else if(strcmp(s->s_name, "aug2") == 0){
+		memcpy(x->curscale, aug2, sizeof(x->aug2));
+		post("aug2 scale");
+	};
 
-	memcpy(sname, s->s_name, strlen(s->s_name)+1);
-	memcpy(x->scalename, s->s_name, sizeof(sname));
+}
+
+static void *scaledeg_new(t_symbol *s, t_floatarg f){
+	t_scaledeg *x = (t_scaledeg *)pd_new(scaledeg_class);
 	scaledeg_pickscale(x, s);
 	x->offset = f;
 	//symbolinlet_new(&x->x_obj, &x->scalesym);
