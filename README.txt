@@ -7,6 +7,7 @@ OBJECTS:
 
 	- euclid - outputs euclidean rhythms based on the work of Godfried Toussaint
 	- exprand - random values with exponential distribution
+	- grainyrd~ - granular sound buffer player
 	- linrand - random values with triangular (linear) distribution
 	- red~ - red noise generator with variable level of "redness"
 	- scaledeg - maps scale degrees to midi notes, ported from SuperCollider
