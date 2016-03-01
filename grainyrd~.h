@@ -3,7 +3,7 @@
 #include <string.h>
 
 #ifndef DXKGNYNUMGR //number of grains
-#define DXKGNYNUMGR 200
+#define DXKGNYNUMGR 300
 #endif
 
 #ifndef DXKGNYM //window size
@@ -11,7 +11,7 @@
 #endif
 
 #ifndef DXKGNYOV //overlap
-#define DXKGNYOV 32
+#define DXKGNYOV 64
 #endif
 
 #ifndef DXKGNYTP //transposition
@@ -31,7 +31,7 @@
 #endif 
 
 #ifndef DXKGNYRNDSZ //default of random sizes, yes
-#define DXKGNYRNDSZ 0
+#define DXKGNYRNDSZ 1
 #endif
 
 #ifndef DXKGNYRNDAMP //default of random amps, yes
@@ -48,7 +48,7 @@
 
 
 #ifndef DXXKGNYRSZAMT //default random size amount in ms
-#define DXKGNYRSZAMT 0.5f
+#define DXKGNYRSZAMT 10.0f
 #endif
 
 #ifndef DXKGNYRAMPAMT //default random amp amount
@@ -68,5 +68,5 @@
 #endif
 
 #ifndef DXKGNYENV //env type
-#define DXKGNYENV 1 //0 = hanning, 1 = tukey
+#define DXKGNYENV 0 //0 = hanning, 1 = tukey
 #endif

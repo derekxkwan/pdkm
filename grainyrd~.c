@@ -36,7 +36,7 @@ typedef struct _grainyrd_tilde
 	float x_rampamt; //random amp amount
 	int x_randamp; //generate random amps; 1 = yes
 	int x_randtp; //generate random transpositions, 1 = yes
-	int x_rtpamt; //random transposition amount
+	double x_rtpamt; //random transposition amount
 	float x_posvar; //amount of position variance per grain in ms
 	float x_hopvar; //amount of position variance per grain in ms
 
@@ -45,22 +45,23 @@ typedef struct _grainyrd_tilde
 	int x_numact; //number of active grains
 } t_grainyrd_tilde;
 
-static double exprseed(void){//range -1 to 1
+static double exprseed(void){//range 0 to 1
 	double retval;
 	static unsigned long int exprandseed = 1997333137;
 	exprandseed = exprandseed * 2891336453 + 1500450271;
 	exprandseed = exprandseed % 4294967296;
 	exprandseed &= 0x7fffffff;
-	retval = exprandseed * (2.f/2147483647.f) - 1.f; //biggest num in 32-bit div 2
+	retval = exprandseed * (1.f/2147483647.f); //biggest num in 32-bit div 2
 	return retval;
 }
 
 
 static double getreadscale(t_grainyrd_tilde *x, float transpose){
+	double dbltp = (double) transpose;
 	if(x->x_randtp){
-		transpose += (x->x_rtpamt * exprseed());
+		dbltp += ((double)x->x_rtpamt * ((exprseed()*2.f)-1.f));
 	};
-	return powf(2.f, transpose/12.f);
+	return pow(2.f, dbltp/12.f);
 
 }
 
@@ -473,21 +474,27 @@ static t_int *grainyrd_tilde_perform(t_int *w)
 			//init new grain
 			int cursz = grainsz;
 			if(randsz){
-				cursz += (rszamt *(int)((double)grainsz*exprseed()));
+				cursz += (int)(exprseed()*((double)m_sr*rszamt));
 			};
 			int curidx = getnextgr(x); //getting next grain idx
 			x->x_grainsize[curidx] = cursz;
 			x->x_grainpos[curidx] = 0;
-			int curpos = index  + (int)(exprseed()*(m_sr*posvar));
+			int curpos = index  + (int)((2.f*exprseed()-1.f)*(m_sr*posvar));
+			if(curpos < 0){
+				curpos = 0;
+			}
+			else if(curpos > maxindex){
+				curpos = maxindex;
+			};
 			x->x_grainstart[curidx] = curpos;
 			x->x_grainstep[curidx] = getreadscale(x, curtp);
 			x->x_winmap[curidx] = (double)DXKGNYM/(double)cursz;
 			x->x_winpos[curidx] = 0.f;
-			x->x_nextgr = grainrate + (int)((exprseed()/2.0f + 1.f )*((double)grainrate*hopvar));
+			x->x_nextgr = grainrate + (int)(exprseed()*((double)grainrate*hopvar));
 			//post("%d", x->x_nextgr);
 			x->x_grainamp[curidx] = amp;
 			if(randamp){
-				x->x_grainamp[curidx] += (rampamt * exprseed());
+				x->x_grainamp[curidx] += (rampamt * (2.f*exprseed()-1.f));
 			};
 			x->x_numact++;
 
