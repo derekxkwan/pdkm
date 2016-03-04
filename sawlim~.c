@@ -1,0 +1,104 @@
+#include <math.h>
+#include "m_pd.h"
+
+
+#ifndef DXKSAWLEN
+#define DXKSAWLEN 512//size of saw wavetable
+#endif
+
+#ifndef DXK2PI
+#define DXK2PI 2.f*acos(-1.f)
+#endif
+
+#ifndef DXKSAWDEP
+#define DXKSAWDEP 1000 //number of steps to compute saw
+#endif
+
+static t_class *sawlim_tilde_class;
+
+typedef struct _sawlim_tilde {
+	t_object x_obj;
+	t_float x_freq; //scalar freq
+	double x_phase;
+	double x_conv; //1/samprate, duration of one sample in seconds
+	double x_saw[DXKSAWLEN]; //table for holding saw values
+} t_sawlim_tilde;
+
+void *sawlim_tilde_new(t_floatarg freq){
+	int i,j;
+	t_sawlim_tilde *x = (t_sawlim_tilde *)pd_new(sawlim_tilde_class);
+	x->x_freq = freq;
+	x->x_phase = 0.f;
+
+	for(i=0; i<DXKSAWLEN; i++){
+		double xval = (double)i/(double)DXKSAWLEN;
+		double yval = 0.f;
+		for(j=1; j<=DXKSAWDEP; j++){
+			double cterm = 1.f/(double)j;
+			double varterm = sin(xval * (double)j*DXK2PI);
+			double valterm = cterm*varterm;
+			yval += valterm;
+		};
+		x->x_saw[i] = yval;
+	};
+
+	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("ft1"));
+	outlet_new(&x->x_obj, gensym("signal"));
+	return (x);
+}
+
+t_int *sawlim_tilde_perform(t_int *w){
+	 t_sawlim_tilde *x = (t_sawlim_tilde *)(w[1]);
+	 t_float *in = (t_float *)(w[2]);
+	t_float *out = (t_float *)(w[3]);
+	int n = (int)(w[4]);
+	
+	while(n--){
+		double freq = (double) *in++;
+		x->x_phase = fmod(x->x_phase, (double)(DXKSAWLEN));//phases need to be wrapped  just in case
+		while(x->x_phase < 0){
+			x->x_phase += DXKSAWLEN;
+		};
+		double dtabphase = x->x_phase;//find corresponding index for table 
+		int tabphase1 = (int)dtabphase;
+		int tabphase2 = tabphase1 + 1;
+		double frac = (double)dtabphase - tabphase1;
+		if(tabphase1 >= (DXKSAWLEN - 1)){
+			tabphase1 = DXKSAWLEN - 1; //checking to see if index falls within bounds
+			tabphase2 = 0;
+		}
+		else if(tabphase1 < 0){
+			tabphase1 = 0;
+			tabphase2 = 1;
+		};
+		double yb = x->x_saw[tabphase2]; //linear interp
+		double ya = x->x_saw[tabphase1];
+		double output = ya+((yb-ya)*frac);
+		*out++ = output;
+		x->x_phase += freq* x->x_conv;
+	};
+	return(w+5);
+}
+
+void sawlim_tilde_dsp(t_sawlim_tilde *x, t_signal **sp){
+
+	//(freq*tablelen)/(samplerate) = array values per sample to advance
+	// divide by tablelen to map to 0 to 1 range,..freq/samplerate
+    x->x_conv = (double)DXKSAWLEN/(double)sp[0]->s_sr; //amount to change phase for freq 1
+	    dsp_add(sawlim_tilde_perform, 4, x, sp[0]->s_vec, sp[1]->s_vec, sp[0]->s_n);
+
+}
+
+void sawlim_tilde_ft1(t_sawlim_tilde *x, t_float phase){
+	x->x_phase = (double)DXKSAWLEN*phase;
+
+}
+
+
+void sawlim_tilde_setup(void){
+	sawlim_tilde_class = class_new(gensym("sawlim~"), (t_newmethod)sawlim_tilde_new, 0,
+			sizeof(t_sawlim_tilde), 0, A_DEFFLOAT, 0);
+	class_addmethod(sawlim_tilde_class, (t_method)sawlim_tilde_dsp, gensym("dsp"), A_CANT, 0);
+   CLASS_MAINSIGNALIN(sawlim_tilde_class, t_sawlim_tilde, x_freq);
+   class_addmethod(sawlim_tilde_class, (t_method)sawlim_tilde_ft1, gensym("ft1"), A_FLOAT, 0);
+}
