@@ -1,31 +1,32 @@
 #include "dxkwavtab.h"
 
-static t_class *sawlim_tilde_class;
+static t_class *sqlim_tilde_class;
 
-typedef struct _sawlim_tilde {
+typedef struct _sqlim_tilde {
 	t_object x_obj;
 	t_float x_freq; //scalar freq
 	double x_phase;
 	double x_conv; //1/samprate, duration of one sample in seconds
-	double x_saw[DXKTABLEN]; //table for holding saw values
-} t_sawlim_tilde;
+	double x_sq[DXKTABLEN]; //table for holding saw values
+} t_sqlim_tilde;
 
-void *sawlim_tilde_new(t_floatarg freq){
+void *sqlim_tilde_new(t_floatarg freq){
 	int i,j;
-	t_sawlim_tilde *x = (t_sawlim_tilde *)pd_new(sawlim_tilde_class);
+	t_sqlim_tilde *x = (t_sqlim_tilde *)pd_new(sqlim_tilde_class);
 	x->x_freq = freq;
 	x->x_phase = 0.f;
 
 	for(i=0; i<DXKTABLEN; i++){
 		double xval = (double)i/(double)DXKTABLEN;
 		double yval = 0.f;
-		for(j=1; j<=DXKTABDEP; j++){
-			double cterm = 1.f/(double)j;
-			double varterm = sin(xval * (double)j*DXK2PI);
+		for(j=0; j<DXKTABDEP; j++){
+			int idx = (j*2)+1;
+			double cterm = 1.f/(double)idx;
+			double varterm = sin(xval * (double)idx*DXK2PI);
 			double valterm = cterm*varterm;
 			yval += valterm;
 		};
-		x->x_saw[i] = yval;
+		x->x_sq[i] = yval;
 	};
 
 	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("ft1"));
@@ -33,8 +34,8 @@ void *sawlim_tilde_new(t_floatarg freq){
 	return (x);
 }
 
-t_int *sawlim_tilde_perform(t_int *w){
-	 t_sawlim_tilde *x = (t_sawlim_tilde *)(w[1]);
+t_int *sqlim_tilde_perform(t_int *w){
+	 t_sqlim_tilde *x = (t_sqlim_tilde *)(w[1]);
 	 t_float *in = (t_float *)(w[2]);
 	t_float *out = (t_float *)(w[3]);
 	int n = (int)(w[4]);
@@ -57,8 +58,8 @@ t_int *sawlim_tilde_perform(t_int *w){
 			tabphase1 = 0;
 			tabphase2 = 1;
 		};
-		double yb = x->x_saw[tabphase2]; //linear interp
-		double ya = x->x_saw[tabphase1];
+		double yb = x->x_sq[tabphase2]; //linear interp
+		double ya = x->x_sq[tabphase1];
 		double output = ya+((yb-ya)*frac);
 		*out++ = output;
 		x->x_phase += freq* x->x_conv;
@@ -66,25 +67,25 @@ t_int *sawlim_tilde_perform(t_int *w){
 	return(w+5);
 }
 
-void sawlim_tilde_dsp(t_sawlim_tilde *x, t_signal **sp){
+void sqlim_tilde_dsp(t_sqlim_tilde *x, t_signal **sp){
 
 	//(freq*tablelen)/(samplerate) = array values per sample to advance
 	// divide by tablelen to map to 0 to 1 range,..freq/samplerate
     x->x_conv = (double)DXKTABLEN/(double)sp[0]->s_sr; //amount to change phase for freq 1
-	    dsp_add(sawlim_tilde_perform, 4, x, sp[0]->s_vec, sp[1]->s_vec, sp[0]->s_n);
+	    dsp_add(sqlim_tilde_perform, 4, x, sp[0]->s_vec, sp[1]->s_vec, sp[0]->s_n);
 
 }
 
-void sawlim_tilde_ft1(t_sawlim_tilde *x, t_float phase){
+void sqlim_tilde_ft1(t_sqlim_tilde *x, t_float phase){
 	x->x_phase = (double)DXKTABLEN*phase;
 
 }
 
 
-void sawlim_tilde_setup(void){
-	sawlim_tilde_class = class_new(gensym("sawlim~"), (t_newmethod)sawlim_tilde_new, 0,
-			sizeof(t_sawlim_tilde), 0, A_DEFFLOAT, 0);
-	class_addmethod(sawlim_tilde_class, (t_method)sawlim_tilde_dsp, gensym("dsp"), A_CANT, 0);
-   CLASS_MAINSIGNALIN(sawlim_tilde_class, t_sawlim_tilde, x_freq);
-   class_addmethod(sawlim_tilde_class, (t_method)sawlim_tilde_ft1, gensym("ft1"), A_FLOAT, 0);
+void sqlim_tilde_setup(void){
+	sqlim_tilde_class = class_new(gensym("sqlim~"), (t_newmethod)sqlim_tilde_new, 0,
+			sizeof(t_sqlim_tilde), 0, A_DEFFLOAT, 0);
+	class_addmethod(sqlim_tilde_class, (t_method)sqlim_tilde_dsp, gensym("dsp"), A_CANT, 0);
+   CLASS_MAINSIGNALIN(sqlim_tilde_class, t_sqlim_tilde, x_freq);
+   class_addmethod(sqlim_tilde_class, (t_method)sqlim_tilde_ft1, gensym("ft1"), A_FLOAT, 0);
 }

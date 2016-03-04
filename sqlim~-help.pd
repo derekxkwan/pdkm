@@ -1,8 +1,8 @@
-#N canvas 172 118 412 336 10;
+#N canvas 170 121 412 336 10;
 #X obj 8 6 cnv 15 400 30 empty empty dxklib 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
-#X obj 8 36 cnv 15 400 30 empty empty sawlim~ 20 12 0 20 -232576 -66577
+#X obj 8 36 cnv 15 400 30 empty empty sqlim~ 20 12 0 20 -232576 -66577
 0;
 #X obj 7 188 cnv 15 400 70 empty empty inlet 20 12 0 15 -261682 -66577
 0;
@@ -13,16 +13,16 @@
 #X text 97 191 1) f/sig~ - frequency;
 #X text 97 211 2) float - phase (0-1);
 #X text 97 260 1) sig~ - signal;
-#X text 97 287 1) frequency;
 #X floatatom 174 89 5 0 0 0 - - -, f 5;
 #X obj 174 134 *~ 0;
 #X obj 293 119 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X text 315 118 sound;
 #X obj 174 156 dac~ 1 2;
-#X obj 174 112 dxklib/sawlim~ 440;
-#X text 210 44 bandlimited saw wave generator;
-#X connect 10 0 15 0;
-#X connect 11 0 14 0;
-#X connect 12 0 11 1;
-#X connect 15 0 11 0;
+#X text 200 45 bandlimited square wave generator;
+#X obj 174 112 dxklib/sqlim~ 440;
+#X text 97 287 1) float - frequency;
+#X connect 9 0 15 0;
+#X connect 10 0 13 0;
+#X connect 11 0 10 1;
+#X connect 15 0 10 0;
