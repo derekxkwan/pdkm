@@ -126,7 +126,7 @@ static void *sinbank_tilde_new(t_symbol *s, int argc, t_atom *argv){
 
 	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("freqs"));
 	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("amps"));
-	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("ft1"));
+	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("ft1"));
 	outlet_new(&x->x_obj, gensym("signal"));
 	return (x);
 
@@ -214,25 +214,22 @@ static void sinbank_tilde_dsp(t_sinbank_tilde *x, t_signal **sp){
 }
 
 
-static void sinbank_tilde_ft1(t_sinbank_tilde *x, t_float phase){//0 to 1
-	int i, numsin = x->x_numsin;
-	while(phase < 0.f){
-		phase += 1.f;
-	};
-	if(phase >= 1){
-		phase = fmod(phase, 1.f);//phases need to be wrapped  just in case
-	};
-	for(i=0; i<numsin; i++){
-		double rel = x->relfreq[i];
-		double phs= (double)DXKTABLEN*phase*rel;
-		phs = fmod(phs, DXKTABLEN);//phases need to be wrapped  just in case
-		while(phs < 0){
-			phs += DXKTABLEN;
+static void sinbank_tilde_ft1(t_sinbank_tilde *x, t_symbol * s,int argc, t_atom *argv){//0 to 1
+	int i;
+
+	for(i=0; i<argc; i++){
+		if(i < DXKSBMAX){
+			t_float phase = atom_getfloatarg(i, argc, argv);
+			phase *= DXKTABLEN;
+				phase = fmod(phase, DXKTABLEN);//phases need to be wrapped  just in case
+			while(phase < 0.f){
+				phase += DXKTABLEN;
 			};
-		x->phases[i] = phs;
 
+				x->phases[i] = phase;
+
+		};
 	};
-
 }
 
 
@@ -244,5 +241,5 @@ void sinbank_tilde_setup(void){
    class_addmethod(sinbank_tilde_class, (t_method)sinbank_tilde_freqs, gensym("freqs"), A_GIMME, 0);
    class_addmethod(sinbank_tilde_class, (t_method)sinbank_tilde_amps, gensym("amps"), A_GIMME, 0);
    class_addmethod(sinbank_tilde_class, (t_method)sinbank_tilde_setmode, gensym("mode"), A_SYMBOL, 0);
-	class_addmethod(sinbank_tilde_class, (t_method)sinbank_tilde_ft1, gensym("ft1"), A_FLOAT, 0);
+	class_addmethod(sinbank_tilde_class, (t_method)sinbank_tilde_ft1, gensym("ft1"), A_GIMME, 0);
 }
