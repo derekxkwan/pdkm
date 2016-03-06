@@ -19,8 +19,11 @@ OBJECTS:
 
 HOW TO INSTALL:
 	- type "make"
-	- create a folder within your externals directory called "dxkpure" and move all
-	.dll if windows/.pd_darwin if osx/.pd_linux files as well as all -help.pd files
-	into it (or easier, just move this whole folder in there if you don't mind the
-	clutter)
+	- create a folder within your externals directory (check out the pure data website 
+	puredata.info if you don't know where it is) and move the following into it:
+		- all .dll for windows/.pd_darwin for osx/.pd_linux files for linux
+		- dxkpure-meta.pd 
+		- all -help.pd files
 
+		(or you can just move this entire folder into your externals directory
+		if you don't mind the clutter)
