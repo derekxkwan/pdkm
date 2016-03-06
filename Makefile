@@ -6,11 +6,11 @@ LIBRARY_NAME = dxkpure
 # add your .c source files, one object per file, to the SOURCES
 # variable, help files will be included automatically, and for GUI
 # objects, the matching .tcl file too
-SOURCES = red~.c exprand.c linrand.c scaledeg.c euclid.c grainyrd~.c sawlim~.c sqlim~.c resobank~.c sinbank~.c randlist.c 
+SOURCES = red~.c exprand.c linrand.c scaledeg.c euclid.c grainyrd~.c sawlim~.c sqlim~.c sinbankd~.c sinbank~.c randlist.c 
 
 # list all pd objects (i.e. myobject.pd) files here, and their helpfiles will
 # be included automatically
-PDOBJECTS = red~.pd exprand.pd linrand.pd scaledeg.pd euclid.pd grainyrd~.pd sawlim~.pd sqlim~.pd resobank~.pd sinbank~.pd randlist.pd
+PDOBJECTS = red~.pd exprand.pd linrand.pd scaledeg.pd euclid.pd grainyrd~.pd sawlim~.pd sqlim~.pd sinbankd~.pd sinbank~.pd randlist.pd
 
 # example patches and related files, in the 'examples' subfolder
 #EXAMPLES = bothtogether.pd

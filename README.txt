@@ -11,9 +11,9 @@ OBJECTS:
 	- linrand - random values with triangular (linear) distribution
 	- randlist - generate list of random numbers within a given range
 	- red~ - red noise generator with variable level of "redness"
-	- resobank~ - frequency resonator bank with separate envelopes
 	- sawlim~ - bandlimited sawtooth wave generator
 	- sinbank~ - sine oscillator bank
+	- sinbankd~ - sine oscillator bank with separate envelopes
 	- sqlim~ - bandlimited square wave generator
 	- scaledeg - maps scale degrees to midi notes, ported from SuperCollider
 
