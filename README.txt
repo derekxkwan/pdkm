@@ -18,6 +18,9 @@ OBJECTS:
 	- scaledeg - maps scale degrees to midi notes, ported from SuperCollider
 
 HOW TO INSTALL:
-	- move this folder (pd-dxklib) into your externals folder
-	- move into this directory and type "make"
+	- type "make"
+	- create a folder within your externals directory called "dxkpure" and move all
+	.dll if windows/.pd_darwin if osx/.pd_linux files as well as all -help.pd files
+	into it (or easier, just move this whole folder in there if you don't mind the
+	clutter)
 
