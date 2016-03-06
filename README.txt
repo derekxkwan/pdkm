@@ -10,7 +10,9 @@ OBJECTS:
 	- grainyrd~ - granular sound buffer player
 	- linrand - random values with triangular (linear) distribution
 	- red~ - red noise generator with variable level of "redness"
+	- resobank~ - frequency resonator bank with separate envelopes
 	- sawlim~ - bandlimited sawtooth wave generator
+	- sinbank~ - sine oscillator bank
 	- sqlim~ - bandlimited square wave generator
 	- scaledeg - maps scale degrees to midi notes, ported from SuperCollider
 

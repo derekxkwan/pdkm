@@ -10,7 +10,7 @@ typedef struct _sqlim_tilde {
 	double x_sq[DXKTABLEN]; //table for holding saw values
 } t_sqlim_tilde;
 
-void *sqlim_tilde_new(t_floatarg freq){
+static void *sqlim_tilde_new(t_floatarg freq){
 	int i,j;
 	t_sqlim_tilde *x = (t_sqlim_tilde *)pd_new(sqlim_tilde_class);
 	x->x_freq = freq;
@@ -34,7 +34,7 @@ void *sqlim_tilde_new(t_floatarg freq){
 	return (x);
 }
 
-t_int *sqlim_tilde_perform(t_int *w){
+static t_int *sqlim_tilde_perform(t_int *w){
 	 t_sqlim_tilde *x = (t_sqlim_tilde *)(w[1]);
 	 t_float *in = (t_float *)(w[2]);
 	t_float *out = (t_float *)(w[3]);
@@ -67,7 +67,7 @@ t_int *sqlim_tilde_perform(t_int *w){
 	return(w+5);
 }
 
-void sqlim_tilde_dsp(t_sqlim_tilde *x, t_signal **sp){
+static void sqlim_tilde_dsp(t_sqlim_tilde *x, t_signal **sp){
 
 	//(freq*tablelen)/(samplerate) = array values per sample to advance
 	// divide by tablelen to map to 0 to 1 range,..freq/samplerate
@@ -76,7 +76,7 @@ void sqlim_tilde_dsp(t_sqlim_tilde *x, t_signal **sp){
 
 }
 
-void sqlim_tilde_ft1(t_sqlim_tilde *x, t_float phase){
+static void sqlim_tilde_ft1(t_sqlim_tilde *x, t_float phase){
 	x->x_phase = (double)DXKTABLEN*phase;
 
 }
