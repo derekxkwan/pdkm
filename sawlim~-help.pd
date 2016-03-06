@@ -1,5 +1,5 @@
-#N canvas 172 118 412 336 10;
-#X obj 8 6 cnv 15 400 30 empty empty dxklib 20 12 0 20 -261682 -66577
+#N canvas 306 125 416 384 10;
+#X obj 8 6 cnv 15 400 30 empty empty dxkpure 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
 #X obj 8 36 cnv 15 400 30 empty empty sawlim~ 20 12 0 20 -232576 -66577
@@ -20,8 +20,22 @@
 1;
 #X text 315 118 sound;
 #X obj 174 156 dac~ 1 2;
-#X obj 174 112 dxklib/sawlim~ 440;
-#X text 210 44 bandlimited saw wave generator;
+#X obj 174 112 dxkpure/sawlim~ 440;
+#N canvas 739 367 374 272 META 0;
+#X text 3 136 VERSION 0.1;
+#X text 3 154 AUTHOR Derek Kwan;
+#X text 4 172 RELEASE_DATE 2016;
+#X text 5 191 WEBSITE http://www.derekxkwan.com/code/puredata.html
+;
+#X text 2 116 LIBRARY dxkpure;
+#X text 2 97 OUTLET_0 signal;
+#X text 0 19 LICENSE GPL v2;
+#X text 0 38 DESCRIPTION bandlimited sawtooth wave generator;
+#X text 0 57 INLET_0 float;
+#X text 0 76 INLET_1 float;
+#X text 1 0 KEYWORDS bandlimited wave sawtooth oscillator sawlim;
+#X restore 9 334 pd META;
+#X text 185 44 bandlimited sawtooth wave generator;
 #X connect 10 0 15 0;
 #X connect 11 0 14 0;
 #X connect 12 0 11 1;

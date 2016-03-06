@@ -1,5 +1,5 @@
-#N canvas 513 173 412 651 10;
-#X obj 8 6 cnv 15 400 30 empty empty dxklib 20 12 0 20 -261682 -66577
+#N canvas 179 133 423 699 10;
+#X obj 8 6 cnv 15 400 30 empty empty dxkpure 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
 #X obj 8 36 cnv 15 400 30 empty empty sinbank~ 20 12 0 20 -232576 -66577
@@ -39,8 +39,8 @@
 #X text 41 334 float/sig - sets float as fundamental (if mode abs \,
 relates all freqs to first freq);
 #X text 16 466 4 phase - set phase 0-1;
-#X obj 14 193 dxklib/sinbank~ 1 1.5 2;
-#X obj 175 197 dxklib/sinbank~ 200 400 800 -mode abs;
+#X obj 14 193 dxkpure/sinbank~ 1 1.5 2;
+#X obj 175 197 dxkpure/sinbank~ 200 400 800 -mode abs;
 #X text 164 73 set phase;
 #X msg 166 93 0;
 #X floatatom 7 159 5 0 0 0 - - -, f 5;
@@ -54,6 +54,22 @@ relates all freqs to first freq);
 #X obj 211 231 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X text 208 216 SOUND;
+#N canvas 746 471 374 272 META 0;
+#X text 3 170 VERSION 0.1;
+#X text 3 188 AUTHOR Derek Kwan;
+#X text 4 206 RELEASE_DATE 2016;
+#X text 5 225 WEBSITE http://www.derekxkwan.com/code/puredata.html
+;
+#X text 2 150 LIBRARY dxkpure;
+#X text 2 131 OUTLET_0 signal;
+#X text 0 19 LICENSE GPL v2;
+#X text 0 92 INLET_2 list;
+#X text 0 76 INLET_1 list;
+#X text 1 38 DESCRIPTION sine oscillator bank;
+#X text 0 57 INLET_0 float;
+#X text 0 108 INLET_3 float;
+#X text 0 0 KEYWORDS sine oscillator bank sinbank;
+#X restore 8 649 pd META;
 #X connect 20 0 31 1;
 #X connect 22 0 32 2;
 #X connect 25 0 32 0;

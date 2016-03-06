@@ -1,5 +1,5 @@
 ==========================================
-dxklib v0.1 - pure data external library
+dxkpure v0.1 - pure data external library
 by Derek Kwan, 2016
 ==========================================
 
@@ -9,6 +9,7 @@ OBJECTS:
 	- exprand - random values with exponential distribution
 	- grainyrd~ - granular sound buffer player
 	- linrand - random values with triangular (linear) distribution
+	- randlist - generate list of random numbers within a given range
 	- red~ - red noise generator with variable level of "redness"
 	- resobank~ - frequency resonator bank with separate envelopes
 	- sawlim~ - bandlimited sawtooth wave generator

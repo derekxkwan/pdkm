@@ -1,6 +1,6 @@
-#N canvas 565 117 612 604 10;
-#X obj 157 548 dac~ 1 2;
-#X msg 131 442 1;
+#N canvas 453 119 636 750 10;
+#X obj 138 446 dac~ 1 2;
+#X msg 112 340 1;
 #N canvas 0 50 450 250 (subpatch) 0;
 #X array \$0-array 64 float 3;
 #A 0 -0.127688 -0.316785 -0.394879 -0.402979 -0.194942 -0.0928473 0.0155435
@@ -14,17 +14,17 @@
 0.146601 0.131411 0.285301 0.108779;
 #X coords 0 1 64 -1 200 140 1 0 0;
 #X restore 13 92 graph;
-#X obj 133 408 loadbang;
-#X obj 309 301 vsl 30 256 0 1 0 0 empty empty redness 0 -9 0 10 -258113
+#X obj 114 306 loadbang;
+#X obj 309 301 vsl 30 175 0 1 0 0 empty empty redness 0 -9 0 10 -258113
 -1 -1 12750 1;
-#X floatatom 309 571 5 0 0 0 - - -, f 5;
-#X obj 41 469 metro 25;
-#X obj 38 500 tabwrite~ \$0-array;
-#X obj 266 302 vsl 30 256 0 1 0 0 empty empty vol 0 -9 0 10 -33289
--258113 -258113 25500 1;
-#X floatatom 267 571 5 0 0 0 - - -, f 5;
-#X obj 158 517 *~ 1;
-#X msg 168 444 0.5;
+#X floatatom 309 493 5 0 0 0 - - -, f 5;
+#X obj 22 367 metro 25;
+#X obj 19 398 tabwrite~ \$0-array;
+#X obj 266 302 vsl 30 175 0 1 0 0 empty empty vol 0 -9 0 10 -33289
+-258113 -258113 17400 1;
+#X floatatom 266 494 5 0 0 0 - - -, f 5;
+#X obj 139 415 *~ 1;
+#X msg 149 342 0.5;
 #X text 237 92 Generates noise with a variable amount of "redness"
 through the given recurrence relation:;
 #X text 303 173 x[0] = w[0];
@@ -33,13 +33,37 @@ through the given recurrence relation:;
 \, r is the "redness" factor such that 0 <= r <= 1 \, and x[i] is the
 output. Note that when r = 0 \, x[i] is white noise and when r = 1
 \, x[i] is 0 for all x[i].;
-#X obj 160 479 dxklib/red~ 0.5;
-#X obj 8 6 cnv 15 400 30 empty empty dxklib 20 12 0 20 -261682 -66577
+#X obj 141 377 dxkpure/red~ 0.5;
+#X obj 8 6 cnv 15 400 30 empty empty dxkpure 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
 #X obj 8 36 cnv 15 400 30 empty empty red~ 20 12 0 20 -232576 -66577
 0;
 #X text 190 40 noise of varying degrees of redness;
+#X obj 24 523 cnv 15 400 75 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 24 650 cnv 15 400 50 empty empty args 20 12 0 15 -261682 -66577
+0;
+#X obj 24 599 cnv 15 400 50 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#X text 66 547 1: dummy;
+#X text 65 567 2: float - redness;
+#X text 66 618 signal~ - red noise;
+#X text 70 674 1: f - redness;
+#N canvas 954 262 374 272 META 0;
+#X text 0 76 INLET_1 float;
+#X text 2 137 VERSION 0.1;
+#X text 2 155 AUTHOR Derek Kwan;
+#X text 3 173 RELEASE_DATE 2016;
+#X text 4 192 WEBSITE http://www.derekxkwan.com/code/puredata.html
+;
+#X text 1 117 LIBRARY dxkpure;
+#X text 0 0 KEYWORDS red noise;
+#X text 0 38 DESCRIPTION noise of varying degrees of redness;
+#X text 0 57 INLET_0 dummy;
+#X text 1 98 OUTLET_0 signal;
+#X text 0 19 LICENSE GPL v2;
+#X restore 32 711 pd META;
 #X connect 1 0 6 0;
 #X connect 1 0 8 0;
 #X connect 3 0 1 0;

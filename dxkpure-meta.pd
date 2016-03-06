@@ -1,0 +1,10 @@
+#N canvas 73 128 315 321 10;
+#X text 2 80 VERSION 0.1;
+#X text 2 98 AUTHOR Derek Kwan;
+#X text 3 116 RELEASE_DATE 2016;
+#X text 4 135 WEBSITE http://www.derekxkwan.com/code/puredata.html
+;
+#X text 1 60 NAME dxkpure;
+#X text 1 40 DESCRIPTION various pure data externals;
+#X text -1 19 LICENSE GPL v2;
+#X text -1 0 KEYWORDS;

@@ -1,4 +1,4 @@
-#N canvas 270 265 421 418 10;
+#N canvas 138 169 418 649 10;
 #X obj 151 286 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X floatatom 151 328 10 0 0 0 - - -, f 10;
@@ -21,13 +21,40 @@ generator and multiplied by one of the following two functions:;
 #X text 251 287 >0: tend towards max;
 #X text 18 354 args: \$1 - max val \, \$2 - 0: tend towards 0 \, >0:
 tend towards max;
-#X obj 8 6 cnv 15 400 30 empty empty dxklib 20 12 0 20 -261682 -66577
+#X obj 8 6 cnv 15 400 30 empty empty dxkpure 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
 #X obj 8 36 cnv 15 400 30 empty empty linrand 20 12 0 20 -232576 -66577
 0;
 #X text 167 42 random numbers with linear distribution;
-#X obj 151 306 dxklib/linrand 100 0;
+#X obj 151 306 dxkpure/linrand 100 0;
+#X obj 7 389 cnv 15 400 100 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 7 541 cnv 15 400 70 empty empty args 20 12 0 15 -261682 -66577
+0;
+#X text 53 565 1: f - length of euclidean rhythm;
+#X text 49 414 1: bang - for output;
+#X obj 7 490 cnv 15 400 50 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#N canvas 952 265 374 272 META 0;
+#X text 0 76 INLET_1 float;
+#X text 2 135 VERSION 0.1;
+#X text 2 153 AUTHOR Derek Kwan;
+#X text 3 171 RELEASE_DATE 2016;
+#X text 4 190 WEBSITE http://www.derekxkwan.com/code/puredata.html
+;
+#X text 1 115 LIBRARY dxkpure;
+#X text 0 38 DESCRIPTION random numbers with linear distribution;
+#X text 0 57 INLET_0 bang message;
+#X text 1 96 OUTLET_0 float;
+#X text 0 19 LICENSE GPL v2;
+#X text 0 0 KEYWORDS linear distribution random linrand;
+#X restore 8 622 pd META;
+#X text 51 586 2: f - 0: tend towards 0 \, >0: tend towards max;
+#X text 49 509 float - random number;
+#X text 46 451 2: float - 0: tend towards 0 \, >0: tend towards max
+;
+#X text 64 433 message - "seed (f)": set seed for random numbers;
 #X connect 0 0 18 0;
 #X connect 2 0 18 2;
 #X connect 6 0 18 0;

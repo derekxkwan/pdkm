@@ -1,4 +1,4 @@
-#N canvas 609 205 613 686 10;
+#N canvas 641 186 570 692 10;
 #X text 13 86 Maps incoming floats to midi notes with the following
 formula:;
 #X text 21 140 midinote = (input % n) + floor(input/n)*12 + offset
@@ -6,19 +6,17 @@ formula:;
 #X text 22 171 where n = number of notes in scale;
 #X text 12 216 Meaning \, given the specified offset \, the input maps
 to midinotes in a specified scale;
-#X text 22 292 arg 1/inlet 2: scale name (symbol);
-#X text 21 313 arg 2/inlet 3: offset (f);
 #X text 383 78 SCALE NAMES:;
-#X floatatom 106 426 5 0 0 0 - - -, f 5;
-#X floatatom 104 471 5 0 0 0 - - -, f 5;
-#X text 6 423 scale deg input;
-#X text 36 470 midi note;
-#X msg 128 388 symbol major;
-#X msg 221 387 symbol whole;
-#X text 133 369 Change scale;
-#X text 253 409 change offset;
-#X msg 221 426 50;
-#X msg 259 425 90;
+#X floatatom 121 305 5 0 0 0 - - -, f 5;
+#X floatatom 119 350 5 0 0 0 - - -, f 5;
+#X text 21 302 scale deg input;
+#X text 51 349 midi note;
+#X msg 143 267 symbol major;
+#X msg 236 266 symbol whole;
+#X text 148 248 Change scale;
+#X text 268 288 change offset;
+#X msg 236 305 50;
+#X msg 274 304 90;
 #X text 388 103 7 notes \, 12 halfsteps/oct;
 #N canvas 1 59 512 305 7n12hso 0;
 #X text 34 17 major = 0 \, 2 \, 4 \, 5 \, 7 \, 9 \, 11;
@@ -138,17 +136,44 @@ to midinotes in a specified scale;
 #X text 573 122 nikriz = 0 \, 4 \, 6 \, 12 \, 14 \, 16 \, 22;
 #X text 570 138 atharKurd = 0 \, 2 \, 6 \, 12 \, 14 \, 16 \, 22;
 #X restore 384 385 pd 7n24hso;
-#X obj 8 6 cnv 15 400 30 empty empty dxklib 20 12 0 20 -261682 -66577
+#X obj 8 6 cnv 15 400 30 empty empty dxkpure 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
 #X obj 8 36 cnv 15 400 30 empty empty scaledeg 20 12 0 20 -232576 -66577
 0;
 #X text 222 37 degrees of scale -> midi notes;
 #X text 240 52 (ported from SuperCollider);
-#X obj 104 449 dxklib/scaledeg bartok 60;
-#X connect 7 0 34 0;
-#X connect 11 0 34 1;
-#X connect 12 0 34 1;
-#X connect 15 0 34 2;
-#X connect 16 0 34 2;
-#X connect 34 0 8 0;
+#X obj 119 328 dxkpure/scaledeg bartok 60;
+#X obj 26 414 cnv 15 400 100 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 26 566 cnv 15 400 70 empty empty args 20 12 0 15 -261682 -66577
+0;
+#X obj 26 515 cnv 15 400 50 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#N canvas 1254 347 374 272 META 0;
+#X text 1 95 INLET_2 float;
+#X text 2 154 VERSION 0.1;
+#X text 2 172 AUTHOR Derek Kwan;
+#X text 3 190 RELEASE_DATE 2016;
+#X text 4 209 WEBSITE http://www.derekxkwan.com/code/puredata.html
+;
+#X text 1 134 LIBRARY dxkpure;
+#X text 0 19 LICENSE GPL v2;
+#X text 0 38 DESCRIPTION maps scale degrees to midi notes;
+#X text 0 57 INLET_0 float;
+#X text 3 75 INLET_1 symbol;
+#X text 4 115 OUTLET_0 float;
+#X text 0 0 KEYWORDS scale degrees midi notes mapping scaledeg;
+#X restore 27 647 pd META;
+#X text 69 439 1: float - scale degree;
+#X text 67 459 2: symbol - scale name;
+#X text 70 478 3: float - offset;
+#X text 67 534 float - midi note;
+#X text 64 593 1: symbol - scale name;
+#X text 63 613 2: float - offset;
+#X connect 5 0 32 0;
+#X connect 9 0 32 1;
+#X connect 10 0 32 1;
+#X connect 13 0 32 2;
+#X connect 14 0 32 2;
+#X connect 32 0 6 0;

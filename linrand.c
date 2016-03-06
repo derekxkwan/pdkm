@@ -55,7 +55,7 @@ static void linrand_bang(t_linrand *x){
 }
 
 static void linrand_seed(t_linrand *x, t_float f, t_float glob){
-	x->x_state = f;
+	x->x_state = (int)f;
 }
 
 void linrand_setup(void){

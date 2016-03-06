@@ -39,7 +39,7 @@ static void exprand_bang(t_exprand *x){
 }
 
 static void exprand_seed(t_exprand *x, t_float f, t_float glob){
-	x->x_state = f;
+	x->x_state = (int)f;
 }
 
 void exprand_setup(void){

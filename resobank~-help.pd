@@ -1,5 +1,5 @@
-#N canvas 601 114 414 732 10;
-#X obj 8 6 cnv 15 400 30 empty empty dxklib 20 12 0 20 -261682 -66577
+#N canvas 1105 132 417 763 10;
+#X obj 8 6 cnv 15 400 30 empty empty dxkpure 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
 #X obj 8 36 cnv 15 400 30 empty empty resobank~ 20 12 0 20 -232576
@@ -12,8 +12,8 @@
 0;
 #X obj 175 241 dac~ 1 2;
 #X text 250 43 frequency resonator bank;
-#X obj 175 197 dxklib/resobank~ 200 400 800 -mode abs;
-#X obj 14 193 dxklib/resobank~ 1 1.5 2;
+#X obj 175 197 dxkpure/resobank~ 200 400 800 -mode abs;
+#X obj 14 193 dxkpure/resobank~ 1 1.5 2;
 #X obj 175 164 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 16 160 440;
@@ -54,6 +54,22 @@ given freq);
 #X msg 177 132 mode rel;
 #X text 178 110 set mode;
 #X text 78 284 SEE SINBANK~ FOR A NON-ENVELOPED VERSION;
+#N canvas 277 308 374 272 META 0;
+#X text 3 170 VERSION 0.1;
+#X text 3 188 AUTHOR Derek Kwan;
+#X text 4 206 RELEASE_DATE 2016;
+#X text 5 225 WEBSITE http://www.derekxkwan.com/code/puredata.html
+;
+#X text 2 150 LIBRARY dxkpure;
+#X text 2 131 OUTLET_0 signal;
+#X text 0 19 LICENSE GPL v2;
+#X text 0 38 DESCRIPTION resonant frequency bank;
+#X text 0 57 INLET_0 bang float;
+#X text 0 92 INLET_2 list;
+#X text 0 76 INLET_1 list;
+#X text 0 108 INLET_3 list;
+#X text 0 0 KEYWORDS modes resonant frequency bank sine resobank;
+#X restore 10 736 pd META;
 #X connect 8 0 6 0;
 #X connect 8 0 6 1;
 #X connect 9 0 6 0;
