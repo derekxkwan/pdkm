@@ -1,4 +1,4 @@
-#N canvas 403 127 458 766 10;
+#N canvas 401 130 458 766 10;
 #X obj 8 6 cnv 15 400 30 empty empty dxkpure 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
@@ -26,22 +26,24 @@
 #X text 330 193 amps;
 #X msg 189 220 mode rel;
 #X text 190 198 set mode;
-#N canvas 273 314 374 272 META 0;
-#X text 3 170 VERSION 0.1;
-#X text 3 188 AUTHOR Derek Kwan;
-#X text 4 206 RELEASE_DATE 2016;
-#X text 5 225 WEBSITE http://www.derekxkwan.com/code/puredata.html
+#N canvas 866 292 374 272 META 0;
+#X text 3 188 VERSION 0.1;
+#X text 3 206 AUTHOR Derek Kwan;
+#X text 4 224 RELEASE_DATE 2016;
+#X text 5 243 WEBSITE http://www.derekxkwan.com/code/puredata.html
 ;
-#X text 2 150 LIBRARY dxkpure;
-#X text 2 131 OUTLET_0 signal;
+#X text 2 168 LIBRARY dxkpure;
+#X text 2 149 OUTLET_0 signal;
 #X text 0 19 LICENSE GPL v2;
-#X text 0 57 INLET_0 bang float;
 #X text 0 92 INLET_2 list;
-#X text 0 76 INLET_1 list;
-#X text 0 108 INLET_3 list;
-#X text 0 38 DESCRIPTION sine oscillator bank with decay envelopes
+#X text 0 0 KEYWORDS modal frequency bank sine sinbankr decay amplitude
 ;
-#X text 0 0 KEYWORDS modal frequency bank sine sinbankd decay;
+#X text 0 38 DESCRIPTION sine oscillator bank with signal amp control
+;
+#X text 0 76 INLET_1 signal float;
+#X text 1 56 INLET_0 signal;
+#X text 0 108 INLET_3 list;
+#X text 3 128 INLET_4 list;
 #X restore 14 735 pd META;
 #X text 58 651 floats - frequencies for oscillator bank (up to 30 freqs)
 ;

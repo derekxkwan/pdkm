@@ -643,7 +643,6 @@ static void *scaledeg_new(t_symbol *s, t_floatarg f){
 	scaledeg_pickscale(x, s);
 	x->offset = f;
 	//symbolinlet_new(&x->x_obj, &x->scalesym);
-	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_symbol, gensym("pickscale"));
 	floatinlet_new(&x->x_obj, &x->offset);
 	outlet_new(&x->x_obj, &s_float);
 	return (x);
@@ -653,5 +652,5 @@ void scaledeg_setup(void){
 	scaledeg_class = class_new(gensym("scaledeg"), (t_newmethod)scaledeg_new, 0,
 			sizeof(t_scaledeg), 0, A_DEFSYMBOL, A_DEFFLOAT, 0);
 	class_addfloat(scaledeg_class, (t_method)scaledeg_float);
-	class_addmethod(scaledeg_class, (t_method)scaledeg_pickscale, gensym("pickscale"), A_SYMBOL, 0);
+	class_addmethod(scaledeg_class, (t_method)scaledeg_pickscale, gensym("scale"), A_SYMBOL, 0);
 }
