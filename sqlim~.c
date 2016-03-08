@@ -8,6 +8,9 @@ typedef struct _sqlim_tilde {
 	double x_phase;
 	double x_conv; //1/samprate, duration of one sample in seconds
 	double x_sq[DXKTABLEN]; //table for holding saw values
+
+	t_inlet *x_phaselet;
+	t_outlet *x_outlet;
 } t_sqlim_tilde;
 
 static void *sqlim_tilde_new(t_floatarg freq){
@@ -29,8 +32,8 @@ static void *sqlim_tilde_new(t_floatarg freq){
 		x->x_sq[i] = yval;
 	};
 
-	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("ft1"));
-	outlet_new(&x->x_obj, gensym("signal"));
+	x->x_phaselet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("ft1"));
+	x->x_outlet = outlet_new(&x->x_obj, gensym("signal"));
 	return (x);
 }
 
@@ -81,10 +84,16 @@ static void sqlim_tilde_ft1(t_sqlim_tilde *x, t_float phase){
 
 }
 
+static void *sqlim_tilde_free(t_sqlim_tilde *x){
+	inlet_free(x->x_phaselet);
+	outlet_free(x->x_outlet);
+	
+	return (void *)x;
+}
 
 void sqlim_tilde_setup(void){
 	sqlim_tilde_class = class_new(gensym("sqlim~"), (t_newmethod)sqlim_tilde_new, 0,
-			sizeof(t_sqlim_tilde), 0, A_DEFFLOAT, 0);
+			sizeof(t_sqlim_tilde), CLASS_DEFAULT, A_DEFFLOAT, 0);
 	class_addmethod(sqlim_tilde_class, (t_method)sqlim_tilde_dsp, gensym("dsp"), A_CANT, 0);
    CLASS_MAINSIGNALIN(sqlim_tilde_class, t_sqlim_tilde, x_freq);
    class_addmethod(sqlim_tilde_class, (t_method)sqlim_tilde_ft1, gensym("ft1"), A_FLOAT, 0);

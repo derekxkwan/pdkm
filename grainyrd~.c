@@ -43,6 +43,8 @@ typedef struct _grainyrd_tilde
 	t_float x_offset; //offset
 	float x_init; //init step completed	
 	int x_numact; //number of active grains
+
+	t_outlet *x_outlet;
 } t_grainyrd_tilde;
 
 static double exprseed(void){//range 0 to 1
@@ -256,7 +258,7 @@ static void *grainyrd_tilde_new(t_symbol *s, int argc, t_atom *argv)
 		x->x_vec = 0;
 		floatinlet_new(&x->x_obj, &x->x_trans);
 		floatinlet_new(&x->x_obj, &x->x_offset);
-		outlet_new(&x->x_obj, gensym("signal"));
+		x->x_outlet = outlet_new(&x->x_obj, gensym("signal"));
 		x->x_f = 0;
 		x->m_sr = (double) sr; //samples per millisecond
 		t_symbol *name = atom_getsymbolarg(0, argc, argv);
@@ -579,15 +581,17 @@ static void grainyrd_tilde_dsp(t_grainyrd_tilde *x, t_signal **sp)
 
 }
 
-static void grainyrd_tilde_free(t_grainyrd_tilde *x)
+static void *grainyrd_tilde_free(t_grainyrd_tilde *x)
 {
+	outlet_free(x->x_outlet);
+	return (void *)x;
 }
 
 void grainyrd_tilde_setup(void)
 {
     grainyrd_tilde_class = class_new(gensym("grainyrd~"),
         (t_newmethod)grainyrd_tilde_new, (t_method)grainyrd_tilde_free,
-        sizeof(t_grainyrd_tilde), 0, A_GIMME, 0);
+        sizeof(t_grainyrd_tilde), CLASS_DEFAULT, A_GIMME, 0);
     CLASS_MAINSIGNALIN(grainyrd_tilde_class, t_grainyrd_tilde, x_f);
     class_addmethod(grainyrd_tilde_class, (t_method)grainyrd_tilde_dsp,
         gensym("dsp"), A_CANT, 0);

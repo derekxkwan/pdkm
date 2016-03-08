@@ -8,6 +8,9 @@ typedef struct _sawlim_tilde {
 	double x_phase;
 	double x_conv; //1/samprate, duration of one sample in seconds
 	double x_saw[DXKTABLEN]; //table for holding saw values
+
+	t_inlet *x_phaselet;
+	t_outlet *x_outlet;
 } t_sawlim_tilde;
 
 static void *sawlim_tilde_new(t_floatarg freq){
@@ -28,8 +31,8 @@ static void *sawlim_tilde_new(t_floatarg freq){
 		x->x_saw[i] = yval;
 	};
 
-	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("ft1"));
-	outlet_new(&x->x_obj, gensym("signal"));
+	x->x_phaselet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("ft1"));
+	x->x_outlet = outlet_new(&x->x_obj, gensym("signal"));
 	return (x);
 }
 
@@ -81,9 +84,17 @@ static void sawlim_tilde_ft1(t_sawlim_tilde *x, t_float phase){
 }
 
 
+static void *sawlim_tilde_free(t_sawlim_tilde *x){
+	inlet_free(x->x_phaselet);
+	outlet_free(x->x_outlet);
+	
+	return (void *)x;
+}
+
+
 void sawlim_tilde_setup(void){
 	sawlim_tilde_class = class_new(gensym("sawlim~"), (t_newmethod)sawlim_tilde_new, 0,
-			sizeof(t_sawlim_tilde), 0, A_DEFFLOAT, 0);
+			sizeof(t_sawlim_tilde), CLASS_DEFAULT, A_DEFFLOAT, 0);
 	class_addmethod(sawlim_tilde_class, (t_method)sawlim_tilde_dsp, gensym("dsp"), A_CANT, 0);
    CLASS_MAINSIGNALIN(sawlim_tilde_class, t_sawlim_tilde, x_freq);
    class_addmethod(sawlim_tilde_class, (t_method)sawlim_tilde_ft1, gensym("ft1"), A_FLOAT, 0);

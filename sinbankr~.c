@@ -23,6 +23,9 @@ typedef struct _sinbankr_tilde {
 
 	t_float x_input; //dummy	
 	t_inlet *x_freqlet; //frequency inlet
+	t_inlet *x_flistlet;
+	t_inlet *x_alistlet;
+	t_inlet *x_rlistlet;
 	t_outlet *x_outlet; 
 } t_sinbankr_tilde;
 
@@ -161,9 +164,9 @@ static void *sinbankr_tilde_new(t_symbol *s, int argc, t_atom *argv){
 		x->x_sin[i] = varterm;
 	};
 
-	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("freqs"));
-	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("amps"));
-	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("rings"));
+	x->x_flistlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("freqs"));
+	x->x_alistlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("amps"));
+	x->x_rlistlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("rings"));
 	x->x_outlet = outlet_new(&x->x_obj, gensym("signal"));
 	return (x);
 
@@ -267,6 +270,9 @@ static void sinbankr_tilde_dsp(t_sinbankr_tilde *x, t_signal **sp){
 
 static void *sinbankr_tilde_free(t_sinbankr_tilde *x){
 	inlet_free(x->x_freqlet);
+	inlet_free(x->x_flistlet);
+	inlet_free(x->x_alistlet);
+	inlet_free(x->x_rlistlet);
 	outlet_free(x->x_outlet);
 	return (void *)x;
 

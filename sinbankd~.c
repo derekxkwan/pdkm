@@ -23,6 +23,12 @@ typedef struct _sinbankd_tilde {
 	int x_rampup; //if current ramping up
 	double x_curramp; //current ramping amt
 	double x_rampdt; //ranmping down time, not user settable
+
+
+	t_inlet *x_flistlet;
+	t_inlet *x_alistlet;
+	t_inlet *x_rlistlet;
+	t_outlet *x_outlet;
 } t_sinbankd_tilde;
 
 static void sinbankd_abs_to_rel(t_sinbankd_tilde *x){
@@ -182,10 +188,10 @@ static void *sinbankd_tilde_new(t_symbol *s, int argc, t_atom *argv){
 		x->x_sin[i] = varterm;
 	};
 
-	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("freqs"));
-	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("amps"));
-	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("rings"));
-	outlet_new(&x->x_obj, gensym("signal"));
+	x->x_flistlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("freqs"));
+	x->x_alistlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("amps"));
+	x->x_rlistlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("rings"));
+	x->x_outlet = outlet_new(&x->x_obj, gensym("signal"));
 	return (x);
 
 errstate:
@@ -341,9 +347,19 @@ static void sinbankd_tilde_bang(t_sinbankd_tilde *x){
 
 }
 
+static void *sinbankd_tilde_free(t_sinbankd_tilde *x){
+	inlet_free(x->x_flistlet);
+	inlet_free(x->x_alistlet);
+	inlet_free(x->x_rlistlet);
+	outlet_free(x->x_outlet);
+	return (void *)x;
+
+}
+
+
 void sinbankd_tilde_setup(void){
 	sinbankd_tilde_class = class_new(gensym("sinbankd~"), (t_newmethod)sinbankd_tilde_new, 0,
-			sizeof(t_sinbankd_tilde), 0, A_GIMME, 0);
+			sizeof(t_sinbankd_tilde), CLASS_DEFAULT, A_GIMME, 0);
 	class_addfloat(sinbankd_tilde_class, (t_method)sinbankd_tilde_float);
 	class_addbang(sinbankd_tilde_class, (t_method)sinbankd_tilde_bang);
 	class_addmethod(sinbankd_tilde_class, (t_method)sinbankd_tilde_dsp, gensym("dsp"), A_CANT, 0);

@@ -15,6 +15,13 @@ typedef struct _sinbank_tilde {
 	int x_mode; //mode, 0 = relative freqs, 1 = absolute freqs
 	double x_sr; //sample rate
 	t_float x_freq; //current specified freq
+
+
+	t_inlet *x_flistlet;
+	t_inlet *x_alistlet;
+	t_inlet *x_plistlet;
+	t_outlet *x_outlet;
+
 } t_sinbank_tilde;
 
 static void sinbank_abs_to_rel(t_sinbank_tilde *x){
@@ -124,10 +131,10 @@ static void *sinbank_tilde_new(t_symbol *s, int argc, t_atom *argv){
 		x->x_sin[i] = varterm;
 	};
 
-	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("freqs"));
-	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("amps"));
-	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("ft1"));
-	outlet_new(&x->x_obj, gensym("signal"));
+	x->x_flistlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("freqs"));
+	x->x_alistlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("amps"));
+	x->x_plistlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("ft1"));
+	x->x_outlet = outlet_new(&x->x_obj, gensym("signal"));
 	return (x);
 
 errstate:
@@ -233,9 +240,19 @@ static void sinbank_tilde_ft1(t_sinbank_tilde *x, t_symbol * s,int argc, t_atom 
 }
 
 
+static void *sinbank_tilde_free(t_sinbank_tilde *x){
+	inlet_free(x->x_flistlet);
+	inlet_free(x->x_alistlet);
+	inlet_free(x->x_plistlet);
+	outlet_free(x->x_outlet);
+	return (void *)x;
+
+}
+
+
 void sinbank_tilde_setup(void){
 	sinbank_tilde_class = class_new(gensym("sinbank~"), (t_newmethod)sinbank_tilde_new, 0,
-			sizeof(t_sinbank_tilde), 0, A_GIMME, 0);
+			sizeof(t_sinbank_tilde), CLASS_DEFAULT, A_GIMME, 0);
    CLASS_MAINSIGNALIN(sinbank_tilde_class, t_sinbank_tilde, x_freq);
 	class_addmethod(sinbank_tilde_class, (t_method)sinbank_tilde_dsp, gensym("dsp"), A_CANT, 0);
    class_addmethod(sinbank_tilde_class, (t_method)sinbank_tilde_freqs, gensym("freqs"), A_GIMME, 0);
