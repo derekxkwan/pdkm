@@ -1,4 +1,4 @@
-#N canvas 1030 127 507 780 10;
+#N canvas 1026 133 507 780 10;
 #X obj 8 6 cnv 15 400 30 empty empty dxkpure 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
@@ -70,7 +70,14 @@ given freq);
 #X text 151 42 sine oscillator bank with decay envelopes;
 #X text 59 624 floats - frequencies for oscillator bank (up to 30 freqs)
 ;
-#X text 78 284 SEE sinbank~ FOR A NON-ENVELOPED VERSION;
+#X text 45 269 see sinbank~ for a non-enveloped version \, sinbankr~
+for signal amplitude control;
+#N canvas 767 345 450 300 related_objects 0;
+#X obj 13 8 cnv 15 400 30 empty empty related_objects 20 12 0 15 -261682
+-66577 0;
+#X obj 20 74 dxkpure/sinbank~;
+#X obj 19 51 dxkpure/sinbankr~;
+#X restore 70 735 pd related_objects;
 #X connect 7 0 39 0;
 #X connect 8 0 38 0;
 #X connect 26 0 38 1;

@@ -13,7 +13,8 @@ OBJECTS:
 	- red~ - red noise generator with variable level of "redness"
 	- sawlim~ - bandlimited sawtooth wave generator
 	- sinbank~ - sine oscillator bank
-	- sinbankd~ - sine oscillator bank with separate envelopes
+	- sinbankd~ - sine oscillator bank with separate envelopes with triggered output
+	- sinbankr~ - sine oscillator bank with separate envelopes and signal amplitude control
 	- sqlim~ - bandlimited square wave generator
 	- scaledeg - maps scale degrees to midi notes, ported from SuperCollider
 
