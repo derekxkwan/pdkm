@@ -15,7 +15,8 @@ typedef struct _grainyrd_tilde
 	int x_grainsize[DXKGNYNUMGR]; //grainsize in samps
 	int x_grainstart[DXKGNYNUMGR]; //start position of each grain
 	double x_grainstep[DXKGNYNUMGR]; //relative step size per input step (for transposition,1 in: 2 out = octave higher)
-	int x_grainrate; //how many samples before the start of each new grain
+	int x_grainrsmp; //how many samples before the start of each new grain
+	int x_grainrms; //how many ms before the start of each new grain
 	double x_grainamp[DXKGNYNUMGR]; //amp of each grain
 	int x_overlap; //how many grains overlap
 	int x_actgn[DXKGNYNUMGR]; //active grain indices, should be calloced to size x_overlap * sizeof(int)
@@ -99,11 +100,14 @@ static int getnextgr(t_grainyrd_tilde *x){
 	return nextgridx;
 }
 
-static void grainyrd_tilde_grainrate(t_grainyrd_tilde *x, t_float grms){
+static void grainyrd_tilde_grainrsmp(t_grainyrd_tilde *x, t_float grms){
+	if(grms != x->x_grainrms){
+		x->x_grainrms = grms;
+	};
 	if(grms < 3){
 		grms = 3;
 		};
-	x->x_grainrate = (int)(x->m_sr * grms);
+	x->x_grainrsmp = (int)(x->m_sr * grms);
 	x->x_nextgr = 0;
 }
 
@@ -273,7 +277,7 @@ static void *grainyrd_tilde_new(t_symbol *s, int argc, t_atom *argv)
 			x->x_rampamt = DXKGNYRAMPAMT;
 			x->x_randtp = DXKGNYRNDTP;
 			x->x_rtpamt = DXKGNYRTPAMT;
-			x->x_grainrate = (int)(DXKGNYGRATEMS * x->m_sr);
+			x->x_grainrsmp = (int)(DXKGNYGRATEMS * x->m_sr);
 			x->x_amp = DXKGNYAMP;
 			x->x_trans = DXKGNYTP;
 			x->x_posvar = DXKGNYPOSVAR;
@@ -291,7 +295,7 @@ static void *grainyrd_tilde_new(t_symbol *s, int argc, t_atom *argv)
 			if(strcmp(arg0->s_name, "-grainrate") == 0){
 				if(arg1 == &s_){
 					float grms = atom_getfloatarg(1, argc, argv);
-					grainyrd_tilde_grainrate(x, grms);
+					grainyrd_tilde_grainrsmp(x, grms);
 					argc-= 2;
 					argv+= 2;
 				}
@@ -390,7 +394,7 @@ static void *grainyrd_tilde_new(t_symbol *s, int argc, t_atom *argv)
 			else if(strcmp(arg0->s_name, "-hopvar") == 0){
 				if(arg1 == &s_){
 					float hopvar = atom_getfloatarg(1, argc, argv);
-					grainyrd_tilde_posvar(x, hopvar);
+					grainyrd_tilde_hopvar(x, hopvar);
 					argc-= 2;
 					argv+= 2;
 				}
@@ -443,9 +447,9 @@ static t_int *grainyrd_tilde_perform(t_int *w)
     int maxindex;
     t_word *buf = x->x_vec;
     int i, j;
-	int grainrate = x->x_grainrate;
+	int grainrsmp = x->x_grainrsmp;
 	int overlap = x->x_overlap;
-	int grainsz = grainrate*overlap; //grainsize determined by grainrate * overlap
+	int grainsz = grainrsmp*overlap; //grainsize determined by grainrsmp * overlap
 	int randsz = x->x_randsz; //random sizes
 	int randamp = x->x_randamp;
 	double curtp = x->x_trans; //current transposition
@@ -492,7 +496,7 @@ static t_int *grainyrd_tilde_perform(t_int *w)
 			x->x_grainstep[curidx] = getreadscale(x, curtp);
 			x->x_winmap[curidx] = (double)DXKGNYM/(double)cursz;
 			x->x_winpos[curidx] = 0.f;
-			x->x_nextgr = grainrate + (int)(exprseed()*((double)grainrate*hopvar));
+			x->x_nextgr = grainrsmp + (int)(exprseed()*((double)grainrsmp*hopvar));
 			//post("%d", x->x_nextgr);
 			x->x_grainamp[curidx] = amp;
 			if(randamp){
@@ -576,8 +580,10 @@ static void grainyrd_tilde_dsp(t_grainyrd_tilde *x, t_signal **sp)
     grainyrd_tilde_set(x, x->x_arrayname);
 	x->x_nextgr = 0;
 
+	x->m_sr = sp[0]->s_sr * .001f; //sample rate in ms
     dsp_add(grainyrd_tilde_perform, 4, x,
         sp[0]->s_vec, sp[1]->s_vec, sp[0]->s_n);
+grainyrd_tilde_grainrsmp(x, x->x_grainrms);
 
 }
 
@@ -611,7 +617,7 @@ void grainyrd_tilde_setup(void)
         gensym("randamp"), A_FLOAT, 0);
     class_addmethod(grainyrd_tilde_class, (t_method)grainyrd_tilde_randampamt,
         gensym("randampamt"), A_FLOAT, 0);
-    class_addmethod(grainyrd_tilde_class, (t_method)grainyrd_tilde_grainrate,
+    class_addmethod(grainyrd_tilde_class, (t_method)grainyrd_tilde_grainrsmp,
         gensym("grainrate"), A_FLOAT, 0);
     class_addmethod(grainyrd_tilde_class, (t_method)grainyrd_tilde_posvar,
         gensym("posvar"), A_FLOAT, 0);
