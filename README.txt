@@ -17,6 +17,7 @@ OBJECTS:
 	- sinbankr~ - sine oscillator bank with separate envelopes and signal amplitude control
 	- sqlim~ - bandlimited square wave generator
 	- scaledeg - maps scale degrees to midi notes, ported from SuperCollider
+	- wesley~ - bitcrusher/downsampler
 
 HOW TO INSTALL:
 	- type "make"
