@@ -13,7 +13,7 @@ typedef struct _sinbank_tilde {
 	double x_conv; //1/samprate, duration of one sample in seconds
 	double x_sin[DXKTABLEN]; //table for holding sin values
 	int x_mode; //mode, 0 = relative freqs, 1 = absolute freqs
-	double x_sr; //sample rate
+	int x_sr; //sample rate
 	t_float x_freq; //current specified freq
 
 

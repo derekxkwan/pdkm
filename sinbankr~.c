@@ -15,10 +15,11 @@ typedef struct _sinbankr_tilde {
 	double phases[DXKSBMAX]; //array of current phases
 	double curamps[DXKSBMAX]; //array of current amplitudes
 	double t60mult[DXKSBMAX]; // array of amp multipliers accordings to T60
+	float ringms[DXKSBMAX]; //ring times in ms
 	double x_conv; //1/samprate, duration of one sample in seconds
 	double x_sin[DXKTABLEN]; //table for holding sin values
 	int x_mode; //mode, 0 = relative freqs, 1 = absolute freqs
-	double x_sr; //sample rate
+	int x_sr; //sample rate
 	double x_curfreq; //current specified freq
 
 	t_float x_input; //dummy	
@@ -42,12 +43,12 @@ static void sinbankr_abs_to_rel(t_sinbankr_tilde *x){
 
 }
 
-static double get_t60_mult(t_sinbankr_tilde *x, double ringms){
+static double get_t60mult(t_sinbankr_tilde *x, float ringms){
 	//ringms = ring time in ms, 0.001 = goal multiplication dest
 	//log(x, 0.001) = times to mult = (samplerate/1000)*(ringms)
 	//x = exp(log(0.001)/((samplerate/1000)*dur)
-	double sr = x->x_sr;
-	double times = (sr/1000.f)*ringms;
+	int sr = x->x_sr;
+	double times = ((double)sr/1000.f)*(double)ringms;
 	double retval = exp(log(0.001)/times);
 	return retval;
 };
@@ -70,7 +71,8 @@ static void sinbankr_tilde_init(t_sinbankr_tilde *x){
 		x->stamps[i] = DXKSBAMP;
 		x->phases[i] = 0.f;
 		x->curamps[i] = 0.f;
-		x->t60mult[i] = get_t60_mult(x, DXKSBRING);
+		x->t60mult[i] = get_t60mult(x, DXKSBRING);
+		x->ringms[i] = DXKSBRING;
 	};
 }
 
@@ -102,7 +104,8 @@ static void sinbankr_tilde_rings(t_sinbankr_tilde *x, t_symbol *s, int argc, t_a
 	for(i=0; i<argc; i++){
 		if(i<DXKSBMAX){
 			t_float curring = atom_getfloatarg(i, argc, argv);
-			x->t60mult[i] = get_t60_mult(x, (double)curring);
+			x->ringms[i] = curring;
+			x->t60mult[i] = get_t60mult(x, (double)curring);
 		};
 	};
 }
@@ -264,7 +267,16 @@ static void sinbankr_tilde_dsp(t_sinbankr_tilde *x, t_signal **sp){
 	//(freq*tablelen)/(samplerate) = array values per sample to advance
 	// divide by tablelen to map to 0 to 1 range,..freq/samplerate
 		dsp_add(sinbankr_tilde_perform, 5, x, sp[0]->s_vec, sp[1]->s_vec,  sp[2]->s_vec, sp[0]->s_n);
-    x->x_conv = (double)DXKTABLEN/(double)sp[0]->s_sr; //amount to change phase for freq 1
+		int sr = sp[0]->s_sr;
+		if(x->x_sr != sr){
+			int i, numsin = x->x_numsin;
+			x->x_sr = sr;
+    		x->x_conv = (double)DXKTABLEN/(double)sr; //amount to change phase for freq 1
+			for(i=0; i<numsin; i++){
+				float curring = x->ringms[i];
+				x->t60mult[i] = get_t60mult(x, curring);
+			};
+		};
 
 }
 

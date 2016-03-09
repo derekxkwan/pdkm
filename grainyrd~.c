@@ -579,11 +579,15 @@ static void grainyrd_tilde_dsp(t_grainyrd_tilde *x, t_signal **sp)
 {
     grainyrd_tilde_set(x, x->x_arrayname);
 	x->x_nextgr = 0;
-
-	x->m_sr = sp[0]->s_sr * .001f; //sample rate in ms
+	
     dsp_add(grainyrd_tilde_perform, 4, x,
         sp[0]->s_vec, sp[1]->s_vec, sp[0]->s_n);
-grainyrd_tilde_grainrsmp(x, x->x_grainrms);
+
+	float newsr = sp[0]->s_sr * .001f;
+	if(x->m_sr != newsr){
+		x->m_sr = newsr; //sample rate in ms
+		grainyrd_tilde_grainrsmp(x, x->x_grainrms);
+	};
 
 }
 
