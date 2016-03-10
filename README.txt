@@ -5,6 +5,7 @@ by Derek Kwan, 2016
 
 OBJECTS:
 
+	- dxkadsr~ - triggered adsr envelope generator
 	- euclid - outputs euclidean rhythms based on the work of Godfried Toussaint
 	- exprand - random values with exponential distribution
 	- grainyrd~ - granular sound buffer player

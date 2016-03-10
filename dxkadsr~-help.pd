@@ -1,0 +1,71 @@
+#N canvas 550 170 464 777 10;
+#X obj 8 6 cnv 15 400 30 empty empty dxkpure 20 12 0 20 -261682 -66577
+0;
+#X text 305 10 Derek Kwan \, 2016;
+#X obj 8 36 cnv 15 400 30 empty empty dxkadsr~ 20 12 0 20 -232576 -66577
+0;
+#X obj 20 271 cnv 15 400 225 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 19 497 cnv 15 400 30 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#X obj 20 527 cnv 15 400 150 empty empty args 20 12 0 15 -261682 -66577
+0;
+#N canvas 735 373 374 272 META 0;
+#X text 3 183 VERSION 0.1;
+#X text 3 201 AUTHOR Derek Kwan;
+#X text 4 219 RELEASE_DATE 2016;
+#X text 5 238 WEBSITE http://www.derekxkwan.com/code/puredata.html
+;
+#X text 2 163 LIBRARY dxkpure;
+#X text 2 144 OUTLET_0 signal;
+#X text 0 19 LICENSE GPL v2;
+#X text 0 76 INLET_1 float;
+#X text 1 92 INLET_2 float;
+#X text 0 0 KEYWORDS adsr envelope dxkadsr;
+#X text 0 38 DESCRIPTION triggered adsr envelope generator;
+#X text 0 57 INLET_0 float;
+#X text 0 110 INLET_3 float;
+#X text 1 126 INLET_4 float;
+#X restore 34 689 pd META;
+#X obj 35 84 osc~ 440;
+#X text 200 41 triggered adsr envelope generator;
+#X text 59 291 1) float - > 0: triggers the start of an envelope and
+sets the level attack rises to. If this comes when the env is active
+\, it starts a new attack from the current level.;
+#X text 58 386 2.) float - level to attack to;
+#X text 57 407 3.) float - attack time in ms;
+#X text 58 427 4.) float - decay time in ms;
+#X text 57 447 5.) float - sustain proportion of level between 0 and
+1;
+#X text 57 471 6.) float - decay time in ms;
+#X text 109 500 1) sig~ - adsr envelope;
+#X text 36 548 if 4 args:;
+#X text 36 564 1.) f - attack time (ms);
+#X text 38 579 2.) f - decay time (ms);
+#X text 37 597 3.) f- sustain (0<=f<=1);
+#X text 36 616 4.) f- release time (ms);
+#X text 234 546 if 5 args:;
+#X text 230 566 1.)f- level >= 0;
+#X text 228 583 2.) f - attack time (ms);
+#X text 228 600 3.) f - decay time (ms);
+#X text 228 617 4.) f- sustain (0<=f<=1);
+#X text 228 636 5.) f- release time (ms);
+#X obj 35 138 *~;
+#X obj 98 179 dxkpure/dxkadsr~ 1 5 50 0.25 500;
+#X msg 101 76 1;
+#X obj 101 98 t f b;
+#X obj 128 127 delay 500;
+#X msg 128 149 0;
+#X obj 34 229 dac~ 1 2;
+#X text 59 343 <= 0: triggers a release of the env. If this comes when
+the env is in attack or decay \, it picks the shortest time b/w decay
+and release and releases over that time.;
+#X connect 7 0 27 0;
+#X connect 27 0 33 0;
+#X connect 27 0 33 1;
+#X connect 28 0 27 1;
+#X connect 29 0 30 0;
+#X connect 30 0 28 0;
+#X connect 30 1 31 0;
+#X connect 31 0 32 0;
+#X connect 32 0 28 0;
