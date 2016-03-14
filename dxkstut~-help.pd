@@ -1,0 +1,88 @@
+#N canvas 378 141 668 638 10;
+#X obj 8 6 cnv 15 400 30 empty empty dxkpure 20 12 0 20 -261682 -66577
+0;
+#X text 305 10 Derek Kwan \, 2016;
+#X obj 8 36 cnv 15 400 30 empty empty dxkstut~ 20 12 0 20 -232576 -66577
+0;
+#X obj 8 258 cnv 15 400 120 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 8 373 cnv 15 400 30 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#X obj 8 400 cnv 15 400 40 empty empty args 20 12 0 15 -261682 -66577
+0;
+#X text 98 376 1) sig~ - signal;
+#X obj 173 161 dac~ 1 2;
+#N canvas 735 373 374 272 META 0;
+#X text 3 150 VERSION 0.1;
+#X text 3 168 AUTHOR Derek Kwan;
+#X text 4 186 RELEASE_DATE 2016;
+#X text 5 205 WEBSITE http://www.derekxkwan.com/code/puredata.html
+;
+#X text 2 130 LIBRARY dxkpure;
+#X text 2 111 OUTLET_0 signal;
+#X text 0 19 LICENSE GPL v2;
+#X text 0 76 INLET_1 float;
+#X text -1 94 INLET_2 float;
+#X text 0 0 KEYWORDS dxkstut stutter effect windowed;
+#X text 0 38 DESCRIPTION windowed stuttering effect;
+#X text 0 57 INLET_0 signal;
+#X restore 10 450 pd META;
+#X msg 287 83 800;
+#X text 245 45 windowed stuttering effect;
+#X obj 176 123 dxkpure/dxkstut~ 125;
+#X msg 236 83 125;
+#X msg 202 84 50;
+#N canvas 1 65 450 300 test_input 0;
+#X obj 240 66 metro 125;
+#X obj 240 88 randgate 50;
+#X obj 240 110 random 10;
+#X obj 240 132 dxkpure/scaledeg major 60;
+#X obj 240 154 mtof;
+#X obj 247 201 osc~ 440;
+#X obj 240 176 t b f;
+#X obj 334 235 vline~;
+#X obj 247 223 *~;
+#X obj 247 268 outlet~;
+#X obj 100 100 cnv 15 85 57 empty empty empty 20 12 0 14 -262130 -66577
+0;
+#X obj 109 112 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X text 103 139 SAMPLE INPUT;
+#X msg 322 206 0 \, 1 5 0 \, 0 120 5;
+#X obj 334 257 *~;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 6 0;
+#X connect 5 0 8 0;
+#X connect 6 0 13 0;
+#X connect 6 1 5 0;
+#X connect 7 0 14 0;
+#X connect 7 0 14 1;
+#X connect 8 0 9 0;
+#X connect 11 0 0 0;
+#X connect 13 0 7 0;
+#X connect 14 0 8 1;
+#X coords 0 -1 1 1 85 60 1 100 100;
+#X restore 50 75 pd test_input;
+#X obj 319 93 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 344 91 STUTTER;
+#X text 32 284 1) signal~ - input;
+#X text 30 303 2) float - stutter time in ms (can be set even if stuttering)
+;
+#X text 29 341 3) float - <= 0 = clean/no stutter \, > 0 \, stutter
+;
+#X text 98 403 1) float - stutter time (ms);
+#X text 34 195 NOTE: dxkstut~ stops recording when stuttering \, so
+you can only set stutter time shorter than the time since the last
+stutter. The absolute longest stuttering time is 240000 samples (5000
+ms at 48 kHz sampling rate).;
+#X connect 9 0 11 1;
+#X connect 11 0 7 0;
+#X connect 11 0 7 1;
+#X connect 12 0 11 1;
+#X connect 13 0 11 1;
+#X connect 14 0 11 0;
+#X connect 15 0 11 2;
