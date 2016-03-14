@@ -6,7 +6,7 @@ by Derek Kwan, 2016
 OBJECTS:
 
 	- dxkadsr~ - triggered adsr envelope generator
-	- dxkstut~ - windowed stutter function with crossfading between dry and wet signals
+	- dxkstut~ - windowed stutter effect
 	- euclid - outputs euclidean rhythms based on the work of Godfried Toussaint
 	- exprand - random values with exponential distribution
 	- grainyrd~ - granular sound buffer player
