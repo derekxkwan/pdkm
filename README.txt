@@ -10,6 +10,7 @@ OBJECTS:
 	- exprand - random values with exponential distribution
 	- grainyrd~ - granular sound buffer player
 	- linrand - random values with triangular (linear) distribution
+	- magikp~ - karplus-strong guitar synthesizer
 	- randlist - generate list of random numbers within a given range
 	- red~ - red noise generator with variable level of "redness"
 	- sawlim~ - bandlimited sawtooth wave generator
