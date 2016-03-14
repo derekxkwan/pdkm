@@ -15,6 +15,7 @@ typedef struct _dxkstut_tilde {
 	t_object x_obj;
 	int x_sr; //samplerate
 	float x_stutms; //stuttering size in ms
+	int x_stutsamp; //stuttering in samples
 	t_float x_stut; //stuttering on/off  if on, no recording, if off, recording
 	double delaybuf[DXKSTUTLEN]; //delay table
 	int x_writehead; //write head for stutter buf
@@ -38,8 +39,10 @@ static void dxkstut_tilde_dur(t_dxkstut_tilde *x, t_float dur){
 	float xfms = x->x_xfms; 
 	float srms = (float)sr * 0.001f;
 	int dursamp = (int)(srms* dur);
-	x->x_stutms = dursamp;
-	x->x_readhead = 0.f;
+	x->x_stutms = dur;
+	x->x_stutsamp = dursamp;
+	x->x_readhead = 0;
+	x->x_startpos= (x->x_writehead + (DXKSTUTLEN-dursamp)) % DXKSTUTLEN;
 	double winst = (double)DXKWINLEN/dursamp;
 	x->x_winstep = winst;
 	x->x_xfstep = 1.f/((double)xfms*srms);
@@ -106,7 +109,7 @@ static t_int *dxkstut_tilde_perform(t_int *w){
 	t_float *out = (t_float *)(w[3]);
 	int n = (int)(w[4]);
 	int stut;
-	int dur = x->x_stutms;
+	int dur = x->x_stutsamp;
 	float stutstat = x->x_stut;
 	int prev = x->x_prevstate;
 	if(stutstat <= 0.f){
