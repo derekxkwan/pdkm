@@ -90,8 +90,7 @@ static void *sinbank_tilde_new(t_symbol *s, int argc, t_atom *argv){
 
 	sinbank_tilde_init(x);
 	while(argc> 0){
-		t_symbol *curarg = atom_getsymbolarg(0, argc, argv);
-		if(curarg == &s_){//if it is a number
+		if(argv -> a_type == A_FLOAT){//if it is a number
 			if(sincount <DXKSBMAX){
 				t_float freq = atom_getfloatarg(0, argc, argv);
 				x->relfreq[sincount] = (double)freq;
@@ -100,7 +99,8 @@ static void *sinbank_tilde_new(t_symbol *s, int argc, t_atom *argv){
 			argc--;
 			argv++;
 		}
-		else{//symbol 
+		else if (argv ->a_type == A_SYMBOL){//symbol 
+			t_symbol *curarg = atom_getsymbolarg(0, argc, argv);
 			if(argc >= 2){//should be at leas two args
 				t_symbol * arg2 = atom_getsymbolarg(1, argc, argv);
 				if(strcmp(curarg->s_name, "-mode") == 0){
@@ -117,6 +117,9 @@ static void *sinbank_tilde_new(t_symbol *s, int argc, t_atom *argv){
 			else{
 				goto errstate;
 			};
+		}
+		else{
+			goto errstate;
 		};
 	};
 

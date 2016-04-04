@@ -20,3 +20,7 @@
 #ifndef DXKWINLEN
 #define DXKWINLEN 1024 //length of window
 #endif
+
+#ifndef DXKFFTOV
+#define DXKFFTOV 4 //fft overlap
+#endif

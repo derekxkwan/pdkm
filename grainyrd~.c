@@ -266,7 +266,7 @@ static void *grainyrd_tilde_new(t_symbol *s, int argc, t_atom *argv)
 		x->x_f = 0;
 		x->m_sr = (double) sr; //samples per millisecond
 		t_symbol *name = atom_getsymbolarg(0, argc, argv);
-		if(name != &s_){
+		if(argv -> a_type == A_SYMBOL){
 			x->x_arrayname = name;
 			argc--;
 			argv++;
@@ -293,7 +293,7 @@ static void *grainyrd_tilde_new(t_symbol *s, int argc, t_atom *argv)
 			t_symbol *arg0 = atom_getsymbolarg(0, argc, argv);
 			t_symbol *arg1 = atom_getsymbolarg(1, argc, argv);
 			if(strcmp(arg0->s_name, "-grainrate") == 0){
-				if(arg1 == &s_){
+				if((argv+1) -> a_type == A_FLOAT){
 					float grms = atom_getfloatarg(1, argc, argv);
 					grainyrd_tilde_grainrsmp(x, grms);
 					argc-= 2;
@@ -304,7 +304,7 @@ static void *grainyrd_tilde_new(t_symbol *s, int argc, t_atom *argv)
 				};
 			}
 			else if(strcmp(arg0->s_name, "-overlap") == 0){
-				if(arg1 == &s_){
+				if((argv+1) -> a_type == A_FLOAT){
 					float overlap = atom_getfloatarg(1, argc, argv);
 					grainyrd_tilde_overlap(x, overlap);
 					argc-= 2;
@@ -315,7 +315,7 @@ static void *grainyrd_tilde_new(t_symbol *s, int argc, t_atom *argv)
 				};
 			}
 			else if(strcmp(arg0->s_name, "-randsize") == 0){
-				if(arg1 == &s_){
+				if((argv+1) -> a_type == A_FLOAT){
 					float randsize = atom_getfloatarg(1, argc, argv);
 					grainyrd_tilde_randsize(x, randsize);
 					argc-= 2;
@@ -326,7 +326,7 @@ static void *grainyrd_tilde_new(t_symbol *s, int argc, t_atom *argv)
 				};
 			}
 			else if(strcmp(arg0->s_name, "-randsizeamt") == 0){
-				if(arg1 == &s_){
+				if((argv+1) -> a_type == A_FLOAT){
 					float randsizeamt = atom_getfloatarg(1, argc, argv);
 					grainyrd_tilde_randsizeamt(x, randsizeamt);
 					argc-= 2;
@@ -337,7 +337,7 @@ static void *grainyrd_tilde_new(t_symbol *s, int argc, t_atom *argv)
 				};
 			}
 			else if(strcmp(arg0->s_name, "-randamp") == 0){
-				if(arg1 == &s_){
+				if((argv+1) -> a_type == A_FLOAT){
 					float randamp = atom_getfloatarg(1, argc, argv);
 					grainyrd_tilde_randamp(x, randamp);
 					argc-= 2;
@@ -348,7 +348,7 @@ static void *grainyrd_tilde_new(t_symbol *s, int argc, t_atom *argv)
 				};
 			}
 			else if(strcmp(arg0->s_name, "-randampamt") == 0){
-				if(arg1 == &s_){
+				if((argv+1) -> a_type == A_FLOAT){
 					float randampamt = atom_getfloatarg(1, argc, argv);
 					grainyrd_tilde_randampamt(x, randampamt);
 					argc-= 2;
@@ -359,7 +359,7 @@ static void *grainyrd_tilde_new(t_symbol *s, int argc, t_atom *argv)
 				};
 			}
 			else if(strcmp(arg0->s_name, "-randtp") == 0){
-				if(arg1 == &s_){
+				if((argv+1) -> a_type == A_FLOAT){
 					float randtp = atom_getfloatarg(1, argc, argv);
 					grainyrd_tilde_randtp(x, randtp);
 					argc-= 2;
@@ -370,7 +370,7 @@ static void *grainyrd_tilde_new(t_symbol *s, int argc, t_atom *argv)
 				};
 			}
 			else if(strcmp(arg0->s_name, "-randtpamt") == 0){
-				if(arg1 == &s_){
+				if((argv+1) -> a_type == A_FLOAT){
 					float randtpamt = atom_getfloatarg(1, argc, argv);
 					grainyrd_tilde_randtpamt(x, randtpamt);
 					argc-= 2;
@@ -381,7 +381,7 @@ static void *grainyrd_tilde_new(t_symbol *s, int argc, t_atom *argv)
 				};
 			}
 			else if(strcmp(arg0->s_name, "-posvar") == 0){
-				if(arg1 == &s_){
+				if((argv+1) -> a_type == A_FLOAT){
 					float posvar = atom_getfloatarg(1, argc, argv);
 					grainyrd_tilde_posvar(x, posvar);
 					argc-= 2;
@@ -392,7 +392,7 @@ static void *grainyrd_tilde_new(t_symbol *s, int argc, t_atom *argv)
 				};
 			}
 			else if(strcmp(arg0->s_name, "-hopvar") == 0){
-				if(arg1 == &s_){
+				if((argv+1) -> a_type == A_FLOAT){
 					float hopvar = atom_getfloatarg(1, argc, argv);
 					grainyrd_tilde_hopvar(x, hopvar);
 					argc-= 2;
@@ -403,7 +403,7 @@ static void *grainyrd_tilde_new(t_symbol *s, int argc, t_atom *argv)
 				};
 			}
 			else if(strcmp(arg0->s_name, "-env") == 0){
-				if(arg1 != &s_){
+				if((argv+1) -> a_type == A_SYMBOL){
 					grainyrd_tilde_envtype(x, arg1);
 					argc-= 2;
 					argv+= 2;
