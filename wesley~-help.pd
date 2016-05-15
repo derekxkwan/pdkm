@@ -1,21 +1,21 @@
-#N canvas 689 194 423 533 10;
-#X obj 8 6 cnv 15 400 30 empty empty dxkpure 20 12 0 20 -261682 -66577
+#N canvas 687 196 467 532 10;
+#X obj 8 6 cnv 15 420 30 empty empty dxkpure 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
-#X obj 8 36 cnv 15 400 30 empty empty wesley~ 20 12 0 20 -232576 -66577
+#X obj 8 36 cnv 15 420 30 empty empty wesley~ 20 12 0 20 -232576 -66577
 0;
-#X obj 16 354 cnv 15 400 70 empty empty inlet 20 12 0 15 -261682 -66577
+#X obj 16 354 cnv 15 420 70 empty empty inlet 20 12 0 15 -261682 -66577
 0;
-#X obj 16 423 cnv 15 400 30 empty empty outlet 20 12 0 15 -232576 -66577
+#X obj 16 423 cnv 15 420 30 empty empty outlet 20 12 0 15 -232576 -66577
 0;
-#X obj 16 450 cnv 15 400 40 empty empty args 20 12 0 15 -261682 -66577
+#X obj 16 450 cnv 15 420 40 empty empty args 20 12 0 15 -261682 -66577
 0;
 #X text 106 426 1) sig~ - signal;
 #X obj 45 168 *~ 0;
 #X obj 92 170 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 34 219 dac~ 1 2;
-#N canvas 737 370 374 272 META 0;
+#X obj 53 217 dac~ 1 2;
+#N canvas 735 372 374 272 META 0;
 #X text 3 149 VERSION 0.1;
 #X text 3 167 AUTHOR Derek Kwan;
 #X text 4 185 RELEASE_DATE 2016;
@@ -23,13 +23,13 @@
 ;
 #X text 2 129 LIBRARY dxkpure;
 #X text 2 110 OUTLET_0 signal;
-#X text 0 19 LICENSE GPL v2;
 #X text 0 38 DESCRIPTION bitcrusher and downsampler;
 #X text 0 0 KEYWORDS wesley bitcrushing downsampling;
 #X text 0 57 INLET_0 signal;
 #X text 0 76 INLET_1 float;
 #X text 1 92 INLET_2 float;
-#X restore 18 500 pd META;
+#X text 0 19 LICENSE GPL v3;
+#X restore 18 499 pd META;
 #X text 240 43 bitcrusher and downsampler;
 #X obj 45 146 dxkpure/wesley~ 32 1;
 #X msg 210 115 4;
@@ -44,7 +44,7 @@
 #X text 106 451 1) float - bit resolution (default = 32);
 #X text 108 469 3) float -;
 #X obj 40 254 metro 100;
-#X obj 39 281 tabwrite~ \$0-weshelp;
+#X obj 17 289 tabwrite~ \$0-weshelp;
 #X text 113 171 sound/graph;
 #N canvas 0 50 450 250 (subpatch) 0;
 #X array \$0-weshelp 64 float 3;
@@ -58,7 +58,7 @@
 0.893818 0.92015 0.942868 0.961883 0.977121 0.988522 0.996041 0.999649
 0.999332 0.995078 0.986913 0.974873 0.959004;
 #X coords 0 1 64 -1 200 140 1;
-#X restore 180 204 graph;
+#X restore 197 205 graph;
 #X msg 131 93 32;
 #X connect 7 0 9 0;
 #X connect 7 0 9 1;

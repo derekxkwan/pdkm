@@ -1,8 +1,8 @@
-#N canvas 13 185 415 647 10;
-#X obj 8 6 cnv 15 400 30 empty empty dxkpure 20 12 0 20 -261682 -66577
+#N canvas 11 187 521 642 10;
+#X obj 8 6 cnv 15 420 30 empty empty dxkpure 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
-#X obj 8 260 cnv 15 400 70 empty empty inlet 20 12 0 15 -261682 -66577
+#X obj 8 260 cnv 15 420 100 empty empty inlet 20 12 0 15 -261682 -66577
 0;
 #N canvas 716 277 839 384 loadsound 0;
 #X obj 246 40 table \$0-helpsnd;
@@ -98,43 +98,43 @@
 #X floatatom 320 230 5 0 0 0 - - -, f 5;
 #X obj 349 80 loadbang;
 #X msg 349 102 1;
-#X obj 8 36 cnv 15 400 30 empty empty grainyrd~ 20 12 0 20 -232576
+#X obj 8 36 cnv 15 420 30 empty empty grainyrd~ 20 12 0 20 -232576
 -66577 0;
-#X text 98 263 1) sig~ - sample index;
-#X obj 8 329 cnv 15 400 30 empty empty outlet 20 12 0 15 -232576 -66577
+#X text 61 279 1) sig~ - sample index;
+#X obj 7 354 cnv 15 420 30 empty empty outlet 20 12 0 15 -232576 -66577
 0;
-#X text 98 332 1) sig~ - granular output;
-#X obj 8 397 cnv 15 400 190 empty empty flags 20 12 0 15 -232576 -66577
+#X text 97 357 1) sig~ - granular output;
+#X obj 7 422 cnv 15 420 190 empty empty flags 20 12 0 15 -232576 -66577
 0;
-#X text 54 425 -set (symbol) : set array;
-#X text 117 275 msg - flag + argt (ie "grainrate 3" \, note no -);
-#X text 98 293 2) float - transposition in halfsteps;
-#X text 98 312 3) float - offset;
-#X text 103 398 optional \, come after argts \, preceded by -;
-#X text 105 411 * = default;
-#X text 51 463 -randtp (int): randomize transposition amt (1:yes \,
+#X text 22 452 -set (symbol) : set array;
+#X text 80 291 msg - flag + argt (ie "grainrate 3" \, note no -);
+#X text 61 309 2) float - transposition in halfsteps;
+#X text 61 328 3) float - offset;
+#X text 102 423 optional \, come after argts \, preceded by -;
+#X text 104 436 * = default;
+#X text 19 490 -randtp (int): randomize transposition amt (1:yes \,
 0:no*);
-#X text 52 475 -randamp (int): randomize amplitudes (1:yes* \, 0:no)
+#X text 20 502 -randamp (int): randomize amplitudes (1:yes* \, 0:no)
 ;
-#X text 51 488 -randsizeamt (f): random size amt in ms (0.5*);
-#X text 50 501 -randtpamt (f): random transposition in hs (0.01*);
-#X text 49 512 -randampamt (f): random amplitude amt (0.01*);
-#X text 51 523 -posvar (f): position variance in ms (1.0*);
-#X text 53 536 -hopvar (f): hopsize var b/w grains (x grainrate \,
+#X text 19 515 -randsizeamt (f): random size amt in ms (0.5*);
+#X text 18 528 -randtpamt (f): random transposition in hs (0.01*);
+#X text 17 539 -randampamt (f): random amplitude amt (0.01*);
+#X text 19 550 -posvar (f): position variance in ms (1.0*);
+#X text 21 563 -hopvar (f): hopsize var b/w grains (x grainrate \,
 0.5*);
-#X text 54 546 -grainrate (int): m/s b/w each grain;
-#X obj 8 356 cnv 15 400 40 empty empty args 20 12 0 15 -261682 -66577
+#X text 22 573 -grainrate (int): m/s b/w each grain;
+#X obj 7 381 cnv 15 420 40 empty empty args 20 12 0 15 -261682 -66577
 0;
-#X text 98 359 1) array name;
+#X text 97 384 1) array name;
 #X text 269 42 granular buffer player;
 #X text 108 120 transposition (hs);
 #X obj 19 141 dxkpure/grainyrd~ \$0-helpsnd -grainrate 5;
-#X text 53 437 -overlap (int) : number of overlapping grains (64*)
+#X text 21 464 -overlap (int) : number of overlapping grains (64*)
 ;
 #X obj 19 119 r~ \$0-phasread;
-#X text 53 450 -randsize (int): randomize grain sizes (1:yes* \, 0:no)
+#X text 21 477 -randsize (int): randomize grain sizes (1:yes* \, 0:no)
 ;
-#X text 53 559 -env (sym): grain envelope (hanning* \, tukey);
+#X text 21 586 -env (sym): grain envelope (hanning* \, tukey);
 #N canvas 571 168 374 272 META 0;
 #X text 0 76 INLET_1 float;
 #X text 0 95 INLET_2 float;
@@ -149,7 +149,7 @@
 #X text 1 114 OUTLET_0 signal;
 #X text 0 19 LICENSE GPL v2;
 #X text 0 0 KEYWORDS granular soundfile signal grainyrd;
-#X restore 14 596 pd META;
+#X restore 13 621 pd META;
 #X connect 4 0 7 0;
 #X connect 4 0 7 1;
 #X connect 5 0 4 1;

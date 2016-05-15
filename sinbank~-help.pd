@@ -1,25 +1,25 @@
-#N canvas 173 142 423 699 10;
-#X obj 8 6 cnv 15 400 30 empty empty dxkpure 20 12 0 20 -261682 -66577
+#N canvas 171 144 535 673 10;
+#X obj 8 6 cnv 15 470 30 empty empty dxkpure 20 12 0 20 -261682 -66577
 0;
-#X text 305 10 Derek Kwan \, 2016;
-#X obj 8 36 cnv 15 400 30 empty empty sinbank~ 20 12 0 20 -232576 -66577
+#X text 350 11 Derek Kwan \, 2016;
+#X obj 7 36 cnv 15 470 30 empty empty sinbank~ 20 12 0 20 -232576 -66577
 0;
-#X obj 8 313 cnv 15 400 180 empty empty inlet 20 12 0 15 -261682 -66577
+#X obj 8 312 cnv 15 470 180 empty empty inlet 20 12 0 15 -261682 -66577
 0;
-#X obj 8 494 cnv 15 400 50 empty empty outlet 20 12 0 15 -232576 -66577
+#X obj 8 494 cnv 15 470 50 empty empty outlet 20 12 0 15 -232576 -66577
 0;
-#X obj 8 543 cnv 15 400 40 empty empty args 20 12 0 15 -261682 -66577
+#X obj 8 543 cnv 15 470 40 empty empty args 20 12 0 15 -261682 -66577
 0;
 #X obj 88 274 dac~ 1 2;
 #X text 43 393 mode (sym) - sets mode;
 #X text 42 375 MESSAGES (see flags for more info):;
 #X text 66 520 sig~ - signal;
-#X obj 8 584 cnv 15 400 60 empty empty flags 20 12 0 15 -232576 -66577
+#X obj 8 584 cnv 15 470 60 empty empty flags 20 12 0 15 -232576 -66577
 0;
 #X text 103 585 optional \, come after argts \, preceded by -;
 #X text 105 598 * = default;
 #X text 44 167 RELATIVE FREQS (rel);
-#X text 212 176 ABSOLUTE FREQS (abs);
+#X text 240 180 ABSOLUTE FREQS (abs);
 #X text 68 615 -mode (sym): set freq specification mode(rel* \, abs)
 ;
 #X text 17 332 1;
@@ -27,16 +27,16 @@
 #X text 17 438 3 list - amplitude list (defaults to 1 for all);
 #X msg 50 131 1.5 2.5 4 6.25 6;
 #X text 48 108 freqs;
-#X msg 327 134 1 0.2 0.5;
-#X text 328 112 amps;
+#X msg 353 130 1 0.2 0.5;
+#X text 354 108 amps;
 #X text 3 143 fund;
-#X msg 177 132 mode rel;
-#X text 178 110 set mode;
-#X text 278 45 sine oscillator bank;
+#X msg 203 128 mode rel;
+#X text 204 106 set mode;
+#X text 323 46 sine oscillator bank;
 #X text 41 334 float/sig - sets float as fundamental (if mode abs \,
 relates all freqs to first freq);
 #X obj 14 193 dxkpure/sinbank~ 1 1.5 2;
-#X obj 175 197 dxkpure/sinbank~ 200 400 800 -mode abs;
+#X obj 203 201 dxkpure/sinbank~ 200 400 800 -mode abs;
 #X floatatom 7 159 5 0 0 0 - - -, f 5;
 #X obj 12 84 loadbang;
 #X msg 12 106 440;
@@ -44,11 +44,11 @@ relates all freqs to first freq);
 #X obj 56 229 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X text 53 214 SOUND;
-#X obj 177 249 *~ 0;
-#X obj 211 231 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 205 253 *~ 0;
+#X obj 239 235 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X text 208 216 SOUND;
-#N canvas 742 477 374 272 META 0;
+#X text 236 220 SOUND;
+#N canvas 740 479 374 272 META 0;
 #X text 3 170 VERSION 0.1;
 #X text 3 188 AUTHOR Derek Kwan;
 #X text 4 206 RELEASE_DATE 2016;
@@ -56,19 +56,19 @@ relates all freqs to first freq);
 ;
 #X text 2 150 LIBRARY dxkpure;
 #X text 2 131 OUTLET_0 signal;
-#X text 0 19 LICENSE GPL v2;
 #X text 0 92 INLET_2 list;
 #X text 0 76 INLET_1 list;
 #X text 1 38 DESCRIPTION sine oscillator bank;
 #X text 0 57 INLET_0 float;
 #X text 0 0 KEYWORDS sine oscillator bank sinbank;
 #X text 0 108 INLET_3 list;
+#X text 0 19 LICENSE GPL v3;
 #X restore 8 649 pd META;
 #X text 77 290 SEE sinbankd~ FOR AN ENVELOPED VERSION;
 #X text 59 561 floats - frequencies for oscillator bank (up to 30 freqs)
 ;
-#X text 164 73 set phases;
-#X msg 164 91 0 0.5 0.2;
+#X text 164 71 set phases;
+#X msg 164 89 0 0.5 0.2;
 #X text 16 466 4 list - set phases 0-1;
 #X connect 19 0 28 1;
 #X connect 21 0 29 2;

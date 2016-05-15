@@ -1,17 +1,17 @@
-#N canvas 1059 141 416 630 10;
-#X obj 8 6 cnv 15 400 30 empty empty dxkpure 20 12 0 20 -261682 -66577
+#N canvas 1055 145 454 639 10;
+#X obj 8 6 cnv 15 420 30 empty empty dxkpure 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
-#X obj 8 36 cnv 15 400 30 empty empty randlist 20 12 0 20 -232576 -66577
+#X obj 8 36 cnv 15 420 30 empty empty randlist 20 12 0 20 -232576 -66577
 0;
-#X obj 8 313 cnv 15 400 160 empty empty inlet 20 12 0 15 -261682 -66577
+#X obj 8 313 cnv 15 420 160 empty empty inlet 20 12 0 15 -261682 -66577
 0;
-#X obj 8 474 cnv 15 400 50 empty empty outlet 20 12 0 15 -232576 -66577
+#X obj 8 474 cnv 15 420 50 empty empty outlet 20 12 0 15 -232576 -66577
 0;
-#X obj 8 523 cnv 15 400 70 empty empty args 20 12 0 15 -261682 -66577
+#X obj 8 523 cnv 15 420 70 empty empty args 20 12 0 15 -261682 -66577
 0;
 #X text 17 332 1;
-#X text 207 43 generates lists of random floats;
+#X text 193 43 generates lists of random floats;
 #X obj 64 197 dxkpure/randlist 0 10 10;
 #X obj 64 219 print randlisthelp;
 #X obj 64 94 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
@@ -27,16 +27,16 @@
 #X text 12 424 3 set high number of range;
 #X text 14 448 4 set length of random list;
 #X text 66 500 list of random numbers;
-#X text 59 541 1 f given: set high of range (low set to 0 \, length
+#X text 27 543 1 f given: set high of range (low set to 0 \, length
 to 1);
-#X text 58 556 2 f given: set high of range and length (low = 0);
-#X text 58 574 3 f given: set lo \, hi of range and length;
+#X text 26 558 2 f given: set high of range and length (low = 0);
+#X text 26 576 3 f given: set lo \, hi of range and length;
 #X msg 115 115 range -3 5;
 #X text 116 97 set range;
 #X msg 208 114 num 7;
 #X text 205 97 set length of random list;
 #X text 58 76 OUTPUT;
-#N canvas 575 162 374 272 META 0;
+#N canvas 573 164 374 272 META 0;
 #X text 0 38 DESCRIPTION generate list of random floats;
 #X text 0 57 INLET_0 bang message;
 #X text 0 76 INLET_1 float;
@@ -49,8 +49,8 @@ to 1);
 #X text 3 230 WEBSITE http://www.derekxkwan.com/code/puredata.html
 ;
 #X text 0 155 LIBRARY dxkpure;
-#X text 0 19 LICENSE GPL v2;
 #X text 0 0 KEYWORDS random list range randlist;
+#X text 0 19 LICENSE GPL v3;
 #X restore 19 607 pd META;
 #X msg 263 141 seed 50;
 #X text 287 122 set seed;
