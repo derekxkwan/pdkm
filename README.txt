@@ -1,6 +1,8 @@
 ==========================================
 dxkpure v0.1 - pure data external library
 by Derek Kwan, 2016
+
+Released under GPL v3.0
 ==========================================
 
 OBJECTS:
@@ -23,7 +25,7 @@ OBJECTS:
 	- scaledeg - maps scale degrees to midi notes, ported from SuperCollider
 	- wesley~ - bitcrusher/downsampler
 
-HOW TO INSTALL:
+HOW TO INSTALL (pdlibbuilder version coming soon):
 	- type "make"
 	- create a folder within your externals directory (check out the pure data website 
 	puredata.info if you don't know where it is) and move the following into it:
