@@ -1,0 +1,74 @@
+#N canvas 687 196 467 532 10;
+#X obj 8 6 cnv 15 420 30 empty empty dxkpure 20 12 0 20 -261682 -66577
+0;
+#X text 305 10 Derek Kwan \, 2016;
+#X obj 8 36 cnv 15 420 30 empty empty wesley~ 20 12 0 20 -232576 -66577
+0;
+#X obj 16 354 cnv 15 420 70 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 16 423 cnv 15 420 30 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#X obj 16 450 cnv 15 420 40 empty empty args 20 12 0 15 -261682 -66577
+0;
+#X text 106 426 1) sig~ - signal;
+#X obj 45 168 *~ 0;
+#X obj 92 170 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 53 217 dac~ 1 2;
+#N canvas 735 372 374 272 META 0;
+#X text 3 149 VERSION 0.1;
+#X text 3 167 AUTHOR Derek Kwan;
+#X text 4 185 RELEASE_DATE 2016;
+#X text 5 204 WEBSITE http://www.derekxkwan.com/code/puredata.html
+;
+#X text 2 129 LIBRARY dxkpure;
+#X text 2 110 OUTLET_0 signal;
+#X text 0 38 DESCRIPTION bitcrusher and downsampler;
+#X text 0 0 KEYWORDS wesley bitcrushing downsampling;
+#X text 0 57 INLET_0 signal;
+#X text 0 76 INLET_1 float;
+#X text 1 92 INLET_2 float;
+#X text 0 19 LICENSE GPL v3;
+#X restore 18 499 pd META;
+#X text 240 43 bitcrusher and downsampler;
+#X obj 45 146 dxkpure/wesley~ 32 1;
+#X msg 210 115 4;
+#X text 183 96 downsampling factor;
+#X msg 101 92 4;
+#X text 103 73 bit resolution;
+#X obj 35 84 osc~ 440;
+#X msg 173 113 1;
+#X text 106 357 1) sig~ - input;
+#X text 106 373 2) float - bit resolution;
+#X text 105 395 3) float - downsampling factor;
+#X text 106 451 1) float - bit resolution (default = 32);
+#X text 108 469 3) float -;
+#X obj 40 254 metro 100;
+#X obj 17 289 tabwrite~ \$0-weshelp;
+#X text 113 171 sound/graph;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array \$0-weshelp 64 float 3;
+#A 0 -0.867521 -0.896978 -0.922913 -0.945224 -0.963821 -0.978619 -0.989575
+-0.996644 -0.9998 -0.999029 -0.994336 -0.985737 -0.973268 -0.956976
+-0.936913 -0.913169 -0.885839 -0.855031 -0.820865 -0.783476 -0.74301
+-0.699626 -0.653494 -0.604788 -0.553705 -0.500448 -0.445226 -0.388255
+-0.329761 -0.269971 -0.20912 -0.147447 -0.0851943 -0.0226063 0.0400698
+0.102588 0.164703 0.226172 0.286752 0.346207 0.404302 0.460809 0.515501
+0.568168 0.618603 0.666608 0.711996 0.754588 0.794217 0.830728 0.863976
+0.893818 0.92015 0.942868 0.961883 0.977121 0.988522 0.996041 0.999649
+0.999332 0.995078 0.986913 0.974873 0.959004;
+#X coords 0 1 64 -1 200 140 1;
+#X restore 197 205 graph;
+#X msg 131 93 32;
+#X connect 7 0 9 0;
+#X connect 7 0 9 1;
+#X connect 7 0 25 0;
+#X connect 8 0 7 1;
+#X connect 8 0 24 0;
+#X connect 12 0 7 0;
+#X connect 13 0 12 2;
+#X connect 15 0 12 1;
+#X connect 17 0 12 0;
+#X connect 18 0 12 2;
+#X connect 24 0 25 0;
+#X connect 28 0 12 1;

@@ -1,0 +1,62 @@
+#N canvas 1055 145 454 639 10;
+#X obj 8 6 cnv 15 420 30 empty empty dxkpure 20 12 0 20 -261682 -66577
+0;
+#X text 305 10 Derek Kwan \, 2016;
+#X obj 8 36 cnv 15 420 30 empty empty randlist 20 12 0 20 -232576 -66577
+0;
+#X obj 8 313 cnv 15 420 160 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 8 474 cnv 15 420 50 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#X obj 8 523 cnv 15 420 70 empty empty args 20 12 0 15 -261682 -66577
+0;
+#X text 17 332 1;
+#X text 193 43 generates lists of random floats;
+#X obj 64 197 dxkpure/randlist 0 10 10;
+#X obj 64 219 print randlisthelp;
+#X obj 64 94 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 98 175 lo;
+#X text 152 177 hi;
+#X text 195 175 number of rands;
+#X text 37 331 bang - output list;
+#X text 39 350 message - "range (f)(f)" - set low and high of range
+;
+#X text 102 370 "num (f)" - set length of random list;
+#X text 14 404 2 set low number of range;
+#X text 12 424 3 set high number of range;
+#X text 14 448 4 set length of random list;
+#X text 66 500 list of random numbers;
+#X text 27 543 1 f given: set high of range (low set to 0 \, length
+to 1);
+#X text 26 558 2 f given: set high of range and length (low = 0);
+#X text 26 576 3 f given: set lo \, hi of range and length;
+#X msg 115 115 range -3 5;
+#X text 116 97 set range;
+#X msg 208 114 num 7;
+#X text 205 97 set length of random list;
+#X text 58 76 OUTPUT;
+#N canvas 573 164 374 272 META 0;
+#X text 0 38 DESCRIPTION generate list of random floats;
+#X text 0 57 INLET_0 bang message;
+#X text 0 76 INLET_1 float;
+#X text 0 95 INLET_2 float;
+#X text 1 114 INLET_3 float;
+#X text 0 136 OUTLET_0 list;
+#X text 1 175 VERSION 0.1;
+#X text 1 193 AUTHOR Derek Kwan;
+#X text 2 211 RELEASE_DATE 2016;
+#X text 3 230 WEBSITE http://www.derekxkwan.com/code/puredata.html
+;
+#X text 0 155 LIBRARY dxkpure;
+#X text 0 0 KEYWORDS random list range randlist;
+#X text 0 19 LICENSE GPL v3;
+#X restore 19 607 pd META;
+#X msg 263 141 seed 50;
+#X text 287 122 set seed;
+#X text 101 390 "seed (f)" - set random seed;
+#X connect 8 0 9 0;
+#X connect 10 0 8 0;
+#X connect 24 0 8 0;
+#X connect 26 0 8 0;
+#X connect 30 0 8 0;
