@@ -102,10 +102,11 @@ static void dxkmetrox_ft1(t_dxkmetrox *x, t_floatarg g)
 static void dxkmetrox_tick(t_dxkmetrox *x)
 {
     t_dxkmetroxelt *e;
-    int numelt;
+    int numelt = x->x_numelt;
     x->x_hit = 0;
 
-	for (numelt = 0, e = x->x_vec; numelt < x->x_numelt; numelt++, e++){
+	for (numelt, e = x->x_vec + (numelt - 1); numelt > 0; numelt--, e--){
+		//iterating through x_dxkmetroelts in backwards dir
         //bounds checking low side for multiplier
 		if(e->e_mult < 1){
 			e->e_mult = 1;
@@ -129,6 +130,12 @@ static void dxkmetrox_tick(t_dxkmetrox *x)
 
 static void dxkmetrox_float(t_dxkmetrox *x, t_float f)
 {
+    t_dxkmetroxelt *e;
+    int numelt;
+	for (numelt = 0, e = x->x_vec; numelt < x->x_numelt; numelt++, e++){
+		//reset all counts to 0
+		e->e_count = 0;
+	};
     if (f != 0) dxkmetrox_tick(x);
     else clock_unset(x->x_clock);
     x->x_hit = 1;
