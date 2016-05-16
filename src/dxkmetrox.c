@@ -1,4 +1,10 @@
-    /* parse a time unit such as "5 msec", "60 perminute", or "1 sample" to
+/* Copyright 2016 by Derek Kwan
+ * Distributed under GPL v3 */
+
+
+//parsetimeunits is copied from puredata's x_time.c
+
+	/* parse a time unit such as "5 msec", "60 perminute", or "1 sample" to
     a form usable by clock_setunit)( and clock_gettimesincewithunits().
     This brute-force search through symbols really ought not to be done on
     the fly for incoming 'tempo' messages, hmm...  This isn't public because
