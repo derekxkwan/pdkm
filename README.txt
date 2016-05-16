@@ -10,20 +10,20 @@ OBJECTS:
 	- dxkadsr~ - triggered adsr envelope generator
 	- dxkmetrox - control-rate multiple metro
 	- dxkstut~ - windowed stutter effect
-	- euclid - outputs euclidean rhythms based on the work of Godfried Toussaint
-	- exprand - random values with exponential distribution
-	- grainyrd~ - granular sound buffer player
-	- linrand - random values with triangular (linear) distribution
-	- magikp~ - karplus-strong guitar synthesizer
-	- randlist - generate list of random numbers within a given range
-	- red~ - red noise generator with variable level of "redness"
-	- sawlim~ - bandlimited sawtooth wave generator
-	- sinbank~ - sine oscillator bank
-	- sinbankd~ - sine oscillator bank with separate envelopes with triggered output
-	- sinbankr~ - sine oscillator bank with separate envelopes and signal amplitude control
-	- sqlim~ - bandlimited square wave generator
-	- scaledeg - maps scale degrees to midi notes, ported from SuperCollider
-	- wesley~ - bitcrusher/downsampler
+	- dxkeuclid - outputs euclidean rhythms based on the work of Godfried Toussaint
+	- dxkernd - random values with exponential distribution
+	- dxkgrnrd~ - granular sound buffer player
+	- dxklrnd - random values with triangular (linear) distribution
+	- dxkmagikp~ - karplus-strong guitar synthesizer
+	- dxkrndlst - generate list of random numbers within a given range
+	- dxkred~ - red noise generator with variable level of "redness"
+	- dxksawlim~ - bandlimited sawtooth wave generator
+	- dxksnbnk~ - sine oscillator bank
+	- dxksnbnkd~ - sine oscillator bank with separate envelopes with triggered output
+	- dxksnbnkr~ - sine oscillator bank with separate envelopes and signal amplitude control
+	- dxksqlim~ - bandlimited square wave generator
+	- dxkscldeg - maps scale degrees to midi notes, ported from SuperCollider
+	- dxkwesley~ - bitcrusher/downsampler
 
 HOW TO INSTALL (pdlibbuilder version coming soon):
 	- type "make"

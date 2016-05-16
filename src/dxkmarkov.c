@@ -1,3 +1,6 @@
+/* Copyright 2016 - Derek Kwan
+ * Distributed under GPL v3 */
+
 #include <math.h>
 #include "m_pd.h"
 

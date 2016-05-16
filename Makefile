@@ -2,23 +2,23 @@
 
 lib.name = dxkpure
 
-class.sources = src/dxkred.c \
-				src/dxkernd.c \
-				src/dxklrnd.c \
-				src/dxkscldeg.c \
-				src/dxkeuclid.c \
-				src/dxkgrnrd.c \
-				src/dxksawlim.c \
-				src/dxksqlim.c \
-				src/dxksnbnkd.c \
-				src/dxksnbnkr.c \
-				src/dxksnbnk.c \
-				src/dxkrndlst.c \
-				src/dxkwesley.c \
-				src/dxkadsr.c \
-				src/dxkmagikp.c \
-				src/dxkstut.c \
-				src/dxkmetrox.c 
+dxkred~.class.sources = src/dxkred.c 
+dxkernd.class.sources = src/dxkernd.c 
+dxklrnd.class.sources = src/dxklrnd.c 
+dxkscldeg.class.sources = src/dxkscldeg.c 
+dxkeuclid.class.sources = src/dxkeuclid.c 
+dxkgrnrd~.class.sources = src/dxkgrnrd.c 
+dxksawlim~.class.sources = src/dxksawlim.c 
+dxksqlim~.class.sources = src/dxksqlim.c 
+dxksnbnkd~.class.sources = src/dxksnbnkd.c 
+dxksnbnkr~.class.sources = src/dxksnbnkr.c 
+dxksnbnk~.class.sources = src/dxksnbnk.c 
+dxkrndlst.class.sources = src/dxkrndlst.c 
+dxkwesley~.class.sources = src/dxkwesley.c 
+dxkadsr~.class.sources = src/dxkadsr.c 
+dxkmagikp~.class.sources = src/dxkmagikp.c 
+dxkstut~.class.sources = src/dxkstut.c 
+dxkmetrox.class.sources = src/dxkmetrox.c 
 
 datafiles =  help/dxkpure-meta.pd \
 			 help/dxkred~-help.pd \
@@ -40,5 +40,7 @@ datafiles =  help/dxkpure-meta.pd \
 			 help/dxkmetrox-help.pd \
 			 README.txt \
 			 LICENSE.txt
+
+suppress-wunused = yes
 
 include Makefile.pdlibbuilder
