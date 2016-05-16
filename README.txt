@@ -25,13 +25,7 @@ OBJECTS:
 	- dxkscldeg - maps scale degrees to midi notes, ported from SuperCollider
 	- dxkwesley~ - bitcrusher/downsampler
 
-HOW TO INSTALL (pdlibbuilder version coming soon):
+HOW TO INSTALL:
+	- make sure you have the pure-data source installed (can be found at github.com/pure-data/pure-data )
 	- type "make"
-	- create a folder within your externals directory (check out the pure data website 
-	puredata.info if you don't know where it is) and move the following into it:
-		- all .dll for windows/.pd_darwin for osx/.pd_linux files for linux
-		- dxkpure-meta.pd 
-		- all -help.pd files
-
-		(or you can just move this entire folder into your externals directory
-		if you don't mind the clutter)
+	- move folder (dxkpure) to externals folder
