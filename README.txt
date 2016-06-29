@@ -16,6 +16,7 @@ OBJECTS:
 	- dxklrnd - random values with triangular (linear) distribution
 	- dxkmagikp~ - karplus-strong guitar synthesizer
 	- dxkmidirt - abstraction to handle midi real-time messages
+	- dxkrndgt - let through anything x% of the time
 	- dxkrndlst - generate list of random numbers within a given range
 	- dxkred~ - red noise generator with variable level of "redness"
 	- dxksawlim~ - bandlimited sawtooth wave generator
