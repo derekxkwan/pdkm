@@ -13,6 +13,8 @@ ABSTRACTIONS (written in pd vanilla):
 	- dxkmidirt - abstraction to handle midi real-time messages
 	- dxknzgt - only let nonzero floats through
 	- dxkrndgt - let through anything x% of the time
+	- dxksyncb - synchronized banger
+	- dxksyncf - synchronized floats
 	- dxkvanctr - vanilla counter (can go both up and down)
 
 EXTERNALS (compiled c code):
