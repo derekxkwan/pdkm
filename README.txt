@@ -5,7 +5,17 @@ by Derek Kwan, 2016
 Released under GPL v3.0
 ==========================================
 
-OBJECTS:
+ABSTRACTIONS (written in pd vanilla):
+(note, help files for abstractions coming soon, can just open subpatch for now)
+	- dxkbd1 - bass drum synth
+	- dxkhh1 - hihat synth
+	- dxksd1 - snare drum synth
+	- dxkmidirt - abstraction to handle midi real-time messages
+	- dxknzgt - only let nonzero floats through
+	- dxkrndgt - let through anything x% of the time
+	- dxkvanctr - vanilla counter (can go both up and down)
+
+EXTERNALS (compiled c code):
 
 	- dxkadsr~ - triggered adsr envelope generator
 	- dxkmetrox - control-rate multiple metro
@@ -15,8 +25,6 @@ OBJECTS:
 	- dxkgrnrd~ - granular sound buffer player
 	- dxklrnd - random values with triangular (linear) distribution
 	- dxkmagikp~ - karplus-strong guitar synthesizer
-	- dxkmidirt - abstraction to handle midi real-time messages
-	- dxkrndgt - let through anything x% of the time
 	- dxkrndlst - generate list of random numbers within a given range
 	- dxkred~ - red noise generator with variable level of "redness"
 	- dxksawlim~ - bandlimited sawtooth wave generator
