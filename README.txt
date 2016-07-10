@@ -10,6 +10,7 @@ ABSTRACTIONS (written in pd vanilla):
 	- dxkbd1 - bass drum synth
 	- dxkhh1 - hihat synth
 	- dxksd1 - snare drum synth
+	- dxkmbang - bang multiplier
 	- dxkmidirt - abstraction to handle midi real-time messages
 	- dxknzgt - only let nonzero floats through
 	- dxkrndgt - let through anything x% of the time
