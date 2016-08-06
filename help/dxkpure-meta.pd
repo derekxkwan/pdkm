@@ -1,5 +1,5 @@
-#N canvas 69 133 315 321 10;
-#N canvas 542 264 344 183 META 1;
+#N canvas 648 252 1001 596 10;
+#N canvas 538 268 344 183 META 0;
 #X text 2 80 VERSION 0.1;
 #X text 2 98 AUTHOR Derek Kwan;
 #X text 3 116 RELEASE_DATE 2016;
@@ -10,3 +10,42 @@
 #X text -1 0 KEYWORDS;
 #X text -1 19 LICENSE GPL v3;
 #X restore 14 15 pd META;
+#X text 16 42 LIST OF OBJECTS;
+#X text 18 74 ABSTRACTIONS;
+#X text 17 102 dxkbd1~ - bass drum synth;
+#X text 17 117 dxkhh1~ - hihat synth;
+#X text 20 135 dxksd1~ - snare drum synth;
+#X text 16 147 dxkmbang - bang multiplier;
+#X text 17 165 dxkmidirt - midi real-time message parser;
+#X text 22 181 dxknzgt - nonzero gate;
+#X text 19 198 dxkrndgt - gate open x% of the time;
+#X text 21 216 dxksyncb - synchronized banger;
+#X text 22 233 dxksyncf - synchroinzed floats;
+#X text 23 253 dxkvanctr - vanilla counter (can go both up and down)
+;
+#X text 24 306 EXTERNALS;
+#X text 23 323 dxkadsr~ - triggered adsr envelope generator;
+#X text 23 340 dxkmetrox - control-rate multiple metro;
+#X text 22 357 dxkstut~ - windowed stutter effect;
+#X text 22 375 dxkeuclid - outputs euclidean rhythms based on the work
+of Godfried Toussaint;
+#X text 20 409 dxkernd - random values with exponential distribution
+;
+#X text 20 431 dxkgrnrd~ - granular sound buffer player;
+#X text 19 453 dxklrnd - random values with triangular (linear) distribution
+;
+#X text 20 492 dxkmagikp~ - karplus-strong guitar synthesizer;
+#X text 23 514 dxkrndlst - generate list of random numbers within a
+given range;
+#X text 23 548 dxkred~ - red noise generator with variable level of
+"redness";
+#X text 483 311 dxksawlim~ - bandlimited sawtooth wave generator;
+#X text 482 332 dxksnbnk~ - sine oscillator bank;
+#X text 482 357 dxksnbnkd~ - sine oscillator bank with separate envelopes
+with triggered output;
+#X text 482 396 dxksnbnkr~ - sine oscillator bank with separate envelopes
+and signal amplitude control;
+#X text 482 439 dxksqlim~ - bandlimited square wave generator;
+#X text 484 464 dxkscldeg - maps scale degrees to midi notes \, ported
+from SuperCollider;
+#X text 483 498 dxkwesley~ - bitcrusher/downsampler;
