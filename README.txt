@@ -8,12 +8,15 @@ Released under GPL v3.0
 ABSTRACTIONS (written in pd vanilla):
 (note, help files for abstractions coming soon, can just open subpatch for now)
 	- dxkbd1~ - bass drum synth
+        - dxkcospan~ - cosine panner
 	- dxkhh1~ - hihat synth
 	- dxksd1~ - snare drum synth
 	- dxkmbang - bang multiplier
 	- dxkmidirt - abstraction to handle midi real-time messages
         - dxknobu~ - sample chopper abstraction
 	- dxknzgt - only let nonzero floats through
+        - dxkrunmax - running maximum
+        - dxkrunmin - running minimum
 	- dxkrndgt - let through anything x% of the time
 	- dxksyncb - synchronized banger
 	- dxksyncf - synchronized floats

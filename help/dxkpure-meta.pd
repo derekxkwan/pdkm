@@ -1,4 +1,4 @@
-#N canvas 648 252 1001 596 10;
+#N canvas 646 254 1001 596 10;
 #N canvas 538 268 344 183 META 0;
 #X text 2 80 VERSION 0.1;
 #X text 2 98 AUTHOR Derek Kwan;
@@ -13,15 +13,15 @@
 #X text 16 42 LIST OF OBJECTS;
 #X text 18 74 ABSTRACTIONS;
 #X text 17 102 dxkbd1~ - bass drum synth;
-#X text 17 117 dxkhh1~ - hihat synth;
-#X text 20 135 dxksd1~ - snare drum synth;
-#X text 16 147 dxkmbang - bang multiplier;
-#X text 17 165 dxkmidirt - midi real-time message parser;
-#X text 22 181 dxknzgt - nonzero gate;
-#X text 19 198 dxkrndgt - gate open x% of the time;
-#X text 21 216 dxksyncb - synchronized banger;
-#X text 22 233 dxksyncf - synchroinzed floats;
-#X text 23 253 dxkvanctr - vanilla counter (can go both up and down)
+#X text 13 132 dxkhh1~ - hihat synth;
+#X text 16 150 dxksd1~ - snare drum synth;
+#X text 18 163 dxkmbang - bang multiplier;
+#X text 13 180 dxkmidirt - midi real-time message parser;
+#X text 18 196 dxknzgt - nonzero gate;
+#X text 15 213 dxkrndgt - gate open x% of the time;
+#X text 12 230 dxksyncb - synchronized banger;
+#X text 475 93 dxksyncf - synchroinzed floats;
+#X text 476 114 dxkvanctr - vanilla counter (can go both up and down)
 ;
 #X text 24 306 EXTERNALS;
 #X text 23 323 dxkadsr~ - triggered adsr envelope generator;
@@ -49,3 +49,6 @@ and signal amplitude control;
 #X text 484 464 dxkscldeg - maps scale degrees to midi notes \, ported
 from SuperCollider;
 #X text 483 498 dxkwesley~ - bitcrusher/downsampler;
+#X text 22 116 dxkcospan~ - cosine panner;
+#X text 14 249 dxkrunmin - running minimum;
+#X text 18 264 dxkrunmax - running maximum;
