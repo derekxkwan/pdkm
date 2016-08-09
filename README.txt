@@ -15,12 +15,15 @@ ABSTRACTIONS (written in pd vanilla):
 	- dxkmidirt - abstraction to handle midi real-time messages
         - dxknobu~ - sample chopper abstraction
 	- dxknzgt - only let nonzero floats through
+        - dxkphsrd~ - phasor sound reader abstraction
         - dxkrunmax - running maximum
         - dxkrunmin - running minimum
 	- dxkrndgt - let through anything x% of the time
 	- dxksyncb - synchronized banger
 	- dxksyncf - synchronized floats
 	- dxkvanctr - vanilla counter (can go both up and down)
+	- dxkvandrk - vanilla drunk random number generator 
+	- dxkvanphs~ - vanilla 3-delay line phaser/chorus effect 
 
 EXTERNALS (compiled c code):
 
