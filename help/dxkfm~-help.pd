@@ -1,0 +1,59 @@
+#N canvas 416 247 436 706 10;
+#X obj 8 6 cnv 15 420 30 empty empty dxkpure 20 12 0 20 -261682 -66577
+0;
+#X text 305 10 Derek Kwan \, 2016;
+#X obj 8 36 cnv 15 420 30 empty empty dxkfm~ 20 12 0 20 -232576 -66577
+0;
+#X obj 6 289 cnv 15 420 110 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 6 400 cnv 15 420 30 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#X obj 6 427 cnv 15 420 100 empty empty args 20 12 0 15 -261682 -66577
+0;
+#X text 96 292 1) f/sig~ - frequency;
+#X text 96 403 1) sig~ - signal;
+#X floatatom 97 129 5 0 0 0 - - -, f 5;
+#X obj 99 205 *~ 0;
+#X obj 196 218 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 218 217 sound;
+#X obj 99 227 dac~ 1 2;
+#N canvas 724 352 441 435 META 0;
+#X text 6 193 VERSION 0.1;
+#X text 6 211 AUTHOR Derek Kwan;
+#X text 7 229 RELEASE_DATE 2016;
+#X text 5 173 LIBRARY dxkpure;
+#X text 5 154 OUTLET_0 signal;
+#X text 0 57 INLET_0 float;
+#X text 0 19 LICENSE GPL v3;
+#X text 0 0 KEYWORDS dxkfm fm synthesis oscillator;
+#X text 0 38 DESCRIPTION fm synthesis oscillator;
+#X text 3 249 WEBSITE http://www.derekxkwan.com/code/puredata-code.html
+;
+#X text 3 133 INLET_4 float;
+#X text 1 75 INLET_1 float;
+#X text 1 94 INLET_2 list;
+#X text 2 114 INLET_3 list;
+#X restore 11 549 pd META;
+#X text 255 44 fm synthesis oscillator;
+#X obj 98 165 dxkpure/dxkfm~ 100 1 2 30 3 20 4 10;
+#X text 71 430 1) float - fundamental frequency;
+#X text 72 448 2) float - carrier harmonic (rel to fundamental);
+#X text 72 468 FOLLOWING ARGS:;
+#X text 73 488 even args) modulator harmonic (to fundamental);
+#X text 71 508 odd args) modulator index (in percentage);
+#X text 95 367 5) float - phase (0-1);
+#X text 97 313 2) f - carrier harmonic;
+#X text 96 331 3) list - modulator harmonics;
+#X text 95 349 4) list - modulator indices (in percentage);
+#X msg 197 129 3 5 7, f 6;
+#X text 164 107 mod harmonics;
+#X msg 275 133 50 40 30;
+#X text 273 109 mod indices;
+#X text 100 109 freq;
+#X connect 8 0 15 0;
+#X connect 9 0 12 0;
+#X connect 10 0 9 1;
+#X connect 15 0 9 0;
+#X connect 25 0 15 2;
+#X connect 27 0 15 3;

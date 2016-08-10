@@ -4,6 +4,7 @@ lib.name = dxkpure
 
 dxkred~.class.sources = src/dxkred.c 
 dxkernd.class.sources = src/dxkernd.c 
+dxkfm~.class.sources = src/dxkfm.c 
 dxklrnd.class.sources = src/dxklrnd.c 
 dxkscldeg.class.sources = src/dxkscldeg.c 
 dxkeuclid.class.sources = src/dxkeuclid.c 

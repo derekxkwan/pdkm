@@ -1,4 +1,4 @@
-#N canvas 646 254 1001 596 10;
+#N canvas 899 231 1001 596 10;
 #N canvas 538 268 344 183 META 0;
 #X text 2 80 VERSION 0.1;
 #X text 2 98 AUTHOR Derek Kwan;
@@ -17,11 +17,11 @@
 #X text 16 150 dxksd1~ - snare drum synth;
 #X text 18 163 dxkmbang - bang multiplier;
 #X text 13 180 dxkmidirt - midi real-time message parser;
-#X text 18 196 dxknzgt - nonzero gate;
-#X text 15 213 dxkrndgt - gate open x% of the time;
-#X text 12 230 dxksyncb - synchronized banger;
-#X text 475 93 dxksyncf - synchroinzed floats;
-#X text 476 114 dxkvanctr - vanilla counter (can go both up and down)
+#X text 17 196 dxknzgt - nonzero gate;
+#X text 20 222 dxkrndgt - gate open x% of the time;
+#X text 17 239 dxksyncb - synchronized banger;
+#X text 482 105 dxksyncf - synchroinzed floats;
+#X text 482 122 dxkvanctr - vanilla counter (can go both up and down)
 ;
 #X text 24 306 EXTERNALS;
 #X text 23 323 dxkadsr~ - triggered adsr envelope generator;
@@ -34,21 +34,26 @@ of Godfried Toussaint;
 #X text 20 431 dxkgrnrd~ - granular sound buffer player;
 #X text 19 453 dxklrnd - random values with triangular (linear) distribution
 ;
-#X text 20 492 dxkmagikp~ - karplus-strong guitar synthesizer;
-#X text 23 514 dxkrndlst - generate list of random numbers within a
+#X text 22 500 dxkmagikp~ - karplus-strong guitar synthesizer;
+#X text 23 524 dxkrndlst - generate list of random numbers within a
 given range;
-#X text 23 548 dxkred~ - red noise generator with variable level of
+#X text 482 309 dxkred~ - red noise generator with variable level of
 "redness";
-#X text 483 311 dxksawlim~ - bandlimited sawtooth wave generator;
-#X text 482 332 dxksnbnk~ - sine oscillator bank;
-#X text 482 357 dxksnbnkd~ - sine oscillator bank with separate envelopes
+#X text 486 342 dxksawlim~ - bandlimited sawtooth wave generator;
+#X text 485 363 dxksnbnk~ - sine oscillator bank;
+#X text 485 388 dxksnbnkd~ - sine oscillator bank with separate envelopes
 with triggered output;
-#X text 482 396 dxksnbnkr~ - sine oscillator bank with separate envelopes
+#X text 485 427 dxksnbnkr~ - sine oscillator bank with separate envelopes
 and signal amplitude control;
-#X text 482 439 dxksqlim~ - bandlimited square wave generator;
-#X text 484 464 dxkscldeg - maps scale degrees to midi notes \, ported
+#X text 485 470 dxksqlim~ - bandlimited square wave generator;
+#X text 487 495 dxkscldeg - maps scale degrees to midi notes \, ported
 from SuperCollider;
-#X text 483 498 dxkwesley~ - bitcrusher/downsampler;
+#X text 486 529 dxkwesley~ - bitcrusher/downsampler;
 #X text 22 116 dxkcospan~ - cosine panner;
-#X text 14 249 dxkrunmin - running minimum;
-#X text 18 264 dxkrunmax - running maximum;
+#X text 19 258 dxkrunmin - running minimum;
+#X text 477 86 dxkrunmax - running maximum;
+#X text 480 152 dxkvanphs~ - vanilla 3-delay line phaser/chorus effect
+;
+#X text 481 138 dxkvandrk - vanilla drunk random number generator;
+#X text 20 209 dxkphsrd~ - phasor sound reader abstraction;
+#X text 23 482 dxkfm~ - fm synthesis oscillator;

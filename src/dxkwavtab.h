@@ -6,7 +6,7 @@
 #include <math.h>
 
 #ifndef DXKTABLEN
-#define DXKTABLEN 512//size of saw wavetable
+#define DXKTABLEN 4096//size of saw wavetable
 #endif
 
 #ifndef DXK2PI
