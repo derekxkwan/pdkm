@@ -2,6 +2,10 @@
 
 lib.name = dxkpure
 
+# headers
+dxkrand := src/dxkrand.c
+
+
 dxkred~.class.sources = src/dxkred.c 
 dxkernd.class.sources = src/dxkernd.c 
 dxkfm~.class.sources = src/dxkfm.c 
@@ -20,11 +24,13 @@ dxkadsr~.class.sources = src/dxkadsr.c
 dxkmagikp~.class.sources = src/dxkmagikp.c 
 dxkstut~.class.sources = src/dxkstut.c 
 dxkmetrox.class.sources = src/dxkmetrox.c 
+dxkpop~.class.sources = src/dxkpop.c $(dxkrand)
 
 datafiles =  help/dxkpure-meta.pd \
 			 help/dxkred~-help.pd \
 			 help/dxkernd-help.pd \
 			 help/dxklrnd-help.pd \
+			 help/dxkfm~-help.pd \
 			 help/dxkscldeg-help.pd \
 			 help/dxkeuclid-help.pd \
 			 help/dxkgrnrd~-help.pd \
@@ -39,6 +45,7 @@ datafiles =  help/dxkpure-meta.pd \
 			 help/dxkmagikp~-help.pd \
 			 help/dxkstut~-help.pd \
 			 help/dxkmetrox-help.pd \
+			 help/dxkpop~-help.pd \
 			 README.txt \
 			 LICENSE.txt
 
