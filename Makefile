@@ -25,6 +25,7 @@ dxkmagikp~.class.sources = src/dxkmagikp.c
 dxkstut~.class.sources = src/dxkstut.c 
 dxkmetrox.class.sources = src/dxkmetrox.c 
 #dxkpop~.class.sources = src/dxkpop.c $(dxkrand)
+dxkmkv2.class.sources = src/dxkmkv2.c $(dxkrand)
 
 datafiles =  help/dxkpure-meta.pd \
 			 help/dxkred~-help.pd \

@@ -26,11 +26,11 @@ typedef struct _dxkmkv2 {
 
 } t_dxkmkv2;
 
-static void dxkmkv2_prev2(t_dxkmark2  *x, t_float f){
+static void dxkmkv2_prev2(t_dxkmkv2  *x, t_float f){
     x->x_prev2 = f;
 }
 
-static void dxkmkv2_prev(t_dxkmark2  *x, t_float f){
+static void dxkmkv2_prev(t_dxkmkv2  *x, t_float f){
     x->x_prev = f;
 }
 
@@ -39,11 +39,10 @@ static void dxkmkv2_unalloc(t_dxkmkv2 *x){
     int dim = x->x_dim;
     for(i=0;i<dim; i++){
         for(j=0;j<dim; j++){
-            free(x->x_table[i][j])
+            free(x->x_table[i][j]);
         };
         free(x->x_table[i]);
     };
-    return (void *)x;
 
 }
 
@@ -66,24 +65,25 @@ static void dxkmkv2_clear(t_dxkmkv2 *x){
 
 }
 
-static void dxkmkv2_dim(t_dxkmkv2 *x, t_float dim){
+static void dxkmkv2_dim(t_dxkmkv2 *x, t_float _dim){
    //clears old cotents of x_table and reallocs if needed 
+    int i,j;
     int dimold = x->x_dim; //old dim
-    int dim = (int)dim;
+    int dim = (int)_dim;
     if(dim != dimold){
         dxkmkv2_unalloc(x);
-        uint32_t *** arr = (uint32_t ***)calloc(dim*sizeof(uint32_t **));
+        uint32_t *** arr = (uint32_t ***)calloc(dim,sizeof(uint32_t **));
         for(i=0; i<dim; i++){
-           arr[i] = (uint32_t **)calloc(dim*sizeof(uint32_t *)); 
+           arr[i] = (uint32_t **)calloc(dim,sizeof(uint32_t *)); 
             for(j=0; j<dim; j++){
-            arr[j] = (uint32_t *)calloc((dim+1)*sizeof(uint32_t));
+            arr[i][j] = (uint32_t *)calloc((dim+1),sizeof(uint32_t));
             };
         };
         if(arr){
             x->x_table = arr;
             x->x_dim = dim;
-            x->x_prev = offset;
-            x->x_prev2 = offset;
+            x->x_prev = x->x_offset;
+            x->x_prev2 = x->x_offset;
         }
         else{
             pd_error(x, "dxkmkv2: realloc failed!");
@@ -100,7 +100,7 @@ static void dxkmkv2_seed(t_dxkmkv2 *x, t_float f){
 }
 
 
-static void dxkrand_offset(t_dxkmkv2 * x, t_float f){
+static void dxkmkv2_offset(t_dxkmkv2 * x, t_float f){
     int oldoff = x->x_offset; //old offset
     int offset = (int)f;
     if(offset < 0){
@@ -121,7 +121,7 @@ static int bmap(t_dxkmkv2 *x, t_float ipt){
     int dim = x->x_dim;
     int ret = (int)ipt; //return value
     if(ret < offset){
-        ret = offset
+        ret = offset;
     }
     else if(ret >= (offset+dim)){
         //values co from offset to offset+ dim -1 inclusive since 0-index
@@ -134,14 +134,14 @@ static int bmap(t_dxkmkv2 *x, t_float ipt){
     return ret;
 }
 
-static void dxkmkv2_setnext(t_dxkmkv2 *x t_float ipt){
-    int input = bmap(ipt);
+static void dxkmkv2_setnext(t_dxkmkv2 *x,t_float ipt){
+    int input = bmap(x,ipt);
     if(x->x_num >= 2){
-        int prev = bmap((t_float)x->x_prev);
-        int prev2 = bmap((t_float)x->x_prev2);
+        int prev = bmap(x,(t_float)x->x_prev);
+        int prev2 = bmap(x,(t_float)x->x_prev2);
         //if total is less than max, go ahead and add
         int total = x->x_table[prev2][prev][x->x_dim];
-        if(total < UINT32_MAX){
+        if((unsigned int)total < UINT32_MAX){
             total++;
             x->x_table[prev2][prev][x->x_dim]=total;
             int curval = x->x_table[prev2][prev][input];
@@ -151,7 +151,7 @@ static void dxkmkv2_setnext(t_dxkmkv2 *x t_float ipt){
     };
     //increment
     x->x_prev2 = x->x_prev;
-    x->x_prev = input + offset;
+    x->x_prev = input + x->x_offset;
     if(x->x_num < 2){
         x->x_num = x->x_num + 1;
     };
@@ -168,13 +168,13 @@ static int dxkmkv2_getnext(t_dxkmkv2 *x){
                 prev = (int)(offset + (int)(dxkrand_next(x->x_rand)*dim));
                 break;
             default:
-                prev = bmap((t_float)x->x_prev);
-                prev2 = bmap((t_float)x->x_prev2);
+                prev = bmap(x,(t_float)x->x_prev);
+                prev2 = bmap(x,(t_float)x->x_prev2);
                 break;
         };
         double curnotes[dim];
         int i=0;
-        uint32_t total = x->x_table[prev2][prev][x_dim];
+        uint32_t total = x->x_table[prev2][prev][dim];
         double currand = dxkrand_next(x->x_rand); //current random number
 
         double runsum = x->x_table[prev2][prev][0]*(1.0/total); //running sum, should add up to 1.0 at end
@@ -263,15 +263,17 @@ static void *dxkmkv2_new(t_symbol * s, int argc, t_atom * argv){
         x->x_prev = offset;
         x->x_prev2 = offset;
         x->x_rand = dxkrand_new(0);
-        dxkmkv2_seed(seed);
+        if(setseed){
+            dxkmkv2_seed(x,seed);
+        };
 
         //allocate x_table
         int i,j;
-        uint32_t *** arr = (uint32_t ***)calloc(dim*sizeof(uint32_t **));
+        uint32_t *** arr = (uint32_t ***)calloc(dim,sizeof(uint32_t **));
         for(i=0; i<dim; i++){
-           arr[i] = (uint32_t **)calloc(dim*sizeof(uint32_t *)); 
+           arr[i] = (uint32_t **)calloc(dim,sizeof(uint32_t *)); 
             for(j=0; j<dim; j++){
-            arr[j] = (uint32_t *)calloc((dim+1)*sizeof(uint32_t));
+            arr[i][j] = (uint32_t *)calloc((dim+1),sizeof(uint32_t));
             };
         };
         if(arr){
@@ -319,8 +321,8 @@ static void dxkmkv2_float(t_dxkmkv2 *x, t_float f){
     }
     else{
         //else in play mode, count it as a bang and make it prev, scooting everything over
-        x->x_prev2 = prev;
-        x->x_prev = bmap(f);
+        x->x_prev2 = x->x_prev;
+        x->x_prev = bmap(x,f);
         int nval = dxkmkv2_getnext(x);
 	outlet_float(x->x_obj.ob_outlet, (t_float)nval);
     };
