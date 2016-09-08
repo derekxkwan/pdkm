@@ -22,7 +22,7 @@ void dxkrand_free(dxkrand * x){
     free(x);
 };
 void dxkrand_range(dxkrand * x, double _range){
-    double range = range;
+    double range = _range;
     if(range < 0){
         range = 0;
     };
@@ -38,7 +38,7 @@ dxkrand * dxkrand_new(int num, ... ){
     dxkrand * x;
     x = (dxkrand *)malloc(sizeof(dxkrand));
     if(x){
-        double range = 1.f;
+        double range = 1.;
         unsigned int seed = 1997333137;
         if(num){
             int i;

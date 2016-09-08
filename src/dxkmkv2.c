@@ -7,8 +7,8 @@
 #include "dxkrand.h"
 
 
-#define dxkmkv2DIM 12 //dimension of second-markov table
-#define dxkmkv2MAX 128 //max dim
+#define DXKMKV2DIM 12 //dimension of second-markov table
+#define DXKMKV2MAX 128 //max dim
 
 static t_class *dxkmkv2_class;
 
@@ -37,6 +37,7 @@ static void dxkmkv2_prev(t_dxkmkv2  *x, t_float f){
 static void dxkmkv2_unalloc(t_dxkmkv2 *x){
     int i,j;
     int dim = x->x_dim;
+    x->x_num = 0;
     for(i=0;i<dim; i++){
         for(j=0;j<dim; j++){
             free(x->x_table[i][j]);
@@ -140,13 +141,11 @@ static void dxkmkv2_setnext(t_dxkmkv2 *x,t_float ipt){
         int prev = bmap(x,(t_float)x->x_prev);
         int prev2 = bmap(x,(t_float)x->x_prev2);
         //if total is less than max, go ahead and add
-        int total = x->x_table[prev2][prev][x->x_dim];
-        if((unsigned int)total < UINT32_MAX){
-            total++;
-            x->x_table[prev2][prev][x->x_dim]=total;
-            int curval = x->x_table[prev2][prev][input];
-            curval++;
-            x->x_table[prev2][prev][input] = curval;
+        unsigned int total = x->x_table[prev2][prev][x->x_dim];
+        if(total < UINT32_MAX){
+            x->x_table[prev2][prev][x->x_dim]=++total;
+            unsigned int curval = x->x_table[prev2][prev][input];
+            x->x_table[prev2][prev][input] = ++curval;
         };
     };
     //increment
@@ -172,26 +171,27 @@ static int dxkmkv2_getnext(t_dxkmkv2 *x){
                 prev2 = bmap(x,(t_float)x->x_prev2);
                 break;
         };
-        double curnotes[dim];
-        int i=0;
-        uint32_t total = x->x_table[prev2][prev][dim];
-        double currand = dxkrand_next(x->x_rand); //current random number
+            double curnotes[dim];
+            int i=0;
+            uint32_t total = x->x_table[prev2][prev][dim];
+            double currand = dxkrand_next(x->x_rand); //current random number
 
-        double runsum = x->x_table[prev2][prev][0]*(1.0/total); //running sum, should add up to 1.0 at end
-        //idea is running sum should eventually equal 1.0
-        //scan through the notes adding their proportions to runsum, if runsum > currand, we found our note
-        int note = 0; //note to return
-        while(note< dim && runsum < currand){
-            note++;
-            runsum += x->x_table[prev2][prev][note]*(1.0/total);
-        };
-        note += offset; //apply offset
-        //set prevs
-        x->x_prev2 = x->x_prev;
-        x->x_prev = note;
-        //increment number of notes seen/generated if < 2
-        if(x->x_num < 2){
-            x->x_num = x->x_num + 1;
+            double runsum = (double)x->x_table[prev2][prev][0]*(1.0/total); //running sum, should add up to 1.0 at end
+            //idea is running sum should eventually equal 1.0
+            //scan through the notes adding their proportions to runsum, if runsum > currand, we found our note
+            int note = 0; //note to return
+            //post("currand:%f, runsum: %f",currand, runsum);
+            while(note< dim && runsum < currand){
+                note++;
+                runsum += (double)x->x_table[prev2][prev][note]*(1.0/total);
+            };
+            note += offset; //apply offset
+            //set prevs
+            x->x_prev2 = x->x_prev;
+            x->x_prev = note;
+        //set number of notes seen/generated if < 2 to 2 (basically use to generate rands for prevs
+        if(x->x_num < 2){    
+            x->x_num =2;
         };
         return note;
 }
@@ -208,7 +208,7 @@ static void *dxkmkv2_new(t_symbol * s, int argc, t_atom * argv){
         int argnum = 0;
         int setseed = 0; //if seed is set
         //defaults
-        int dim = dxkmkv2DIM;
+        int dim = DXKMKV2DIM;
         int offset = 0;
         t_float seed = 0;
         while(argc){
@@ -253,12 +253,13 @@ static void *dxkmkv2_new(t_symbol * s, int argc, t_atom * argv){
         if(dim < 0){
             dim = 0;
         }
-        else if(dim >= dxkmkv2MAX){
-            dim = dxkmkv2MAX;
+        else if(dim >= DXKMKV2MAX){
+            dim = DXKMKV2MAX;
         };
 
         x->x_dim = dim;
         x->x_mode = 0;
+        x->x_num = 0;
         x->x_offset = offset;
         x->x_prev = offset;
         x->x_prev2 = offset;

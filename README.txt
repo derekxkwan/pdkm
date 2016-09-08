@@ -24,6 +24,7 @@ ABSTRACTIONS (written in pd vanilla):
 	- dxkvanctr - vanilla counter (can go both up and down)
 	- dxkvandrk - vanilla drunk random number generator 
 	- dxkvanphs~ - vanilla 3-delay line phaser/chorus effect 
+	- dxkvuzi - vanilla uzi/multiple banger
 
 EXTERNALS (compiled c code):
 
