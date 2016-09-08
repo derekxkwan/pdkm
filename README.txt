@@ -36,6 +36,7 @@ EXTERNALS (compiled c code):
 	- dxkgrnrd~ - granular sound buffer player
 	- dxklrnd - random values with triangular (linear) distribution
 	- dxkmagikp~ - karplus-strong guitar synthesizer
+	- dxkmkv2 - second-order markov generator
 	- dxkrndlst - generate list of random numbers within a given range
 	- dxkred~ - red noise generator with variable level of "redness"
 	- dxksawlim~ - bandlimited sawtooth wave generator
