@@ -74,7 +74,7 @@ void parsetimeunits(void *x, t_float amount, t_symbol *unitname,
 
 
 /* -------------------------- metro ------------------------------ */
-static t_class *dxkmtx_class;
+static t_class *dkmtx_class;
 
 typedef struct _metroxelt
 {
@@ -83,10 +83,10 @@ typedef struct _metroxelt
 	t_inlet *e_inlet;
 	t_float e_mult; //multiple of the timebase
 	int e_count; //the current count
-} t_dxkmtxelt;
+} t_dkmtxelt;
 
 
-typedef struct _dxkmtx
+typedef struct _dkmtx
 {
     t_object x_obj;
     t_clock *x_clock;
@@ -95,19 +95,19 @@ typedef struct _dxkmtx
 	t_inlet * x_baselet; //inlet for callback time base
 
 	t_int x_numelt; //number of metroxelts
-	t_dxkmtxelt *x_vec;
-} t_dxkmtx;
+	t_dkmtxelt *x_vec;
+} t_dkmtx;
 
-static void dxkmtx_ft1(t_dxkmtx *x, t_floatarg g)
+static void dkmtx_ft1(t_dkmtx *x, t_floatarg g)
 {
     if (g <= 0) /* as of 0.45, we're willing to try any positive time value */
         g = 1;  /* but default to 1 (arbitrary and probably not so good) */
     x->x_deltime = g;
 }
 
-static void dxkmtx_tick(t_dxkmtx *x)
+static void dkmtx_tick(t_dkmtx *x)
 {
-    t_dxkmtxelt *e;
+    t_dkmtxelt *e;
     int numelt = x->x_numelt;
     x->x_hit = 0;
 
@@ -134,30 +134,30 @@ static void dxkmtx_tick(t_dxkmtx *x)
     if (!x->x_hit) clock_delay(x->x_clock, x->x_deltime);
 }
 
-static void dxkmtx_float(t_dxkmtx *x, t_float f)
+static void dkmtx_float(t_dkmtx *x, t_float f)
 {
-    t_dxkmtxelt *e;
+    t_dkmtxelt *e;
     int numelt;
 	for (numelt = 0, e = x->x_vec; numelt < x->x_numelt; numelt++, e++){
 		//reset all counts to 0
 		e->e_count = 0;
 	};
-    if (f != 0) dxkmtx_tick(x);
+    if (f != 0) dkmtx_tick(x);
     else clock_unset(x->x_clock);
     x->x_hit = 1;
 }
 
-static void dxkmtx_bang(t_dxkmtx *x)
+static void dkmtx_bang(t_dkmtx *x)
 {
-    dxkmtx_float(x, 1);
+    dkmtx_float(x, 1);
 }
 
-static void dxkmtx_stop(t_dxkmtx *x)
+static void dkmtx_stop(t_dkmtx *x)
 {
-    dxkmtx_float(x, 0);
+    dkmtx_float(x, 0);
 }
 
-static void dxkmtx_tempo(t_dxkmtx *x, t_symbol *unitname, t_floatarg tempo)
+static void dkmtx_tempo(t_dkmtx *x, t_symbol *unitname, t_floatarg tempo)
 {
     t_float unit;
     int samps;
@@ -165,9 +165,9 @@ static void dxkmtx_tempo(t_dxkmtx *x, t_symbol *unitname, t_floatarg tempo)
     clock_setunit(x->x_clock, unit, samps);
 }
 
-static void dxkmtx_free(t_dxkmtx *x)
+static void dkmtx_free(t_dkmtx *x)
 {
-    t_dxkmtxelt *e;
+    t_dkmtxelt *e;
     int numelt;
 
     clock_free(x->x_clock);
@@ -180,10 +180,10 @@ static void dxkmtx_free(t_dxkmtx *x)
 	inlet_free(x->x_baselet); //freeing the last inlet
 }
 
-static void *dxkmtx_new(t_symbol *s, int argc, t_atom * argv)
+static void *dkmtx_new(t_symbol *s, int argc, t_atom * argv)
 {
 
-    t_dxkmtx *x = (t_dxkmtx *)pd_new(dxkmtx_class);
+    t_dkmtx *x = (t_dkmtx *)pd_new(dkmtx_class);
     
 	//PARSING TEMPO
 	
@@ -231,12 +231,12 @@ static void *dxkmtx_new(t_symbol *s, int argc, t_atom * argv)
 
 	//NOW FOR PARSING THE REST
     
-	t_dxkmtxelt *e;
+	t_dkmtxelt *e;
 	if(argc < 1){
 		//if there's nothing left to parse
 		//just default to normal-ish behavior and make one metroxelt
 		x->x_numelt = 1;
-		e = x->x_vec = (t_dxkmtxelt *)getbytes(sizeof(*x->x_vec));
+		e = x->x_vec = (t_dkmtxelt *)getbytes(sizeof(*x->x_vec));
 		e->e_mult = 1;
 		e->e_outlet = outlet_new(&x->x_obj, &s_bang);
 		e->e_inlet = floatinlet_new(&x->x_obj, &e->e_mult);
@@ -248,7 +248,7 @@ static void *dxkmtx_new(t_symbol *s, int argc, t_atom * argv)
 		//parse the rest of the args as metroxelts
 		int n;
 		x->x_numelt = argc;
-		x->x_vec = (t_dxkmtxelt *)getbytes(argc * sizeof(*x->x_vec));
+		x->x_vec = (t_dkmtxelt *)getbytes(argc * sizeof(*x->x_vec));
 
         for (n = 0, e = x->x_vec; n < argc; n++, e++)
         {
@@ -266,27 +266,27 @@ static void *dxkmtx_new(t_symbol *s, int argc, t_atom * argv)
         };
 	};
     
-	dxkmtx_ft1(x, ft1arg);
+	dkmtx_ft1(x, ft1arg);
     x->x_hit = 0;
-    x->x_clock = clock_new(x, (t_method)dxkmtx_tick);
+    x->x_clock = clock_new(x, (t_method)dkmtx_tick);
     x->x_baselet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("ft1"));
 
 	if (tempo != 0)
-        dxkmtx_tempo(x, unitname, tempo);
+        dkmtx_tempo(x, unitname, tempo);
     return (x);
 }
 
-void dxkmtx_setup(void)
+void dkmtx_setup(void)
 {
-    dxkmtx_class = class_new(gensym("dxkmtx"), (t_newmethod)dxkmtx_new,
-        (t_method)dxkmtx_free, sizeof(t_dxkmtx), 0,
+    dkmtx_class = class_new(gensym("dkmtx"), (t_newmethod)dkmtx_new,
+        (t_method)dkmtx_free, sizeof(t_dkmtx), 0,
             A_GIMME, 0);
-    class_addbang(dxkmtx_class, dxkmtx_bang);
-    class_addmethod(dxkmtx_class, (t_method)dxkmtx_stop, gensym("stop"), 0);
-    class_addmethod(dxkmtx_class, (t_method)dxkmtx_ft1, gensym("ft1"),
+    class_addbang(dkmtx_class, dkmtx_bang);
+    class_addmethod(dkmtx_class, (t_method)dkmtx_stop, gensym("stop"), 0);
+    class_addmethod(dkmtx_class, (t_method)dkmtx_ft1, gensym("ft1"),
         A_FLOAT, 0);
-    class_addmethod(dxkmtx_class, (t_method)dxkmtx_tempo,
+    class_addmethod(dkmtx_class, (t_method)dkmtx_tempo,
         gensym("tempo"), A_FLOAT, A_SYMBOL, 0);
-    class_addfloat(dxkmtx_class, (t_method)dxkmtx_float);
+    class_addfloat(dkmtx_class, (t_method)dkmtx_float);
 }
 
