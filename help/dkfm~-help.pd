@@ -1,4 +1,4 @@
-#N canvas 416 247 436 706 10;
+#N canvas 414 249 436 706 10;
 #X obj 8 6 cnv 15 420 30 empty empty dxkpure 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
@@ -18,15 +18,13 @@
 1;
 #X text 218 217 sound;
 #X obj 99 227 dac~ 1 2;
-#N canvas 724 352 441 435 META 0;
+#N canvas 722 354 441 435 META 0;
 #X text 6 193 VERSION 0.1;
 #X text 6 211 AUTHOR Derek Kwan;
 #X text 7 229 RELEASE_DATE 2016;
-#X text 5 173 LIBRARY dxkpure;
 #X text 5 154 OUTLET_0 signal;
 #X text 0 57 INLET_0 float;
 #X text 0 19 LICENSE GPL v3;
-#X text 0 0 KEYWORDS dxkfm fm synthesis oscillator;
 #X text 0 38 DESCRIPTION fm synthesis oscillator;
 #X text 3 249 WEBSITE http://www.derekxkwan.com/code/puredata-code.html
 ;
@@ -34,9 +32,10 @@
 #X text 1 75 INLET_1 float;
 #X text 1 94 INLET_2 list;
 #X text 2 114 INLET_3 list;
+#X text 0 0 KEYWORDS dkfm fm synthesis oscillator;
+#X text 5 173 LIBRARY pdkm;
 #X restore 11 549 pd META;
 #X text 255 44 fm synthesis oscillator;
-#X obj 98 165 dxkpure/dxkfm~ 100 1 2 30 3 20 4 10;
 #X text 71 430 1) float - fundamental frequency;
 #X text 72 448 2) float - carrier harmonic (rel to fundamental);
 #X text 72 468 FOLLOWING ARGS:;
@@ -51,9 +50,10 @@
 #X msg 275 133 50 40 30;
 #X text 273 109 mod indices;
 #X text 100 109 freq;
-#X connect 8 0 15 0;
+#X obj 89 162 pdkm/dkfm~ 100 1 2 30 3 20 4 10;
+#X connect 8 0 29 0;
 #X connect 9 0 12 0;
 #X connect 10 0 9 1;
-#X connect 15 0 9 0;
-#X connect 25 0 15 2;
-#X connect 27 0 15 3;
+#X connect 24 0 29 2;
+#X connect 26 0 29 3;
+#X connect 29 0 9 0;
