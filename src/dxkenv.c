@@ -2,6 +2,7 @@
  *  * Distributed under GPL v3 */
 
 #include "dxkwavtab.h"
+#include <stdlib.h>
 #include <math.h>
 #include "m_pd.h"
 #include "string.h"
@@ -13,7 +14,7 @@ typedef enum{
     PERC,
     LINEN,
     TRI,
-    SIN
+    HANN
 } envtype;
 
 typedef enum{
@@ -37,7 +38,7 @@ typedef struct _dxkenv_tilde {
         int x_sz; //envelope size in samps
         t_float x_lvl; //attack level
         int x_dur; //duration in ms
-        double x_env[DXKWAVTAB]; //envelope
+        double x_env[ENVSZ]; //envelope
         envtype x_type; //envelope type
         int x_act; //if envelope is in progress
         int x_redur; //retriggering release dur
@@ -51,10 +52,6 @@ typedef struct _dxkenv_tilde {
 
 
 
-static int envmss(t_dxkenv_tilde * x, t_float ms){
-    double sr = x->x_sr * 0.001;
-    return (int)(sr * ms);
-}
 
 static void buildperc(t_dxkenv_tilde * x, t_float attms, t_float relms, t_float curve){
     //IDEA: att and rel times are in ms, add together to get total time
@@ -334,7 +331,7 @@ static void dxkenv_list(t_dxkenv_tilde *x, int argc, t_atom * argv){
             buildlinen(x,att,sus,rel,curve);
 
         }
-        else if (x->t_type == SIN || x->x_type == TRI){
+        else if (x->x_type == HANN || x->x_type == TRI){
             t_float dur = 1000;
             t_float level = 1.;
 
@@ -356,7 +353,7 @@ static void dxkenv_list(t_dxkenv_tilde *x, int argc, t_atom * argv){
             };
             x->x_dur = dur;
             x->x_lvl = level;
-            if(x->x_type == SIN){
+            if(x->x_type == HANN){
                 buildsin(x);
             }
             else{
@@ -374,8 +371,8 @@ static void dxkenv_env(t_dxkenv_tilde * x, t_symbol * s){
                 if(strcmp(s->s_name, "linen")==0){
                     x->x_type = LINEN;
                 }
-                else if(strcmp(s->s_name, "sin")==0){
-                    x->x_type = SIN;
+                else if(strcmp(s->s_name, "sine")==0){
+                    x->x_type = HANN;
                 }
                 else if (strcmp(s->s_name, "tri")==0){
                     x->x_type = TRI;
@@ -393,8 +390,6 @@ void *dxkenv_tilde_new(t_symbol *s, int argc, t_atom *argv){
 	t_dxkenv_tilde *x = (t_dxkenv_tilde *)pd_new(dxkenv_tilde_class);
 	t_atom params[10];
 	x->x_sr = sys_getsr();
-        x->x_pcurve = -2;
-        x->x_lcurve = LIN;
         x->x_sz = ENVSZ;
         x->x_type = PERC;
         x->x_redur = 1;        	
@@ -407,8 +402,8 @@ void *dxkenv_tilde_new(t_symbol *s, int argc, t_atom *argv){
                 else if(strcmp(arg1->s_name, "linen")==0){
                     x->x_type = LINEN;
                 }
-                else if(strcmp(arg1->s_name, "sin")==0){
-                    x->x_type = SIN;
+                else if(strcmp(arg1->s_name, "sine")==0){
+                    x->x_type = HANN;
                 }
                 else if (strcmp(arg1->s_name, "tri")==0){
                     x->x_type = TRI;
@@ -435,12 +430,15 @@ void *dxkenv_tilde_new(t_symbol *s, int argc, t_atom *argv){
 
 	outlet_new(&x->x_obj, gensym("signal"));
 	return (x);
+    errstate:
+        post("dxkenv~: improper args");
+        return NULL;
 }
 
 
 
 static t_int *dxkenv_tilde_perform(t_int *w){
-	 t_dxkadsr_tilde *x = (t_dxkadsr_tilde *)(w[1]);
+	 t_dxkenv_tilde *x = (t_dxkenv_tilde *)(w[1]);
 	t_float *out = (t_float *)(w[2]);
 	int n = (int)(w[3]);
         int i;
@@ -485,7 +483,6 @@ static t_int *dxkenv_tilde_perform(t_int *w){
                 output = 0;
                 };
 
-           }
                 x->x_st = output;
                 out[i] = output;
 	};
@@ -497,7 +494,7 @@ static void dxkenv_tilde_dsp(t_dxkenv_tilde *x, t_signal **sp){
 	// divide by tablelen to map to 0 to 1 range,..freq/samplerate
 	    dsp_add(dxkenv_tilde_perform, 3, x, sp[0]->s_vec, sp[0]->s_n);
 		int sr = sp[0]->s_sr;
-                if(sr != x_sr){
+                if(sr != x->x_sr){
                     x->x_conv = (double)(x->x_sz)/(double)((double)sr*0.001*x->x_dur);
                     x->x_sr = sr;
                 };
@@ -534,6 +531,6 @@ void dxkenv_tilde_setup(void){
 	class_addmethod(dxkenv_tilde_class, (t_method)dxkenv_tilde_dsp, gensym("dsp"), A_CANT, 0);
    class_addmethod(dxkenv_tilde_class, (t_method)dxkenv_list, gensym("params"), A_GIMME, 0);
    class_addmethod(dxkenv_tilde_class, (t_method)dxkenv_env, gensym("env"), A_SYMBOL, 0);
-    class_addbang(dxkenv_tilde_class, dxkadsr_tilde_bang);
+    class_addbang(dxkenv_tilde_class, dxkenv_tilde_bang);
    CLASS_MAINSIGNALIN(dxkenv_tilde_class, t_dxkenv_tilde, x_in);
 }

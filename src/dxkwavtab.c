@@ -1,5 +1,5 @@
 
-void dxkgetlin(double * tab[], int sz, double idx){
+double dxkgetlin(double tab[], int sz, double idx){
         double output;
         int tabphase1 = (int)idx;
         int tabphase2 = tabphase1 + 1;
