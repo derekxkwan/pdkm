@@ -28,3 +28,5 @@
 #ifndef DXKFFTOV
 #define DXKFFTOV 4 //fft overlap
 #endif
+
+void dxkgetlin(double * tab[], int sz, double idx); //linear interpolator
