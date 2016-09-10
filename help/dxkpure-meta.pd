@@ -1,4 +1,4 @@
-#N canvas 899 231 1001 596 10;
+#N canvas 460 169 1042 684 10;
 #N canvas 538 268 344 183 META 0;
 #X text 2 80 VERSION 0.1;
 #X text 2 98 AUTHOR Derek Kwan;
@@ -23,37 +23,41 @@
 #X text 482 105 dxksyncf - synchroinzed floats;
 #X text 482 122 dxkvanctr - vanilla counter (can go both up and down)
 ;
-#X text 24 306 EXTERNALS;
+#X text 23 280 EXTERNALS;
 #X text 23 323 dxkadsr~ - triggered adsr envelope generator;
-#X text 23 340 dxkmetrox - control-rate multiple metro;
-#X text 22 357 dxkstut~ - windowed stutter effect;
-#X text 22 375 dxkeuclid - outputs euclidean rhythms based on the work
+#X text 25 383 dxkmetrox - control-rate multiple metro;
+#X text 24 400 dxkstut~ - windowed stutter effect;
+#X text 24 418 dxkeuclid - outputs euclidean rhythms based on the work
 of Godfried Toussaint;
-#X text 20 409 dxkernd - random values with exponential distribution
+#X text 22 452 dxkernd - random values with exponential distribution
 ;
-#X text 20 431 dxkgrnrd~ - granular sound buffer player;
-#X text 19 453 dxklrnd - random values with triangular (linear) distribution
+#X text 22 474 dxkgrnrd~ - granular sound buffer player;
+#X text 21 496 dxklrnd - random values with triangular (linear) distribution
 ;
-#X text 22 500 dxkmagikp~ - karplus-strong guitar synthesizer;
-#X text 23 524 dxkrndlst - generate list of random numbers within a
-given range;
-#X text 482 309 dxkred~ - red noise generator with variable level of
+#X text 24 543 dxkmagikp~ - karplus-strong guitar synthesizer;
+#X text 486 295 dxkrndlst - generate list of random numbers within
+a given range;
+#X text 485 328 dxkred~ - red noise generator with variable level of
 "redness";
-#X text 486 342 dxksawlim~ - bandlimited sawtooth wave generator;
-#X text 485 363 dxksnbnk~ - sine oscillator bank;
-#X text 485 388 dxksnbnkd~ - sine oscillator bank with separate envelopes
+#X text 489 361 dxksawlim~ - bandlimited sawtooth wave generator;
+#X text 488 382 dxksnbnk~ - sine oscillator bank;
+#X text 488 407 dxksnbnkd~ - sine oscillator bank with separate envelopes
 with triggered output;
-#X text 485 427 dxksnbnkr~ - sine oscillator bank with separate envelopes
+#X text 488 446 dxksnbnkr~ - sine oscillator bank with separate envelopes
 and signal amplitude control;
-#X text 485 470 dxksqlim~ - bandlimited square wave generator;
-#X text 487 495 dxkscldeg - maps scale degrees to midi notes \, ported
+#X text 488 489 dxksqlim~ - bandlimited square wave generator;
+#X text 491 516 dxkscldeg - maps scale degrees to midi notes \, ported
 from SuperCollider;
-#X text 486 529 dxkwesley~ - bitcrusher/downsampler;
+#X text 489 557 dxkwesley~ - bitcrusher/downsampler;
 #X text 22 116 dxkcospan~ - cosine panner;
 #X text 19 258 dxkrunmin - running minimum;
-#X text 477 86 dxkrunmax - running maximum;
+#X text 480 85 dxkrunmax - running maximum;
 #X text 480 152 dxkvanphs~ - vanilla 3-delay line phaser/chorus effect
 ;
 #X text 481 138 dxkvandrk - vanilla drunk random number generator;
 #X text 20 209 dxkphsrd~ - phasor sound reader abstraction;
-#X text 23 482 dxkfm~ - fm synthesis oscillator;
+#X text 25 525 dxkfm~ - fm synthesis oscillator;
+#X text 484 169 dxkvuzi - vanilla uzi/multiple banger;
+#X text 32 560 dxkmkv2 - second-order markov generator;
+#X text 26 346 dxkenv~ - triggered envelope generator from SuperCollider's
+Env;
