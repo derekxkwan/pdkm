@@ -49,6 +49,7 @@ typedef struct _dxkenv_tilde {
         t_inlet * x_paramlet;
         t_inlet * x_envlet;
         t_inlet * x_lvllet;
+        t_inlet * x_durlet;
 } t_dxkenv_tilde;
 
 
@@ -428,9 +429,8 @@ void *dxkenv_tilde_new(t_symbol *s, int argc, t_atom *argv){
 
 	x->x_envlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_symbol, gensym("env"));
 	x->x_paramlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("param"));
-
-
 	x->x_lvllet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("level"));
+	x->x_durlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("dur"));
 	outlet_new(&x->x_obj, gensym("signal"));
 	return (x);
     errstate:
@@ -509,6 +509,7 @@ static void *dxkenv_tilde_free(t_dxkenv_tilde *x)
 	inlet_free(x->x_paramlet);
 	inlet_free(x->x_envlet);
 	inlet_free(x->x_lvllet);
+	inlet_free(x->x_durlet);
 	return (void *)x;
 }
 
@@ -533,6 +534,10 @@ static void dxkenv_lvl(t_dxkenv_tilde *x, t_float f){
     x->x_lvl = f;
 }
 
+static void dxkenv_dur(t_dxkenv_tilde *x, t_float f){
+    x->x_lvl = ((f > 0) ? f : 0);
+}
+
 void dxkenv_tilde_setup(void){
 	dxkenv_tilde_class = class_new(gensym("dxkenv~"), (t_newmethod)dxkenv_tilde_new, (t_method)dxkenv_tilde_free,
 			sizeof(t_dxkenv_tilde), 0, A_GIMME, 0);
@@ -540,6 +545,7 @@ void dxkenv_tilde_setup(void){
    class_addmethod(dxkenv_tilde_class, (t_method)dxkenv_list, gensym("params"), A_GIMME, 0);
    class_addmethod(dxkenv_tilde_class, (t_method)dxkenv_env, gensym("env"), A_SYMBOL, 0);
    class_addmethod(dxkenv_tilde_class, (t_method)dxkenv_lvl, gensym("level"), A_FLOAT, 0);
+   class_addmethod(dxkenv_tilde_class, (t_method)dxkenv_dur, gensym("dur"), A_FLOAT, 0);
     class_addbang(dxkenv_tilde_class, dxkenv_tilde_bang);
    CLASS_MAINSIGNALIN(dxkenv_tilde_class, t_dxkenv_tilde, x_in);
 }
