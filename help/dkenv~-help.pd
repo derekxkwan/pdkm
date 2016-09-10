@@ -1,0 +1,68 @@
+#N canvas 274 164 445 721 10;
+#X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
+0;
+#X text 305 10 Derek Kwan \, 2016;
+#X obj 8 36 cnv 15 420 30 empty empty dkenv~ 20 12 0 20 -232576 -66577
+0;
+#X obj 10 189 cnv 15 420 120 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 11 304 cnv 15 420 30 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#X obj 11 333 cnv 15 420 350 empty empty args 20 12 0 15 -261682 -66577
+0;
+#X text 101 307 1) sig~ - signal;
+#X obj 82 163 dac~ 1 2;
+#N canvas 735 371 445 278 META 0;
+#X text 6 181 VERSION 0.1;
+#X text 6 199 AUTHOR Derek Kwan;
+#X text 7 217 RELEASE_DATE 2016;
+#X text 5 161 LIBRARY pdkm;
+#X text 5 142 OUTLET_0 signal;
+#X text 0 19 LICENSE GPL v3;
+#X text 0 0 KEYWORDS Env SuperCollider envelope generator dkenv;
+#X text 0 38 DESCRIPTION triggered envelope generator;
+#X text 1 236 WEBSITE http://www.derekxkwan.com/code/puredata-code.html
+;
+#X text 0 57 INLET_0 bang list;
+#X text 1 94 INLET_2 list;
+#X text 0 76 INLET_1 list;
+#X text 2 113 INLET_3 float;
+#X text 3 126 INLET_4 float;
+#X restore 12 689 pd META;
+#X text 44 415 perc: attack(ms) \, release(ms) \, level(f) \, curve(f)
+;
+#X text 89 432 (default: 10 \, 1000 \, 1 \, -4);
+#X text 85 452 - curve: ramps attack and release exponentially;
+#X text 100 468 (1: linear \, 2: squared \, etc.);
+#X text 103 484 <= -1: normal perc envelope;
+#X text 104 505 >= 1: reversed perc envelope;
+#X text 108 542 (default: 1000 \, 1);
+#X text 40 526 sine/tri: duration(ms) \, level(f);
+#X text 221 42 triggered envelope generator;
+#X text 41 572 linen (trapezoidal): att(ms) \, sustain(ms) \, rel(ms)
+\,;
+#X text 186 589 level(f) \, curve(sym);
+#X text 93 605 (default: 10 \, 1000 \, 1000 \, 1 \, lin);
+#X text 92 627 - curve: ramp att and rel according to curve;
+#X text 101 336 1) symbol - envtype: perc \, sine \, tri \, linen;
+#X text 125 353 (default: perc);
+#X text 91 388 THE REST depends on env type;
+#X text 103 643 (lin \, exp \, sine \, welch);
+#X obj 174 112 pdkm/dkenv~ perc 10 500 1 -2;
+#X obj 86 107 osc~ 440;
+#X obj 86 129 *~;
+#X text 218 69 based on SuperCollider's Env;
+#X obj 172 81 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 99 192 1) bang - trigger \, "env (s)" - simulates 2 \,;
+#X text 118 207 "param (l)"-3 \, "level (f)"-4 \, "dur (f)"-5;
+#X text 103 224 2) symbol - env type (arg 1);
+#X text 106 239 3) list - parameter list (see args: THE REST);
+#X text 107 255 4) float - attack level;
+#X text 108 270 5) float - duration in ms;
+#X text 128 287 (scales proportions of perc/linen);
+#X connect 26 0 28 1;
+#X connect 27 0 28 0;
+#X connect 28 0 7 0;
+#X connect 28 0 7 1;
+#X connect 30 0 26 0;

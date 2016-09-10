@@ -1,0 +1,91 @@
+#N canvas 1024 135 507 780 10;
+#X obj 8 6 cnv 15 470 30 empty empty pdkm 20 12 0 20 -261682 -66577
+0;
+#X text 305 10 Derek Kwan \, 2016;
+#X obj 8 36 cnv 15 470 30 empty empty dksnbnkd~ 20 12 0 20 -232576
+-66577 0;
+#X obj 8 313 cnv 15 470 250 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 8 557 cnv 15 470 50 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#X obj 8 606 cnv 15 470 40 empty empty args 20 12 0 15 -261682 -66577
+0;
+#X obj 77 251 dac~ 1 2;
+#X obj 238 174 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 12 156 440;
+#X text 39 391 bang - if no prev float given \, uses first freq as
+fundamental with new attack \, else uses previous float;
+#X text 44 449 mode (sym) - sets mode;
+#X text 43 431 MESSAGES (see flags for more info):;
+#X text 43 464 ramp (f) - set ramping/attack time;
+#X text 66 583 sig~ - signal;
+#X obj 8 647 cnv 15 470 80 empty empty flags 20 12 0 15 -232576 -66577
+0;
+#X text 103 648 optional \, come after argts \, preceded by -;
+#X text 105 661 * = default;
+#X text 40 163 RELATIVE FREQS (rel);
+#X text 210 211 ABSOLUTE FREQS (abs);
+#X text 68 678 -mode (sym): set freq specification mode(rel* \, abs)
+;
+#X text 66 696 -ramp (f): set ramping/attack time in ms (1*);
+#X text 41 334 float - using float as fundamental \, starts a new attack
+with given relative freqs (if mode abs \, relates all freqs to first
+given freq);
+#X text 17 332 1;
+#X text 14 483 2 list - frequency list given according to mode;
+#X text 14 504 3 list - amplitude list (defaults to 1 for all);
+#X text 12 523 4 list - ring time (time to decay 60 dB) list in ms
+(defaults to 1000 for all);
+#X msg 46 127 1.5 2.5 4 6.25 6;
+#X text 44 104 freqs;
+#X msg 390 144 1 0.2 0.5;
+#X text 391 122 amps;
+#X text -1 139 fund;
+#X text 96 73 ring times;
+#X msg 96 94 500 100 2000;
+#X text 316 100 set ramp/att time;
+#X msg 316 120 ramp 1000;
+#X msg 240 142 mode rel;
+#X text 241 120 set mode;
+#N canvas 273 313 374 272 META 0;
+#X text 3 170 VERSION 0.1;
+#X text 3 188 AUTHOR Derek Kwan;
+#X text 4 206 RELEASE_DATE 2016;
+#X text 5 225 WEBSITE http://www.derekxkwan.com/code/puredata-code.html
+;
+#X text 2 150 LIBRARY pdkm;
+#X text 2 131 OUTLET_0 signal;
+#X text 0 57 INLET_0 bang float;
+#X text 0 92 INLET_2 list;
+#X text 0 76 INLET_1 list;
+#X text 0 108 INLET_3 list;
+#X text 0 38 DESCRIPTION sine oscillator bank with decay envelopes
+;
+#X text 0 0 KEYWORDS modal frequency bank sine dksnbnkd decay;
+#X text 0 19 LICENSE GPL v3;
+#X restore 10 736 pd META;
+#X obj 10 189 pdkm/dksnbnkd~ 1 1.5 2;
+#X obj 179 229 pdkm/dksnbnkd~ 200 400 800 -mode abs;
+#X text 135 48 sine oscillator bank with decay envelopes;
+#X text 59 624 floats - frequencies for oscillator bank (up to 30 freqs)
+;
+#X text 18 268 see sinbank~ for a non-enveloped version \, dksnbnkr~
+for signal amplitude control;
+#N canvas 767 345 450 300 related_objects 0;
+#X obj 13 8 cnv 15 400 30 empty empty related_objects 20 12 0 15 -261682
+-66577 0;
+#X obj 20 74 pdkm/dksnbnk~;
+#X obj 19 51 pdkm/dksnbnkr~;
+#X restore 70 735 pd related_objects;
+#X connect 7 0 39 0;
+#X connect 8 0 38 0;
+#X connect 26 0 38 1;
+#X connect 28 0 39 2;
+#X connect 32 0 38 3;
+#X connect 34 0 39 0;
+#X connect 35 0 39 0;
+#X connect 38 0 6 0;
+#X connect 38 0 6 1;
+#X connect 39 0 6 0;
+#X connect 39 0 6 1;
