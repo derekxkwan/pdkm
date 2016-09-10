@@ -1,53 +1,53 @@
-#Makefile for dxkpure
+#Makefile for pdkm
 
-lib.name = dxkpure
+lib.name = pdkm
 
 # headers
-dxkrand := src/dxkrand.c
-dxkwavtab := src/dxkwavtab.c
+dkrnd := src/dkrnd.c
+dkwtab := src/dkwtab.c
 
-dxkred~.class.sources = src/dxkred.c 
-dxkernd.class.sources = src/dxkernd.c 
-dxkfm~.class.sources = src/dxkfm.c 
-dxklrnd.class.sources = src/dxklrnd.c 
-dxkscldeg.class.sources = src/dxkscldeg.c 
-dxkeuclid.class.sources = src/dxkeuclid.c 
-dxkgrnrd~.class.sources = src/dxkgrnrd.c 
-dxksawlim~.class.sources = src/dxksawlim.c 
-dxksqlim~.class.sources = src/dxksqlim.c 
-dxksnbnkd~.class.sources = src/dxksnbnkd.c 
-dxksnbnkr~.class.sources = src/dxksnbnkr.c 
-dxksnbnk~.class.sources = src/dxksnbnk.c 
-dxkrndlst.class.sources = src/dxkrndlst.c 
-dxkwesley~.class.sources = src/dxkwesley.c 
-dxkadsr~.class.sources = src/dxkadsr.c 
-dxkmagikp~.class.sources = src/dxkmagikp.c 
-dxkstut~.class.sources = src/dxkstut.c 
-dxkmetrox.class.sources = src/dxkmetrox.c 
-#dxkpop~.class.sources = src/dxkpop.c $(dxkrand)
-dxkmkv2.class.sources = src/dxkmkv2.c $(dxkrand)
-dxkenv~.class.sources = src/dxkenv.c $(dxkwavtab)
+dkred~.class.sources = src/dkred.c 
+dkernd.class.sources = src/dkernd.c 
+dkfm~.class.sources = src/dkfm.c 
+dklrnd.class.sources = src/dklrnd.c 
+dkscldeg.class.sources = src/dkscldeg.c 
+dkeuclid.class.sources = src/dkeuclid.c 
+dkgrnrd~.class.sources = src/dkgrnrd.c 
+dksawlim~.class.sources = src/dksawlim.c 
+dksqlim~.class.sources = src/dksqlim.c 
+dksnbnkd~.class.sources = src/dksnbnkd.c 
+dksnbnkr~.class.sources = src/dksnbnkr.c 
+dksnbnk~.class.sources = src/dksnbnk.c 
+dkrndl.class.sources = src/dkrndl.c 
+dkwesley~.class.sources = src/dkwesley.c 
+dkadsr~.class.sources = src/dkadsr.c 
+dkmagikp~.class.sources = src/dkmagikp.c 
+dkstut~.class.sources = src/dkstut.c 
+dkmtx.class.sources = src/dkmtx.c 
+#dkpop~.class.sources = src/dkpop.c $(dkrnd)
+dkmkv2.class.sources = src/dkmkv2.c $(dkrnd)
+dkenv~.class.sources = src/dkenv.c $(dkwtab)
 
-datafiles =  help/dxkpure-meta.pd \
-			 help/dxkred~-help.pd \
-			 help/dxkernd-help.pd \
-			 help/dxklrnd-help.pd \
-			 help/dxkfm~-help.pd \
-			 help/dxkscldeg-help.pd \
-			 help/dxkeuclid-help.pd \
-			 help/dxkgrnrd~-help.pd \
-			 help/dxksawlim~-help.pd \
-			 help/dxksqlim~-help.pd \
-			 help/dxksnbnkd~-help.pd \
-			 help/dxksnbnkr~-help.pd \
-			 help/dxksnbnk~-help.pd \
-			 help/dxkrndlst-help.pd \
-			 help/dxkwesley~-help.pd \
-			 help/dxkadsr~-help.pd \
-			 help/dxkmagikp~-help.pd \
-			 help/dxkstut~-help.pd \
-			 help/dxkmetrox-help.pd \
-			 help/dxkpop~-help.pd \
+datafiles =  help/pdkm-meta.pd \
+			 help/dkred~-help.pd \
+			 help/dkernd-help.pd \
+			 help/dklrnd-help.pd \
+			 help/dkfm~-help.pd \
+			 help/dkscldeg-help.pd \
+			 help/dkeuclid-help.pd \
+			 help/dkgrnrd~-help.pd \
+			 help/dksawlim~-help.pd \
+			 help/dksqlim~-help.pd \
+			 help/dksnbnkd~-help.pd \
+			 help/dksnbnkr~-help.pd \
+			 help/dksnbnk~-help.pd \
+			 help/dkrndl-help.pd \
+			 help/dkwesley~-help.pd \
+			 help/dkadsr~-help.pd \
+			 help/dkmagikp~-help.pd \
+			 help/dkstut~-help.pd \
+			 help/dkmtx-help.pd \
+			 help/dkpop~-help.pd \
 			 README.txt \
 			 LICENSE.txt
 

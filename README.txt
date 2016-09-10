@@ -1,5 +1,6 @@
 ==========================================
-dxkpure v0.1 - pure data external library
+pdkm v0.1 - pure data external library
+(formerly dxkpure)
 by Derek Kwan, 2016
 
 Released under GPL v3.0
@@ -7,48 +8,48 @@ Released under GPL v3.0
 
 ABSTRACTIONS (written in pd vanilla):
 (note, help files for abstractions coming soon, can just open subpatch for now)
-	- dxkbd1~ - bass drum synth
-        - dxkcospan~ - cosine panner
-	- dxkhh1~ - hihat synth
-	- dxksd1~ - snare drum synth
-	- dxkmbang - bang multiplier
-	- dxkmidirt - abstraction to handle midi real-time messages
-        - dxknobu~ - sample chopper abstraction
-	- dxknzgt - only let nonzero floats through
-        - dxkphsrd~ - phasor sound reader abstraction
-        - dxkrunmax - running maximum
-        - dxkrunmin - running minimum
-	- dxkrndgt - let through anything x% of the time
-	- dxksyncb - synchronized banger
-	- dxksyncf - synchronized floats
-	- dxkvanctr - vanilla counter (can go both up and down)
-	- dxkvandrk - vanilla drunk random number generator 
-	- dxkvanphs~ - vanilla 3-delay line phaser/chorus effect 
-	- dxkvuzi - vanilla uzi/multiple banger
+	- dkbd1~ - bass drum synth
+        - dkcospan~ - cosine panner
+	- dkhh1~ - hihat synth
+	- dksd1~ - snare drum synth
+	- dkmbang - bang multiplier
+	- dkmidirt - abstraction to handle midi real-time messages
+        - dknobu~ - sample chopper abstraction
+	- dknzgt - only let nonzero floats through
+        - dkphsrd~ - phasor sound reader abstraction
+        - dkrunmax - running maximum
+        - dkrunmin - running minimum
+	- dkrndgt - let through anything x% of the time
+	- dksyncb - synchronized banger
+	- dksyncf - synchronized floats
+	- dkvanctr - vanilla counter (can go both up and down)
+	- dkvandrk - vanilla drunk random number generator 
+	- dkvanphs~ - vanilla 3-delay line phaser/chorus effect 
+	- dkvuzi - vanilla uzi/multiple banger
 
 EXTERNALS (compiled c code):
 
-	- dxkadsr~ - triggered adsr envelope generator
-	- dxkmetrox - control-rate multiple metro
-	- dxkstut~ - windowed stutter effect
-	- dxkeuclid - outputs euclidean rhythms based on the work of Godfried Toussaint
-	- dxkenv~ - triggered envelope generator ala SuperCollider Env
-	- dxkernd - random values with exponential distribution
-	- dxkgrnrd~ - granular sound buffer player
-	- dxklrnd - random values with triangular (linear) distribution
-	- dxkmagikp~ - karplus-strong guitar synthesizer
-	- dxkmkv2 - second-order markov generator
-	- dxkrndlst - generate list of random numbers within a given range
-	- dxkred~ - red noise generator with variable level of "redness"
-	- dxksawlim~ - bandlimited sawtooth wave generator
-	- dxksnbnk~ - sine oscillator bank
-	- dxksnbnkd~ - sine oscillator bank with separate envelopes with triggered output
-	- dxksnbnkr~ - sine oscillator bank with separate envelopes and signal amplitude control
-	- dxksqlim~ - bandlimited square wave generator
-	- dxkscldeg - maps scale degrees to midi notes, ported from SuperCollider
-	- dxkwesley~ - bitcrusher/downsampler
+	- dkadsr~ - triggered adsr envelope generator
+	- dkmtx - control-rate multiple metro
+	- dkstut~ - windowed stutter effect
+	- dkeuclid - outputs euclidean rhythms based on the work of Godfried Toussaint
+	- dkenv~ - triggered envelope generator ala SuperCollider Env
+	- dkernd - random values with exponential distribution
+	- dkgrnrd~ - granular sound buffer player
+	- dklrnd - random values with triangular (linear) distribution
+	- dkmagikp~ - karplus-strong guitar synthesizer
+	- dkmkv2 - second-order markov generator
+	- dkrndl - generate list of random numbers within a given range
+	- dkred~ - red noise generator with variable level of "redness"
+	- dksawlim~ - bandlimited sawtooth wave generator
+	- dksnbnk~ - sine oscillator bank
+	- dksnbnkd~ - sine oscillator bank with separate envelopes with triggered output
+	- dksnbnkr~ - sine oscillator bank with separate envelopes and signal amplitude control
+	- dksqlim~ - bandlimited square wave generator
+	- dkscldeg - maps scale degrees to midi notes, ported from SuperCollider
+	- dkwesley~ - bitcrusher/downsampler
 
 HOW TO INSTALL:
 	- make sure you have the pure-data source installed (can be found at github.com/pure-data/pure-data )
 	- type "make"
-	- move folder (dxkpure) to externals folder
+	- move folder (pdkm) to externals folder
