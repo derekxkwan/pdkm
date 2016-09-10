@@ -9,6 +9,7 @@
 
 #define ENVTYPE PERC //default envelope
 #define ENVSZ 8192 //default env size
+#define ENVRT 2 //retriggering release time
 
 typedef enum{
     PERC,
@@ -96,7 +97,7 @@ static void buildperc(t_dxkenv_tilde * x, t_float attms, t_float relms, t_float 
             };
             while(cursamp < sz){
                 //release the rest of the way
-                double amt = (double)(sz-cursamp-1)/(double)(sz-cursamp);
+                double amt = (double)(sz-cursamp-1)/(double)(sz-attsamp-1);
                 if(curve <= -2){
                     amt = powf(amt, abs(curve));
                 };
@@ -252,8 +253,8 @@ static void dxkenv_list(t_dxkenv_tilde *x, int argc, t_atom * argv){
         if(x->x_type == PERC){
             t_float att = 10;
             t_float rel = 1000;
-            t_float curve = -4;
             t_float level = 1.;
+            t_float curve = -4;
             int curarg = 0;
             while(curarg < argc && curarg < 4){
                 t_float curf = atom_getfloatarg(curarg, argc, argv);
@@ -392,7 +393,7 @@ void *dxkenv_tilde_new(t_symbol *s, int argc, t_atom *argv){
 	x->x_sr = sys_getsr();
         x->x_sz = ENVSZ;
         x->x_type = PERC;
-        x->x_redur = 1;        	
+        x->x_redur = ENVRT;        	
         if(argc >= 1){
             if(argv->a_type == A_SYMBOL){
                 t_symbol * arg1 = atom_getsymbolarg(0, argc, argv);
