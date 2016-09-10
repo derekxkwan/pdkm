@@ -126,12 +126,14 @@ static void dkscldeg_float(t_dkscldeg *x, t_float f){
 	offset = (offset >= 0)?offset:0;
 	int numnotes = curscale[0];
 	int octscale = curscale[1];
-	iptoctave = (int)floor(input/numnotes);
+	iptoctave = (int)floor(f/(float)numnotes);
+        while(input < 0){
+            input += numnotes;
+        };
 	input %= numnotes;
 	iptoctave *= octscale;
 	input += 2;
 	returnval = curscale[input] + offset + iptoctave;
-	
 	outlet_float(x->x_obj.ob_outlet, returnval);
 
 
