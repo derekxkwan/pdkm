@@ -535,7 +535,7 @@ static void dxkenv_lvl(t_dxkenv_tilde *x, t_float f){
 }
 
 static void dxkenv_dur(t_dxkenv_tilde *x, t_float f){
-    x->x_lvl = ((f > 0) ? f : 0);
+    x->x_dur = ((f > 0) ? f : 0);
 }
 
 void dxkenv_tilde_setup(void){
