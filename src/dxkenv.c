@@ -9,7 +9,7 @@
 
 #define ENVTYPE PERC //default envelope
 #define ENVSZ 8192 //default env size
-#define ENVRT 2 //retriggering release time
+#define ENVRT 5 //retriggering release time
 
 typedef enum{
     PERC,
@@ -48,6 +48,7 @@ typedef struct _dxkenv_tilde {
         t_float x_in; //dummy
         t_inlet * x_paramlet;
         t_inlet * x_envlet;
+        t_inlet * x_lvllet;
 } t_dxkenv_tilde;
 
 
@@ -137,7 +138,7 @@ static void buildtri(t_dxkenv_tilde * x){
     int i;
     for(i=0; i< sz; i++){
         if(i<mid){
-            x->x_env[i] = (double)(mid-i)/(double)mid;
+            x->x_env[i] = (double)(i)/(double)mid;
         }
         else{
             x->x_env[i] = 1.-(double)(i-mid)/(double)(sz-mid);
@@ -198,7 +199,7 @@ static void buildlinen(t_dxkenv_tilde *x, t_float attms, t_float susms, t_float 
         };
         while(cursamp < attsamp){
             double output;
-            double idx = (double)(attsamp-cursamp)/(double)attsamp;
+            double idx = (double)(cursamp)/(double)attsamp;
             switch(curve){
                 case SIN:
                     output = sin(idx*0.25*pi);
@@ -429,6 +430,7 @@ void *dxkenv_tilde_new(t_symbol *s, int argc, t_atom *argv){
 	x->x_paramlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("param"));
 
 
+	x->x_lvllet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("level"));
 	outlet_new(&x->x_obj, gensym("signal"));
 	return (x);
     errstate:
@@ -506,6 +508,7 @@ static void *dxkenv_tilde_free(t_dxkenv_tilde *x)
 {
 	inlet_free(x->x_paramlet);
 	inlet_free(x->x_envlet);
+	inlet_free(x->x_lvllet);
 	return (void *)x;
 }
 
@@ -526,12 +529,17 @@ static void dxkenv_tilde_bang(t_dxkenv_tilde *x){
     };
 }
 
+static void dxkenv_lvl(t_dxkenv_tilde *x, t_float f){
+    x->x_lvl = f;
+}
+
 void dxkenv_tilde_setup(void){
 	dxkenv_tilde_class = class_new(gensym("dxkenv~"), (t_newmethod)dxkenv_tilde_new, (t_method)dxkenv_tilde_free,
 			sizeof(t_dxkenv_tilde), 0, A_GIMME, 0);
 	class_addmethod(dxkenv_tilde_class, (t_method)dxkenv_tilde_dsp, gensym("dsp"), A_CANT, 0);
    class_addmethod(dxkenv_tilde_class, (t_method)dxkenv_list, gensym("params"), A_GIMME, 0);
    class_addmethod(dxkenv_tilde_class, (t_method)dxkenv_env, gensym("env"), A_SYMBOL, 0);
+   class_addmethod(dxkenv_tilde_class, (t_method)dxkenv_lvl, gensym("level"), A_FLOAT, 0);
     class_addbang(dxkenv_tilde_class, dxkenv_tilde_bang);
    CLASS_MAINSIGNALIN(dxkenv_tilde_class, t_dxkenv_tilde, x_in);
 }

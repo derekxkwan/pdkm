@@ -32,6 +32,7 @@ EXTERNALS (compiled c code):
 	- dxkmetrox - control-rate multiple metro
 	- dxkstut~ - windowed stutter effect
 	- dxkeuclid - outputs euclidean rhythms based on the work of Godfried Toussaint
+	- dxkenv~ - triggered envelope generator ala SuperCollider Env
 	- dxkernd - random values with exponential distribution
 	- dxkgrnrd~ - granular sound buffer player
 	- dxklrnd - random values with triangular (linear) distribution
