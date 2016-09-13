@@ -2,7 +2,7 @@
  *  * Distributed under GPL v3 */
 
 #include "m_pd.h"
-#include "dxkrand.h"
+#include "dkrnd.h"
 
 static t_class *dkpop_tilde_class;
 
@@ -10,6 +10,7 @@ typedef struct _dkpop_tilde {
 	t_object x_obj;
 	t_float x_dens; // number of impulses per second
         int x_sr; //sampling rate
+        dkrnd * x_rnd; //rand obj
 	t_outlet *x_outlet;
 } t_dkpop_tilde;
 
@@ -17,6 +18,7 @@ static void *dkpop_tilde_new(t_floatarg dens){
 	t_dkpop_tilde *x = (t_dkpop_tilde *)pd_new(dkpop_tilde_class);
 	x->x_dens = dens;
         x->x_sr = sys_getsr();
+        x->x_rnd = dkrnd_new(0);
         int i=0;
 	x->x_outlet = outlet_new(&x->x_obj, gensym("signal"));
 	return (x);
@@ -32,11 +34,11 @@ static t_int *dkpop_tilde_perform(t_int *w){
         for(i=0;i<block;i++){
             double dens = in[i];
             double thresh = (double)sr - dens;
-            double onoff = dxkrand(); //if there will be an impulse this sample
+            double onoff = dkrnd_next(x->x_rnd); //if there will be an impulse this sample
             onoff *= (double)sr; 
             if(onoff >= thresh){
                 //then there will be an impulse
-                double amp = dxkrand(); //find the amplitude
+                double amp = dkrnd_next(x->x_rnd); //find the amplitude
                 out[i] = amp; 
             }
             else{
@@ -59,7 +61,7 @@ static void dkpop_tilde_dsp(t_dkpop_tilde *x, t_signal **sp){
 
 static void *dkpop_tilde_free(t_dkpop_tilde *x){
 	outlet_free(x->x_outlet);
-	
+	dkrnd_free(x->x_rnd);
 	return (void *)x;
 }
 
