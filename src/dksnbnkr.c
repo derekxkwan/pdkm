@@ -21,7 +21,7 @@ typedef struct _dksnbnkr_tilde_tilde {
 	double t60mult[SBMAX]; // array of amp multipliers accordings to T60
 	float ringms[SBMAX]; //ring times in ms
 	double x_conv; //1/samprate, duration of one sample in seconds
-	double x_sin[TABLEN]; //table for holding sin values
+	double * x_sin; //sin table (made in dkwtab)
 	int x_mode; //mode, 0 = relative freqs, 1 = absolute freqs
 	int x_sr; //sample rate
 	double x_curfreq; //current specified freq
@@ -166,13 +166,9 @@ static void *dksnbnkr_tilde_new(t_symbol *s, int argc, t_atom *argv){
 	x->x_freqlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, &s_signal); 
 	pd_float( (t_pd *)x->x_freqlet,  x->x_curfreq);
 	dksnbnkr_tilde_abs_to_rel(x);
-	
-	
-	for(i=0; i<TABLEN; i++){//make sin table
-		double xval = (double)i/(double)TABLEN;
-			double varterm = sin(xval*TPI);
-		x->x_sin[i] = varterm;
-	};
+        
+        dkmakesintab();
+        x->x_sin = dksintab;	
 
 	x->x_flistlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("freqs"));
 	x->x_alistlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("amps"));
@@ -181,30 +177,11 @@ static void *dksnbnkr_tilde_new(t_symbol *s, int argc, t_atom *argv){
 	return (x);
 
 errstate:
-		pd_error(x, "sinbankr~: improper args");
+		pd_error(x, "dksnbnkr~: improper args");
 		return NULL;
 
 }
 
-static double dksnbnkr_tilde_getsin(t_dksnbnkr_tilde_tilde *x, double phs){
-	//getting the sin value for the given phase
-		int tabphase1 = (int)phs;
-		int tabphase2 = tabphase1 + 1;
-		double frac = (double)phs - tabphase1;
-		if(tabphase1 >= (TABLEN - 1)){
-			tabphase1 = TABLEN - 1; //checking to see if index falls within bounds
-			tabphase2 = 0;
-		}
-		else if(tabphase1 < 0){
-			tabphase1 = 0;
-			tabphase2 = 1;
-		};
-		double yb = x->x_sin[tabphase2]; //linear interp
-		double ya = x->x_sin[tabphase1];
-		double output = ya+((yb-ya)*frac);
-	return output;
-
-};
 
 static t_int *dksnbnkr_tilde_perform(t_int *w){
 	t_dksnbnkr_tilde_tilde *x = (t_dksnbnkr_tilde_tilde *)(w[1]);
@@ -243,7 +220,7 @@ static t_int *dksnbnkr_tilde_perform(t_int *w){
 				while(phs < 0){
 					phs += TABLEN;
 				};
-				double curout = dksnbnkr_tilde_getsin(x, phs);
+				double curout = dkgetlin(x->x_sin, TABLEN, phs);
 				curout *= (curamp);
 
 				//add contribution to total output

@@ -15,7 +15,7 @@ typedef struct _dksnbnk_tilde {
 	double stamps[SBMAX]; //array of starting amplitudes
 	double phases[SBMAX]; //array of current phases
 	double x_conv; //1/samprate, duration of one sample in seconds
-	double x_sin[TABLEN]; //table for holding sin values
+	double * x_sin; //table for holding sin values
 	int x_mode; //mode, 0 = relative freqs, 1 = absolute freqs
 	int x_sr; //sample rate
 	t_float x_freq; //current specified freq
@@ -132,45 +132,21 @@ static void *dksnbnk_tilde_new(t_symbol *s, int argc, t_atom *argv){
 	};
 	x->x_numsin = sincount; //set number of sines
 	dksnbnk_tilde_abs_to_rel(x);
-	for(i=0; i<TABLEN; i++){//make sin table
-		double xval = (double)i/(double)TABLEN;
-			double varterm = sin(xval*TPI);
-		x->x_sin[i] = varterm;
-	};
 
-	x->x_flistlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("freqs"));
+        dkmakesintab();
+        x->x_sin = dksintab;	
+
+        x->x_flistlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("freqs"));
 	x->x_alistlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("amps"));
 	x->x_plistlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("ft1"));
 	x->x_outlet = outlet_new(&x->x_obj, gensym("signal"));
 	return (x);
 
 errstate:
-		pd_error(x, "sinbank~: improper args");
+		pd_error(x, "dksnbnk~: improper args");
 		return NULL;
 
 }
-
-
-
-static double dksnbnk_tilde_getsin(t_dksnbnk_tilde *x, double phs){
-	//getting the sin value for the given phase
-		int tabphase1 = (int)phs;
-		int tabphase2 = tabphase1 + 1;
-		double frac = (double)phs - tabphase1;
-		if(tabphase1 >= (TABLEN - 1)){
-			tabphase1 = TABLEN - 1; //checking to see if index falls within bounds
-			tabphase2 = 0;
-		}
-		else if(tabphase1 < 0){
-			tabphase1 = 0;
-			tabphase2 = 1;
-		};
-		double yb = x->x_sin[tabphase2]; //linear interp
-		double ya = x->x_sin[tabphase1];
-		double output = ya+((yb-ya)*frac);
-	return output;
-
-};
 
 static t_int *dksnbnk_tilde_perform(t_int *w){
 	
@@ -194,7 +170,7 @@ static t_int *dksnbnk_tilde_perform(t_int *w){
 				while(phs < 0){
 					phs += TABLEN;
 				};
-				double curout = dksnbnk_tilde_getsin(x, phs);
+				double curout = dkgetlin(x->x_sin, TABLEN, phs);
 				curout *= (curamp);
 
 				//add contribution to total output

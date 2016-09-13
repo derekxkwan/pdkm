@@ -17,7 +17,7 @@ typedef struct _dksnbnkd_tilde_tilde {
 	double t60mult[SBMAX]; // array of amp multipliers accordings to T60
 	float  ringms[SBMAX]; //ring times in ms
 	double x_conv; //1/samprate, duration of one sample in seconds
-	double x_sin[TABLEN]; //table for holding sin values
+	double * x_sin; //table for holding sin values
 	int x_mode; //mode, 0 = relative freqs, 1 = absolute freqs
 	int x_sr; //sample rate
 	int x_rampsamp; //ramping time for attack
@@ -192,13 +192,11 @@ static void *dksnbnkd_tilde_new(t_symbol *s, int argc, t_atom *argv){
 	};
 	x->x_numsin = sincount; //set number of sines
 	dksnbnkd_tilde_abs_to_rel(x);
-	for(i=0; i<TABLEN; i++){//make sin table
-		double xval = (double)i/(double)TABLEN;
-			double varterm = sin(xval*TPI);
-		x->x_sin[i] = varterm;
-	};
 
-	x->x_flistlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("freqs"));
+        dkmakesintab();
+        x->x_sin = dksintab;	
+	
+        x->x_flistlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("freqs"));
 	x->x_alistlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("amps"));
 	x->x_rlistlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("rings"));
 	x->x_outlet = outlet_new(&x->x_obj, gensym("signal"));
@@ -260,25 +258,6 @@ static void dksnbnkd_tilde_rampfunc(t_dksnbnkd_tilde_tilde *x){
 
 }
 
-static double dksnbnkd_tilde_getsin(t_dksnbnkd_tilde_tilde *x, double phs){
-	//getting the sin value for the given phase
-		int tabphase1 = (int)phs;
-		int tabphase2 = tabphase1 + 1;
-		double frac = (double)phs - tabphase1;
-		if(tabphase1 >= (TABLEN - 1)){
-			tabphase1 = TABLEN - 1; //checking to see if index falls within bounds
-			tabphase2 = 0;
-		}
-		else if(tabphase1 < 0){
-			tabphase1 = 0;
-			tabphase2 = 1;
-		};
-		double yb = x->x_sin[tabphase2]; //linear interp
-		double ya = x->x_sin[tabphase1];
-		double output = ya+((yb-ya)*frac);
-	return output;
-};
-
 static t_int *dksnbnkd_tilde_perform(t_int *w){
 	 t_dksnbnkd_tilde_tilde *x = (t_dksnbnkd_tilde_tilde *)(w[1]);
 	t_float *out = (t_float *)(w[2]);
@@ -309,7 +288,7 @@ static t_int *dksnbnkd_tilde_perform(t_int *w){
 				while(phs < 0){
 					phs += TABLEN;
 				};
-				double curout = dksnbnkd_tilde_getsin(x, phs);
+				double curout = dkgetlin(x->x_sin, TABLEN, phs);
 				curout *= (curamp);
 
 				//add contribution to total output

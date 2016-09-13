@@ -6,7 +6,7 @@
 #include <math.h>
 
 #ifndef TABLEN
-#define TABLEN 4096//size of saw wavetable
+#define TABLEN 4096//size of wavetable
 #endif
 
 #ifndef TPI
@@ -29,4 +29,9 @@
 #define FFTOV 4 //fft overlap
 #endif
 
+//variables
+double dksintab[TABLEN];
+
+//functions
 double dkgetlin(double tab[], int sz, double idx); //linear interpolator
+void dkmakesintab(); //sine table maker

@@ -1,3 +1,19 @@
+#include "dkwtab.h"
+
+
+//build sine wavetable
+void dkmakesintab(){
+    int i;
+    static int made = 0; //if sin tabe was made already
+    if(!made){
+        for(i=0;i<TABLEN;i++){
+             double idx = (TPI*(double)i)/(double)TABLEN;
+            dksintab[i] = sin(idx);
+
+        };
+        made = 1;
+    };
+}
 
 double dkgetlin(double tab[], int sz, double idx){
         double output;
