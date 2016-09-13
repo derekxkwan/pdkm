@@ -37,8 +37,10 @@ EXTERNALS (compiled c code):
 	- dkernd - random values with exponential distribution
 	- dkgrnrd~ - granular sound buffer player
 	- dklrnd - random values with triangular (linear) distribution
+	- dkipls~ - impulse oscillator
 	- dkmagikp~ - karplus-strong guitar synthesizer
 	- dkmkv2 - second-order markov generator
+	- dkpop~ - random impulses of adjustable density
 	- dkrndl - generate list of random numbers within a given range
 	- dkred~ - red noise generator with variable level of "redness"
 	- dksawlim~ - bandlimited sawtooth wave generator

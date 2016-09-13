@@ -27,6 +27,7 @@ dkmtx.class.sources = src/dkmtx.c
 dkpop~.class.sources = src/dkpop.c $(dkrnd)
 dkmkv2.class.sources = src/dkmkv2.c $(dkrnd)
 dkenv~.class.sources = src/dkenv.c $(dkwtab)
+dkipls~.class.sources = src/dkipls.c $(dkrnd) 
 
 datafiles =  help/pdkm-meta.pd \
 			 help/dkred~-help.pd \

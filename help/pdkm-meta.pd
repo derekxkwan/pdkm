@@ -1,4 +1,4 @@
-#N canvas 460 169 1042 684 10;
+#N canvas 42 203 1042 684 10;
 #N canvas 538 268 344 183 META 0;
 #X text 2 80 VERSION 0.1;
 #X text 2 98 AUTHOR Derek Kwan;
@@ -32,23 +32,23 @@ of Godfried Toussaint;
 #X text 22 452 dkernd - random values with exponential distribution
 ;
 #X text 22 474 dkgrnrd~ - granular sound buffer player;
-#X text 21 496 dklrnd - random values with triangular (linear) distribution
+#X text 18 526 dklrnd - random values with triangular (linear) distribution
 ;
-#X text 24 543 dkmagikp~ - karplus-strong guitar synthesizer;
-#X text 486 295 dkrndl - generate list of random numbers within
-a given range;
-#X text 485 328 dkred~ - red noise generator with variable level of
+#X text 21 573 dkmagikp~ - karplus-strong guitar synthesizer;
+#X text 26 613 dkrndl - generate list of random numbers within a given
+range;
+#X text 474 352 dkred~ - red noise generator with variable level of
 "redness";
-#X text 489 361 dksawlim~ - bandlimited sawtooth wave generator;
-#X text 488 382 dksnbnk~ - sine oscillator bank;
-#X text 488 407 dksnbnkd~ - sine oscillator bank with separate envelopes
+#X text 478 385 dksawlim~ - bandlimited sawtooth wave generator;
+#X text 477 406 dksnbnk~ - sine oscillator bank;
+#X text 477 431 dksnbnkd~ - sine oscillator bank with separate envelopes
 with triggered output;
-#X text 488 446 dksnbnkr~ - sine oscillator bank with separate envelopes
+#X text 477 470 dksnbnkr~ - sine oscillator bank with separate envelopes
 and signal amplitude control;
-#X text 488 489 dksqlim~ - bandlimited square wave generator;
-#X text 491 516 dkscldeg - maps scale degrees to midi notes \, ported
+#X text 477 513 dksqlim~ - bandlimited square wave generator;
+#X text 480 540 dkscldeg - maps scale degrees to midi notes \, ported
 from SuperCollider;
-#X text 489 557 dkwesley~ - bitcrusher/downsampler;
+#X text 478 581 dkwesley~ - bitcrusher/downsampler;
 #X text 22 116 dkcospan~ - cosine panner;
 #X text 19 258 dkrunmin - running minimum;
 #X text 480 85 dkrunmax - running maximum;
@@ -56,8 +56,10 @@ from SuperCollider;
 ;
 #X text 481 138 dkvandrk - vanilla drunk random number generator;
 #X text 20 209 dkphsrd~ - phasor sound reader abstraction;
-#X text 25 525 dkfm~ - fm synthesis oscillator;
+#X text 22 555 dkfm~ - fm synthesis oscillator;
 #X text 484 169 dkvuzi - vanilla uzi/multiple banger;
-#X text 32 560 dkmkv2 - second-order markov generator;
+#X text 29 590 dkmkv2 - second-order markov generator;
 #X text 26 346 dkenv~ - triggered envelope generator from SuperCollider's
 Env;
+#X text 473 332 dkpop~ - random impulses of adjustable density;
+#X text 25 501 dkipls~ - impulse oscillator;
