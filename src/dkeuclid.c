@@ -38,6 +38,7 @@ typedef struct _dkeuclid {
 	t_float n;
 	t_float k;
 	t_float m;
+        t_outlet * x_flout; 
 } t_dkeuclid;
 
 static void *dkeuclid_new(t_floatarg f1, t_floatarg f2){
@@ -53,8 +54,16 @@ static void *dkeuclid_new(t_floatarg f1, t_floatarg f2){
 	floatinlet_new(&x->x_obj, &x->n);
 	floatinlet_new(&x->x_obj, &x->k);
 	outlet_new(&x->x_obj, &s_list);
+	x->x_flout = outlet_new(&x->x_obj, &s_float);
 	return (x);
 }
+
+static void *dkeuclid_free(t_dkeuclid *x){
+	outlet_free(x->x_flout);
+	
+	return (void *)x;
+}
+
 
 
 static void dkeuclid_bang(t_dkeuclid *x){
@@ -126,12 +135,13 @@ static void dkeuclid_bang(t_dkeuclid *x){
 	};
 	free(eucstr);
 	free(temp);
+	outlet_float(x->x_flout, (t_float)n);
 	outlet_list(x->x_obj.ob_outlet, &s_list, n, estr);
 	ATOMS_FREEA(estr, n);
 }
 
 void dkeuclid_setup(void){
-	dkeuclid_class = class_new(gensym("dkeuclid"), (t_newmethod)dkeuclid_new, 0,
+	dkeuclid_class = class_new(gensym("dkeuclid"), (t_newmethod)dkeuclid_new, (t_method)dkeuclid_free,
 			sizeof(t_dkeuclid), 0, A_DEFFLOAT, A_DEFFLOAT, 0);
 	class_addbang(dkeuclid_class, dkeuclid_bang);
 }

@@ -24,11 +24,13 @@ static t_class *dknumpat_class;
 
 typedef struct _dknumpat {
 	t_object x_obj;
+        t_outlet * x_flout;
 } t_dknumpat;
 
 static void *dknumpat_new(void){
 	t_dknumpat *x = (t_dknumpat *)pd_new(dknumpat_class);
 	outlet_new(&x->x_obj, &s_list);
+	x->x_flout = outlet_new(&x->x_obj, &s_float);
 	return (x);
 }
 
@@ -63,12 +65,19 @@ static void dknumpat_list(t_dknumpat *x, t_symbol *s, int argc, t_atom * argv){
         argc--;
         argv++;
     };
+    outlet_float(x->x_flout, (t_float)curidx);
     outlet_list(x->x_obj.ob_outlet, &s_list, curidx, outlist);
     freebytes(outlist, cursize * sizeof(t_atom));
 }
 
+static void *dknumpat_free(t_dknumpat *x){
+	outlet_free(x->x_flout);
+	
+	return (void *)x;
+}
+
 void dknumpat_setup(void){
-	dknumpat_class = class_new(gensym("dknumpat"), (t_newmethod)dknumpat_new, 0,
+	dknumpat_class = class_new(gensym("dknumpat"), (t_newmethod)dknumpat_new, (t_method)dknumpat_free,
 			sizeof(t_dknumpat), 0, 0);
     class_addlist(dknumpat_class, dknumpat_list);
 }

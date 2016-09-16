@@ -1,4 +1,4 @@
-#N canvas 337 104 446 500 10;
+#N canvas 335 106 430 546 10;
 #X obj 143 159 print;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
@@ -7,31 +7,35 @@
 0;
 #X obj 21 280 cnv 15 400 100 empty empty inlet 20 12 0 15 -261682 -66577
 0;
-#X obj 20 380 cnv 15 400 70 empty empty args 20 12 0 15 -261682 -66577
-0;
-#X obj 20 329 cnv 15 400 50 empty empty outlet 20 12 0 15 -232576 -66577
-0;
-#N canvas 950 265 374 272 META 0;
-#X text 3 79 OUTLET_0 list;
-#X text 4 118 VERSION 0.1;
-#X text 4 136 AUTHOR Derek Kwan;
-#X text 5 154 RELEASE_DATE 2016;
-#X text 6 173 WEBSITE http://www.derekxkwan.com/code/puredata-code.html
-;
-#X text 3 98 LIBRARY pdkm;
-#X text 0 19 LICENSE GPL v3;
-#X text 0 0 KEYWORDS dknumpat number pattern converter list;
-#X text 0 57 INLET_0 list;
-#X text 0 38 DESCRIPTION number pattern list converter;
-#X restore 29 462 pd META;
+#X obj 20 329 cnv 15 400 100 empty empty outlet 20 12 0 15 -232576
+-66577 0;
 #X text 211 43 number pattern list converter;
 #X obj 143 137 pdkm/dknumpat;
 #X msg 114 107 3 2 2 3;
 #X msg 201 105 5 3 2 6;
 #X text 53 79 Converts lists of numbers to patterns of 1s and 0s;
 #X text 63 305 1: bang - list of numbers to convert;
-#X text 62 348 list - converted pattern list;
-#X text 71 403 none;
-#X connect 9 0 0 0;
-#X connect 10 0 9 0;
-#X connect 11 0 9 0;
+#X floatatom 226 166 5 0 0 0 - - -, f 5;
+#X obj 21 418 cnv 15 400 70 empty empty args 20 12 0 15 -261682 -66577
+0;
+#N canvas 946 269 427 241 META 0;
+#X text 5 141 VERSION 0.1;
+#X text 5 159 AUTHOR Derek Kwan;
+#X text 6 177 RELEASE_DATE 2016;
+#X text 7 196 WEBSITE http://www.derekxkwan.com/code/puredata-code.html
+;
+#X text 4 121 LIBRARY pdkm;
+#X text 0 19 LICENSE GPL v3;
+#X text 0 0 KEYWORDS dknumpat number pattern converter list;
+#X text 0 57 INLET_0 list;
+#X text 0 38 DESCRIPTION number pattern list converter;
+#X text 3 79 OUTLET_0 list;
+#X text 6 98 OUTLET_1 float;
+#X restore 30 500 pd META;
+#X text 72 441 none;
+#X text 62 348 1: list - converted pattern list;
+#X text 63 377 2: float - list length;
+#X connect 7 0 0 0;
+#X connect 7 1 12 0;
+#X connect 8 0 7 0;
+#X connect 9 0 7 0;
