@@ -28,6 +28,7 @@ dkpop~.class.sources = src/dkpop.c $(dkrnd)
 dkmkv2.class.sources = src/dkmkv2.c $(dkrnd)
 dkenv~.class.sources = src/dkenv.c $(dkwtab)
 dkipls~.class.sources = src/dkipls.c $(dkrnd) 
+dknumpat.class.sources = src/dknumpat.c 
 
 datafiles =  help/pdkm-meta.pd \
 			 help/dkred~-help.pd \
@@ -47,6 +48,8 @@ datafiles =  help/pdkm-meta.pd \
 			 help/dkadsr~-help.pd \
 			 help/dkmagikp~-help.pd \
 			 help/dkstut~-help.pd \
+			 help/dkenv~-help.pd \
+			 help/dkipls~-help.pd \
 			 help/dkmtx-help.pd \
 			 help/dkpop~-help.pd \
 			 README.txt \
