@@ -1,24 +1,24 @@
-#N canvas 627 148 445 362 10;
+#N canvas 625 150 490 441 10;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
 #X obj 8 36 cnv 15 420 30 empty empty dkipls~ 20 12 0 20 -232576 -66577
 0;
-#X obj 7 188 cnv 15 420 70 empty empty inlet 20 12 0 15 -261682 -66577
+#X obj 7 188 cnv 15 420 130 empty empty inlet 20 12 0 15 -261682 -66577
 0;
-#X obj 7 257 cnv 15 420 30 empty empty outlet 20 12 0 15 -232576 -66577
+#X obj 7 316 cnv 15 420 30 empty empty outlet 20 12 0 15 -232576 -66577
 0;
-#X obj 7 284 cnv 15 420 40 empty empty args 20 12 0 15 -261682 -66577
+#X obj 7 343 cnv 15 420 40 empty empty args 20 12 0 15 -261682 -66577
 0;
 #X text 97 191 1) f/sig~ - frequency;
-#X text 97 260 1) sig~ - signal;
+#X text 97 319 1) sig~ - signal;
 #X floatatom 174 89 5 0 0 0 - - -, f 5;
 #X obj 174 134 *~ 0;
-#X obj 271 147 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 271 147 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X text 293 146 sound;
 #X obj 174 156 dac~ 1 2;
-#X text 97 287 1) float - frequency;
+#X text 97 346 1) float - frequency;
 #N canvas 735 371 374 272 META 0;
 #X text 4 159 VERSION 0.1;
 #X text 4 177 AUTHOR Derek Kwan;
@@ -33,18 +33,27 @@
 #X text 0 76 INLET_1 float;
 #X text 1 96 INLET_2 float;
 #X text 0 38 DESCRIPTION impulse oscillator;
-#X restore 9 334 pd META;
+#X restore 9 393 pd META;
 #X text 289 43 impulse oscillator;
 #X obj 174 112 pdkm/dkipls~ 10 1;
-#X text 98 228 3) float - phase (0-1);
-#X text 97 210 2) float (0/1) - random amps off/on);
-#X text 96 307 2) float (opt) - random amplitudes (def = 0);
+#X text 99 268 3) float - phase (0-1);
+#X text 99 241 2) float (0/1) - random amps off/on);
+#X text 96 366 2) float (opt) - random amplitudes (def = 0);
 #X obj 235 86 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X msg 302 90 0.5;
+#X text 115 209 "rand (f)" - random amps;
+#X text 115 224 "seed (f)" - seed;
+#X msg 86 123 seed \$1;
+#X obj 80 76 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 80 96 random 1000;
 #X connect 8 0 16 0;
 #X connect 9 0 12 0;
 #X connect 10 0 9 1;
 #X connect 16 0 9 0;
 #X connect 20 0 16 1;
 #X connect 21 0 16 2;
+#X connect 24 0 16 0;
+#X connect 25 0 26 0;
+#X connect 26 0 24 0;

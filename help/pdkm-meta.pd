@@ -1,4 +1,4 @@
-#N canvas 42 203 1042 684 10;
+#N canvas 40 205 1042 684 10;
 #N canvas 538 268 344 183 META 0;
 #X text 2 80 VERSION 0.1;
 #X text 2 98 AUTHOR Derek Kwan;
@@ -35,20 +35,20 @@ of Godfried Toussaint;
 #X text 18 526 dklrnd - random values with triangular (linear) distribution
 ;
 #X text 21 573 dkmagikp~ - karplus-strong guitar synthesizer;
-#X text 26 613 dkrndl - generate list of random numbers within a given
+#X text 473 334 dkrndl - generate list of random numbers within a given
 range;
-#X text 474 352 dkred~ - red noise generator with variable level of
+#X text 469 393 dkred~ - red noise generator with variable level of
 "redness";
-#X text 478 385 dksawlim~ - bandlimited sawtooth wave generator;
-#X text 477 406 dksnbnk~ - sine oscillator bank;
-#X text 477 431 dksnbnkd~ - sine oscillator bank with separate envelopes
+#X text 473 426 dksawlim~ - bandlimited sawtooth wave generator;
+#X text 472 447 dksnbnk~ - sine oscillator bank;
+#X text 472 472 dksnbnkd~ - sine oscillator bank with separate envelopes
 with triggered output;
-#X text 477 470 dksnbnkr~ - sine oscillator bank with separate envelopes
+#X text 472 511 dksnbnkr~ - sine oscillator bank with separate envelopes
 and signal amplitude control;
-#X text 477 513 dksqlim~ - bandlimited square wave generator;
-#X text 480 540 dkscldeg - maps scale degrees to midi notes \, ported
+#X text 472 554 dksqlim~ - bandlimited square wave generator;
+#X text 475 581 dkscldeg - maps scale degrees to midi notes \, ported
 from SuperCollider;
-#X text 478 581 dkwesley~ - bitcrusher/downsampler;
+#X text 473 622 dkwesley~ - bitcrusher/downsampler;
 #X text 22 116 dkcospan~ - cosine panner;
 #X text 19 258 dkrunmin - running minimum;
 #X text 480 85 dkrunmax - running maximum;
@@ -61,5 +61,6 @@ from SuperCollider;
 #X text 29 590 dkmkv2 - second-order markov generator;
 #X text 26 346 dkenv~ - triggered envelope generator from SuperCollider's
 Env;
-#X text 473 332 dkpop~ - random impulses of adjustable density;
+#X text 468 373 dkpop~ - random impulses of adjustable density;
 #X text 25 501 dkipls~ - impulse oscillator;
+#X text 22 611 dknumpat - number pattern list converter;

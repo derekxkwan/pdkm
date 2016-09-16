@@ -40,6 +40,7 @@ EXTERNALS (compiled c code):
 	- dkipls~ - impulse oscillator
 	- dkmagikp~ - karplus-strong guitar synthesizer
 	- dkmkv2 - second-order markov generator
+	- dknumpat - number pattern list converter
 	- dkpop~ - random impulses of adjustable density
 	- dkrndl - generate list of random numbers within a given range
 	- dkred~ - red noise generator with variable level of "redness"

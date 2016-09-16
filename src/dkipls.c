@@ -92,7 +92,15 @@ static void dkipls_tilde_ft1(t_dkipls_tilde *x, t_float phase){
 
 }
 
-static void dkipls_tilde_rand(t_dkipls_tilde *x, t_float rand){
+static void dkipls_tilde_seed(t_dkipls_tilde *x, t_float _seed){
+    int seed = _seed;
+    if(seed < 0){
+        seed = 0;
+    };
+        dkrnd_seed(x->x_rnd, (unsigned int)seed);
+}
+
+    static void dkipls_tilde_rand(t_dkipls_tilde *x, t_float rand){
     int rndamp;
     if(rand <= 0){
             rndamp = 0;
@@ -121,4 +129,5 @@ void dkipls_tilde_setup(void){
    CLASS_MAINSIGNALIN(dkipls_tilde_class, t_dkipls_tilde, x_freq);
    class_addmethod(dkipls_tilde_class, (t_method)dkipls_tilde_ft1, gensym("ft1"), A_FLOAT, 0);
    class_addmethod(dkipls_tilde_class, (t_method)dkipls_tilde_rand, gensym("rand"), A_FLOAT, 0);
+   class_addmethod(dkipls_tilde_class, (t_method)dkipls_tilde_seed, gensym("seed"), A_FLOAT, 0);
 }
