@@ -1,10 +1,10 @@
-#N canvas 456 97 521 642 10;
+#N canvas 454 99 521 642 10;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
 #X obj 8 260 cnv 15 420 100 empty empty inlet 20 12 0 15 -261682 -66577
 0;
-#N canvas 714 279 839 384 loadsound 0;
+#N canvas 712 281 839 384 loadsound 0;
 #X obj 246 40 table \$0-helpsnd;
 #X obj 252 64 loadbang;
 #X obj 252 86 \$0;
@@ -66,7 +66,7 @@
 #X obj 217 285 s~ \$0-phasread;
 #X obj 187 21 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 253 114 read -resize ../sounds/255814__derekxkwan__bach-marimba.wav
+#X msg 253 114 read -resize sounds/255814__derekxkwan__bach-marimba.wav
 \$1-helpsnd;
 #X connect 1 0 2 0;
 #X connect 2 0 20 0;
@@ -98,8 +98,8 @@
 #X floatatom 320 230 5 0 0 0 - - -, f 5;
 #X obj 349 80 loadbang;
 #X msg 349 102 1;
-#X obj 8 36 cnv 15 420 30 empty empty dkgrnrd~ 20 12 0 20 -232576
--66577 0;
+#X obj 8 36 cnv 15 420 30 empty empty dkgrnrd~ 20 12 0 20 -232576 -66577
+0;
 #X text 61 279 1) sig~ - sample index;
 #X obj 7 354 cnv 15 420 30 empty empty outlet 20 12 0 15 -232576 -66577
 0;
