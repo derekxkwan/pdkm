@@ -12,6 +12,7 @@ ABSTRACTIONS (written in pd vanilla):
 	- dkbd2~ - 808ish bass drum synth (requires dkclik~)
         - dkcospan~ - cosine panner
 	- dkhh1~ - hihat synth
+	- dkhh2~ - hihat synth (requres dkpink~, dkenv~)
 	- dksd1~ - snare drum synth
 	- dkmbang - bang multiplier
 	- dkmidirt - abstraction to handle midi real-time messages

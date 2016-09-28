@@ -92,9 +92,8 @@ static t_int *dkpink_tilde_perform(t_int *w){
             for(j=1;j<DKPINKCOEFF;j++){
                 wh -= (x->a[j]*x->y[j]); 
             };
-            wh *= 1./(double)DKPINKCOEFF; //normalization
 
-            out[i] = wh;
+            out[i] = wh/(double)DKPINKCOEFF; //normalization
             //now increment y vals
             x->y[1] = wh;
             for(j=1;j<(DKPINKCOEFF-1);j++){
