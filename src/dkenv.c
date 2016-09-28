@@ -250,7 +250,7 @@ static void buildlinen(t_dkenv_tilde *x, t_float attms, t_float susms, t_float r
 
 }
 
-static void dkenv_list(t_dkenv_tilde *x, int argc, t_atom * argv){
+static void dkenv_param(t_dkenv_tilde *x, t_symbol *s, int argc, t_atom * argv){
 
         if(x->x_type == PERC){
             t_float att = 10;
@@ -385,7 +385,7 @@ static void dkenv_env(t_dkenv_tilde * x, t_symbol * s){
                 else{
                     x->x_type = PERC;
                 };
-        dkenv_list(x, 0, 0);
+        dkenv_param(x, 0, 0, 0);
 }
 
 void *dkenv_tilde_new(t_symbol *s, int argc, t_atom *argv){
@@ -425,7 +425,7 @@ void *dkenv_tilde_new(t_symbol *s, int argc, t_atom *argv){
         };
 
 
-        dkenv_list(x, argc, argv);
+        dkenv_param(x, 0, argc, argv);
 
 	x->x_envlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_symbol, gensym("env"));
 	x->x_paramlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_list, gensym("param"));
@@ -542,7 +542,7 @@ void dkenv_tilde_setup(void){
 	dkenv_tilde_class = class_new(gensym("dkenv~"), (t_newmethod)dkenv_tilde_new, (t_method)dkenv_tilde_free,
 			sizeof(t_dkenv_tilde), 0, A_GIMME, 0);
 	class_addmethod(dkenv_tilde_class, (t_method)dkenv_tilde_dsp, gensym("dsp"), A_CANT, 0);
-   class_addmethod(dkenv_tilde_class, (t_method)dkenv_list, gensym("params"), A_GIMME, 0);
+   class_addmethod(dkenv_tilde_class, (t_method)dkenv_param, gensym("param"), A_GIMME, 0);
    class_addmethod(dkenv_tilde_class, (t_method)dkenv_env, gensym("env"), A_SYMBOL, 0);
    class_addmethod(dkenv_tilde_class, (t_method)dkenv_lvl, gensym("level"), A_FLOAT, 0);
    class_addmethod(dkenv_tilde_class, (t_method)dkenv_dur, gensym("dur"), A_FLOAT, 0);
