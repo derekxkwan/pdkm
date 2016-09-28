@@ -1,4 +1,4 @@
-#N canvas 38 207 1042 684 10;
+#N canvas 36 209 1042 684 10;
 #N canvas 538 268 344 183 META 0;
 #X text 2 80 VERSION 0.1;
 #X text 2 98 AUTHOR Derek Kwan;
@@ -37,9 +37,7 @@ of Godfried Toussaint;
 #X text 21 573 dkmagikp~ - karplus-strong guitar synthesizer;
 #X text 473 334 dkrndl - generate list of random numbers within a given
 range;
-#X text 469 393 dkred~ - red noise generator with variable level of
-"redness";
-#X text 473 426 dksawlim~ - bandlimited sawtooth wave generator;
+#X text 472 425 dksawlim~ - bandlimited sawtooth wave generator;
 #X text 472 447 dksnbnk~ - sine oscillator bank;
 #X text 472 472 dksnbnkd~ - sine oscillator bank with separate envelopes
 with triggered output;
@@ -61,8 +59,9 @@ from SuperCollider;
 #X text 29 590 dkmkv2 - second-order markov generator;
 #X text 26 346 dkenv~ - triggered envelope generator from SuperCollider's
 Env;
-#X text 468 373 dkpop~ - random impulses of adjustable density;
+#X text 472 399 dkpop~ - random impulses of adjustable density;
 #X text 25 501 dkipls~ - impulse oscillator;
 #X text 22 611 dknumpat - number pattern list converter;
 #X text 15 116 dkbd2~ - 808ish bass drm synth;
 #X text 26 330 dkclik~ - triggered single sample impulse;
+#X text 472 378 dkpink~ - 1/f^alpha noise generator;

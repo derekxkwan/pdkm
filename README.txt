@@ -9,7 +9,7 @@ Released under GPL v3.0
 ABSTRACTIONS (written in pd vanilla):
 (note, help files for abstractions coming soon, can just open subpatch for now)
 	- dkbd1~ - bass drum synth
-	- dkbd2~ - 808ish bass drum synth
+	- dkbd2~ - 808ish bass drum synth (requires dkclik~)
         - dkcospan~ - cosine panner
 	- dkhh1~ - hihat synth
 	- dksd1~ - snare drum synth
@@ -43,9 +43,9 @@ EXTERNALS (compiled c code):
 	- dkmagikp~ - karplus-strong guitar synthesizer
 	- dkmkv2 - second-order markov generator
 	- dknumpat - number pattern list converter
+        - dkpink~ - 1/f^alpha noise generator
 	- dkpop~ - random impulses of adjustable density
-	- dkrndl - generate list of random numbers within a given range
-	- dkred~ - red noise generator with variable level of "redness"
+        - dkrndl - generate list of random numbers within a given range
 	- dksawlim~ - bandlimited sawtooth wave generator
 	- dksnbnk~ - sine oscillator bank
 	- dksnbnkd~ - sine oscillator bank with separate envelopes with triggered output

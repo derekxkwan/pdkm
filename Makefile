@@ -29,6 +29,7 @@ dkmkv2.class.sources = src/dkmkv2.c $(dkrnd)
 dkenv~.class.sources = src/dkenv.c $(dkwtab)
 #dkgpitch~.class.sources = src/dkgpitch.c $(dkwtab) $(dkrnd)
 dkipls~.class.sources = src/dkipls.c $(dkrnd) 
+dkpink~.class.sources = src/dkpink.c $(dkrnd) 
 dkclik~.class.sources = src/dkclik.c 
 dknumpat.class.sources = src/dknumpat.c 
 
