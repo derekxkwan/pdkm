@@ -29,9 +29,14 @@
 #define FFTOV 4 //fft overlap
 #endif
 
+#ifndef DKTYR //r val for tukey window
+#define DKTYR 0.25f
+#endif 
+
 //variables
 double dksintab[TABLEN];
-
+double dktytab[TABLEN];
 //functions
 double dkgetlin(double tab[], int sz, double idx); //linear interpolator
 void dkmakesintab(); //sine table maker
+void dkmaketukey(); //tukey table maker

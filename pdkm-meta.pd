@@ -1,4 +1,4 @@
-#N canvas 40 205 1042 684 10;
+#N canvas 38 207 1042 684 10;
 #N canvas 538 268 344 183 META 0;
 #X text 2 80 VERSION 0.1;
 #X text 2 98 AUTHOR Derek Kwan;
@@ -13,18 +13,18 @@
 #X text 16 42 LIST OF OBJECTS;
 #X text 18 74 ABSTRACTIONS;
 #X text 17 102 dkbd1~ - bass drum synth;
-#X text 13 132 dkhh1~ - hihat synth;
-#X text 16 150 dksd1~ - snare drum synth;
-#X text 18 163 dkmbang - bang multiplier;
-#X text 13 180 dkmidirt - midi real-time message parser;
-#X text 17 196 dknzgt - nonzero gate;
-#X text 20 222 dkrndgt - gate open x% of the time;
-#X text 17 239 dksyncb - synchronized banger;
+#X text 11 145 dkhh1~ - hihat synth;
+#X text 14 163 dksd1~ - snare drum synth;
+#X text 16 176 dkmbang - bang multiplier;
+#X text 11 193 dkmidirt - midi real-time message parser;
+#X text 15 209 dknzgt - nonzero gate;
+#X text 18 235 dkrndgt - gate open x% of the time;
+#X text 15 252 dksyncb - synchronized banger;
 #X text 482 105 dksyncf - synchroinzed floats;
 #X text 482 122 dkvanctr - vanilla counter (can go both up and down)
 ;
 #X text 23 280 EXTERNALS;
-#X text 23 323 dkadsr~ - triggered adsr envelope generator;
+#X text 26 316 dkadsr~ - triggered adsr envelope generator;
 #X text 25 383 dkmtx - control-rate multiple metro;
 #X text 24 400 dkstut~ - windowed stutter effect;
 #X text 24 418 dkeuclid - outputs euclidean rhythms based on the work
@@ -49,13 +49,13 @@ and signal amplitude control;
 #X text 475 581 dkscldeg - maps scale degrees to midi notes \, ported
 from SuperCollider;
 #X text 473 622 dkwesley~ - bitcrusher/downsampler;
-#X text 22 116 dkcospan~ - cosine panner;
-#X text 19 258 dkrunmin - running minimum;
+#X text 20 129 dkcospan~ - cosine panner;
+#X text 482 70 dkrunmin - running minimum;
 #X text 480 85 dkrunmax - running maximum;
 #X text 480 152 dkvanphs~ - vanilla 3-delay line phaser/chorus effect
 ;
 #X text 481 138 dkvandrk - vanilla drunk random number generator;
-#X text 20 209 dkphsrd~ - phasor sound reader abstraction;
+#X text 18 222 dkphsrd~ - phasor sound reader abstraction;
 #X text 22 555 dkfm~ - fm synthesis oscillator;
 #X text 484 169 dkvuzi - vanilla uzi/multiple banger;
 #X text 29 590 dkmkv2 - second-order markov generator;
@@ -64,3 +64,5 @@ Env;
 #X text 468 373 dkpop~ - random impulses of adjustable density;
 #X text 25 501 dkipls~ - impulse oscillator;
 #X text 22 611 dknumpat - number pattern list converter;
+#X text 15 116 dkbd2~ - 808ish bass drm synth;
+#X text 26 330 dkclik~ - triggered single sample impulse;

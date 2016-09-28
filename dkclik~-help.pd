@@ -1,0 +1,36 @@
+#N canvas 626 162 449 359 10;
+#X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
+0;
+#X text 305 10 Derek Kwan \, 2016;
+#X obj 8 36 cnv 15 420 30 empty empty dkclik~ 20 12 0 20 -232576 -66577
+0;
+#X obj 10 189 cnv 15 420 120 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 10 240 cnv 15 420 30 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#X obj 10 269 cnv 15 420 50 empty empty args 20 12 0 15 -261682 -66577
+0;
+#X text 100 243 1) sig~ - signal;
+#X obj 82 163 dac~ 1 2;
+#N canvas 733 373 445 278 META 0;
+#X text 5 117 VERSION 0.1;
+#X text 5 135 AUTHOR Derek Kwan;
+#X text 6 153 RELEASE_DATE 2016;
+#X text 4 97 LIBRARY pdkm;
+#X text 4 78 OUTLET_0 signal;
+#X text 0 19 LICENSE GPL v3;
+#X text 1 177 WEBSITE http://www.derekxkwan.com/code/puredata-code.html
+;
+#X text 0 0 KEYWORDS dirac single sample impulse dkclik;
+#X text 4 39 DESCRIPTION triggered single sample impulse;
+#X text 0 57 INLET_0 bang;
+#X restore 20 330 pd META;
+#X obj 77 94 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 198 43 triggered single sample impulse;
+#X obj 77 114 dkclik~;
+#X text 116 273 none;
+#X text 81 214 bang - trigger simple sample impulse;
+#X connect 9 0 11 0;
+#X connect 11 0 7 0;
+#X connect 11 0 7 1;

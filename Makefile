@@ -27,7 +27,9 @@ dkmtx.class.sources = src/dkmtx.c
 dkpop~.class.sources = src/dkpop.c $(dkrnd)
 dkmkv2.class.sources = src/dkmkv2.c $(dkrnd)
 dkenv~.class.sources = src/dkenv.c $(dkwtab)
+#dkgpitch~.class.sources = src/dkgpitch.c $(dkwtab) $(dkrnd)
 dkipls~.class.sources = src/dkipls.c $(dkrnd) 
+dkclik~.class.sources = src/dkclik.c 
 dknumpat.class.sources = src/dknumpat.c 
 
 datafiles =  help/pdkm-meta.pd \

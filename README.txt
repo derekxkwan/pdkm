@@ -9,6 +9,7 @@ Released under GPL v3.0
 ABSTRACTIONS (written in pd vanilla):
 (note, help files for abstractions coming soon, can just open subpatch for now)
 	- dkbd1~ - bass drum synth
+	- dkbd2~ - 808ish bass drum synth
         - dkcospan~ - cosine panner
 	- dkhh1~ - hihat synth
 	- dksd1~ - snare drum synth
@@ -30,6 +31,7 @@ ABSTRACTIONS (written in pd vanilla):
 EXTERNALS (compiled c code):
 
 	- dkadsr~ - triggered adsr envelope generator
+	- dkclk~ - triggered single sample impulse
 	- dkmtx - control-rate multiple metro
 	- dkstut~ - windowed stutter effect
 	- dkeuclid - outputs euclidean rhythms based on the work of Godfried Toussaint

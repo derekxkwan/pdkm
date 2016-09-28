@@ -15,6 +15,31 @@ void dkmakesintab(){
     };
 }
 
+void dkmaketukey(){
+    int i;
+    static int made = 0; //if table was made already
+    if(!made){
+	for(i=0; i<TABLEN; i++){//tukey
+	    double xval = (double)i/(double)TABLEN;
+	    double winval;
+	    if(xval < (DKTYR/2.f)){
+	        winval =0.5*(1+cos((TPI/DKTYR)*(xval-(DKTYR/2.f))));	
+	        }
+	    else if(xval > (DKTYR/2.f) && xval < (1-(DKTYR/2.f))){
+		winval = 1.;
+		}
+	    else{
+		winval =0.5*(1+cos((TPI/DKTYR)*(xval-1.+(DKTYR/2.f))));	
+		};
+	    dktytab[i] = winval;
+
+	};
+        made = 1;
+    };
+
+}
+
+
 double dkgetlin(double tab[], int sz, double idx){
         double output;
         int tabphase1 = (int)idx;
