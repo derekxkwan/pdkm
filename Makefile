@@ -19,6 +19,7 @@ dksnbnkd~.class.sources = src/dksnbnkd.c $(dkwtab)
 dksnbnkr~.class.sources = src/dksnbnkr.c $(dkwtab) 
 dksnbnk~.class.sources = src/dksnbnk.c $(dkwtab)
 dkrndl.class.sources = src/dkrndl.c 
+dktanh~.class.sources = src/dktanh.c 
 dkwesley~.class.sources = src/dkwesley.c 
 dkadsr~.class.sources = src/dkadsr.c 
 dkmagikp~.class.sources = src/dkmagikp.c 
@@ -30,8 +31,10 @@ dkenv~.class.sources = src/dkenv.c $(dkwtab)
 #dkgpitch~.class.sources = src/dkgpitch.c $(dkwtab) $(dkrnd)
 dkipls~.class.sources = src/dkipls.c $(dkrnd) 
 dkpink~.class.sources = src/dkpink.c $(dkrnd) 
+dkclnoiz~.class.sources = src/dkclnoiz.c $(dkrnd) 
 dkclik~.class.sources = src/dkclik.c 
 dknumpat.class.sources = src/dknumpat.c 
+dkzd~.class.sources = src/dkzd.c 
 
 datafiles =  help/pdkm-meta.pd \
 			 help/dkred~-help.pd \

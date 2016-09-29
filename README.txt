@@ -10,6 +10,7 @@ ABSTRACTIONS (written in pd vanilla):
 (note, help files for abstractions coming soon, can just open subpatch for now)
 	- dkbd1~ - bass drum synth
 	- dkbd2~ - 808ish bass drum synth (requires dkclik~)
+	- dkclap1~ - clap synthesizer (requires dkenv~)
         - dkcospan~ - cosine panner
 	- dkhh1~ - hihat synth
 	- dkhh2~ - hihat synth (requres dkpink~, dkenv~)
@@ -32,9 +33,8 @@ ABSTRACTIONS (written in pd vanilla):
 EXTERNALS (compiled c code):
 
 	- dkadsr~ - triggered adsr envelope generator
-	- dkclk~ - triggered single sample impulse
-	- dkmtx - control-rate multiple metro
-	- dkstut~ - windowed stutter effect
+	- dkclik~ - triggered sample-length impulses
+	- dkclnoiz~ - outputs -1 or 1 randomly (adaptation of SuperCollider's ClipNoise)
 	- dkeuclid - outputs euclidean rhythms based on the work of Godfried Toussaint
 	- dkenv~ - triggered envelope generator ala SuperCollider Env
 	- dkernd - random values with exponential distribution
@@ -43,6 +43,7 @@ EXTERNALS (compiled c code):
 	- dkipls~ - impulse oscillator
 	- dkmagikp~ - karplus-strong guitar synthesizer
 	- dkmkv2 - second-order markov generator
+	- dkmtx - control-rate multiple metro
 	- dknumpat - number pattern list converter
         - dkpink~ - 1/f^alpha noise generator
 	- dkpop~ - random impulses of adjustable density
@@ -51,8 +52,10 @@ EXTERNALS (compiled c code):
 	- dksnbnk~ - sine oscillator bank
 	- dksnbnkd~ - sine oscillator bank with separate envelopes with triggered output
 	- dksnbnkr~ - sine oscillator bank with separate envelopes and signal amplitude control
+	- dkstut~ - windowed stutter effect
 	- dksqlim~ - bandlimited square wave generator
 	- dkscldeg - maps scale degrees to midi notes, ported from SuperCollider
+	- dktanh~ - fast approxmation of tanh with pregain
 	- dkwesley~ - bitcrusher/downsampler
 
 HOW TO INSTALL:
