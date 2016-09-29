@@ -1,0 +1,48 @@
+#N canvas 213 314 457 452 10;
+#X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
+0;
+#X text 305 10 Derek Kwan \, 2016;
+#X obj 8 36 cnv 15 420 30 empty empty dkzd~ 20 12 0 20 -232576 -66577
+0;
+#X obj 7 188 cnv 15 420 150 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 7 337 cnv 15 420 30 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#X obj 7 364 cnv 15 420 40 empty empty args 20 12 0 15 -261682 -66577
+0;
+#X obj 173 165 dac~ 1 2;
+#N canvas 708 319 374 272 META 0;
+#X text 3 141 VERSION 0.1;
+#X text 3 159 AUTHOR Derek Kwan;
+#X text 4 177 RELEASE_DATE 2016;
+#X text 6 201 WEBSITE http://www.derekxkwan.com/code/puredata-code.html
+;
+#X text 2 121 LIBRARY pdkm;
+#X text 2 102 OUTLET_0 signal;
+#X text 0 76 INLET_1 float;
+#X text 0 19 LICENSE GPL v3;
+#X text 0 57 INLET_0 signal message;
+#X text 1 0 KEYWORDS dkzd sample delay z;
+#X text 0 38 DESCRIPTION sample-accurate delay;
+#X restore 9 414 pd META;
+#X text 266 45 sample-accurate delay;
+#X obj 174 85 dkclik~;
+#X obj 203 111 dkzd~ 22050 44100;
+#X obj 176 138 +~;
+#X obj 91 82 bng 15 250 50 0 empty empty click 17 7 0 10 -262144 -1
+-1;
+#X text 97 340 1) sig~ - delayed signal;
+#X text 68 368 1) float - delay in samples (optional \, 1 default)
+;
+#X text 42 388 2) float - delay buffer size (optional \, 4096 default)
+;
+#X text 70 207 1) signal - input;
+#X text 89 226 "bufsize (f)" - buffer size;
+#X text 89 245 "delay (f)" - delay in samples;
+#X text 62 272 2) float - delay in samples;
+#X connect 9 0 10 0;
+#X connect 9 0 11 0;
+#X connect 10 0 11 1;
+#X connect 11 0 6 0;
+#X connect 11 0 6 1;
+#X connect 12 0 9 0;

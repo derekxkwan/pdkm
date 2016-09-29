@@ -41,7 +41,6 @@ static void dkzd_tilde_delay(t_dkzd_tilde *x, t_float f){
         del = x->x_sz -1;
     };
     x->x_z = del;
-    post("del: %d", x->x_z);
 
 }
 
@@ -57,24 +56,20 @@ static void dkzd_tilde_sz(t_dkzd_tilde *x, t_float f){
         newsz = DKZDMAX;
     };
     if(!alloc && newsz > DKZDBUF){
-        post("1");
         x->x_buf = (double *)malloc(sizeof(double)*newsz);
         x->x_alloc = 1;
         x->x_sz = newsz;
     }
     else if(alloc && newsz > cursz){
-        post("2");
         x->x_buf = (double *)realloc(x->x_buf, sizeof(double)*newsz);
         x->x_sz = newsz;
     }
     else if(alloc && newsz < DKZDBUF){
-        post("3");
         free(x->x_buf);
         x->x_buf = x->x_stb;
         x->x_alloc = 0;
     };
     dkzd_tilde_clear(x);
-    post("bufsz: %d", x->x_sz);
 }
 
 static void *dkzd_tilde_new(t_symbol *s, int argc, t_atom * argv){
@@ -141,7 +136,7 @@ static t_int *dkzd_tilde_perform(t_int *w){
             x->x_buf[wh] = input;
 
             //get delayed input from buffer
-            int rh = (wh +  z) % sz;
+            int rh = (wh + sz - z) % sz;
             out[i] = x->x_buf[rh];
             //increment
             x->x_wh = (wh + 1) % sz;

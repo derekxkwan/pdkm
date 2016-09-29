@@ -38,6 +38,7 @@ EXTERNALS (compiled c code):
 	- dkeuclid - outputs euclidean rhythms based on the work of Godfried Toussaint
 	- dkenv~ - triggered envelope generator ala SuperCollider Env
 	- dkernd - random values with exponential distribution
+	- dkgpitch~ - rotating tapehead pitch shifter with four grains
 	- dkgrnrd~ - granular sound buffer player
 	- dklrnd - random values with triangular (linear) distribution
 	- dkipls~ - impulse oscillator
@@ -57,6 +58,7 @@ EXTERNALS (compiled c code):
 	- dkscldeg - maps scale degrees to midi notes, ported from SuperCollider
 	- dktanh~ - fast approxmation of tanh with pregain
 	- dkwesley~ - bitcrusher/downsampler
+	- dkzd~ - delay by samples
 
 HOW TO INSTALL:
 	- make sure you have the pure-data source installed (can be found at github.com/pure-data/pure-data )

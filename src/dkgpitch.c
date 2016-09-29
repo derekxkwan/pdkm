@@ -96,8 +96,8 @@ static double dkgpitch_grnrd(t_dkgpitch_tilde *x, int idx, double phs){
     if(curphs >= x->x_gdprop[idx]){
         //getting proper place to read from main delay buf
         double bufphs = (curphs*x->x_wms)+(double)PSGMIND; //getting proper ms of delay
-        bufphs *= ((double)x->x_sr*1000.); //converting to samples
-        bufphs += (double)x->x_wh; //adding to the writehead pos to find pos in the buffer
+        bufphs *= ((double)x->x_sr*0.001); //converting to samples
+        bufphs = (double)x->x_wh+((double)PSGLEN-bufphs); //essentially subracting from writehead to find proper position in buffer
         //wrapping into lenght of delay buffer
         while(bufphs >= PSGLEN){
             bufphs -= (double)PSGLEN;

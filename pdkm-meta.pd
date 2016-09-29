@@ -1,4 +1,4 @@
-#N canvas 32 213 1042 684 10;
+#N canvas 435 224 1042 684 10;
 #N canvas 538 268 344 183 META 0;
 #X text 2 80 VERSION 0.1;
 #X text 2 98 AUTHOR Derek Kwan;
@@ -26,14 +26,12 @@
 #X text 26 316 dkadsr~ - triggered adsr envelope generator;
 #X text 26 420 dkmtx - control-rate multiple metro;
 #X text 25 437 dkstut~ - windowed stutter effect;
-#X text 25 455 dkeuclid - outputs euclidean rhythms based on the work
+#X text 24 455 dkeuclid - outputs euclidean rhythms based on the work
 of Godfried Toussaint;
-#X text 23 489 dkernd - random values with exponential distribution
+#X text 23 532 dkgrnrd~ - granular sound buffer player;
+#X text 19 584 dklrnd - random values with triangular (linear) distribution
 ;
-#X text 23 511 dkgrnrd~ - granular sound buffer player;
-#X text 19 563 dklrnd - random values with triangular (linear) distribution
-;
-#X text 22 610 dkmagikp~ - karplus-strong guitar synthesizer;
+#X text 22 631 dkmagikp~ - karplus-strong guitar synthesizer;
 #X text 472 346 dkrndl - generate list of random numbers within a given
 range;
 #X text 472 425 dksawlim~ - bandlimited sawtooth wave generator;
@@ -45,7 +43,6 @@ and signal amplitude control;
 #X text 472 554 dksqlim~ - bandlimited square wave generator;
 #X text 475 581 dkscldeg - maps scale degrees to midi notes \, ported
 from SuperCollider;
-#X text 475 640 dkwesley~ - bitcrusher/downsampler;
 #X text 14 129 dkcospan~ - cosine panner;
 #X text 488 119 dkrunmin - running minimum;
 #X text 486 134 dkrunmax - running maximum;
@@ -53,13 +50,13 @@ from SuperCollider;
 ;
 #X text 487 187 dkvandrk - vanilla drunk random number generator;
 #X text 18 239 dkphsrd~ - phasor sound reader abstraction;
-#X text 23 592 dkfm~ - fm synthesis oscillator;
+#X text 23 613 dkfm~ - fm synthesis oscillator;
 #X text 490 218 dkvuzi - vanilla uzi/multiple banger;
 #X text 470 313 dkmkv2 - second-order markov generator;
 #X text 27 383 dkenv~ - triggered envelope generator from SuperCollider's
 Env;
 #X text 472 399 dkpop~ - random impulses of adjustable density;
-#X text 26 538 dkipls~ - impulse oscillator;
+#X text 26 559 dkipls~ - impulse oscillator;
 #X text 471 328 dknumpat - number pattern list converter;
 #X text 15 116 dkbd2~ - 808ish bass drm synth;
 #X text 472 378 dkpink~ - 1/f^alpha noise generator;
@@ -68,4 +65,9 @@ Env;
 #X text 16 155 dkhh2~ - hihat synth;
 #X text 474 620 dktanh~ - fast tanh approximation with pregain;
 #X text 28 355 dkclnoiz~ - output -1 or 1 randomly;
-#X text 27 330 dkclik~ - triggered sample-length impulse;
+#X text 473 636 dkwesley~ - bitcrusher/downsampler;
+#X text 472 650 dkzd~ - sample-accurate delay;
+#X text 28 330 dkclik~ - triggered sample-length impulses;
+#X text 24 488 dkernd - random values with exponential distribution
+;
+#X text 22 510 dkgpitch~ - rotating tapehead 4-grain pitchshifter;

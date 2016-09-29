@@ -1,4 +1,4 @@
-#N canvas 624 164 445 476 10;
+#N canvas 622 166 445 476 10;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
@@ -29,10 +29,10 @@
 #X obj 77 94 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 77 114 dkclik~;
-#X text 198 43 triggered sample-length impulse;
 #X text 81 214 1 bang - trigger sample-length impulse;
 #X text 83 235 2 float - sample length of impulse;
 #X text 80 319 float - length of samples for impulse;
+#X text 198 43 triggered sample-length impulses;
 #X connect 9 0 10 0;
 #X connect 10 0 7 0;
 #X connect 10 0 7 1;
