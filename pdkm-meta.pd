@@ -1,5 +1,5 @@
-#N canvas 435 224 1042 684 10;
-#N canvas 538 268 344 183 META 0;
+#N canvas 144 134 1422 819 12;
+#N canvas 536 270 528 213 META 0;
 #X text 2 80 VERSION 0.1;
 #X text 2 98 AUTHOR Derek Kwan;
 #X text 3 116 RELEASE_DATE 2016;
@@ -32,42 +32,43 @@ of Godfried Toussaint;
 #X text 19 584 dklrnd - random values with triangular (linear) distribution
 ;
 #X text 22 631 dkmagikp~ - karplus-strong guitar synthesizer;
-#X text 472 346 dkrndl - generate list of random numbers within a given
+#X text 529 349 dkrndl - generate list of random numbers within a given
 range;
-#X text 472 425 dksawlim~ - bandlimited sawtooth wave generator;
-#X text 472 447 dksnbnk~ - sine oscillator bank;
-#X text 472 472 dksnbnkd~ - sine oscillator bank with separate envelopes
+#X text 529 428 dksawlim~ - bandlimited sawtooth wave generator;
+#X text 529 450 dksnbnk~ - sine oscillator bank;
+#X text 529 475 dksnbnkd~ - sine oscillator bank with separate envelopes
 with triggered output;
-#X text 472 511 dksnbnkr~ - sine oscillator bank with separate envelopes
+#X text 529 514 dksnbnkr~ - sine oscillator bank with separate envelopes
 and signal amplitude control;
-#X text 472 554 dksqlim~ - bandlimited square wave generator;
-#X text 475 581 dkscldeg - maps scale degrees to midi notes \, ported
+#X text 529 557 dksqlim~ - bandlimited square wave generator;
+#X text 532 584 dkscldeg - maps scale degrees to midi notes \, ported
 from SuperCollider;
 #X text 14 129 dkcospan~ - cosine panner;
 #X text 488 119 dkrunmin - running minimum;
 #X text 486 134 dkrunmax - running maximum;
-#X text 486 201 dkvanphs~ - vanilla 3-delay line phaser/chorus effect
+#X text 487 220 dkvanphs~ - vanilla 3-delay line phaser/chorus effect
 ;
-#X text 487 187 dkvandrk - vanilla drunk random number generator;
 #X text 18 239 dkphsrd~ - phasor sound reader abstraction;
 #X text 23 613 dkfm~ - fm synthesis oscillator;
-#X text 490 218 dkvuzi - vanilla uzi/multiple banger;
-#X text 470 313 dkmkv2 - second-order markov generator;
+#X text 491 237 dkvuzi - vanilla uzi/multiple banger;
+#X text 527 316 dkmkv2 - second-order markov generator;
 #X text 27 383 dkenv~ - triggered envelope generator from SuperCollider's
 Env;
-#X text 472 399 dkpop~ - random impulses of adjustable density;
+#X text 529 402 dkpop~ - random impulses of adjustable density;
 #X text 26 559 dkipls~ - impulse oscillator;
-#X text 471 328 dknumpat - number pattern list converter;
+#X text 528 331 dknumpat - number pattern list converter;
 #X text 15 116 dkbd2~ - 808ish bass drm synth;
-#X text 472 378 dkpink~ - 1/f^alpha noise generator;
+#X text 529 381 dkpink~ - 1/f^alpha noise generator;
 #X text 14 181 dksd2~ - snare drum synth;
 #X text 16 142 dkhh1~ - hihat synth;
 #X text 16 155 dkhh2~ - hihat synth;
-#X text 474 620 dktanh~ - fast tanh approximation with pregain;
+#X text 531 623 dktanh~ - fast tanh approximation with pregain;
 #X text 28 355 dkclnoiz~ - output -1 or 1 randomly;
-#X text 473 636 dkwesley~ - bitcrusher/downsampler;
-#X text 472 650 dkzd~ - sample-accurate delay;
+#X text 530 639 dkwesley~ - bitcrusher/downsampler;
+#X text 529 653 dkzd~ - sample-accurate delay;
 #X text 28 330 dkclik~ - triggered sample-length impulses;
 #X text 24 488 dkernd - random values with exponential distribution
 ;
 #X text 22 510 dkgpitch~ - rotating tapehead 4-grain pitchshifter;
+#X text 488 206 dkvandrk - vanilla drunk random number generator;
+#X text 487 189 dkvancomp~ - vanilla compressor/limiter;

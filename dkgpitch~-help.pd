@@ -1,4 +1,4 @@
-#N canvas 354 223 447 560 10;
+#N canvas 352 225 447 560 10;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
@@ -30,7 +30,7 @@
 #X obj 125 87 phasor~ 440;
 #X obj 126 109 dkgpitch~;
 #X obj 126 131 *~ 0;
-#X obj 247 95 tgl 15 0 empty empty sound 17 7 0 10 -204800 -1 -1 0
+#X obj 247 95 tgl 15 0 empty empty sound 17 7 0 10 -204800 -1 -1 1
 1;
 #X obj 251 127 hsl 128 15 -12 12 0 0 empty empty transposition -2 -8
 0 10 -204786 -1 -1 6350 1;

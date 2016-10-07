@@ -26,6 +26,7 @@ ABSTRACTIONS (written in pd vanilla):
 	- dksyncb - synchronized banger
 	- dksyncf - synchronized floats
 	- dkvanctr - vanilla counter (can go both up and down)
+	- dkvancomp~ - vanilla compressor/limiter
 	- dkvandrk - vanilla drunk random number generator 
 	- dkvanphs~ - vanilla 3-delay line phaser/chorus effect 
 	- dkvuzi - vanilla uzi/multiple banger
