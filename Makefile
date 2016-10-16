@@ -6,7 +6,9 @@ lib.name = pdkm
 dkrnd := src/dkrnd.c
 dkwtab := src/dkwtab.c
 
-dkred~.class.sources = src/dkred.c 
+dkcmb~.class.sources = src/dkcmb.c 
+dkatmp~.class.sources = src/dkatmp.c 
+dkdntl~.class.sources = src/dkdntl.c 
 dkernd.class.sources = src/dkernd.c 
 dkfm~.class.sources = src/dkfm.c 
 dklrnd.class.sources = src/dklrnd.c 
