@@ -167,12 +167,12 @@ static void dkctr_bang(t_dkctr *x){
             //ascending then descending
             if(nextstate >= hi){
                 nextstate = hi;
-                x->x_stage = 1;
+                x->x_stage = 1 ^ neg;
                 x->x_bangnext = 1;
             }
             else if(nextstate <= lo){
                 nextstate = lo;
-                x->x_stage = 0;
+                x->x_stage = 0 ^ neg;
                 x->x_bangnext = 1;
             };
             break;
@@ -180,12 +180,12 @@ static void dkctr_bang(t_dkctr *x){
             //descending then ascending
             if(nextstate >= hi){
                 nextstate = hi;
-                x->x_stage = 0;
+                x->x_stage = 0 ^ neg;
                 x->x_bangnext = 1;
             }
             else if(nextstate <= lo){
                 nextstate = lo;
-                x->x_stage = 1;
+                x->x_stage = 1 ^ neg;
                 x->x_bangnext = 1;
             };
             break;
