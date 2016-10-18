@@ -49,6 +49,7 @@ typedef struct _dkrndl {
 	t_float minval;
 	t_float maxval;
 	t_float num;
+        int     x_toint; //if we will round to int
 	unsigned int x_state;
 } t_dkrndl;
 
@@ -62,6 +63,19 @@ static unsigned int exprseed(void){
 	//return retval;
 }
 
+static void dkrndl_toint(t_dkrndl *x, t_float ti){
+	int toint = (int)ti;
+        if(toint <= 0){
+            toint = 0;
+        }
+        else{
+            toint = 1;
+        };
+        x->x_toint = toint;
+
+}
+
+
 
 static void *dkrndl_new(t_symbol *s, int argc, t_atom *argv){
 	t_dkrndl *x = (t_dkrndl *)pd_new(dkrndl_class);
@@ -69,6 +83,7 @@ static void *dkrndl_new(t_symbol *s, int argc, t_atom *argv){
 	x->minval = RNDLMIN;
 	x->maxval = RNDLMAX;
 	x->num = RNDLNUM;
+        t_float toint = 0;
 	x->x_state = exprseed();
 
 	//argc = 1, set max, 2 = set max and num, 3 = set min, max, and num
@@ -83,19 +98,26 @@ static void *dkrndl_new(t_symbol *s, int argc, t_atom *argv){
 			x->maxval = atom_getfloatarg(0, argc, argv);
 			x->num = atom_getfloatarg(1, argc, argv);
 			break;
-		default:
 		case 3:
 			x->minval = atom_getfloatarg(0, argc, argv);	
 			x->maxval = atom_getfloatarg(1, argc, argv);
 			x->num = atom_getfloatarg(2, argc, argv);
 			break;
+                default:
+		case 4:
+			x->minval = atom_getfloatarg(0, argc, argv);	
+			x->maxval = atom_getfloatarg(1, argc, argv);
+			x->num = atom_getfloatarg(2, argc, argv);
+                        toint = atom_getfloatarg(3, argc, argv);
+			break;
 
 	};
-	
+        dkrndl_toint(x, toint);
 	outlet_new(&x->x_obj, &s_list);
 	floatinlet_new(&x->x_obj, &x->minval);
 	floatinlet_new(&x->x_obj, &x->maxval);
 	floatinlet_new(&x->x_obj, &x->num);
+	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("toint"));
 	return (x);
 }
 
@@ -130,6 +152,10 @@ static void dkrndl_bang(t_dkrndl *x){
 		currand = randval * (1.f/2147483647.f); //biggest num in 32-bit div 2
 		currand*= rng;
 		currand+= minv;
+                if(x->x_toint){
+                    currand = (t_float)(int)currand;
+                };
+
 		SETFLOAT((outatom+i), (t_float)currand);
 	};
 	outlet_list(x->x_obj.ob_outlet, &s_list, num, outatom);
@@ -179,4 +205,5 @@ void dkrndl_setup(void){
 	class_addmethod(dkrndl_class, (t_method)dkrndl_setrange, gensym("range"), A_FLOAT, A_FLOAT, 0);
 	class_addmethod(dkrndl_class, (t_method)dkrndl_setnum, gensym("num"), A_FLOAT, 0);
 	class_addmethod(dkrndl_class, (t_method)dkrndl_seed, gensym("seed"), A_FLOAT, 0);
+	class_addmethod(dkrndl_class, (t_method)dkrndl_seed, gensym("toint"), A_FLOAT, 0);
 }

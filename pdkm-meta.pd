@@ -1,4 +1,4 @@
-#N canvas 69 169 366 130 12;
+#N canvas 263 243 366 130 12;
 #N canvas 536 270 528 213 META 0;
 #X text 2 80 VERSION 0.1;
 #X text 2 98 AUTHOR Derek Kwan;
@@ -11,7 +11,7 @@
 #X text -1 19 LICENSE GPL v3;
 #X restore 14 15 pd META;
 #X text 16 42 LIST OF OBJECTS;
-#N canvas 161 197 1257 703 externals 0;
+#N canvas 159 199 1257 703 externals 0;
 #X text 30 26 EXTERNALS;
 #X text 33 62 dkadsr~ - triggered adsr envelope generator;
 #X text 30 232 dkmtx - control-rate multiple metro;
@@ -52,7 +52,8 @@ Env;
 #X text 33 84 dkatmp~ - allpass filter;
 #X text 28 175 dkdntl~ - comb filter with separate ff and fb delays
 ;
-#X text 33 152 dkcmb~ - comb filter;
+#X text 34 141 dkcmb~ - comb filter;
+#X text 34 157 dkctr - counter;
 #X restore 153 73 pd externals;
 #N canvas 1 92 832 269 abstractions 0;
 #X text 9 7 ABSTRACTIONS;

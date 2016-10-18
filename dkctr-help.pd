@@ -1,0 +1,68 @@
+#N canvas 605 150 453 778 12;
+#X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
+0;
+#X text 290 9 Derek Kwan \, 2016;
+#X obj 8 36 cnv 15 420 30 empty empty dkctr 20 12 0 20 -232576 -66577
+0;
+#X obj 17 301 cnv 15 420 150 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 19 450 cnv 15 420 60 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#X obj 19 510 cnv 15 420 200 empty empty args 20 12 0 15 -261682 -66577
+0;
+#N canvas 754 247 506 543 META 0;
+#X text 9 248 VERSION 0.1;
+#X text 9 266 AUTHOR Derek Kwan;
+#X text 10 284 RELEASE_DATE 2016;
+#X text 11 303 WEBSITE http://www.derekxkwan.com/code/puredata-code.html
+;
+#X text 8 228 LIBRARY pdkm;
+#X text 0 76 INLET_1 float;
+#X text 1 92 INLET_2 float;
+#X text 0 19 LICENSE GPL v2;
+#X text 0 57 INLET_0 bang;
+#X text 2 108 INLET_3 float;
+#X text 3 124 INLET_4 float;
+#X text 3 144 INLET_5 float;
+#X text 4 160 INLET_6 bang;
+#X text 4 182 OUTLET_0 float;
+#X text 7 206 OUTLET_1 bang;
+#X text 0 38 DESCRIPTION counter external;
+#X text 1 0 KEYWORDS counter dkctr pdkm;
+#X restore 18 715 pd META;
+#X text 361 43 counter;
+#X text 27 540 defaults: lo = 0 \, hi = inf \, stepsize = 1 \, mode
+= 0;
+#X text 29 570 order depends on number of args:;
+#X text 31 599 1: stepsize;
+#X text 31 622 2: hi \, stepsize;
+#X text 29 642 3: lo \, hi \, stepsize;
+#X text 29 664 4: lo \, hi \, stepsize \, mode;
+#X text 109 453 1) float - count;
+#X text 108 477 2) bang - bang when lo or hi hit;
+#X text 108 302 1) bang - output number and increment;
+#X text 63 324 2) float - set counter value to output next;
+#X text 64 347 3) float - set lo (always < hi);
+#X text 63 368 4) float - set hi (always >= lo);
+#X text 63 426 7) bang - reset;
+#X text 64 386 5) float - step size;
+#X text 63 405 6) float - set mode;
+#X text 19 76 modes: 0 = increment normal direction (add stepsize)
+;
+#X text 74 93 1 = increment reverse direction (subtract step);
+#X text 75 112 2 = normal -> reverse;
+#X text 73 131 3 = reverse -> normal;
+#X text 22 156 note: if count sequence in modes 0 or 1 ascending \,
+;
+#X text 95 173 count never reaches hi;
+#X text 68 192 if count sequence in modes 0 or 1 descending \,;
+#X text 96 210 count never reaches lo;
+#X obj 23 225 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 23 270 5 0 0 0 - - -, f 5;
+#X obj 131 276 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 23 245 pdkm/dkctr -5 5 1 2;
+#X connect 31 0 34 0;
+#X connect 34 0 32 0;
+#X connect 34 1 33 0;

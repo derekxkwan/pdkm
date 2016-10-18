@@ -1,0 +1,55 @@
+#N canvas 38 94 472 783 12;
+#X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
+0;
+#X text 290 9 Derek Kwan \, 2016;
+#X obj 9 36 cnv 15 420 30 empty empty dkatmp~ 20 12 0 20 -232576 -66577
+0;
+#X obj 17 301 cnv 15 420 150 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 17 415 cnv 15 420 60 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#X obj 19 453 cnv 15 420 200 empty empty args 20 12 0 15 -261682 -66577
+0;
+#N canvas 948 281 491 312 META 0;
+#X text 2 155 VERSION 0.1;
+#X text 2 173 AUTHOR Derek Kwan;
+#X text 3 191 RELEASE_DATE 2016;
+#X text 4 210 WEBSITE http://www.derekxkwan.com/code/puredata-code.html
+;
+#X text 1 135 LIBRARY pdkm;
+#X text 0 19 LICENSE GPL v2;
+#X text 0 76 INLET_1 signal;
+#X text 1 92 INLET_2 signal;
+#X text 3 113 OUTLET_0 signal;
+#X text 1 0 KEYWORDS dkatmp~ allpass filter pdkm;
+#X text 3 38 DESCRIPTION allpass filter;
+#X text 0 57 INLET_0 signal \, list \, message;
+#X restore 12 685 pd META;
+#X text 25 81 comb filter based off difference equation:;
+#X obj 99 176 pdkm/dkipls~ 1;
+#X obj 99 226 *~ 0;
+#X obj 331 160 tgl 15 0 empty empty sound 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 99 251 dac~ 1 2;
+#X text 108 302 1) sig~ - input;
+#X text 107 418 1) signal~ filtered input;
+#X text 134 344 "maxdelay f" = maximum delay in ms;
+#X text 27 504 1) f - delay in ms;
+#X text 28 525 2) f - a;
+#X obj 17 577 cnv 15 420 80 empty empty flags 20 12 0 15 -232576 -66577
+0;
+#X text 26 469 DEFAULTS:;
+#X text 51 607 -maxdelay (f) = max delay in ms;
+#X text 115 368 2) sig~ - delay in ms;
+#X text 119 389 3) sig~ - a;
+#X text 309 43 allpass filter;
+#X text 23 104 y[n] = -a*x[n] + b*x[n-delay] + a*y[n-delay];
+#X text 25 126 note: a should be > -1 and < 1;
+#X text 134 323 list f \, f - delay \, a;
+#X text 26 483 delay ms = 0 \, a=0.5 \, maxdelay in ms = 1000;
+#X obj 100 201 pdkm/dkatmp~ 300 0.5;
+#X connect 8 0 27 0;
+#X connect 9 0 11 0;
+#X connect 9 0 11 1;
+#X connect 10 0 9 1;
+#X connect 27 0 9 0;

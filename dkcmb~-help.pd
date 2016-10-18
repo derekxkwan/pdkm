@@ -1,0 +1,62 @@
+#N canvas 557 94 567 776 12;
+#X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
+0;
+#X text 290 9 Derek Kwan \, 2016;
+#X obj 8 36 cnv 15 420 30 empty empty dkcmb~ 20 12 0 20 -232576 -66577
+0;
+#X obj 17 301 cnv 15 420 150 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 19 450 cnv 15 420 60 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#X obj 21 488 cnv 15 420 200 empty empty args 20 12 0 15 -261682 -66577
+0;
+#N canvas 950 279 491 312 META 0;
+#X text 1 189 VERSION 0.1;
+#X text 1 207 AUTHOR Derek Kwan;
+#X text 2 225 RELEASE_DATE 2016;
+#X text 3 244 WEBSITE http://www.derekxkwan.com/code/puredata-code.html
+;
+#X text 0 169 LIBRARY pdkm;
+#X text 0 19 LICENSE GPL v2;
+#X text 1 0 KEYWORDS dkcmb~ comb filter pdkm;
+#X text 0 76 INLET_1 signal;
+#X text 0 57 INLET_0 signal \, list \, message;
+#X text 1 92 INLET_2 signal;
+#X text 2 108 INLET_3 signal;
+#X text 2 124 INLET_4 signal;
+#X text 2 147 OUTLET_0 signal;
+#X text 2 38 DESCRIPTION comb filter;
+#X restore 14 720 pd META;
+#X text 25 81 comb filter based off difference equation:;
+#X text 23 104 y[n] = a*x[n] + b*x[n-delay] + c*y[n-delay];
+#X text 25 126 note: a \, b \, c should be > -1 and < 1;
+#X obj 99 176 pdkm/dkipls~ 1;
+#X obj 99 201 pdkm/dkcmb~ 300 0.9 0.5 0.5;
+#X obj 99 226 *~ 0;
+#X obj 331 160 tgl 15 0 empty empty sound 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 99 251 dac~ 1 2;
+#X text 108 302 1) sig~ - input;
+#X text 134 323 list f \, f \, f \, f - delay \, a \, b \, c;
+#X text 109 453 1) signal~ filtered input;
+#X text 134 344 "maxdelay f" = maximum delay in ms;
+#X text 29 539 1) f - delay in ms;
+#X text 30 560 2) f - a;
+#X text 30 581 3) f - b;
+#X text 32 602 4) f - c;
+#X obj 21 625 cnv 15 420 80 empty empty flags 20 12 0 15 -232576 -66577
+0;
+#X text 28 518 delay ms = 0 \, a=1 \, b \, c = 0 \, maxdelay in ms
+= 1000;
+#X text 28 504 DEFAULTS:;
+#X text 55 655 -maxdelay (f) = max delay in ms;
+#X text 327 44 comb filter;
+#X text 115 368 2) sig~ - delay in ms;
+#X text 119 389 3) sig~ - a;
+#X text 118 410 4) sig~ - b;
+#X text 120 431 5) sig~ - c;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 12 0 14 0;
+#X connect 12 0 14 1;
+#X connect 13 0 12 1;

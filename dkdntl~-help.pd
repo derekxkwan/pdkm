@@ -1,0 +1,66 @@
+#N canvas 729 133 536 761 12;
+#X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
+0;
+#X text 290 9 Derek Kwan \, 2016;
+#X obj 8 36 cnv 15 420 30 empty empty dkdntl~ 20 12 0 20 -232576 -66577
+0;
+#X obj 17 301 cnv 15 420 150 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 19 450 cnv 15 420 60 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#X obj 21 488 cnv 15 420 200 empty empty args 20 12 0 15 -261682 -66577
+0;
+#N canvas 950 279 491 312 META 0;
+#X text -2 206 VERSION 0.1;
+#X text -2 224 AUTHOR Derek Kwan;
+#X text -1 242 RELEASE_DATE 2016;
+#X text 0 261 WEBSITE http://www.derekxkwan.com/code/puredata-code.html
+;
+#X text -3 186 LIBRARY pdkm;
+#X text 0 19 LICENSE GPL v2;
+#X text 0 76 INLET_1 signal;
+#X text 0 57 INLET_0 signal \, list \, message;
+#X text 1 92 INLET_2 signal;
+#X text 2 108 INLET_3 signal;
+#X text -1 164 OUTLET_0 signal;
+#X text 1 0 KEYWORDS dkdntl~ enhanced comb filter pdkm;
+#X text 2 124 INLET_4 signal;
+#X text 5 141 INLET_5 signal;
+#X text 2 38 DESCRIPTION enhanced comb filter;
+#X restore 14 720 pd META;
+#X text 25 81 comb filter based off difference equation:;
+#X text 25 126 note: a \, b \, c should be > -1 and < 1;
+#X obj 99 176 pdkm/dkipls~ 1;
+#X obj 99 226 *~ 0;
+#X obj 331 160 tgl 15 0 empty empty sound 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 99 251 dac~ 1 2;
+#X text 108 302 1) sig~ - input;
+#X text 109 453 1) signal~ filtered input;
+#X text 134 344 "maxdelay f" = maximum delay in ms;
+#X obj 21 625 cnv 15 420 80 empty empty flags 20 12 0 15 -232576 -66577
+0;
+#X text 28 504 DEFAULTS:;
+#X text 55 655 -maxdelay (f) = max delay in ms;
+#X obj 99 201 pdkm/dkdntl~ 300 450 0.9 0.5 0.5;
+#X text 258 41 enhanced comb filter;
+#X text 23 104 y[n] = a*x[n] + b*x[n-ffdelay] + c*y[n-fbdelay];
+#X text 109 323 list f \, f \, f \, f \, f - ffdel \, fbdel \, a \,
+b \, c;
+#X text 113 359 2) sig~ - ffdelay in ms;
+#X text 112 375 3) sig~ - fbdelay in ms;
+#X text 112 392 4) sig~ - a;
+#X text 111 409 5) sig~ - b;
+#X text 111 425 6) sig~ - c;
+#X text 27 521 ffdelay \, fbdelay(ms)=0 \; a=1 \; b \, c=0 \; maxdelay(ms)=1000
+;
+#X text 30 566 3) f - a;
+#X text 30 584 4) f - b;
+#X text 32 602 5) f - c;
+#X text 29 539 1) f - ffdelay in ms;
+#X text 28 553 1) f - fbdelay in ms;
+#X connect 9 0 19 0;
+#X connect 10 0 12 0;
+#X connect 10 0 12 1;
+#X connect 11 0 10 1;
+#X connect 19 0 10 0;

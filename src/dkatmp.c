@@ -12,7 +12,7 @@
 
 #define DKATMP_MINMS 0. //min delay in ms
 
-#define DKATMP_DEFGAIN 1. //default gain
+#define DKATMP_DEFGAIN 0.5 //default gain
 #define DKATMP_DEFFF 0. //default ff gain
 #define DKATMP_DEFFB 0. //default fb gain
 
@@ -260,6 +260,8 @@ static void *dkatmp_new(t_symbol *s, int argc, t_atom * argv){
                     break;
             };
             argnum++;
+            argc--;
+            argv++;
         }
         else if(argv -> a_type == A_SYMBOL){
             t_symbol * cursym = atom_getsymbolarg(0, argc, argv);
@@ -278,8 +280,6 @@ static void *dkatmp_new(t_symbol *s, int argc, t_atom * argv){
                 goto errstate;
             };
         };
-        argc--;
-        argv++;
     };
     
 
@@ -295,7 +295,6 @@ static void *dkatmp_new(t_symbol *s, int argc, t_atom * argv){
     else if(initdel > x->x_maxdel){
         initdel = x->x_maxdel;
     };
-
 
     //inlets outlets
     x->x_dellet = inlet_new((t_object *)x, (t_pd *)x, &s_signal, &s_signal);

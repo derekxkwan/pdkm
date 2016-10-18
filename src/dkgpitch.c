@@ -162,7 +162,6 @@ static void *dkgpitch_tilde_new(t_symbol * s, int argc, t_atom * argv){
             };
 
         };
-        dkgpitch_tp(x, tp);
         dkgpitch_tdisp(x, tdisp);
         dkgpitch_wms(x, wms);
         //make window
@@ -179,6 +178,7 @@ static void *dkgpitch_tilde_new(t_symbol * s, int argc, t_atom * argv){
             x->x_dbuf[i] = 0.;
         };
 
+        dkgpitch_tp(x, tp);
 
 	x->x_tlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("tp"));
 	x->x_outlet = outlet_new(&x->x_obj, gensym("signal"));

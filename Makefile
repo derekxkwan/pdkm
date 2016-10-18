@@ -7,6 +7,7 @@ dkrnd := src/dkrnd.c
 dkwtab := src/dkwtab.c
 
 dkcmb~.class.sources = src/dkcmb.c 
+dkctr.class.sources = src/dkctr.c 
 dkatmp~.class.sources = src/dkatmp.c 
 dkdntl~.class.sources = src/dkdntl.c 
 dkernd.class.sources = src/dkernd.c 
@@ -38,28 +39,35 @@ dkclik~.class.sources = src/dkclik.c
 dknumpat.class.sources = src/dknumpat.c 
 dkzd~.class.sources = src/dkzd.c 
 
-datafiles =  help/pdkm-meta.pd \
-			 help/dkred~-help.pd \
-			 help/dkernd-help.pd \
-			 help/dklrnd-help.pd \
-			 help/dkfm~-help.pd \
-			 help/dkscldeg-help.pd \
-			 help/dkeuclid-help.pd \
-			 help/dkgrnrd~-help.pd \
-			 help/dksawlim~-help.pd \
-			 help/dksqlim~-help.pd \
-			 help/dksnbnkd~-help.pd \
-			 help/dksnbnkr~-help.pd \
-			 help/dksnbnk~-help.pd \
-			 help/dkrndl-help.pd \
-			 help/dkwesley~-help.pd \
-			 help/dkadsr~-help.pd \
-			 help/dkmagikp~-help.pd \
-			 help/dkstut~-help.pd \
-			 help/dkenv~-help.pd \
-			 help/dkipls~-help.pd \
-			 help/dkmtx-help.pd \
-			 help/dkpop~-help.pd \
+datafiles =  pdkm-meta.pd \
+			 dkred~-help.pd \
+			 dkernd-help.pd \
+			 dklrnd-help.pd \
+			 dkfm~-help.pd \
+			 dkscldeg-help.pd \
+			 dkeuclid-help.pd \
+			 dkgrnrd~-help.pd \
+			 dksawlim~-help.pd \
+			 dksqlim~-help.pd \
+			 dksnbnkd~-help.pd \
+			 dksnbnkr~-help.pd \
+			 dksnbnk~-help.pd \
+			 dkrndl-help.pd \
+			 dkwesley~-help.pd \
+			 dkadsr~-help.pd \
+			 dkmagikp~-help.pd \
+			 dkstut~-help.pd \
+			 dkenv~-help.pd \
+			 dkipls~-help.pd \
+			 dkmtx-help.pd \
+			 dkpop~-help.pd \
+			 dkcmb~-help.pd \
+			 dkatmp~-help.pd \
+			 dkdntl~-help.pd \
+			 dkctr-help.pd \
+			 dkclnoiz~-help.pd \
+			 dkipls~-help.pd \
+			 dkclik~-help.pd \
 			 README.txt \
 			 LICENSE.txt
 
