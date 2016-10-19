@@ -54,6 +54,7 @@ EXTERNALS (compiled c code):
         - dkpink~ - 1/f^alpha noise generator
 	- dkpop~ - random impulses of adjustable density
         - dkrndl - generate list of random numbers within a given range
+        - dkrpt - repeater with optional zero-indexed counter
 	- dksawlim~ - bandlimited sawtooth wave generator
 	- dksnbnk~ - sine oscillator bank
 	- dksnbnkd~ - sine oscillator bank with separate envelopes with triggered output

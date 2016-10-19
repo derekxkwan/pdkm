@@ -1,0 +1,67 @@
+#N canvas 642 92 439 705 12;
+#X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
+0;
+#X text 290 9 Derek Kwan \, 2016;
+#X obj 9 36 cnv 15 420 30 empty empty dkrpt 20 12 0 20 -232576 -66577
+0;
+#X obj 12 396 cnv 15 420 150 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 12 510 cnv 15 420 60 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#X obj 11 568 cnv 15 420 80 empty empty args 20 12 0 15 -261682 -66577
+0;
+#N canvas 946 283 491 312 META 0;
+#X text 6 175 VERSION 0.1;
+#X text 7 193 AUTHOR Derek Kwan;
+#X text 7 211 RELEASE_DATE 2016;
+#X text 8 230 WEBSITE http://www.derekxkwan.com/code/puredata-code.html
+;
+#X text 5 155 LIBRARY pdkm;
+#X text 0 19 LICENSE GPL v2;
+#X text 3 38 DESCRIPTION repeater with optional counter;
+#X text 0 57 INLET_0 anything;
+#X text 2 0 KEYWORDS repeater repeat counter for loop pdkm gate;
+#X text 0 76 INLET_1 float;
+#X text 1 94 INLET_2 float;
+#X text 6 133 OUTLET_1 float;
+#X text 4 113 OUTLET_0 anything;
+#X restore 15 661 pd META;
+#X text 176 41 repeater with optional counter;
+#X text 21 76 repeats any input a specified number of times;
+#X text 29 323 thus [dkrpt] acts like a gate. you can also spit;
+#X text 31 344 out a count that is zero-indexed \, so [dkrpt] acts
+;
+#X text 30 365 like a for loop;
+#X obj 24 107 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 24 127 random 10;
+#X obj 127 122 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 39 179 dkrpt 5 1;
+#X msg 157 122 this is a list;
+#X obj 16 222 print rpt;
+#X obj 101 224 print count;
+#X text 103 397 1) anything - something to be repeated;
+#X text 94 416 2) f - number of times input is outputted;
+#X text 92 437 3) f - output count (0/1 = false/true);
+#X text 102 513 1) anything - repeated input;
+#X text 106 537 2) float - count starting with 0;
+#X text 75 572 DEFAULTS: repeats = 0 \, count = 0;
+#X text 45 599 1) f - number of times input is outputted;
+#X text 42 621 2) f - output count (0/1 = false/true);
+#X obj 352 123 tgl 15 0 empty empty output_count 17 7 0 10 -262144
+-1 -1 0 1;
+#X obj 303 127 vsl 15 128 0 10 0 0 empty empty repeats 0 -9 0 10 -262144
+-1 -1 0 1;
+#X text 27 302 unlike zexy's [repeat]: you can have 0 instances \,
+;
+#X floatatom 297 265 5 0 0 0 - - -, f 5;
+#X connect 12 0 13 0;
+#X connect 13 0 15 0;
+#X connect 14 0 15 0;
+#X connect 15 0 17 0;
+#X connect 15 1 18 0;
+#X connect 16 0 15 0;
+#X connect 27 0 15 2;
+#X connect 28 0 15 1;
+#X connect 28 0 30 0;

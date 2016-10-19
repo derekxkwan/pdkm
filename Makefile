@@ -8,6 +8,7 @@ dkwtab := src/dkwtab.c
 
 dkcmb~.class.sources = src/dkcmb.c 
 dkctr.class.sources = src/dkctr.c 
+dkrpt.class.sources = src/dkrpt.c 
 dkatmp~.class.sources = src/dkatmp.c 
 dkdntl~.class.sources = src/dkdntl.c 
 dkernd.class.sources = src/dkernd.c 
