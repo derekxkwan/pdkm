@@ -11,6 +11,7 @@ ABSTRACTIONS (written in pd vanilla):
 	- dkbd1~ - bass drum synth
 	- dkbd2~ - 808ish bass drum synth (requires dkclik~)
 	- dkclap1~ - clap synthesizer (requires dkenv~)
+	- dkclap2~ - clap synthesizer
         - dkcospan~ - cosine panner
         - dkfor - for loop
 	- dkhh1~ - hihat synth
