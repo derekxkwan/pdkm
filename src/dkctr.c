@@ -13,7 +13,7 @@ typedef struct _dkctr {
         double x_hi; //hi part of range
         int x_mode; //0 = normal direction, 1 = reversed, 2 = norm->rev, 3=rev->norm
         int x_stage; //0 = stage 1 of mode 2/3, 1 = stage 2 or mode 2/3
-        int x_bangnext; //helps for bang flag for mode 2 and 3
+        int x_bangnext; //enables bang at start of every sequence
         t_float x_ssize; //stepsize
         double x_state; //current count
         t_inlet *x_countlet;
@@ -41,7 +41,7 @@ static void dkctr_mode(t_dkctr *x, t_float m){
     };
     x->x_mode = mode;
     x->x_stage = 0;
-    x->x_bangnext = 0;
+    x->x_bangnext = 1;
 }
 
 static void dkctr_reset(t_dkctr *x){
@@ -55,7 +55,7 @@ static void dkctr_reset(t_dkctr *x){
         x->x_state = x->x_hi;
     };
     x->x_stage = 0;
-    x->x_bangnext = 0;
+    x->x_bangnext = 1;
 }
 
 
@@ -104,7 +104,6 @@ static void dkctr_bang(t_dkctr *x){
     if(mode == 0 || mode == 1){
         x->x_stage = stage = 0;
         //make sure stage is 0 for 0 and 1 because there is no second stage
-        x->x_bangnext = 0; //we shouldn't bang next because not mode 2 or 3
     };
 
 
@@ -138,13 +137,13 @@ static void dkctr_bang(t_dkctr *x){
             if(!neg){
                 if(nextstate >= hi){
                      nextstate = lo;
-                     dobang = 1;
+                    x->x_bangnext = 1;
                  };
             }
             else{
                 if(nextstate <= lo){
                     nextstate = hi;
-                    dobang = 1;
+                    x->x_bangnext = 1;
                 };
             };
             break;
@@ -153,13 +152,13 @@ static void dkctr_bang(t_dkctr *x){
             if(neg){
                 if(nextstate >= hi){
                      nextstate = lo;
-                     dobang = 1;
+                    x->x_bangnext = 1;
                  };
             }
             else{
                 if(nextstate <= lo){
                     nextstate = hi;
-                    dobang = 1;
+                    x->x_bangnext = 1;
                 };
             };
             break;
@@ -195,12 +194,6 @@ static void dkctr_bang(t_dkctr *x){
     };
     x->x_state = nextstate;
 
-    if(dobang){
-	outlet_bang(x->x_donelet);
-
-    };
-    //set prevstage
-    //outlet current (not next) state
 
     outlet_float(x->x_floatlet, (t_float)state);
 

@@ -1,4 +1,4 @@
-#N canvas 605 150 453 778 12;
+#N canvas 607 148 453 778 12;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
 #X text 290 9 Derek Kwan \, 2016;
@@ -10,7 +10,7 @@
 0;
 #X obj 19 510 cnv 15 420 200 empty empty args 20 12 0 15 -261682 -66577
 0;
-#N canvas 754 247 506 543 META 0;
+#N canvas 756 245 506 543 META 0;
 #X text 9 248 VERSION 0.1;
 #X text 9 266 AUTHOR Derek Kwan;
 #X text 10 284 RELEASE_DATE 2016;
@@ -19,7 +19,9 @@
 #X text 8 228 LIBRARY pdkm;
 #X text 0 76 INLET_1 float;
 #X text 1 92 INLET_2 float;
+#X text 1 0 KEYWORDS counter dkctr;
 #X text 0 19 LICENSE GPL v2;
+#X text 0 38 DESCRIPTION counter external pdkm;
 #X text 0 57 INLET_0 bang;
 #X text 2 108 INLET_3 float;
 #X text 3 124 INLET_4 float;
@@ -27,8 +29,6 @@
 #X text 4 160 INLET_6 bang;
 #X text 4 182 OUTLET_0 float;
 #X text 7 206 OUTLET_1 bang;
-#X text 0 38 DESCRIPTION counter external;
-#X text 1 0 KEYWORDS counter dkctr pdkm;
 #X restore 18 715 pd META;
 #X text 361 43 counter;
 #X text 27 540 defaults: lo = 0 \, hi = inf \, stepsize = 1 \, mode
