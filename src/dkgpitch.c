@@ -7,10 +7,10 @@
 #include <string.h>
 
 #define PSGLEN 240000 //max length of delaybuf
-#define PSGWLEN 200 //length of window in ms
+#define PSGWLEN 100 //length of window in ms
 #define PSGMIND 1.5 //min delay in ms for each grain
-#define PSGN 4 //number of grains
-#define PSGTDISP 50 //time dispersion in ms, can't be more than window length
+#define PSGN 8 //number of grains
+#define PSGTDISP 25 //time dispersion in ms, can't be more than window length
 static t_class *dkgpitch_tilde_class;
 
 typedef struct _dkgpitch_tilde {
@@ -75,7 +75,7 @@ static void dkgpitch_wms(t_dkgpitch_tilde *x, t_float wms){
 static double dkgpitch_grnrd(t_dkgpitch_tilde *x, int idx, double phs){
     //take in main phase, calculate grain's phase, recalc grain delay if needed
     //read appropriate output from grain delay buf and return
-    double offset = 0.25 * (double)idx;
+    double offset = (double)idx/(double)PSGN;
     double curphs = phs - offset;
     int newdel = 0; //if we need a new delay
     if(curphs >= 1.){
@@ -165,8 +165,8 @@ static void *dkgpitch_tilde_new(t_symbol * s, int argc, t_atom * argv){
         dkgpitch_tdisp(x, tdisp);
         dkgpitch_wms(x, wms);
         //make window
-	dkmakecoswin();
-        x->x_win = dkcoswin; 
+	dkmaketukey();
+        x->x_win = dktytab; 
         
         //init out stuff
 	x->x_wh = 0.;
@@ -213,7 +213,7 @@ static t_int *dkgpitch_tilde_perform(t_int *w){
                 output += grnout;
             };
             //scale output to account for 4x overlap and set into out
-            output *= 0.25;
+            output *= 2./(double)PSGN;
             out[i] = output;
 
            //incrementing 

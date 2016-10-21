@@ -1,17 +1,17 @@
-#N canvas 352 225 447 560 10;
-#X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
+#N canvas 348 229 548 590 12;
+#X obj 8 6 cnv 15 460 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
-#X obj 8 36 cnv 15 420 30 empty empty dkgpitch~ 20 12 0 20 -232576
+#X obj 9 37 cnv 15 460 30 empty empty dkgpitch~ 20 12 0 20 -232576
 -66577 0;
-#X obj 7 188 cnv 15 420 150 empty empty inlet 20 12 0 15 -261682 -66577
+#X obj 12 281 cnv 15 460 150 empty empty inlet 20 12 0 15 -261682 -66577
 0;
-#X obj 7 337 cnv 15 420 30 empty empty outlet 20 12 0 15 -232576 -66577
+#X obj 12 430 cnv 15 460 30 empty empty outlet 20 12 0 15 -232576 -66577
 0;
-#X obj 7 364 cnv 15 420 40 empty empty args 20 12 0 15 -261682 -66577
+#X obj 12 457 cnv 15 460 40 empty empty args 20 12 0 15 -261682 -66577
 0;
-#X obj 136 161 dac~ 1 2;
-#N canvas 706 321 374 272 META 0;
+#X obj 91 222 dac~ 1 2;
+#N canvas 704 323 507 263 META 0;
 #X text 3 141 VERSION 0.1;
 #X text 3 159 AUTHOR Derek Kwan;
 #X text 4 177 RELEASE_DATE 2016;
@@ -24,32 +24,113 @@
 #X text 0 57 INLET_0 signal message;
 #X text 1 0 KEYWORDS tapehead delay pitchshift dkgpitch;
 #X text 0 38 DESCRIPTION rotating tapehead 4-grain pitchshifter;
-#X restore 9 414 pd META;
-#X text 97 340 1) sig~ - delayed signal;
-#X text 70 207 1) signal - input;
-#X obj 125 87 phasor~ 440;
-#X obj 126 109 dkgpitch~;
-#X obj 126 131 *~ 0;
-#X obj 247 95 tgl 15 0 empty empty sound 17 7 0 10 -204800 -1 -1 1
+#X restore 14 507 pd META;
+#X text 102 433 1) sig~ - delayed signal;
+#X text 75 300 1) signal - input;
+#X obj 116 193 *~ 0;
+#X obj 235 127 tgl 15 0 empty empty sound 17 7 0 10 -204800 -1 -1 1
 1;
-#X obj 251 127 hsl 128 15 -12 12 0 0 empty empty transposition -2 -8
-0 10 -204786 -1 -1 6350 1;
-#X floatatom 251 154 5 0 0 0 - - -, f 5;
-#X obj 336 74 loadbang;
-#X msg 336 96 0;
+#X obj 260 156 hsl 128 15 -12 12 0 0 empty empty transposition -2 -8
+0 10 -204786 -1 -1 12700 1;
+#X floatatom 260 184 5 0 0 0 - - -, f 5;
+#X obj 291 88 loadbang;
+#X msg 291 110 0;
 #X text 146 45 rotating tapehead 4-grain pitch shifter;
-#X text 68 368 1) float - transposition in halfsteps (default 0);
-#X text 87 226 "wms (f)" - reading window size in ms (def: 200);
-#X text 89 245 "tdisp (f)" - random onset of grain in ms;
-#X text 117 260 (chosen between 0 and wms \, default 50);
-#X text 86 277 "tp (f)" - transposition in halfsteps;
-#X text 70 304 2) float - transposition in halfsteps;
+#X text 73 461 1) float - transposition in halfsteps (default 0);
+#X text 78 320 "wms (f)" - reading window size in ms (def: 200);
+#X text 87 338 "tdisp (f)" - random onset of grain in ms;
+#X text 115 356 (chosen between 0 and wms \, default 50);
+#X text 92 375 "tp (f)" - transposition in halfsteps;
+#X text 75 397 2) float - transposition in halfsteps;
+#N canvas 452 527 839 384 loadsound 0;
+#X obj 260 31 table \$0-helpsnd;
+#X obj 252 59 loadbang;
+#X obj 252 86 \$0;
+#X obj 253 157 soundfiler;
+#N canvas 301 273 677 387 phasread 0;
+#X obj 336 28 inlet;
+#X obj 467 55 inlet;
+#X obj 336 50 t b f;
+#X obj 242 126 samplerate~;
+#X obj 296 187 /;
+#X obj 293 297 phasor~;
+#X obj 296 228 * 1;
+#X obj 350 172 t b f;
+#X obj 293 341 outlet~;
+#X text 385 28 sample size;
+#X text 511 51 rate;
+#X text 34 17 PHASREAD~: sample indexer abstraction;
+#X obj 565 32 inlet;
+#X text 614 32 phase;
+#X text 30 75 in1: sample size;
+#X text 28 94 in2: rate;
+#X text 29 114 in3: phase;
+#X text 28 154 DEREK KWAN \, 2016;
+#X text 36 35 using phasor~;
+#X obj 293 319 *~ 1;
+#X msg 429 151 0;
+#X connect 0 0 2 0;
+#X connect 1 0 7 0;
+#X connect 2 0 3 0;
+#X connect 2 0 20 0;
+#X connect 2 1 4 1;
+#X connect 2 1 19 1;
+#X connect 3 0 4 0;
+#X connect 4 0 6 0;
+#X connect 5 0 19 0;
+#X connect 6 0 5 0;
+#X connect 7 0 6 0;
+#X connect 7 1 6 1;
+#X connect 12 0 5 1;
+#X connect 19 0 8 0;
+#X connect 20 0 5 1;
+#X restore 218 258 pd phasread;
+#X obj 101 100 cnv 15 150 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 102 106 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 103 128 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 120 127 load sound;
+#X msg 155 193 0;
+#X obj 72 203 openpanel;
+#X obj 72 225 t s b;
+#X obj 72 295 pack s f;
+#X obj 108 254 \$0;
+#X msg 72 317 read -resize \$1 \$2-helpsnd;
+#X obj 217 285 s~ \$0-phasread;
+#X obj 187 21 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 253 114 read -resize sounds/255814__derekxkwan__bach-marimba.wav
+\$1-helpsnd;
+#X text 119 103 reset to beg;
+#X connect 1 0 2 0;
+#X connect 2 0 17 0;
+#X connect 3 0 4 0;
+#X connect 4 0 15 0;
+#X connect 6 0 9 0;
+#X connect 7 0 10 0;
+#X connect 9 0 4 2;
 #X connect 10 0 11 0;
 #X connect 11 0 12 0;
-#X connect 12 0 6 0;
-#X connect 12 0 6 1;
+#X connect 11 1 13 0;
+#X connect 12 0 14 0;
 #X connect 13 0 12 1;
+#X connect 14 0 3 0;
+#X connect 16 0 2 0;
+#X connect 17 0 3 0;
+#X coords 0 -1 1 1 150 60 1 100 100;
+#X restore 232 207 pd loadsound;
+#X obj 62 118 tabread4~ \$0-helpsnd;
+#X obj 81 155 dkgpitch~ 0;
+#X obj 74 88 r~ \$0-phasread;
+#X connect 10 0 6 0;
+#X connect 10 0 6 1;
+#X connect 11 0 10 1;
+#X connect 12 0 13 0;
+#X connect 12 0 25 1;
 #X connect 14 0 15 0;
-#X connect 14 0 11 1;
-#X connect 16 0 17 0;
-#X connect 17 0 14 0;
+#X connect 15 0 12 0;
+#X connect 24 0 25 0;
+#X connect 25 0 10 0;
+#X connect 26 0 24 0;
