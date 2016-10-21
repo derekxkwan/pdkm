@@ -1,5 +1,19 @@
 #include "dkwtab.h"
 
+//build cosine window wavetable
+void dkmakecoswin(){
+    int i;
+    static int made = 0; //if sin tabe was made already
+    if(!made){
+        for(i=0;i<TABLEN;i++){
+             double idx = (OPI*(double)i)/(double)TABLEN;
+            dkcoswin[i] = sin(idx);
+
+        };
+        made = 1;
+    };
+}
+
 
 //build sine wavetable
 void dkmakesintab(){

@@ -34,9 +34,11 @@
 #endif 
 
 //variables
+double dkcoswin[TABLEN];
 double dksintab[TABLEN];
 double dktytab[TABLEN];
 //functions
 double dkgetlin(double tab[], int sz, double idx); //linear interpolator
 void dkmakesintab(); //sine table maker
 void dkmaketukey(); //tukey table maker
+void dkmakecoswin(); //cosine window maker

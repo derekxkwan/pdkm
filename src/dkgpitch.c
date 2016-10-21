@@ -76,7 +76,7 @@ static double dkgpitch_grnrd(t_dkgpitch_tilde *x, int idx, double phs){
     //take in main phase, calculate grain's phase, recalc grain delay if needed
     //read appropriate output from grain delay buf and return
     double offset = 0.25 * (double)idx;
-    double curphs = phs + offset;
+    double curphs = phs - offset;
     int newdel = 0; //if we need a new delay
     if(curphs >= 1.){
         curphs -=1.;
@@ -165,8 +165,8 @@ static void *dkgpitch_tilde_new(t_symbol * s, int argc, t_atom * argv){
         dkgpitch_tdisp(x, tdisp);
         dkgpitch_wms(x, wms);
         //make window
-	dkmaketukey();
-        x->x_win = dktytab; 
+	dkmakecoswin();
+        x->x_win = dkcoswin; 
         
         //init out stuff
 	x->x_wh = 0.;
