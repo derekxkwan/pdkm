@@ -1,4 +1,4 @@
-#N canvas 257 249 366 130 12;
+#N canvas 255 251 366 130 12;
 #N canvas 536 270 528 213 META 0;
 #X text 2 80 VERSION 0.1;
 #X text 2 98 AUTHOR Derek Kwan;
@@ -57,35 +57,28 @@ Env;
 #X text 532 171 dkrpt~ - repeater with optional zero-indexed counter
 ;
 #X restore 153 73 pd externals;
-#N canvas 1 96 832 331 abstractions 0;
+#N canvas 310 131 832 331 abstractions 0;
 #X text 9 7 ABSTRACTIONS;
-#X text 8 35 dkbd1~ - bass drum synth;
-#X text 10 169 dksd1~ - snare drum synth;
-#X text 12 193 dkmbang - bang multiplier;
-#X text 7 210 dkmidirt - midi real-time message parser;
+#X text 19 123 dkmbang - bang multiplier;
+#X text 24 149 dkmidirt - midi real-time message parser;
 #X text 389 21 dknzgt - nonzero gate;
 #X text 387 55 dkrndgt - gate open x% of the time;
-#X text 386 82 dksyncb - synchronized banger;
-#X text 384 132 dksyncf - synchroinzed floats;
-#X text 384 149 dkvanctr - vanilla counter (can go both up and down)
+#X text 384 105 dksyncb - synchronized banger;
+#X text 382 155 dksyncf - synchroinzed floats;
+#X text 382 172 dkvanctr - vanilla counter (can go both up and down)
 ;
-#X text 20 103 dkcospan~ - cosine panner;
-#X text 384 97 dkrunmin - running minimum;
-#X text 382 112 dkrunmax - running maximum;
-#X text 383 198 dkvanphs~ - vanilla 3-delay line phaser/chorus effect
+#X text 14 32 dkcospan~ - cosine panner;
+#X text 382 120 dkrunmin - running minimum;
+#X text 380 135 dkrunmax - running maximum;
+#X text 381 221 dkvanphs~ - vanilla 3-delay line phaser/chorus effect
 ;
 #X text 386 39 dkphsrd~ - phasor sound reader abstraction;
-#X text 387 215 dkvuzi - vanilla uzi/multiple banger;
-#X text 6 49 dkbd2~ - 808ish bass drm synth;
-#X text 10 181 dksd2~ - snare drum synth;
-#X text 14 128 dkhh1~ - hihat synth;
-#X text 14 141 dkhh2~ - hihat synth;
-#X text 384 184 dkvandrk - vanilla drunk random number generator;
-#X text 383 167 dkvancomp~ - vanilla compressor/limiter;
-#X text 20 115 dkfor - for loop;
-#X text 14 67 dkclap1~ - clap synthesizer (needs dkenv~);
-#X text 18 83 dkclap2~ - clap synthesizer;
-#X text 9 229 dkms2smp - ms to samples;
-#X text 387 69 dksmp2ms - samples to ms;
-#X text 9 156 dkincwr~ - incremental tabwriter;
+#X text 385 238 dkvuzi - vanilla uzi/multiple banger;
+#X text 382 207 dkvandrk - vanilla drunk random number generator;
+#X text 381 190 dkvancomp~ - vanilla compressor/limiter;
+#X text 21 58 dkfor - for loop;
+#X text 24 173 dkms2smp - ms to samples;
+#X text 385 92 dksmp2ms - samples to ms;
+#X text 20 95 dkincwr~ - incremental tabwriter;
+#X text 388 77 dkseqgen1 - random timed sequence generator;
 #X restore 15 73 pd abstractions;

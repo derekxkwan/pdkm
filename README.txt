@@ -8,16 +8,9 @@ Released under GPL v3.0
 
 ABSTRACTIONS (written in pd vanilla):
 (note, help files for abstractions coming soon, can just open subpatch for now)
-	- dkbd1~ - bass drum synth
-	- dkbd2~ - 808ish bass drum synth (requires dkclik~)
-	- dkclap1~ - clap synthesizer (requires dkenv~)
-	- dkclap2~ - clap synthesizer
         - dkcospan~ - cosine panner
         - dkfor - for loop
-	- dkhh1~ - hihat synth
-	- dkhh2~ - hihat synth (requres dkpink~, dkenv~)
 	- dkincwr~ - incremental tabwriter
-	- dksd1~ - snare drum synth
 	- dkmbang - bang multiplier
 	- dkmidirt - abstraction to handle midi real-time messages
 	- dkms2smp - ms to samples
@@ -27,6 +20,7 @@ ABSTRACTIONS (written in pd vanilla):
         - dkrunmax - running maximum
         - dkrunmin - running minimum
 	- dkrndgt - let through anything x% of the time
+	- dkseqgen1 - timed random sequence generator
 	- dksmp2ms - samples to ms
 	- dksyncb - synchronized banger
 	- dksyncf - synchronized floats
