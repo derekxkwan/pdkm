@@ -16,15 +16,18 @@ ABSTRACTIONS (written in pd vanilla):
         - dkfor - for loop
 	- dkhh1~ - hihat synth
 	- dkhh2~ - hihat synth (requres dkpink~, dkenv~)
+	- dkincwr~ - incremental tabwriter
 	- dksd1~ - snare drum synth
 	- dkmbang - bang multiplier
 	- dkmidirt - abstraction to handle midi real-time messages
+	- dkms2smp - ms to samples
         - dknobu~ - sample chopper abstraction
 	- dknzgt - only let nonzero floats through
         - dkphsrd~ - phasor sound reader abstraction
         - dkrunmax - running maximum
         - dkrunmin - running minimum
 	- dkrndgt - let through anything x% of the time
+	- dksmp2ms - samples to ms
 	- dksyncb - synchronized banger
 	- dksyncf - synchronized floats
 	- dkvanctr - vanilla counter (can go both up and down)
