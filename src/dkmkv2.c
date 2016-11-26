@@ -15,7 +15,7 @@ static t_class *dkmkv2_class;
 typedef struct _dkmkv2 {
 	t_object x_obj;
         dkrnd *x_rand; //pointer to my dkrnd class
-        t_float x_offset; //offset in input
+        int x_offset; //offset in input
         int x_num; //number of notes input so far, won't go past two.
         t_float x_mode; //0 = play mode, 1 = rec mode
         int x_dim; //dimensions of the table
@@ -26,7 +26,37 @@ typedef struct _dkmkv2 {
 
 } t_dkmkv2;
 
-static void dkmkv2_prev2(t_dkmkv2  *x, t_float f){
+static void dkmkv2_dump(t_dkmkv2  *x){
+
+    int i,j,k;
+    char retstr[x->x_dim * 100];
+    int offset = x->x_offset;
+    size_t curlen = 0; //current length of string
+    for(i=0; i<x->x_dim; i++){
+        //looping over first note
+        int firstnote = offset + i;
+        curlen = 0;
+        for(j=0;j<x->x_dim;j++){
+            //looping over second note
+            int secondnote = offset + j;
+            sprintf(retstr + curlen, "[%d %d] \0", firstnote, secondnote);
+            curlen = strlen(retstr);
+            for(k=0;k<x->x_dim;k++){
+                int val = x->x_table[i][j][k];
+                if(val > 0){
+                    int note = offset+k;
+                    sprintf(retstr + curlen, "%d: %d, \0", note, val);
+                    curlen = strlen(retstr);
+
+                };
+            };
+        };
+    post(retstr);
+    };
+
+}
+
+    static void dkmkv2_prev2(t_dkmkv2  *x, t_float f){
     x->x_prev2 = f;
 }
 
@@ -340,6 +370,8 @@ void dkmkv2_setup(void){
 	class_addmethod(dkmkv2_class, (t_method)dkmkv2_mode, gensym("mode"), A_FLOAT, 0);
 	class_addmethod(dkmkv2_class, (t_method)dkmkv2_rec, gensym("rec"), 0);
 	class_addmethod(dkmkv2_class, (t_method)dkmkv2_play, gensym("play"), 0);
+	class_addmethod(dkmkv2_class, (t_method)dkmkv2_clear, gensym("clear"), 0);
+	class_addmethod(dkmkv2_class, (t_method)dkmkv2_dump, gensym("dump"), 0);
 	class_addbang(dkmkv2_class, dkmkv2_bang);
 	class_addfloat(dkmkv2_class, dkmkv2_float);
 }
