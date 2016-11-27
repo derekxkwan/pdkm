@@ -1,4 +1,4 @@
-#N canvas 729 133 536 761 12;
+#N canvas 727 135 481 979 12;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
 #X text 290 9 Derek Kwan \, 2016;
@@ -40,7 +40,7 @@
 #X text 134 344 "maxdelay f" = maximum delay in ms;
 #X obj 21 625 cnv 15 420 80 empty empty flags 20 12 0 15 -232576 -66577
 0;
-#X text 28 504 DEFAULTS:;
+#X text 226 498 DEFAULTS:;
 #X text 55 655 -maxdelay (f) = max delay in ms;
 #X obj 99 201 pdkm/dkdntl~ 300 450 0.9 0.5 0.5;
 #X text 258 41 enhanced comb filter;
@@ -52,13 +52,13 @@ b \, c;
 #X text 112 392 4) sig~ - a;
 #X text 111 409 5) sig~ - b;
 #X text 111 425 6) sig~ - c;
-#X text 27 521 ffdelay \, fbdelay(ms)=0 \; a=1 \; b \, c=0 \; maxdelay(ms)=1000
-;
-#X text 30 566 3) f - a;
+#X text 27 570 3) f - a;
 #X text 30 584 4) f - b;
 #X text 32 602 5) f - c;
 #X text 29 539 1) f - ffdelay in ms;
-#X text 28 553 1) f - fbdelay in ms;
+#X text 28 553 2) f - fbdelay in ms;
+#X text 222 519 ffdelay \; fbdelay(ms)=0 \; a=1 \; b \, c=0 \; maxdelay(ms)=1000
+;
 #X connect 9 0 19 0;
 #X connect 10 0 12 0;
 #X connect 10 0 12 1;

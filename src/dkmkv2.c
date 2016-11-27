@@ -33,25 +33,32 @@ static void dkmkv2_dump(t_dkmkv2  *x){
     int offset = x->x_offset;
     size_t curlen = 0; //current length of string
     for(i=0; i<x->x_dim; i++){
+        int strtopost = 0; //flag if there's a string to post this iteration
         //looping over first note
         int firstnote = offset + i;
         curlen = 0;
         for(j=0;j<x->x_dim;j++){
             //looping over second note
-            int secondnote = offset + j;
-            sprintf(retstr + curlen, "[%d %d] \0", firstnote, secondnote);
-            curlen = strlen(retstr);
-            for(k=0;k<x->x_dim;k++){
-                int val = x->x_table[i][j][k];
-                if(val > 0){
-                    int note = offset+k;
-                    sprintf(retstr + curlen, "%d: %d, \0", note, val);
-                    curlen = strlen(retstr);
+            if(x->x_table[i][j][x->x_dim] > 0){
+                //if there are actually notes to report
+                strtopost = 1;
+                int secondnote = offset + j;
+                sprintf(retstr + curlen, "[%d %d] \0", firstnote, secondnote);
+                curlen = strlen(retstr);
+                for(k=0;k<x->x_dim;k++){
+                    int val = x->x_table[i][j][k];
+                    if(val > 0){
+                        int note = offset+k;
+                        sprintf(retstr + curlen, "%d: %d, \0", note, val);
+                        curlen = strlen(retstr);
 
+                    };
                 };
             };
         };
-    post(retstr);
+    if(strtopost){
+        post(retstr);
+    };
     };
 
 }
