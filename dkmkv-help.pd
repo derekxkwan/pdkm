@@ -1,4 +1,4 @@
-#N canvas 1208 168 458 791 12;
+#N canvas 1206 170 458 791 12;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
 #X text 290 9 Derek Kwan \, 2016;
@@ -40,18 +40,17 @@
 #X text 28 320 "play" - play mode;
 #X text 29 337 "clear" - clears analysis;
 #X text 27 351 "prev" - sets previous note;
-#X text 29 370 "prev2" - sets previous previous note;
-#X text 36 387 "dump" - prints analysis to pd window;
-#X text 31 404 "seed" - change random seed;
-#X text 28 473 float - REC: records in analysis;
-#X text 25 510 bang - PLAY: generates new note;
+#X text 36 376 "dump" - prints analysis to pd window;
+#X text 31 393 "seed" - change random seed;
+#X text 28 462 float - REC: records in analysis;
+#X text 25 499 bang - PLAY: generates new note;
 #X text 96 587 NONE;
 #X text 96 629 * = default;
 #X text 43 649 -dim (f) = sets analysis dimension (12*);
-#X text 21 437 "mode (f)" - 0: play mode \, 1: rec mode;
-#X text 26 420 "dim (f)" - sets dim for analysis \, clears old one
+#X text 21 426 "mode (f)" - 0: play mode \, 1: rec mode;
+#X text 26 409 "dim (f)" - sets dim for analysis \, clears old one
 ;
-#X text 23 456 "offset (f)" - sets offset of pitch classes;
+#X text 23 445 "offset (f)" - sets offset of pitch classes;
 #X text 50 669 -offset (f) = sets offset of pitch classes (0*);
 #X text 48 690 -seed (f) = sets random seed;
 #X text 89 603 Note: defaults to play mode;
@@ -63,10 +62,10 @@
 #X obj 77 223 pdkm/dkmkv;
 #X text 114 41 first-order markov analysis/synthesis;
 #X text 19 68 first-order markov analysis (defaults to 0-11;
-#X text 63 488 PLAY: sets prev note \, generates new note;
-#X connect 11 0 40 0;
-#X connect 12 0 40 0;
-#X connect 13 0 40 0;
-#X connect 15 0 40 0;
-#X connect 16 0 40 0;
-#X connect 40 0 14 0;
+#X text 63 477 PLAY: sets prev note \, generates new note;
+#X connect 11 0 39 0;
+#X connect 12 0 39 0;
+#X connect 13 0 39 0;
+#X connect 15 0 39 0;
+#X connect 16 0 39 0;
+#X connect 39 0 14 0;
