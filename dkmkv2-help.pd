@@ -1,4 +1,4 @@
-#N canvas 1212 164 458 791 12;
+#N canvas 1210 166 458 791 12;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
 #X text 290 9 Derek Kwan \, 2016;
@@ -23,7 +23,6 @@
 #X text 1 0 KEYWORDS dkmkv2 second-order markov float;
 #X text 2 38 DESCRIPTION second-order markov analysis/synthesis;
 #X restore 23 753 pd META;
-#X text 104 550 1) signal~ filtered input;
 #X obj 16 623 cnv 15 420 120 empty empty flags 20 12 0 15 -232576 -66577
 0;
 #X text 19 68 second-order markov analysis (defaults to 0-11;
@@ -65,9 +64,10 @@
 #X text 175 150 2;
 #X text 128 138 3;
 #X text 46 156 4;
-#X connect 13 0 17 0;
-#X connect 14 0 17 0;
-#X connect 15 0 17 0;
+#X text 104 550 1) float - generated output;
+#X connect 12 0 16 0;
+#X connect 13 0 16 0;
+#X connect 14 0 16 0;
+#X connect 16 0 15 0;
 #X connect 17 0 16 0;
-#X connect 18 0 17 0;
-#X connect 19 0 17 0;
+#X connect 18 0 16 0;
