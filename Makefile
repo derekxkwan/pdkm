@@ -30,6 +30,7 @@ dkmagikp~.class.sources = src/dkmagikp.c
 dkstut~.class.sources = src/dkstut.c 
 dkmtx.class.sources = src/dkmtx.c 
 dkpop~.class.sources = src/dkpop.c $(dkrnd)
+dkmkv.class.sources = src/dkmkv.c $(dkrnd)
 dkmkv2.class.sources = src/dkmkv2.c $(dkrnd)
 dkenv~.class.sources = src/dkenv.c $(dkwtab)
 dkgpitch~.class.sources = src/dkgpitch.c $(dkwtab) $(dkrnd)

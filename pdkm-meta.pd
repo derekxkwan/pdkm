@@ -1,4 +1,4 @@
-#N canvas 251 255 366 130 12;
+#N canvas 249 257 366 130 12;
 #N canvas 536 270 528 213 META 0;
 #X text 2 80 VERSION 0.1;
 #X text 2 98 AUTHOR Derek Kwan;
@@ -11,7 +11,7 @@
 #X text -1 19 LICENSE GPL v3;
 #X restore 14 15 pd META;
 #X text 16 42 LIST OF OBJECTS;
-#N canvas 157 201 1257 703 externals 0;
+#N canvas 155 203 1257 703 externals 0;
 #X text 30 26 EXTERNALS;
 #X text 33 62 dkadsr~ - triggered adsr envelope generator;
 #X text 30 232 dkmtx - control-rate multiple metro;
@@ -22,28 +22,27 @@ of Godfried Toussaint;
 #X text 23 396 dklrnd - random values with triangular (linear) distribution
 ;
 #X text 26 443 dkmagikp~ - karplus-strong guitar synthesizer;
-#X text 530 92 dkrndl - generate list of random numbers within a given
+#X text 530 103 dkrndl - generate list of random numbers within a given
 range;
-#X text 528 201 dksawlim~ - bandlimited sawtooth wave generator;
-#X text 528 223 dksnbnk~ - sine oscillator bank;
-#X text 528 248 dksnbnkd~ - sine oscillator bank with separate envelopes
+#X text 528 212 dksawlim~ - bandlimited sawtooth wave generator;
+#X text 528 234 dksnbnk~ - sine oscillator bank;
+#X text 528 259 dksnbnkd~ - sine oscillator bank with separate envelopes
 with triggered output;
-#X text 533 298 dksnbnkr~ - sine oscillator bank with separate envelopes
+#X text 533 309 dksnbnkr~ - sine oscillator bank with separate envelopes
 and signal amplitude control;
-#X text 533 341 dksqlim~ - bandlimited square wave generator;
-#X text 536 368 dkscldeg - maps scale degrees to midi notes \, ported
+#X text 533 352 dksqlim~ - bandlimited square wave generator;
+#X text 536 379 dkscldeg - maps scale degrees to midi notes \, ported
 from SuperCollider;
 #X text 27 425 dkfm~ - fm synthesis oscillator;
-#X text 528 59 dkmkv2 - second-order markov generator;
 #X text 31 195 dkenv~ - triggered envelope generator from SuperCollider's
 Env;
 #X text 30 371 dkipls~ - impulse oscillator;
-#X text 529 74 dknumpat - number pattern list converter;
-#X text 530 124 dkpink~ - 1/f^alpha noise generator;
-#X text 535 407 dktanh~ - fast tanh approximation with pregain;
+#X text 529 85 dknumpat - number pattern list converter;
+#X text 530 135 dkpink~ - 1/f^alpha noise generator;
+#X text 535 418 dktanh~ - fast tanh approximation with pregain;
 #X text 35 123 dkclnoiz~ - output -1 or 1 randomly;
-#X text 534 423 dkwesley~ - bitcrusher/downsampler;
-#X text 533 437 dkzd~ - sample-accurate delay;
+#X text 534 434 dkwesley~ - bitcrusher/downsampler;
+#X text 533 448 dkzd~ - sample-accurate delay;
 #X text 37 101 dkclik~ - triggered sample-length impulses;
 #X text 28 300 dkernd - random values with exponential distribution
 ;
@@ -53,11 +52,13 @@ Env;
 ;
 #X text 34 141 dkcmb~ - comb filter;
 #X text 34 157 dkctr - counter;
-#X text 530 145 dkpop~ - random impulses of adjustable density;
-#X text 532 171 dkrpt~ - repeater with optional zero-indexed counter
+#X text 530 156 dkpop~ - random impulses of adjustable density;
+#X text 532 182 dkrpt~ - repeater with optional zero-indexed counter
 ;
+#X text 526 70 dkmkv2 - second-order markov generator;
+#X text 525 55 dkmkv - first-order markov generator;
 #X restore 153 73 pd externals;
-#N canvas 306 135 832 331 abstractions 0;
+#N canvas 304 137 832 331 abstractions 0;
 #X text 9 7 ABSTRACTIONS;
 #X text 13 189 dkmbang - bang multiplier;
 #X text 18 215 dkmidirt - midi real-time message parser;

@@ -48,6 +48,7 @@ EXTERNALS (compiled c code):
 	- dklrnd - random values with triangular (linear) distribution
 	- dkipls~ - impulse oscillator
 	- dkmagikp~ - karplus-strong guitar synthesizer
+	- dkmkv - first-order markov generator
 	- dkmkv2 - second-order markov generator
 	- dkmtx - control-rate multiple metro
 	- dknumpat - number pattern list converter

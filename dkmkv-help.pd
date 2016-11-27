@@ -1,0 +1,72 @@
+#N canvas 1208 168 458 791 12;
+#X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
+0;
+#X text 290 9 Derek Kwan \, 2016;
+#X obj 8 36 cnv 15 420 30 empty empty dkmkv 20 12 0 20 -232576 -66577
+0;
+#X obj 17 301 cnv 15 420 240 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 17 547 cnv 15 420 60 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#X obj 16 585 cnv 15 420 150 empty empty args 20 12 0 15 -261682 -66577
+0;
+#N canvas 946 283 476 220 META 0;
+#X text 0 123 VERSION 0.1;
+#X text 0 141 AUTHOR Derek Kwan;
+#X text 1 159 RELEASE_DATE 2016;
+#X text 2 178 WEBSITE http://www.derekxkwan.com/code/puredata-code.html
+;
+#X text -1 103 LIBRARY pdkm;
+#X text 0 19 LICENSE GPL v2;
+#X text 0 57 INLET_0 float \, message \, bang;
+#X text 1 81 OUTLET_0 float;
+#X text 1 0 KEYWORDS dkmkv first-order markov float;
+#X text 2 38 DESCRIPTION first-order markov analysis/synthesis;
+#X restore 23 753 pd META;
+#X obj 16 623 cnv 15 420 120 empty empty flags 20 12 0 15 -232576 -66577
+0;
+#X text 19 86 pitch classes but can change). "rec" mode records;
+#X text 16 102 the incoming pitch classes \, "play" mode generates
+;
+#X text 16 119 new ones based on analyzed data;
+#X msg 80 158 rec;
+#X msg 127 159 play;
+#X obj 61 178 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 77 248 5 0 0 0 - - -, f 5;
+#X msg 172 173 0 \, 0 \, 3 \, 2 \, 0 \, 0 \, 2 \, 0 \, 3 \, 1;
+#X msg 191 217 dump;
+#X text 96 304 1) "rec" - record mode;
+#X text 28 320 "play" - play mode;
+#X text 29 337 "clear" - clears analysis;
+#X text 27 351 "prev" - sets previous note;
+#X text 29 370 "prev2" - sets previous previous note;
+#X text 36 387 "dump" - prints analysis to pd window;
+#X text 31 404 "seed" - change random seed;
+#X text 28 473 float - REC: records in analysis;
+#X text 25 510 bang - PLAY: generates new note;
+#X text 96 587 NONE;
+#X text 96 629 * = default;
+#X text 43 649 -dim (f) = sets analysis dimension (12*);
+#X text 21 437 "mode (f)" - 0: play mode \, 1: rec mode;
+#X text 26 420 "dim (f)" - sets dim for analysis \, clears old one
+;
+#X text 23 456 "offset (f)" - sets offset of pitch classes;
+#X text 50 669 -offset (f) = sets offset of pitch classes (0*);
+#X text 48 690 -seed (f) = sets random seed;
+#X text 89 603 Note: defaults to play mode;
+#X text 76 137 1;
+#X text 175 150 2;
+#X text 128 138 3;
+#X text 46 156 4;
+#X text 104 550 1) float - generated output;
+#X obj 77 223 pdkm/dkmkv;
+#X text 114 41 first-order markov analysis/synthesis;
+#X text 19 68 first-order markov analysis (defaults to 0-11;
+#X text 63 488 PLAY: sets prev note \, generates new note;
+#X connect 11 0 40 0;
+#X connect 12 0 40 0;
+#X connect 13 0 40 0;
+#X connect 15 0 40 0;
+#X connect 16 0 40 0;
+#X connect 40 0 14 0;
