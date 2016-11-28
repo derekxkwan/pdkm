@@ -1,4 +1,4 @@
-#N canvas 366 112 447 851 12;
+#N canvas 364 114 447 851 12;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
 #X text 290 9 Derek Kwan \, 2016;
@@ -34,10 +34,9 @@
 #X msg 127 159 play;
 #X obj 61 178 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X floatatom 77 248 5 0 0 0 - - -, f 5;
 #X obj 77 223 pdkm/dkmkv2;
 #X msg 172 173 0 \, 0 \, 3 \, 2 \, 0 \, 0 \, 2 \, 0 \, 3 \, 1;
-#X msg 191 217 dump;
+#X msg 175 201 dump;
 #X text 96 304 1) "rec" - record mode;
 #X text 28 320 "play" - play mode;
 #X text 29 337 "clear" - clears analysis;
@@ -68,9 +67,12 @@
 ;
 #X text 27 472 "outn (f)" - number of notes to output each time;
 #X text 59 515 generates new note(s);
-#X connect 12 0 16 0;
-#X connect 13 0 16 0;
-#X connect 14 0 16 0;
+#X msg 224 205 outn 2;
+#X obj 77 248 print dkmkv2;
+#X connect 12 0 15 0;
+#X connect 13 0 15 0;
+#X connect 14 0 15 0;
+#X connect 15 0 47 0;
 #X connect 16 0 15 0;
-#X connect 17 0 16 0;
-#X connect 18 0 16 0;
+#X connect 17 0 15 0;
+#X connect 46 0 15 0;
