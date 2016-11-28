@@ -21,6 +21,7 @@ typedef struct _dkmkv2 {
         int x_dim; //dimensions of the table
         t_float x_prev; //previous note
         t_float x_prev2; //previous note to the previous note
+        int x_outn; //number of ints to output each query
         uint32_t *** x_table; //first  = first note, second = second note, third = quanities of note
          //note: leave an extra entry in third for total notes
 
@@ -101,6 +102,11 @@ static void dkmkv2_clear(t_dkmkv2 *x){
     x->x_prev = x->x_offset;
     x->x_num = 0;
 
+}
+
+static void dkmkv2_outn(t_dkmkv2 *x, t_float _outn){
+    int outn = _outn > 0 ? (int)_outn : 1;
+    x->x_outn = outn;
 }
 
 static void dkmkv2_dim(t_dkmkv2 *x, t_float _dim){
@@ -247,6 +253,7 @@ static void *dkmkv2_new(t_symbol * s, int argc, t_atom * argv){
         //defaults
         int dim = MKV2DIM;
         int offset = 0;
+        t_float outn = 1;
         t_float seed = 0;
         while(argc){
             if(argv->a_type == A_FLOAT){
@@ -278,6 +285,9 @@ static void *dkmkv2_new(t_symbol * s, int argc, t_atom * argv){
                     else if(strcmp(curs->s_name, "-seed") == 0){
                         setseed = 1;
                         seed = curf;
+                        }
+                    else if(strcmp(curs->s_name, "-outn") == 0){
+                        outn = curf;
                         };
                     argc-=2;
                     argv+=2;
@@ -314,6 +324,8 @@ static void *dkmkv2_new(t_symbol * s, int argc, t_atom * argv){
             arr[i][j] = (uint32_t *)calloc((dim+1),sizeof(uint32_t));
             };
         };
+
+        dkmkv2_outn(x, outn);
         if(arr){
             x->x_table = arr;
         }
@@ -346,9 +358,22 @@ static void dkmkv2_play(t_dkmkv2 * x){
 
 static void dkmkv2_bang(t_dkmkv2 *x){
     if(x->x_mode == 0){ 
+        int nval;
+        int outn = x->x_outn;
         //if in play mode, get next note
-        int nval = dkmkv2_getnext(x); 
-	outlet_float(x->x_obj.ob_outlet, (t_float)nval);
+        if(outn == 1){
+            nval = dkmkv2_getnext(x);
+	    outlet_float(x->x_obj.ob_outlet, (t_float)nval);
+        }
+        else{
+            int i;
+            t_atom outlist[outn];
+            for(i=0; i<outn; i++){  
+                nval = dkmkv2_getnext(x);
+		SETFLOAT((outlist+i), (t_float)nval);
+             };
+	        outlet_list(x->x_obj.ob_outlet, &s_list, outn, outlist);
+        };
     };
 }
 
@@ -361,8 +386,7 @@ static void dkmkv2_float(t_dkmkv2 *x, t_float f){
         //else in play mode, count it as a bang and make it prev, scooting everything over
         x->x_prev2 = x->x_prev;
         x->x_prev = bmap(x,f);
-        int nval = dkmkv2_getnext(x);
-	outlet_float(x->x_obj.ob_outlet, (t_float)nval);
+        dkmkv2_bang(x); 
     };
 }
 
@@ -379,6 +403,7 @@ void dkmkv2_setup(void){
 	class_addmethod(dkmkv2_class, (t_method)dkmkv2_play, gensym("play"), 0);
 	class_addmethod(dkmkv2_class, (t_method)dkmkv2_clear, gensym("clear"), 0);
 	class_addmethod(dkmkv2_class, (t_method)dkmkv2_dump, gensym("dump"), 0);
+	class_addmethod(dkmkv2_class, (t_method)dkmkv2_outn, gensym("outn"), A_FLOAT, 0);
 	class_addbang(dkmkv2_class, dkmkv2_bang);
 	class_addfloat(dkmkv2_class, dkmkv2_float);
 }

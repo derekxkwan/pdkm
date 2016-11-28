@@ -1,16 +1,16 @@
-#N canvas 1210 166 458 791 12;
+#N canvas 366 112 447 851 12;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
 #X text 290 9 Derek Kwan \, 2016;
 #X obj 8 36 cnv 15 420 30 empty empty dkmkv2 20 12 0 20 -232576 -66577
 0;
-#X obj 17 301 cnv 15 420 240 empty empty inlet 20 12 0 15 -261682 -66577
+#X obj 17 301 cnv 15 420 260 empty empty inlet 20 12 0 15 -261682 -66577
 0;
-#X obj 17 547 cnv 15 420 60 empty empty outlet 20 12 0 15 -232576 -66577
+#X obj 18 567 cnv 15 420 60 empty empty outlet 20 12 0 15 -232576 -66577
 0;
-#X obj 16 585 cnv 15 420 150 empty empty args 20 12 0 15 -261682 -66577
+#X obj 17 605 cnv 15 420 150 empty empty args 20 12 0 15 -261682 -66577
 0;
-#N canvas 948 281 476 220 META 0;
+#N canvas 946 283 476 220 META 0;
 #X text 0 123 VERSION 0.1;
 #X text 0 141 AUTHOR Derek Kwan;
 #X text 1 159 RELEASE_DATE 2016;
@@ -22,8 +22,8 @@
 #X text 1 81 OUTLET_0 float;
 #X text 1 0 KEYWORDS dkmkv2 second-order markov float;
 #X text 2 38 DESCRIPTION second-order markov analysis/synthesis;
-#X restore 23 753 pd META;
-#X obj 16 623 cnv 15 420 120 empty empty flags 20 12 0 15 -232576 -66577
+#X restore 21 769 pd META;
+#X obj 17 643 cnv 15 420 120 empty empty flags 20 12 0 15 -232576 -66577
 0;
 #X text 19 68 second-order markov analysis (defaults to 0-11;
 #X text 19 86 pitch classes but can change). "rec" mode records;
@@ -45,26 +45,29 @@
 #X text 29 370 "prev2" - sets previous previous note;
 #X text 36 387 "dump" - prints analysis to pd window;
 #X text 31 404 "seed" - change random seed;
-#X text 28 473 float - REC: records in analysis;
-#X text 63 488 PLAY: prev note becomes prev2 \, sets prev note;
-#X text 62 502 generates new note;
-#X text 25 519 bang - PLAY: generates new note;
-#X text 96 587 NONE;
-#X text 96 629 * = default;
-#X text 43 649 -dim (f) = sets analysis dimension (12*);
+#X text 25 486 float - REC: records in analysis;
+#X text 60 501 PLAY: prev note becomes prev2 \, sets prev note;
+#X text 97 607 NONE;
+#X text 97 649 * = default;
+#X text 16 662 -dim (f) = sets analysis dimension (12*);
 #X text 21 437 "mode (f)" - 0: play mode \, 1: rec mode;
 #X text 26 420 "dim (f)" - sets dim for analysis \, clears old one
 ;
 #X text 23 456 "offset (f)" - sets offset of pitch classes;
-#X text 50 669 -offset (f) = sets offset of pitch classes (0*);
-#X text 48 690 -seed (f) = sets random seed;
-#X text 89 603 Note: defaults to play mode;
+#X text 15 681 -offset (f) = sets offset of pitch classes (0*);
+#X text 15 702 -seed (f) = sets random seed;
+#X text 90 623 Note: defaults to play mode;
 #X text 114 41 second-order markov analysis/synthesis;
 #X text 76 137 1;
 #X text 175 150 2;
 #X text 128 138 3;
 #X text 46 156 4;
-#X text 104 550 1) float - generated output;
+#X text 105 570 1) float - generated output;
+#X text 22 532 bang - PLAY: generates new note(s);
+#X text 17 721 -outn (f) = number of notes to output each time (1*)
+;
+#X text 27 472 "outn (f)" - number of notes to output each time;
+#X text 59 515 generates new note(s);
 #X connect 12 0 16 0;
 #X connect 13 0 16 0;
 #X connect 14 0 16 0;
