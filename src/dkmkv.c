@@ -249,7 +249,11 @@ static void *dkmkv_new(t_symbol * s, int argc, t_atom * argv){
             else{
                 if(argc >= 2){
                     t_symbol * curs = atom_getsymbolarg(0, argc, argv);
+                    argc--;
+                    argv++;
                     t_float curf = atom_getfloatarg(1, argc, argv);
+                    argc--;
+                    argv++;
                     if(strcmp(curs->s_name, "-dim") == 0){
                         dim = (int)curf;
                         }
@@ -264,8 +268,9 @@ static void *dkmkv_new(t_symbol * s, int argc, t_atom * argv){
                         outn = curf;
                         };
 
-                    argc-=2;
-                    argv+=2;
+                }
+                else{
+                    goto errstate;
                 };
 
             };
