@@ -1,4 +1,4 @@
-#N canvas 1202 174 458 791 12;
+#N canvas 1200 176 458 791 12;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
 #X text 290 9 Derek Kwan \, 2016;
@@ -29,12 +29,11 @@
 #X text 16 102 the incoming pitch classes \, "play" mode generates
 ;
 #X text 16 119 new ones based on analyzed data;
-#X msg 80 158 rec;
-#X msg 127 159 play;
-#X obj 61 178 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X msg 44 154 rec;
+#X msg 91 155 play;
+#X obj 25 174 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 172 173 0 \, 0 \, 3 \, 2 \, 0 \, 0 \, 2 \, 0 \, 3 \, 1;
-#X msg 191 217 dump;
+#X msg 181 197 dump;
 #X text 96 304 1) "rec" - record mode;
 #X text 28 320 "play" - play mode;
 #X text 29 337 "clear" - clears analysis;
@@ -52,12 +51,11 @@
 #X text 15 682 -offset (f) = sets offset of pitch classes (0*);
 #X text 13 702 -seed (f) = sets random seed;
 #X text 89 603 Note: defaults to play mode;
-#X text 76 137 1;
-#X text 175 150 2;
-#X text 128 138 3;
-#X text 46 156 4;
+#X text 40 133 1;
+#X text 139 146 2;
+#X text 92 134 3;
+#X text 10 152 4;
 #X text 104 550 1) float - generated output;
-#X obj 77 223 pdkm/dkmkv;
 #X text 114 41 first-order markov analysis/synthesis;
 #X text 19 68 first-order markov analysis (defaults to 0-11;
 #X text 17 721 -outn (f) = number of notes to output each time (1*)
@@ -67,10 +65,13 @@
 #X text 27 461 "outn (f)" - number of notes to output each time;
 #X msg 268 199 outn 2;
 #X obj 77 248 print dkmkv;
-#X connect 11 0 37 0;
-#X connect 12 0 37 0;
-#X connect 13 0 37 0;
-#X connect 14 0 37 0;
-#X connect 15 0 37 0;
-#X connect 37 0 45 0;
-#X connect 44 0 37 0;
+#X msg 136 169 10 \, 10 \, 13 \, 12 \, 10 \, 10 \, 12 \, 10 \, 13 \,
+11;
+#X obj 77 223 pdkm/dkmkv -offset 10 -outn 5;
+#X connect 11 0 45 0;
+#X connect 12 0 45 0;
+#X connect 13 0 45 0;
+#X connect 14 0 45 0;
+#X connect 42 0 45 0;
+#X connect 44 0 45 0;
+#X connect 45 0 43 0;
