@@ -284,7 +284,7 @@ static void *dkmkv2_new(t_symbol * s, int argc, t_atom * argv){
                         dim = (int)curf;
                         }
                     else if(strcmp(curs->s_name, "-offset") == 0){
-                        offset = (int)offset;
+                        offset = (int)curf;
                         }
                     else if(strcmp(curs->s_name, "-seed") == 0){
                         setseed = 1;
