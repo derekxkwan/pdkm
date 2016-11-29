@@ -83,7 +83,7 @@ static void dkmkv_clear(t_dkmkv *x){
     int dim = x->x_dim;
     //0 out array
     for(i=0;i<dim; i++){
-        for(j=0;j<dim; j++){
+        for(j=0;j<=dim; j++){
             x->x_table[i][j] = 0;
       };
     };
