@@ -30,6 +30,7 @@ ABSTRACTIONS (written in pd vanilla):
 	- dkvancomp~ - vanilla compressor/limiter
 	- dkvandrk - vanilla drunk random number generator 
 	- dkvanphs~ - vanilla 3-delay line phaser/chorus effect 
+	- dkvavg - vanilla float averager
 	- dkvuzi - vanilla uzi/multiple banger
 
 EXTERNALS (compiled c code):
