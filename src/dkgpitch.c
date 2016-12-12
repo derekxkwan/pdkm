@@ -17,7 +17,7 @@ typedef struct _dkgpitch_tilde {
 	t_object x_obj;
 	double x_dbuf[PSGLEN]; //delay table
         double x_phs; //phasor for the rotating tape head, between 0 and 1
-        dkrnd * x_rnd; //random number generator
+        t_dkrnd * x_rnd; //random number generator
 	int x_wh; //write head for stutter buf
 	//readhead will be writehead + sr*0.001*msdelay for each of the 4 grains
 	double * x_win; //grain window pointer

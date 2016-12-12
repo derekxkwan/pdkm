@@ -14,7 +14,7 @@ typedef struct _dkipls_tilde {
 	double x_conv; //1/samprate, duration of one sample in seconds
         int x_newi; //if we are due a new impulse
         int x_rndamp; //if we want random amplitudes
-        dkrnd * x_rnd;
+        t_dkrnd * x_rnd;
 	t_inlet *x_phaselet;
         t_inlet *x_randlet;
 	t_outlet *x_outlet;

@@ -14,7 +14,7 @@ static t_class *dkmkv_class;
 
 typedef struct _dkmkv {
 	t_object x_obj;
-        dkrnd *x_rand; //pointer to my dkrnd class
+        t_dkrnd *x_rand; //pointer to my dkrnd class
         int x_offset; //offset in input
         int x_num; //number of notes input so far, won't go past two.
         t_float x_mode; //0 = play mode, 1 = rec mode

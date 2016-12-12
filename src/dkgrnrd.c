@@ -9,10 +9,8 @@ static t_class *dkgrnrd_tilde_class;
 typedef struct _dkgrnrd_tilde
 {
     t_object x_obj;
-	//tabread stuff
-    int x_npoints;
-    t_word *x_vec;
-    t_symbol *x_arrayname;
+    t_dkbuf *x_dkbuf;//buffer helper struct
+    t_dkrnd *x_dkrnd;//rand helper struct
     t_float x_f;
 	//attributes of grains 0-numgrains
 	int x_grainsize[DKGNYNUMGR]; //grainsize in samps
@@ -51,21 +49,11 @@ typedef struct _dkgrnrd_tilde
 	t_outlet *x_outlet;
 } t_dkgrnrd_tilde;
 
-static double exprseed(void){//range 0 to 1
-	double retval;
-	static unsigned long int exprandseed = 1997333137;
-	exprandseed = exprandseed * 2891336453 + 1500450271;
-	exprandseed = exprandseed % 4294967296;
-	exprandseed &= 0x7fffffff;
-	retval = exprandseed * (1.f/2147483647.f); //biggest num in 32-bit div 2
-	return retval;
-}
-
 
 static double getreadscale(t_dkgrnrd_tilde *x, float transpose){
 	double dbltp = (double) transpose;
 	if(x->x_randtp){
-		dbltp += ((double)x->x_rtpamt * ((exprseed()*2.f)-1.f));
+		dbltp += ((double)x->x_rtpamt * ((dkrnd_next(x->x_dkrnd)*2.f)-1.f));
 	};
 	return pow(2.f, dbltp/12.f);
 
@@ -255,43 +243,42 @@ static void *dkgrnrd_tilde_new(t_symbol *s, int argc, t_atom *argv)
 {
 	int i;
     t_dkgrnrd_tilde *x = (t_dkgrnrd_tilde *)pd_new(dkgrnrd_tilde_class);
-	x->x_init=0;
-	if(argc == 0){
-		goto errstate;
-	}
-	else{
-		float sr = sys_getsr(); //sample rate in seconds
-		sr *= .001f; //sample rate in ms
-		x->x_vec = 0;
-		floatinlet_new(&x->x_obj, &x->x_trans);
-		floatinlet_new(&x->x_obj, &x->x_offset);
-		x->x_outlet = outlet_new(&x->x_obj, gensym("signal"));
-		x->x_f = 0;
-		x->m_sr = (double) sr; //samples per millisecond
-		t_symbol *name = atom_getsymbolarg(0, argc, argv);
+    t_symbol * bufname = NULL;
+
+    //some init/default stuff
+	x->x_init=0;//we haven't init yet
+        float sr = sys_getsr(); //sample rate in seconds
+        sr *= .001f; //sample rate in ms
+        floatinlet_new(&x->x_obj, &x->x_trans);
+        floatinlet_new(&x->x_obj, &x->x_offset);
+        x->x_outlet = outlet_new(&x->x_obj, gensym("signal"));
+        x->x_f = 0;
+        x->m_sr = (double) sr; //samples per millisecond
+        x->x_overlap = DKGNYOV;
+        x->x_randsz = DKGNYRNDSZ;
+        x->x_rszamt = DKGNYRSZAMT;
+        x->x_randamp = DKGNYRNDAMP;
+        x->x_rampamt = DKGNYRAMPAMT;
+        x->x_randtp = DKGNYRNDTP;
+        x->x_rtpamt = DKGNYRTPAMT;
+        x->x_grainrsmp = (int)(DKGNYGRATEMS * x->m_sr);
+        x->x_amp = DKGNYAMP;
+        x->x_trans = DKGNYTP;
+        x->x_posvar = DKGNYPOSVAR;
+        x->x_hopvar = DKGNYHOPVAR;
+        x->x_offset = 0;
+        x->x_env = DKGNYENV;
+        x->x_numact = 0;
+
+        //parse bufname first if exists
+        if(argc){
 		if(argv -> a_type == A_SYMBOL){
-			x->x_arrayname = name;
-			argc--;
-			argv++;
-			x->x_overlap = DKGNYOV;
-			x->x_randsz = DKGNYRNDSZ;
-			x->x_rszamt = DKGNYRSZAMT;
-			x->x_randamp = DKGNYRNDAMP;
-			x->x_rampamt = DKGNYRAMPAMT;
-			x->x_randtp = DKGNYRNDTP;
-			x->x_rtpamt = DKGNYRTPAMT;
-			x->x_grainrsmp = (int)(DKGNYGRATEMS * x->m_sr);
-			x->x_amp = DKGNYAMP;
-			x->x_trans = DKGNYTP;
-			x->x_posvar = DKGNYPOSVAR;
-			x->x_hopvar = DKGNYHOPVAR;
-			x->x_offset = 0;
-			x->x_env = DKGNYENV;
-			x->x_numact = 0;
-		}
-		else{
-			goto errstate;
-		};
+		    bufname = atom_getsymbolarg(0, argc, argv);
+		    argc--;
+		    argv++;
+                };
+        };
+
 		while(argc > 0){
 			t_symbol *arg0 = atom_getsymbolarg(0, argc, argv);
 			t_symbol *arg1 = atom_getsymbolarg(1, argc, argv);
@@ -433,22 +420,25 @@ static void *dkgrnrd_tilde_new(t_symbol *s, int argc, t_atom *argv)
 			x->x_winpos[i] = 0.f; 
 		};
 		dkgrnrd_tilde_makeenv(x, x->x_env);
+
+                x->x_dkbuf = dkbuf_init((t_class *)x,bufname);
+                x->x_dkrnd = dkrnd_new(0);
 		x->x_init = 1;
     return (x);
-	};
 	errstate:
-		pd_error(x, "grainyrd~: improper args");
+		pd_error(x, "dkgrnrd~: improper args");
 		return NULL;
 }
 
 static t_int *dkgrnrd_tilde_perform(t_int *w)
 {
     t_dkgrnrd_tilde *x = (t_dkgrnrd_tilde *)(w[1]);
+    t_dkbuf *b = x->x_dkbuf;
     t_sample *in = (t_sample *)(w[2]);
     t_sample *out = (t_sample *)(w[3]);
     int n = (int)(w[4]);
     int maxindex;
-    t_word *buf = x->x_vec;
+    t_word *buf = b->b_vec;
     int i, j;
 	int grainrsmp = x->x_grainrsmp;
 	int overlap = x->x_overlap;
@@ -464,7 +454,7 @@ static t_int *dkgrnrd_tilde_perform(t_int *w)
 	double hopvar = x->x_hopvar; 
 	int offset = x->x_offset;
     
-	maxindex = x->x_npoints - 1;
+	maxindex = b->b_npts - 1;
     if(maxindex<0) goto zero;
     if (!buf) goto zero;
 
@@ -483,12 +473,12 @@ static t_int *dkgrnrd_tilde_perform(t_int *w)
 			//init new grain
 			int cursz = grainsz;
 			if(randsz){
-				cursz += (int)(exprseed()*((double)m_sr*rszamt));
+				cursz += (int)(dkrnd_next(x->x_dkrnd)*((double)m_sr*rszamt));
 			};
 			int curidx = getnextgr(x); //getting next grain idx
 			x->x_grainsize[curidx] = cursz;
 			x->x_grainpos[curidx] = 0;
-			int curpos = index  + (int)((2.f*exprseed()-1.f)*(m_sr*posvar));
+			int curpos = index  + (int)((2.f*dkrnd_next(x->x_dkrnd)-1.f)*(m_sr*posvar));
 			if(curpos < 0){
 				curpos = 0;
 			}
@@ -499,11 +489,11 @@ static t_int *dkgrnrd_tilde_perform(t_int *w)
 			x->x_grainstep[curidx] = getreadscale(x, curtp);
 			x->x_winmap[curidx] = (double)DKGNYM/(double)cursz;
 			x->x_winpos[curidx] = 0.f;
-			x->x_nextgr = grainrsmp + (int)(exprseed()*((double)grainrsmp*hopvar));
+			x->x_nextgr = grainrsmp + (int)(dkrnd_next(x->x_dkrnd)*((double)grainrsmp*hopvar));
 			//post("%d", x->x_nextgr);
 			x->x_grainamp[curidx] = amp;
 			if(randamp){
-				x->x_grainamp[curidx] += (rampamt * (2.f*exprseed()-1.f));
+				x->x_grainamp[curidx] += (rampamt * (2.f*dkrnd_next(x->x_dkrnd)-1.f));
 			};
 			x->x_numact++;
 
@@ -561,26 +551,12 @@ static t_int *dkgrnrd_tilde_perform(t_int *w)
 
 static void dkgrnrd_tilde_set(t_dkgrnrd_tilde *x, t_symbol *s)
 {
-    t_garray *a;
-
-    x->x_arrayname = s;
-    if (!(a = (t_garray *)pd_findbyclass(x->x_arrayname, garray_class)))
-    {
-        if (*s->s_name)
-            pd_error(x, "grainyrd~: %s: no such array", x->x_arrayname->s_name);
-        x->x_vec = 0;
-    }
-    else if (!garray_getfloatwords(a, &x->x_npoints, &x->x_vec))
-    {
-        pd_error(x, "%s: bad template for grainyrd~", x->x_arrayname->s_name);
-        x->x_vec = 0;
-    }
-    else garray_usedindsp(a);
+    dkbuf_setarray(x->x_dkbuf, s);
 }
 
 static void dkgrnrd_tilde_dsp(t_dkgrnrd_tilde *x, t_signal **sp)
 {
-    dkgrnrd_tilde_set(x, x->x_arrayname);
+    dkbuf_checkdsp(x->x_dkbuf);
 	x->x_nextgr = 0;
 	
     dsp_add(dkgrnrd_tilde_perform, 4, x,
@@ -596,6 +572,8 @@ static void dkgrnrd_tilde_dsp(t_dkgrnrd_tilde *x, t_signal **sp)
 
 static void *dkgrnrd_tilde_free(t_dkgrnrd_tilde *x)
 {
+        dkbuf_free(x->x_dkbuf);
+        dkrnd_free(x->x_dkrnd);
 	outlet_free(x->x_outlet);
 	return (void *)x;
 }

@@ -12,7 +12,7 @@ static t_class *dkclnoiz_tilde_class;
 typedef struct _dkclnoiz_tilde {
 	t_object x_obj;
 	t_float x_in; //dummy
-        dkrnd * x_rnd;
+        t_dkrnd * x_rnd;
 	t_outlet *x_outlet;
 } t_dkclnoiz_tilde;
 

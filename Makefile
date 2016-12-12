@@ -5,6 +5,8 @@ lib.name = pdkm
 # headers
 dkrnd := src/dkrnd.c
 dkwtab := src/dkwtab.c
+dktime := src/dktime.c
+dkbuf := src/dkbuf.c
 
 dkcmb~.class.sources = src/dkcmb.c 
 dkctr.class.sources = src/dkctr.c 
@@ -16,7 +18,8 @@ dkfm~.class.sources = src/dkfm.c
 dklrnd.class.sources = src/dklrnd.c 
 dkscldeg.class.sources = src/dkscldeg.c 
 dkeuclid.class.sources = src/dkeuclid.c 
-dkgrnrd~.class.sources = src/dkgrnrd.c 
+dkgrnrd~.class.sources = src/dkgrnrd.c $(dkrnd) $(dkbuf) 
+dkmbang.class.sources = src/dkmbang.c $(dktime)
 dksawlim~.class.sources = src/dksawlim.c  $(dkwtab)
 dksqlim~.class.sources = src/dksqlim.c  $(dkwtab)
 dksnbnkd~.class.sources = src/dksnbnkd.c $(dkwtab)
@@ -28,7 +31,7 @@ dkwesley~.class.sources = src/dkwesley.c
 dkadsr~.class.sources = src/dkadsr.c 
 dkmagikp~.class.sources = src/dkmagikp.c 
 dkstut~.class.sources = src/dkstut.c 
-dkmtx.class.sources = src/dkmtx.c 
+dkmtx.class.sources = src/dkmtx.c $(dktime)
 dkpop~.class.sources = src/dkpop.c $(dkrnd)
 dkmkv.class.sources = src/dkmkv.c $(dkrnd)
 dkmkv2.class.sources = src/dkmkv2.c $(dkrnd)

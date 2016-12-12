@@ -18,7 +18,7 @@ static t_class *dkpink_tilde_class;
 typedef struct _dkpink_tilde {
 	t_object x_obj;
 	t_float x_in; //dummy
-        dkrnd * x_rnd;
+        t_dkrnd * x_rnd;
         t_float x_alpha;
 	t_inlet *x_alphalet;
 	t_outlet *x_outlet;

@@ -10,7 +10,7 @@ typedef struct _dkpop_tilde {
 	t_object x_obj;
 	t_float x_dens; // number of impulses per second
         int x_sr; //sampling rate
-        dkrnd * x_rnd; //rand obj
+        t_dkrnd * x_rnd; //rand obj
 	t_outlet *x_outlet;
 } t_dkpop_tilde;
 

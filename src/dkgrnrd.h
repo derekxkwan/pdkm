@@ -1,6 +1,8 @@
 #include "m_pd.h"
 #include <math.h>
 #include <string.h>
+#include "dkbuf.h"
+#include "dkrnd.h"
 
 #ifndef DKGNYNUMGR //number of grains
 #define DKGNYNUMGR 300
