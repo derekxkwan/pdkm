@@ -42,7 +42,7 @@ dkpink~.class.sources = src/dkpink.c $(dkrnd)
 dkclnoiz~.class.sources = src/dkclnoiz.c $(dkrnd) 
 dkclik~.class.sources = src/dkclik.c 
 dknumpat.class.sources = src/dknumpat.c 
-dkzd~.class.sources = src/dkzd.c 
+dkzd~.class.sources = src/dkzd.c $(dkwtab) 
 
 datafiles =  pdkm-meta.pd \
 			 dkred~-help.pd \

@@ -1,10 +1,9 @@
 /* Copyright 2016 - Derek Kwan
  *  * Distributed under GPL v3 */
 
-
+#include <math.h>
 #include <stdlib.h>
-#include "m_pd.h"
-
+#include "dkwtab.h"
 
 #define DKZDBUF 4096 //default bufsize
 #define DKZDMAX 441000 //max buffer size
@@ -14,7 +13,6 @@ static t_class *dkzd_tilde_class;
 typedef struct _dkzd_tilde {
 	t_object x_obj;
 	t_float x_in; 
-	int x_z; //delay in samples
         double x_stb[DKZDBUF]; //stack buffer
         double * x_buf;//buffer pointer
         int x_alloc; //if allocated or not
@@ -32,16 +30,15 @@ static void dkzd_tilde_clear(t_dkzd_tilde *x){
     x->x_wh = 0;
 }
 
-static void dkzd_tilde_delay(t_dkzd_tilde *x, t_float f){
-    int del = (int)f;
+static void dkzd_tilde_delay(t_dkzd_tilde *x, t_float del){
     if(del < 0){
         del = 0;
     }
     else if(del >= x->x_sz){
-        del = x->x_sz -1;
+        del = (t_float)x->x_sz -1.;
     };
-    x->x_z = del;
 
+    pd_float((t_pd *)x->x_dellet, del);
 }
 
 static void dkzd_tilde_sz(t_dkzd_tilde *x, t_float f){
@@ -110,47 +107,59 @@ static void *dkzd_tilde_new(t_symbol *s, int argc, t_atom * argv){
             argv++;
         };
 	
+        
+	x->x_dellet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, &s_signal);
+        x->x_outlet = outlet_new(&x->x_obj, gensym("signal"));
+
+
         dkzd_tilde_sz(x, bufsz);
         dkzd_tilde_delay(x, del);
         dkzd_tilde_clear(x);
-        
-	x->x_dellet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("delay"));
-        x->x_outlet = outlet_new(&x->x_obj, gensym("signal"));
+
 	return (x);
 }
 
 static t_int *dkzd_tilde_perform(t_int *w){
 	 t_dkzd_tilde *x = (t_dkzd_tilde *)(w[1]);
 	 t_float *in = (t_float *)(w[2]);
-	t_float *out = (t_float *)(w[3]);
-	int n = (int)(w[4]);
+         t_float *indel = (t_float *)(w[3]);
+	t_float *out = (t_float *)(w[4]);
+	int n = (int)(w[5]);
 	int i;
         int sz = x->x_sz; //size of buffer
-        int z = x->x_z; //delay in samples
         for(i=0;i<n;i++){
             double output;
             double input = (double)in[i];
+            double z = (double)indel[i];//delay in samples
+
+            //bounds checking
+            if(z < 0){
+                z = 0;
+            }
+            else if(z >= sz){
+                z = (double)sz - 1.;
+            };
             int wh = x->x_wh; //writehead
 
             //write current input to buffer
             x->x_buf[wh] = input;
 
             //get delayed input from buffer
-            int rh = (wh + sz - z) % sz;
-            out[i] = x->x_buf[rh];
+            double rh = fmod((double)wh + (double)sz - z,sz);
+            out[i] = dkgetlin(x->x_buf, sz, rh);
             //increment
             x->x_wh = (wh + 1) % sz;
             
             
         };
-	return(w+5);
+	return(w+6);
 }
 
 static void dkzd_tilde_dsp(t_dkzd_tilde *x, t_signal **sp){
 
 	//(freq*tablelen)/(samplerate) = array values per sample to advance
 	// divide by tablelen to map to 0 to 1 range,..freq/samplerate
-	    dsp_add(dkzd_tilde_perform, 4, x, sp[0]->s_vec, sp[1]->s_vec, sp[0]->s_n);
+	    dsp_add(dkzd_tilde_perform, 5, x, sp[0]->s_vec, sp[1]->s_vec, sp[2]->s_vec, sp[0]->s_n);
 
 }
 
