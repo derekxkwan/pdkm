@@ -439,7 +439,9 @@ static t_int *dkgrnrd_tilde_perform(t_int *w)
     int n = (int)(w[4]);
     int maxindex;
     t_word *buf = b->b_vec;
-    int i, j;
+    if (!b->b_playable || !buf) goto zero;
+    else{
+        int i, j;
 	int grainrsmp = x->x_grainrsmp;
 	int overlap = x->x_overlap;
 	int grainsz = grainrsmp*overlap; //grainsize determined by grainrsmp * overlap
@@ -456,7 +458,6 @@ static t_int *dkgrnrd_tilde_perform(t_int *w)
     
 	maxindex = b->b_npts - 1;
     if(maxindex<0) goto zero;
-    if (!buf) goto zero;
 
     for (i = 0; i < n; i++)
     {
@@ -468,80 +469,81 @@ static t_int *dkgrnrd_tilde_perform(t_int *w)
         else if (index > maxindex)
             index = maxindex;
 
-		double output = 0.f;	
-		if(x->x_nextgr == 0){
-			//init new grain
-			int cursz = grainsz;
-			if(randsz){
-				cursz += (int)(dkrnd_next(x->x_dkrnd)*((double)m_sr*rszamt));
-			};
-			int curidx = getnextgr(x); //getting next grain idx
-			x->x_grainsize[curidx] = cursz;
-			x->x_grainpos[curidx] = 0;
-			int curpos = index  + (int)((2.f*dkrnd_next(x->x_dkrnd)-1.f)*(m_sr*posvar));
-			if(curpos < 0){
-				curpos = 0;
-			}
-			else if(curpos > maxindex){
-				curpos = maxindex;
-			};
-			x->x_grainstart[curidx] = curpos;
-			x->x_grainstep[curidx] = getreadscale(x, curtp);
-			x->x_winmap[curidx] = (double)DKGNYM/(double)cursz;
-			x->x_winpos[curidx] = 0.f;
-			x->x_nextgr = grainrsmp + (int)(dkrnd_next(x->x_dkrnd)*((double)grainrsmp*hopvar));
-			//post("%d", x->x_nextgr);
-			x->x_grainamp[curidx] = amp;
-			if(randamp){
-				x->x_grainamp[curidx] += (rampamt * (2.f*dkrnd_next(x->x_dkrnd)-1.f));
-			};
-			x->x_numact++;
+            double output = 0.f;	
+            if(x->x_nextgr == 0){
+                    //init new grain
+                    int cursz = grainsz;
+                    if(randsz){
+                            cursz += (int)(dkrnd_next(x->x_dkrnd)*((double)m_sr*rszamt));
+                    };
+                    int curidx = getnextgr(x); //getting next grain idx
+                    x->x_grainsize[curidx] = cursz;
+                    x->x_grainpos[curidx] = 0;
+                    int curpos = index  + (int)((2.f*dkrnd_next(x->x_dkrnd)-1.f)*(m_sr*posvar));
+                    if(curpos < 0){
+                            curpos = 0;
+                    }
+                    else if(curpos > maxindex){
+                            curpos = maxindex;
+                    };
+                    x->x_grainstart[curidx] = curpos;
+                    x->x_grainstep[curidx] = getreadscale(x, curtp);
+                    x->x_winmap[curidx] = (double)DKGNYM/(double)cursz;
+                    x->x_winpos[curidx] = 0.f;
+                    x->x_nextgr = grainrsmp + (int)(dkrnd_next(x->x_dkrnd)*((double)grainrsmp*hopvar));
+                    //post("%d", x->x_nextgr);
+                    x->x_grainamp[curidx] = amp;
+                    if(randamp){
+                            x->x_grainamp[curidx] += (rampamt * (2.f*dkrnd_next(x->x_dkrnd)-1.f));
+                    };
+                    x->x_numact++;
 
-		};
-		int graincount = 0;
-		for(j=0; j<DKGNYNUMGR; j++){
-			//add active grain check
-				int grnidx = x->x_actgn[j];
-				if(grnidx < DKGNYNUMGR){
-					graincount++;
-					double grnpos = x->x_grainpos[grnidx];
-					int grnst = x->x_grainstart[grnidx];
-					int curidx = (int)(grnst + grnpos);
-					double grnamp = x->x_grainamp[grnidx];
-					if(curidx > maxindex){
-						curidx = maxindex;
-					}
-					else if(curidx < 0){
-						curidx = 0;
-					};
-					double curout = buf[curidx].w_float*grnamp;//get current output for each grain times grain's amp;
-					int winidx = (int)x->x_winpos[grnidx];
-					if(winidx> DKGNYM - 1){
-						winidx = DKGNYM -1;
-					}
-					else if(winidx < 0){
-						winidx = 0;
-					};
-					curout *= x->x_win[winidx]; //window signal
-					output += curout; //add grain output to total output
+            };
+            int graincount = 0;
+            for(j=0; j<DKGNYNUMGR; j++){
+                    //add active grain check
+                            int grnidx = x->x_actgn[j];
+                            if(grnidx < DKGNYNUMGR){
+                                    graincount++;
+                                    double grnpos = x->x_grainpos[grnidx];
+                                    int grnst = x->x_grainstart[grnidx];
+                                    int curidx = (int)(grnst + grnpos);
+                                    double grnamp = x->x_grainamp[grnidx];
+                                    if(curidx > maxindex){
+                                            curidx = maxindex;
+                                    }
+                                    else if(curidx < 0){
+                                            curidx = 0;
+                                    };
+                                    double curout = buf[curidx].w_float*grnamp;//get current output for each grain times grain's amp;
+                                    int winidx = (int)x->x_winpos[grnidx];
+                                    if(winidx> DKGNYM - 1){
+                                            winidx = DKGNYM -1;
+                                    }
+                                    else if(winidx < 0){
+                                            winidx = 0;
+                                    };
+                                    curout *= x->x_win[winidx]; //window signal
+                                    output += curout; //add grain output to total output
 
-					//increment everything
-					x->x_winpos[grnidx] += x->x_winmap[grnidx];
-					x->x_grainpos[grnidx] += x->x_grainstep[grnidx];
-					if(x->x_grainpos[grnidx] > x->x_grainsize[grnidx]){
-						freegr(x, j);
-						x->x_numact--;
-					};
-					if(graincount >= x->x_numact){
-						break;
-					};
-				};
-		};
+                                    //increment everything
+                                    x->x_winpos[grnidx] += x->x_winmap[grnidx];
+                                    x->x_grainpos[grnidx] += x->x_grainstep[grnidx];
+                                    if(x->x_grainpos[grnidx] > x->x_grainsize[grnidx]){
+                                            freegr(x, j);
+                                            x->x_numact--;
+                                    };
+                                    if(graincount >= x->x_numact){
+                                            break;
+                                    };
+                            };
+            };
 	//	output *= (1.f/(double) graincount);
-      	output *= (1.f/(double) overlap);
+        	output *= (1.f/(double) overlap);
 		*out++ = output;
 		x->x_nextgr--;
-    }
+        }
+    };
     return (w+5);
  zero:
     while (n--) *out++ = 0;

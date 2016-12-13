@@ -21,6 +21,7 @@ void dkbuf_redraw(t_dkbuf *b)
             //there's something there and we can't redraw it?! uh oh
             pd_error(b->b_owner, "dkbuf: cannot redraw!");
         };
+
     };
 }
 
@@ -65,7 +66,7 @@ t_word *dkbuf_loadbuf(t_dkbuf *b, t_symbol * name, int *bufsize, int indsp, int 
 void dkbuf_clear(t_dkbuf *b)
 {
     b->b_npts = 0;
-    memset(b->b_vec, 0, sizeof(*b->b_vec));
+    memset(&b->b_vec, 0, sizeof(b->b_vec));
 }
 
 //cheecks if we can play the darn thing (not disabled, larger than minsize
@@ -91,14 +92,14 @@ void dkbuf_setminsize(t_dkbuf *b, int i)
 void dkbuf_loader(t_dkbuf *b, int complain)
 {
     dkbuf_clear(b);
-    b->b_npts = SHARED_INT_MAX;
+    //b->b_npts = SHARED_INT_MAX;
     if (b->b_bufname != &s_)
     {
 	b->b_vec= dkbuf_loadbuf(b, b->b_bufname, &b->b_npts, 1, complain);
     };
-    if (b->b_npts == SHARED_INT_MAX){
-        b->b_npts = 0;
-    };
+    //if (b->b_npts == SHARED_INT_MAX){
+    //    b->b_npts = 0;
+    //};
 }
 
 void dkbuf_initarray(t_dkbuf *b, t_symbol *name, int complain)
