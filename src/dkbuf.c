@@ -66,7 +66,7 @@ t_word *dkbuf_loadbuf(t_dkbuf *b, t_symbol * name, int *bufsize, int indsp, int 
 void dkbuf_clear(t_dkbuf *b)
 {
     b->b_npts = 0;
-    memset(&b->b_vec, 0, sizeof(b->b_vec));
+    memset(b->b_vec, 0, sizeof(*b->b_vec));
 }
 
 //cheecks if we can play the darn thing (not disabled, larger than minsize
@@ -130,12 +130,12 @@ void dkbuf_setarray(t_dkbuf *b, t_symbol *name)
 void *dkbuf_init(t_class *owner, t_symbol *bufname)
 {
     t_dkbuf *b = (t_dkbuf *)getbytes(sizeof(t_dkbuf));
-    t_float *vec;
+    t_word *vec;
     if (!bufname){
         bufname = &s_;
     };
     b->b_bufname = bufname;
-    vec = (t_float *)getbytes(sizeof(vec));
+    vec = (t_word *)getbytes(sizeof(vec));
     if(!vec){
         return 0;
     };
@@ -156,7 +156,7 @@ void *dkbuf_init(t_class *owner, t_symbol *bufname)
 void dkbuf_free(t_dkbuf *b)
 {
     if (b->b_vec){
-        freebytes(b->b_vec, sizeof(b->b_vec));
+        freebytes(b->b_vec, sizeof(*b->b_vec));
     };
     freebytes(b, sizeof(t_dkbuf));
 }

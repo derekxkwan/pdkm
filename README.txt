@@ -14,6 +14,7 @@ ABSTRACTIONS (written in pd vanilla):
         - dkfor - for loop
 	- dkincwr~ - incremental tabwriter
 	- dkloopplay~ - synced looper based around tabplay~
+	- dkloopwin~ - signal-driven loop windowing
 	- dkmbang - bang multiplier
 	- dkmidirt - abstraction to handle midi real-time messages
 	- dkms2smp - ms to samples
