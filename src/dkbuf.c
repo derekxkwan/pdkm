@@ -66,7 +66,6 @@ t_word *dkbuf_loadbuf(t_dkbuf *b, t_symbol * name, int *bufsize, int indsp, int 
 void dkbuf_clear(t_dkbuf *b)
 {
     b->b_npts = 0;
-    memset(b->b_vec, 0, sizeof(*b->b_vec));
 }
 
 //cheecks if we can play the darn thing (not disabled, larger than minsize
@@ -135,14 +134,13 @@ void *dkbuf_init(t_class *owner, t_symbol *bufname)
         bufname = &s_;
     };
     b->b_bufname = bufname;
-    vec = (t_word *)getbytes(sizeof(vec));
+    vec = (t_word *)getbytes(sizeof(b->b_vec));
     if(!vec){
         return 0;
     };
 
     b->b_owner = owner;
     b->b_npts = 0;
-    b->b_vec = vec;
     b->b_disabled = 0;
     b->b_playable = 0;
     b->b_minsize = 1;
@@ -155,9 +153,6 @@ void *dkbuf_init(t_class *owner, t_symbol *bufname)
 
 void dkbuf_free(t_dkbuf *b)
 {
-    if (b->b_vec){
-        freebytes(b->b_vec, sizeof(*b->b_vec));
-    };
     freebytes(b, sizeof(t_dkbuf));
 }
 
