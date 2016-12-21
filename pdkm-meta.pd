@@ -1,4 +1,4 @@
-#N canvas 256 274 366 130 12;
+#N canvas 252 278 366 130 12;
 #N canvas 536 270 528 213 META 0;
 #X text 2 80 VERSION 0.1;
 #X text 2 98 AUTHOR Derek Kwan;
@@ -59,18 +59,18 @@ Env;
 #X text 525 55 dkmkv - first-order markov generator;
 #X text 26 466 dkmbang - bang multiplier;
 #X restore 153 73 pd externals;
-#N canvas 311 154 832 331 abstractions 0;
+#N canvas 307 158 832 331 abstractions 0;
 #X text 9 7 ABSTRACTIONS;
 #X text 9 152 dkmidirt - midi real-time message parser;
 #X text 6 200 dknzgt - nonzero gate;
 #X text 4 234 dkrndgt - gate open x% of the time;
-#X text 375 46 dksyncb - synchronized banger;
-#X text 373 96 dksyncf - synchroinzed floats;
+#X text 379 38 dksyncb - synchronized banger;
+#X text 377 55 dksyncf - synchroinzed floats;
 #X text 373 113 dkvanctr - vanilla counter (can go both up and down)
 ;
 #X text 9 61 dkcospan~ - cosine panner;
-#X text 373 61 dkrunmin - running minimum;
-#X text 371 76 dkrunmax - running maximum;
+#X text 377 76 dkrunmin - running minimum;
+#X text 375 91 dkrunmax - running maximum;
 #X text 381 221 dkvanphs~ - vanilla 3-delay line phaser/chorus effect
 ;
 #X text 3 218 dkphsrd~ - phasor sound reader abstraction;
@@ -88,4 +88,5 @@ Env;
 #X text 373 184 dkvanmbang - vanilla bang multiplier;
 #X text 10 28 dkbangsync - bang syncer;
 #X text 9 133 dkloopwin~ - signal-driven loop windowing;
+#X text 380 21 dkswing - bang swinger;
 #X restore 15 73 pd abstractions;

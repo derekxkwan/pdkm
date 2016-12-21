@@ -26,6 +26,7 @@ ABSTRACTIONS (written in pd vanilla):
 	- dkrndgt - let through anything x% of the time
 	- dkseqgen1 - timed random sequence generator
 	- dksmp2ms - samples to ms
+	- dkswing - bang swinger
 	- dksyncb - synchronized banger
 	- dksyncf - synchronized floats
 	- dkvanctr - vanilla counter (can go both up and down)
