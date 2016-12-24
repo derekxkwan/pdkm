@@ -19,7 +19,7 @@ ABSTRACTIONS (written in pd vanilla):
 	- dkmidirt - abstraction to handle midi real-time messages
 	- dkms2smp - ms to samples
         - dknobu~ - sample chopper abstraction
-        - dknot - bitwise not
+        - dknot - control-rate bitwise not
 	- dknzgt - only let nonzero floats through
         - dkphsrd~ - phasor sound reader abstraction
         - dkrunmax - running maximum
@@ -36,7 +36,7 @@ ABSTRACTIONS (written in pd vanilla):
 	- dkvanphs~ - vanilla 3-delay line phaser/chorus effect 
 	- dkvavg - vanilla float averager
 	- dkvuzi - vanilla uzi/multiple banger
-	- dkxor - bitwise xor
+	- dkxor - control-rate bitwise xor
 
 EXTERNALS (compiled c code):
 
