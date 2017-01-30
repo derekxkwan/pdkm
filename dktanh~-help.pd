@@ -1,17 +1,17 @@
-#N canvas 408 318 470 557 10;
-#X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
+#N canvas 312 208 439 520 12;
+#X obj 11 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
-#X text 305 10 Derek Kwan \, 2016;
-#X obj 8 36 cnv 15 420 30 empty empty dktanh~ 20 12 0 20 -232576 -66577
+#X text 299 12 Derek Kwan \, 2016;
+#X obj 11 36 cnv 15 420 30 empty empty dktanh~ 20 12 0 20 -232576 -66577
 0;
-#X obj 8 296 cnv 15 420 120 empty empty inlet 20 12 0 15 -261682 -66577
+#X obj 11 296 cnv 15 420 120 empty empty inlet 20 12 0 15 -261682 -66577
 0;
-#X obj 8 363 cnv 15 420 30 empty empty outlet 20 12 0 15 -232576 -66577
+#X obj 11 363 cnv 15 420 30 empty empty outlet 20 12 0 15 -232576 -66577
 0;
-#X obj 8 392 cnv 15 420 50 empty empty args 20 12 0 15 -261682 -66577
+#X obj 11 392 cnv 15 420 50 empty empty args 20 12 0 15 -261682 -66577
 0;
-#X obj 13 262 dac~ 1 2;
-#N canvas 727 379 445 278 META 0;
+#X obj 16 262 dac~ 1 2;
+#N canvas 725 381 445 278 META 0;
 #X text 2 142 VERSION 0.1;
 #X text 2 160 AUTHOR Derek Kwan;
 #X text 4 180 RELEASE_DATE 2016;
@@ -24,13 +24,13 @@
 #X text 0 0 KEYWORDS tanh approximation fast dktanh pregain;
 #X text 0 57 INLET_0 signal;
 #X text 0 79 INLET_1 float;
-#X restore 18 453 pd META;
-#X obj 27 174 *~ 0;
-#X obj 102 93 tgl 15 0 empty empty sound 0 -7 0 10 -262144 -1 -1 0
+#X restore 21 453 pd META;
+#X obj 30 174 *~ 0;
+#X obj 105 93 tgl 15 0 empty empty sound 0 -7 0 10 -262144 -1 -1 0
 1;
-#X text 91 369 signal~;
-#X obj 159 149 bang~;
-#X obj 189 123 tgl 15 0 empty empty graph 0 -7 0 10 -262144 -1 -1 0
+#X text 94 369 signal~;
+#X obj 172 155 bang~;
+#X obj 194 124 tgl 15 0 empty empty graph 0 -7 0 10 -262144 -1 -1 0
 1;
 #N canvas 0 50 450 250 (subpatch) 0;
 #X array \$0-tanh 64 float 3;
@@ -40,26 +40,26 @@
 0.823508 0.915064 0.963685 0.986875 0.996436 0.999482 0.999995 1 1
 1 1 1 1 1 1 1 1 1 1 1 1;
 #X coords 0 1 64 -1 200 140 1;
-#X restore 227 88 graph;
-#X obj 158 185 spigot;
-#X text 63 413 f - pregain;
-#X text 63 320 1 - sig~: input signal;
-#X text 64 343 2 - float: pregain (default 1);
-#X obj 129 236 tabwrite~ \$0-tanh;
-#X obj 27 115 dktanh~ 1;
-#X obj 103 123 vsl 15 128 1 10 0 0 empty empty pregain 0 -9 0 10 -204786
--1 -1 6000 1;
-#X floatatom 103 259 5 0 0 0 - - -, f 5;
-#X obj 29 74 osc~ 440;
-#X text 216 44 fast tanh approx with pregain;
+#X restore 230 88 graph;
+#X obj 170 195 spigot;
+#X text 66 413 f - pregain;
+#X text 66 320 1 - sig~: input signal;
+#X text 67 343 2 - float: pregain (default 1);
+#X obj 148 242 tabwrite~ \$0-tanh;
+#X obj 144 81 vsl 15 128 1 10 0 0 empty empty pregain 0 -9 0 10 -204786
+-1 -1 0 1;
+#X floatatom 116 271 5 0 0 0 - - -, f 5;
+#X obj 32 74 osc~ 440;
+#X text 192 44 fast tanh approx with pregain;
+#X obj 30 115 pdkm/dktanh~ 1;
 #X connect 8 0 6 0;
 #X connect 8 0 6 1;
 #X connect 9 0 8 1;
 #X connect 11 0 14 0;
 #X connect 12 0 14 1;
 #X connect 14 0 18 0;
-#X connect 19 0 8 0;
-#X connect 19 0 18 0;
-#X connect 20 0 21 0;
-#X connect 20 0 19 1;
-#X connect 22 0 19 0;
+#X connect 19 0 20 0;
+#X connect 19 0 23 1;
+#X connect 21 0 23 0;
+#X connect 23 0 8 0;
+#X connect 23 0 18 0;

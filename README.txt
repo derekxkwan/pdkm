@@ -13,6 +13,7 @@ ABSTRACTIONS (written in pd vanilla):
         - dkcospan~ - cosine panner
         - dkfor - for loop
 	- dkincwr~ - incremental tabwriter
+        - dkint~ - "typecast" signals to integer
 	- dkloopplay~ - synced looper based around tabplay~
 	- dkloopwin~ - signal-driven loop windowing
 	- dkmbang - bang multiplier
@@ -57,6 +58,7 @@ EXTERNALS (compiled c code):
 	- dkmkv - first-order markov generator
 	- dkmkv2 - second-order markov generator
 	- dkmtx - control-rate multiple metro
+        - dknoiz~ - (un)ramped noise with frequency
 	- dknumpat - number pattern list converter
         - dkpink~ - 1/f^alpha noise generator
 	- dkpop~ - random impulses of adjustable density

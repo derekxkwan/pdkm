@@ -11,7 +11,8 @@ double dkrnd_next(t_dkrnd * x){
         unsigned int seed = x->d_seed;
 	seed = ((seed * 2891336453 + 1500450271) % 4294967296) & 0x7fffffff;
         x->d_seed = seed;
-	nval = range*(double)seed*(2.0/4294967296); //divide by 2^31
+	nval = (double)seed*(2.0/4294967296); //divide by 2^31
+        nval *= range;
 	if(nval >= range){
 		nval = range;
 	};
@@ -44,7 +45,7 @@ t_dkrnd * dkrnd_new(int num, ... ){
             int i;
             va_list args;
             va_start(args,num);
-            for(i=0; x<num; i++){
+            for(i=0; i<num; i++){
                 switch(i){
                     case 0: 
                         range = va_arg(args,double);
