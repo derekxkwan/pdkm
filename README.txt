@@ -9,6 +9,7 @@ Released under GPL v3.0
 ABSTRACTIONS (written in pd vanilla):
 (note, help files for abstractions coming soon, can just open subpatch for now)
 	- dkbbangsync - bang syncer
+        - dkbinlist - int to binary list
 	- dkbpm2ms - bpm to ms
         - dkcospan~ - cosine panner
         - dkfor - for loop
