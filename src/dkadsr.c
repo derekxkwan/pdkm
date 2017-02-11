@@ -55,7 +55,12 @@ static void dkadsr_tilde_adsrer(t_dkadsr_tilde *x){
 			curlvl += attinc;
 			if(curlvl > lvl){
 				curlvl = lvl;
-				x->x_stage = 2;
+                                if(x->x_decms > 0){
+				    x->x_stage = 2;
+                                }
+                                else{
+                                    x->x_stage = 3;
+                                };
 			};
 			break;
 		case 2:
@@ -136,6 +141,7 @@ static void dkadsr_tilde_float(t_dkadsr_tilde *x, t_float input){
 	}
 	else{
 	//input > 0
+        x->x_newrel = 0;
 	x->x_lvl = input;//set lvl to input float
 	x->x_newatt = 1; //set a new attack 
 	}
