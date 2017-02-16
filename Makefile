@@ -10,6 +10,7 @@ dkbuf := src/dkbuf.c
 
 dkcmb~.class.sources = src/dkcmb.c 
 dkctr.class.sources = src/dkctr.c 
+dkdutysaw~.class.sources = src/dkdutysaw.c 
 dkrpt.class.sources = src/dkrpt.c 
 dkatmp~.class.sources = src/dkatmp.c 
 dkdntl~.class.sources = src/dkdntl.c 

@@ -1,0 +1,48 @@
+#N canvas 623 143 461 512 12;
+#X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
+0;
+#X obj 8 36 cnv 15 420 30 empty empty dkdutysaw~ 20 12 0 20 -232576
+-66577 0;
+#X obj 8 296 cnv 15 420 120 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 8 375 cnv 15 420 30 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#X obj 8 404 cnv 15 420 75 empty empty args 20 12 0 15 -261682 -66577
+0;
+#X obj 26 212 dac~ 1 2;
+#N canvas 729 377 445 278 META 0;
+#X text -1 155 VERSION 0.1;
+#X text -1 173 AUTHOR Derek Kwan;
+#X text -2 135 LIBRARY pdkm;
+#X text -2 116 OUTLET_0 signal;
+#X text 0 19 LICENSE GPL v3;
+#X text 1 95 INLET_2 float;
+#X text 2 79 INLET_1 signal float;
+#X text 0 57 INLET_0 signal float;
+#X text 3 36 DESCRIPTION variable-duty saw;
+#X text 0 0 KEYWORDS dkdutysaw variable duty saw oscillator;
+#X text 1 193 RELEASE_DATE 2017;
+#X text -1 213 WEBSITE https://github.com/derekxkwan/pdkm;
+#X restore 15 485 pd META;
+#X obj 27 174 *~ 0;
+#X obj 87 88 tgl 15 0 empty empty sound 0 -7 0 10 -262144 -1 -1 0 1
+;
+#X text 91 381 signal~;
+#X obj 251 90 osc~ 0.5;
+#X obj 251 115 +~ 1;
+#X obj 251 140 *~ 0.5;
+#X obj 26 130 pdkm/dkdutysaw~ 440 1;
+#X text 283 42 variable-duty saw;
+#X text 291 10 Derek Kwan \, 2017;
+#X text 60 312 1 - sig~/f - frequency in Hz;
+#X text 59 330 2 - sig~/f - duty 0 -1;
+#X text 57 351 3 - f - phase 0-1;
+#X text 62 416 1 - f - freq in Hz;
+#X text 63 437 2 - f - duty 0 -1;
+#X connect 7 0 5 0;
+#X connect 7 0 5 1;
+#X connect 8 0 7 1;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 12 0 13 1;
+#X connect 13 0 7 0;

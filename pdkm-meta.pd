@@ -1,4 +1,4 @@
-#N canvas 242 288 366 130 12;
+#N canvas 240 290 366 130 12;
 #N canvas 536 270 528 213 META 0;
 #X text 2 80 VERSION 0.1;
 #X text 2 98 AUTHOR Derek Kwan;
@@ -11,54 +11,55 @@
 #X text -1 19 LICENSE GPL v3;
 #X restore 14 15 pd META;
 #X text 16 42 LIST OF OBJECTS;
-#N canvas 154 212 1257 703 externals 0;
+#N canvas 152 214 1257 703 externals 0;
 #X text 30 26 EXTERNALS;
 #X text 33 62 dkadsr~ - triggered adsr envelope generator;
-#X text 30 232 dkmtx - control-rate multiple metro;
-#X text 29 249 dkstut~ - windowed stutter effect;
-#X text 28 267 dkeuclid - outputs euclidean rhythms based on the work
+#X text 29 252 dkmtx - control-rate multiple metro;
+#X text 28 269 dkstut~ - windowed stutter effect;
+#X text 27 287 dkeuclid - outputs euclidean rhythms based on the work
 of Godfried Toussaint;
-#X text 27 344 dkgrnrd~ - granular sound buffer player;
-#X text 23 396 dklrnd - random values with triangular (linear) distribution
+#X text 26 364 dkgrnrd~ - granular sound buffer player;
+#X text 22 416 dklrnd - random values with triangular (linear) distribution
 ;
-#X text 26 443 dkmagikp~ - karplus-strong guitar synthesizer;
-#X text 530 103 dkrndl - generate list of random numbers within a given
+#X text 25 463 dkmagikp~ - karplus-strong guitar synthesizer;
+#X text 533 131 dkrndl - generate list of random numbers within a given
 range;
-#X text 528 212 dksawlim~ - bandlimited sawtooth wave generator;
-#X text 528 234 dksnbnk~ - sine oscillator bank;
-#X text 528 259 dksnbnkd~ - sine oscillator bank with separate envelopes
+#X text 531 240 dksawlim~ - bandlimited sawtooth wave generator;
+#X text 531 262 dksnbnk~ - sine oscillator bank;
+#X text 531 287 dksnbnkd~ - sine oscillator bank with separate envelopes
 with triggered output;
-#X text 533 309 dksnbnkr~ - sine oscillator bank with separate envelopes
+#X text 536 337 dksnbnkr~ - sine oscillator bank with separate envelopes
 and signal amplitude control;
-#X text 533 352 dksqlim~ - bandlimited square wave generator;
-#X text 536 379 dkscldeg - maps scale degrees to midi notes \, ported
+#X text 536 380 dksqlim~ - bandlimited square wave generator;
+#X text 539 407 dkscldeg - maps scale degrees to midi notes \, ported
 from SuperCollider;
-#X text 27 425 dkfm~ - fm synthesis oscillator;
-#X text 31 195 dkenv~ - triggered envelope generator from SuperCollider's
+#X text 26 445 dkfm~ - fm synthesis oscillator;
+#X text 30 215 dkenv~ - triggered envelope generator from SuperCollider's
 Env;
-#X text 30 371 dkipls~ - impulse oscillator;
-#X text 529 85 dknumpat - number pattern list converter;
-#X text 530 135 dkpink~ - 1/f^alpha noise generator;
-#X text 535 418 dktanh~ - fast tanh approximation with pregain;
+#X text 29 391 dkipls~ - impulse oscillator;
+#X text 532 113 dknumpat - number pattern list converter;
+#X text 533 163 dkpink~ - 1/f^alpha noise generator;
+#X text 538 446 dktanh~ - fast tanh approximation with pregain;
 #X text 35 123 dkclnoiz~ - output -1 or 1 randomly;
-#X text 534 434 dkwesley~ - bitcrusher/downsampler;
-#X text 533 448 dkzd~ - sample-accurate delay;
+#X text 537 462 dkwesley~ - bitcrusher/downsampler;
+#X text 536 476 dkzd~ - sample-accurate delay;
 #X text 37 101 dkclik~ - triggered sample-length impulses;
-#X text 28 300 dkernd - random values with exponential distribution
+#X text 27 320 dkernd - random values with exponential distribution
 ;
-#X text 26 322 dkgpitch~ - rotating tapehead 4-grain pitchshifter;
+#X text 25 342 dkgpitch~ - rotating tapehead 4-grain pitchshifter;
 #X text 33 84 dkatmp~ - allpass filter;
-#X text 28 175 dkdntl~ - comb filter with separate ff and fb delays
+#X text 27 195 dkdntl~ - comb filter with separate ff and fb delays
 ;
 #X text 34 141 dkcmb~ - comb filter;
 #X text 34 157 dkctr - counter;
-#X text 530 156 dkpop~ - random impulses of adjustable density;
-#X text 532 182 dkrpt~ - repeater with optional zero-indexed counter
+#X text 533 184 dkpop~ - random impulses of adjustable density;
+#X text 535 210 dkrpt~ - repeater with optional zero-indexed counter
 ;
-#X text 24 503 dkmkv2 - second-order markov generator;
-#X text 23 488 dkmkv - first-order markov generator;
-#X text 26 466 dkmbang - bang multiplier;
-#X text 530 66 dknoiz~ - (un)ramped noise with frequency;
+#X text 534 73 dkmkv2 - second-order markov generator;
+#X text 533 58 dkmkv - first-order markov generator;
+#X text 25 486 dkmbang - bang multiplier;
+#X text 533 94 dknoiz~ - (un)ramped noise with frequency;
+#X text 30 175 dkdutysaw~ - variable duty saw oscillator;
 #X restore 153 73 pd externals;
 #N canvas 299 166 831 480 abstractions 0;
 #X text 9 7 ABSTRACTIONS;
