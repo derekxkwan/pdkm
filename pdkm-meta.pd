@@ -1,4 +1,4 @@
-#N canvas 240 290 366 130 12;
+#N canvas 238 292 366 130 12;
 #N canvas 536 270 528 213 META 0;
 #X text 2 80 VERSION 0.1;
 #X text 2 98 AUTHOR Derek Kwan;
@@ -61,24 +61,24 @@ Env;
 #X text 533 94 dknoiz~ - (un)ramped noise with frequency;
 #X text 30 175 dkdutysaw~ - variable duty saw oscillator;
 #X restore 153 73 pd externals;
-#N canvas 299 166 831 480 abstractions 0;
+#N canvas 297 168 831 480 abstractions 0;
 #X text 9 7 ABSTRACTIONS;
 #X text 9 183 dkmidirt - midi real-time message parser;
 #X text 6 238 dknzgt - nonzero gate;
 #X text 4 272 dkrndgt - gate open x% of the time;
 #X text 385 64 dksyncb - synchronized banger;
 #X text 385 87 dksyncf - synchroinzed floats;
-#X text 389 147 dkvanctr - vanilla counter (can go both up and down)
+#X text 380 172 dkvanctr - vanilla counter (can go both up and down)
 ;
 #X text 9 81 dkcospan~ - cosine panner;
 #X text 385 108 dkrunmin - running minimum;
 #X text 383 128 dkrunmax - running maximum;
-#X text 389 235 dkvanphs~ - vanilla 3-delay line phaser/chorus effect
+#X text 380 260 dkvanphs~ - vanilla 3-delay line phaser/chorus effect
 ;
 #X text 3 256 dkphsrd~ - phasor sound reader abstraction;
-#X text 390 269 dkvuzi - vanilla uzi/multiple banger;
-#X text 389 190 dkvandrk - vanilla drunk random number generator;
-#X text 384 169 dkvancomp~ - vanilla compressor/limiter;
+#X text 381 294 dkvuzi - vanilla uzi/multiple banger;
+#X text 380 215 dkvandrk - vanilla drunk random number generator;
+#X text 375 194 dkvancomp~ - vanilla compressor/limiter;
 #X text 11 98 dkfor - for loop;
 #X text 4 202 dkms2smp - ms to samples;
 #X text 385 23 dksmp2ms - samples to ms;
@@ -86,13 +86,14 @@ Env;
 #X text 5 294 dkseqgen1 - random timed sequence generator;
 #X text 8 147 dkloopplay~ - synced looper around tabplay~;
 #X text 12 63 dkbpm2ms - bpm to ms;
-#X text 393 251 dkvavg - vanilla float averager;
-#X text 387 214 dkvanmbang - vanilla bang multiplier;
+#X text 384 276 dkvavg - vanilla float averager;
+#X text 378 239 dkvanmbang - vanilla bang multiplier;
 #X text 9 164 dkloopwin~ - signal-driven loop windowing;
 #X text 384 43 dkswing - bang swinger;
-#X text 391 289 dkxor - control-rate bitwise xor;
+#X text 382 314 dkxor - control-rate bitwise xor;
 #X text 9 221 dknot - control-rate bitwise not;
 #X text 9 130 dkint~ - "typecast" signals to integers;
 #X text 10 28 dkbangsync - bang syncer;
 #X text 11 46 dkbinlist - int to binary list;
+#X text 381 152 dkunit2ms - ms calculator;
 #X restore 15 73 pd abstractions;
