@@ -47,7 +47,6 @@ EXTERNALS (compiled c code):
 	- dkcmb~ - nth-order comb filter
 	- dkclik~ - triggered sample-length impulses
 	- dkclnoiz~ - outputs -1 or 1 randomly (adaptation of SuperCollider's ClipNoise)
-	- dkdutysaw~ - variable-duty saw oscillator 
 	- dkdntl~ - comb filter with seperate feedforward- and feedback- delays
 	- dkeuclid - outputs euclidean rhythms based on the work of Godfried Toussaint
 	- dkenv~ - triggered envelope generator ala SuperCollider Env
