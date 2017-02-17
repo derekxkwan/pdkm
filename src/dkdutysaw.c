@@ -58,12 +58,12 @@ static t_int *dkdutysaw_tilde_perform(t_int *w){
             {
                 if(phase < duty)
                 {
-                    output = ((double)duty-phase)/(double)duty;
+                    output = phase/(double)duty;
                     output = output * 2. -1;
                 }
                 else
                 {
-                    output = (phase - (double)duty)/(double)duty;
+                    output = (1.-phase)/(double)duty;
                     output = output * 2. - 1.;
                 };
             };
