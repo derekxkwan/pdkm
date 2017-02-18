@@ -12,6 +12,7 @@ ABSTRACTIONS (written in pd vanilla):
         - dkbinlist - int to binary list
 	- dkbpm2ms - bpm to ms
         - dkcospan~ - cosine panner
+        - dkfbdellop~ - simple delay with fb
         - dkfor - for loop
 	- dkincwr~ - incremental tabwriter
         - dkint~ - "typecast" signals to integer
