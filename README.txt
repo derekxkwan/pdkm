@@ -25,6 +25,7 @@ ABSTRACTIONS (written in pd vanilla):
         - dknot - control-rate bitwise not
 	- dknzgt - only let nonzero floats through
         - dkphsrd~ - phasor sound reader abstraction
+        - dkpolyish1 - polyish abs with no note off
         - dkrunmax - running maximum
         - dkrunmin - running minimum
 	- dkrndgt - let through anything x% of the time
