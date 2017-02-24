@@ -1,0 +1,78 @@
+#N canvas 1117 265 447 656 12;
+#X obj 11 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
+0;
+#X text 299 12 Derek Kwan \, 2016;
+#X obj 11 36 cnv 15 420 30 empty empty dknoiz~ 20 12 0 20 -232576 -66577
+0;
+#X obj 11 296 cnv 15 420 200 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 11 461 cnv 15 420 30 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#X obj 11 490 cnv 15 420 120 empty empty args 20 12 0 15 -261682 -66577
+0;
+#X obj 16 262 dac~ 1 2;
+#N canvas 723 383 445 278 META 0;
+#X text 2 142 VERSION 0.1;
+#X text 2 160 AUTHOR Derek Kwan;
+#X text 4 180 RELEASE_DATE 2016;
+#X text 1 122 LIBRARY pdkm;
+#X text 1 103 OUTLET_0 signal;
+#X text 2 200 WEBSITE http://www.derekxkwan.com/code/puredata-code.html
+;
+#X text -1 19 LICENSE GPL v3;
+#X text 0 79 INLET_1 float;
+#X text 4 38 DESCRIPTION (un)ramped noise with frequency;
+#X text 0 57 INLET_0 signal list symbol;
+#X text 0 0 KEYWORDS ramp noise bandlimited frequency dknoiz~;
+#X restore 21 617 pd META;
+#X obj 24 208 *~ 0;
+#X obj 87 180 tgl 15 0 empty empty sound 0 -7 0 10 -262144 -1 -1 1
+1;
+#X text 94 467 signal~;
+#X obj 172 155 bang~;
+#X obj 194 124 tgl 15 0 empty empty graph 0 -7 0 10 -262144 -1 -1 1
+1;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array \$0-noiz 64 float 3;
+#A 0 -0.829959 -0.836775 -0.843591 -0.850407 -0.857222 -0.864038 -0.870854
+-0.87767 -0.884486 -0.872328 -0.841197 -0.810066 -0.778934 -0.747803
+-0.716672 -0.68554 -0.654409 -0.623278 -0.592146 -0.561015 -0.529884
+-0.498752 -0.467621 -0.43649 -0.405358 -0.374227 -0.343096 -0.311964
+-0.280833 -0.249702 -0.21857 -0.187439 -0.156308 -0.125176 -0.0940451
+-0.0629137 -0.0317824 -0.000651069 0.0304803 0.0616116 0.0927429 0.123874
+0.155006 0.186137 0.217268 0.2484 0.279531 0.310662 0.341794 0.372925
+0.404056 0.435188 0.466319 0.483421 0.479478 0.475535 0.471593 0.46765
+0.463707 0.459765 0.455822 0.451879 0.447937 0.443994;
+#X coords 0 1 64 -1 200 140 1;
+#X restore 230 88 graph;
+#X obj 170 195 spigot;
+#X text 173 42 (un)ramped noise with frequency;
+#X obj 24 134 pdkm/dknoiz~ 1000;
+#X obj 148 242 tabwrite~ \$0-noiz;
+#X text 23 509 1 arg: f - freq;
+#X text 21 529 2 args: freq \, f - low of output;
+#X text 20 551 3 args: freq \, low \, f - high of output;
+#X text 18 569 4 args: freq \, low \, high \, i - to ramp or not (0/1)
+;
+#X text 17 589 (defaults: low = -1 \, high = 1 \, ramp = 1);
+#X text 94 330 "ramp (i)" : ramping;
+#X text 97 347 "range (f) (f)" - lo and hi of range;
+#X text 71 417 2 - f - phase 0-1;
+#X text 97 368 "phase (f)" - phase 0-1;
+#X text 102 392 "reset" - reset phase and rands;
+#X msg 29 106 ramp \$1;
+#X obj 33 87 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+;
+#X obj 83 72 loadbang;
+#X text 66 313 1 - f/sig~: freq;
+#X connect 8 0 6 0;
+#X connect 8 0 6 1;
+#X connect 9 0 8 1;
+#X connect 11 0 14 0;
+#X connect 12 0 14 1;
+#X connect 14 0 17 0;
+#X connect 16 0 8 0;
+#X connect 16 0 17 0;
+#X connect 28 0 16 0;
+#X connect 29 0 28 0;
+#X connect 30 0 29 0;

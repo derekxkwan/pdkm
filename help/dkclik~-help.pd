@@ -1,7 +1,7 @@
-#N canvas 622 166 445 476 10;
+#N canvas 620 168 442 405 12;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
-#X text 305 10 Derek Kwan \, 2016;
+#X text 288 10 Derek Kwan \, 2016;
 #X obj 8 36 cnv 15 420 30 empty empty dkclik~ 20 12 0 20 -232576 -66577
 0;
 #X obj 10 189 cnv 15 420 120 empty empty inlet 20 12 0 15 -261682 -66577
@@ -12,7 +12,7 @@
 0;
 #X text 100 267 1) sig~ - signal;
 #X obj 82 163 dac~ 1 2;
-#N canvas 731 375 445 278 META 0;
+#N canvas 729 377 483 278 META 0;
 #X text 2 136 VERSION 0.1;
 #X text 2 154 AUTHOR Derek Kwan;
 #X text 3 172 RELEASE_DATE 2016;
@@ -28,11 +28,11 @@
 #X restore 20 354 pd META;
 #X obj 77 94 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 77 114 dkclik~;
 #X text 81 214 1 bang - trigger sample-length impulse;
 #X text 83 235 2 float - sample length of impulse;
 #X text 80 319 float - length of samples for impulse;
-#X text 198 43 triggered sample-length impulses;
-#X connect 9 0 10 0;
-#X connect 10 0 7 0;
-#X connect 10 0 7 1;
+#X text 165 43 triggered sample-length impulses;
+#X obj 77 114 pdkm/dkclik~;
+#X connect 9 0 14 0;
+#X connect 14 0 7 0;
+#X connect 14 0 7 1;

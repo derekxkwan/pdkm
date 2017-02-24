@@ -43,7 +43,7 @@ static void *dkclik_tilde_new(t_symbol *s, int argc, t_atom * argv){
         dkclik_tilde_len(x, len);
 	dkclik_tilde_clear(x);
 
-        x->x_lenlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("ft1"));
+        x->x_lenlet = inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("len"));
 	x->x_outlet = outlet_new(&x->x_obj, gensym("signal"));
 	return (x);
 }
@@ -53,9 +53,9 @@ static t_int *dkclik_tilde_perform(t_int *w){
 	t_dkclik_tilde *x = (t_dkclik_tilde *)(w[1]);
 	t_float *out = (t_float *)(w[2]);
 	int n = (int)(w[3]);
+        int cur = x->x_cur;
 	while(n--){
             t_float output;
-            int cur = x->x_cur;
             if(cur){
                 output = 1;
                 x->x_cur = --cur;
@@ -65,6 +65,7 @@ static t_int *dkclik_tilde_perform(t_int *w){
             };
                 *out++ = output;
 	};
+        x->x_cur = cur;
 	return(w+4);
 }
 
