@@ -58,7 +58,7 @@ static t_int *dkclik_tilde_perform(t_int *w){
             t_float output;
             if(cur){
                 output = 1;
-                x->x_cur = --cur;
+                cur--;
             }
             else{
                 output = 0;
