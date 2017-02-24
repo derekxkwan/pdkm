@@ -10,7 +10,7 @@ typedef struct _dkfm_tilde {
 	t_object x_obj;
 	t_float x_freq; //scalar freq
 	double x_conv; //TABLEN/samprate, duration of one sample in seconds
-	double x_sin[TABLEN]; //table for sine wave
+        double *x_sin; //pointer to sin table
         float x_carharm; //carrier harmonic rel to fund
         double x_carphs; //carrier phase
         int x_nummod; //number of modulators
@@ -140,15 +140,8 @@ static void *dkfm_tilde_new(t_symbol *s, int argc, t_atom * argv){
             argc--;
             argv++;
         };
-
-	//write sine wavetable
-        for(i=0; i<TABLEN; i++){
-	    double xval = (double)i/(double)(TABLEN);
-	    double yval = sin(xval * TPI);
-	    x->x_sin[i] = yval;
-
-	};
-
+        dkmakesintab();
+        x->x_sin = dksintab;
         x->x_nummod = nummod;
         x->x_freq = freq;
         x->x_carharm = carharm;
