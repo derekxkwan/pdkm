@@ -9,6 +9,7 @@ dktime := src/dktime.c
 dkbuf := src/dkbuf.c
 
 dkcmb~.class.sources = src/dkcmb.c 
+dkcofork.class.sources = src/dkcofork.c
 dkctr.class.sources = src/dkctr.c 
 dkdutysaw~.class.sources = src/dkdutysaw.c 
 dkrpt.class.sources = src/dkrpt.c 

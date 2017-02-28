@@ -1,0 +1,42 @@
+#N canvas 461 196 576 732 12;
+#X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
+0;
+#X obj 8 36 cnv 15 420 30 empty empty dkcofork 20 12 0 20 -232576 -66577
+0;
+#X obj 17 301 cnv 15 420 150 empty empty inlet 20 12 0 15 -261682 -66577
+0;
+#X obj 17 384 cnv 15 420 60 empty empty outlet 20 12 0 15 -232576 -66577
+0;
+#X obj 17 444 cnv 15 420 200 empty empty args 20 12 0 15 -261682 -66577
+0;
+#N canvas 754 247 506 543 META 0;
+#X text 4 158 VERSION 0.1;
+#X text 4 176 AUTHOR Derek Kwan;
+#X text 3 138 LIBRARY pdkm;
+#X text 0 76 INLET_1 float;
+#X text 0 19 LICENSE GPL v2;
+#X text 0 38 DESCRIPTION counter external pdkm;
+#X text 5 103 OUTLET_n anything;
+#X text 0 57 INLET_0 anything;
+#X text 5 194 RELEASE_DATE 2017;
+#X text 6 213 WEBSITE http://wwww.github.com/derekxkwan/pdkm;
+#X text 1 0 KEYWORDS pdkm dkcofork router forker outlets direct;
+#X restore 26 657 pd META;
+#X text 290 9 Derek Kwan \, 2017;
+#X text 203 40 control-outlet fork/router;
+#X text 16 76 choose where to direct input;
+#X text 25 474 defaults: numoulets = 1 \, index = 0;
+#X text 30 504 f - number of outlets;
+#X text 28 531 f - outlet to direct input to (idx = 0);
+#X text 110 388 idx) anything - directed output;
+#X text 63 325 1) anything - input;
+#X text 59 346 2) float - outlet to route to (idx = 0;
+#X obj 37 200 pdkm/dkcofork 3 1, f 42;
+#X obj 37 238 print 0;
+#X obj 192 232 print 1;
+#X obj 362 247 print 2;
+#X msg 32 116 bobby two-tones slippy-sox 1 2 susie 3;
+#X connect 15 0 16 0;
+#X connect 15 1 17 0;
+#X connect 15 2 18 0;
+#X connect 19 0 15 0;

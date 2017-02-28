@@ -1,7 +1,7 @@
-#N canvas 448 167 636 533 10;
+#N canvas 446 169 636 533 12;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
-#X text 305 10 Derek Kwan \, 2016;
+#X text 290 10 Derek Kwan \, 2016;
 #X obj 8 36 cnv 15 420 30 empty empty dksqlim~ 20 12 0 20 -232576 -66577
 0;
 #X obj 7 188 cnv 15 420 70 empty empty inlet 20 12 0 15 -261682 -66577
@@ -19,7 +19,7 @@
 1;
 #X text 293 146 sound;
 #X obj 174 156 dac~ 1 2;
-#X text 184 44 bandlimited square wave generator;
+#X text 158 44 bandlimited square wave generator;
 #X obj 174 112 pdkm/dksqlim~ 440;
 #X text 97 287 1) float - frequency;
 #N canvas 737 369 374 272 META 0;
