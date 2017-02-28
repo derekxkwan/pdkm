@@ -1,4 +1,4 @@
-#N canvas 461 196 576 732 12;
+#N canvas 459 198 576 732 12;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
 #X obj 8 36 cnv 15 420 30 empty empty dkcofork 20 12 0 20 -232576 -66577
@@ -31,11 +31,12 @@
 #X text 110 388 idx) anything - directed output;
 #X text 63 325 1) anything - input;
 #X text 59 346 2) float - outlet to route to (idx = 0;
-#X obj 37 200 pdkm/dkcofork 3 1, f 42;
-#X obj 37 238 print 0;
-#X obj 192 232 print 1;
-#X obj 362 247 print 2;
-#X msg 32 116 bobby two-tones slippy-sox 1 2 susie 3;
+#X obj 27 223 pdkm/dkcofork 3 1, f 42;
+#X obj 27 261 print 0;
+#X obj 182 255 print 1;
+#X obj 352 270 print 2;
+#X msg 22 139 bobby two-tones slippy-sox 1 2 susie 3;
+#X text 19 107 NOTE: will output nothing if < 0 or >= num outlets;
 #X connect 15 0 16 0;
 #X connect 15 1 17 0;
 #X connect 15 2 18 0;

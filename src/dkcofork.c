@@ -11,7 +11,7 @@ typedef struct _dkcofork
     t_object x_obj;
     t_inlet * x_chooselet;
     t_outlet ** x_outlets; //our outputs
-    t_float x_choice; //outlet to spit stuff out of (idx = 0)
+    t_float x_choice; //outlet to spit stuff out of (idx = 1), idx 0 is none
     int x_numouts; //number of outets
 } t_dkcofork;
 
@@ -26,26 +26,30 @@ static void dkcofork_anything(t_dkcofork *x, t_symbol *s, int argc, t_atom * arg
 {
 
     int numouts = x->x_numouts;
-    int choice = x->x_choice < 0 ? 0 : (x->x_choice >= numouts ? numouts - 1 : (int)x->x_choice);
-    if(argc == 1)
+    int choice = (int) x->x_choice;
+    if(choice >= 0 && choice < numouts)
     {
-        if(argv -> a_type == A_FLOAT)
+        if(argc == 1)
         {
-            outlet_float(x->x_outlets[choice], argv[0].a_w.w_float);
+            if(argv -> a_type == A_FLOAT)
+            {
+                outlet_float(x->x_outlets[choice-1], argv[0].a_w.w_float);
+            }
+            else if(argv-> a_type == A_SYMBOL)
+            {
+                outlet_symbol(x->x_outlets[choice-1], argv[0].a_w.w_symbol);
+            }
+            else if(argv-> a_type == A_POINTER)
+            {
+                outlet_pointer(x->x_outlets[choice-1], argv[0].a_w.w_gpointer);
+            };
         }
-        else if(argv-> a_type == A_SYMBOL)
+        else
         {
-            outlet_symbol(x->x_outlets[choice], argv[0].a_w.w_symbol);
-        }
-        else if(argv-> a_type == A_POINTER)
-        {
-            outlet_pointer(x->x_outlets[choice], argv[0].a_w.w_gpointer);
+            outlet_anything(x->x_outlets[choice-1], s, argc, argv);
         };
-    }
-    else
-    {
-        outlet_anything(x->x_outlets[choice], s, argc, argv);
     };
+
 
 }
 
