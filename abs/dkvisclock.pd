@@ -1,10 +1,10 @@
-#N canvas 399 142 956 607 12;
-#X obj 100 102 cnv 15 230 88 empty empty empty 20 12 0 14 -228856 -66577
+#N canvas 397 144 956 607 12;
+#X obj 102 103 cnv 15 226 84 empty empty empty 20 12 0 14 -228856 -66577
 0;
 #X obj 144 152 nbx 3 30 -1e+37 1e+37 0 0 empty empty min 0 -12 0 30
 -45076 -257985 -45076 0 256;
 #X obj 245 152 nbx 2 30 -1e+37 1e+37 0 0 empty empty sec 0 -12 0 30
--45076 -257985 -1 5 256;
+-45076 -257985 -1 0 256;
 #X obj 108 119 tgl 30 0 empty empty on/off 0 -7 0 15 -262144 -1 -1
 0 1;
 #X obj 240 344 metro 1000;
