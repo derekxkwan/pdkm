@@ -1,4 +1,4 @@
-#N canvas 230 300 366 130 12;
+#N canvas 228 300 366 130 12;
 #N canvas 536 270 528 213 META 0;
 #X text 2 80 VERSION 0.1;
 #X text 2 98 AUTHOR Derek Kwan;
@@ -11,7 +11,7 @@
 #X text -1 19 LICENSE GPL v3;
 #X restore 14 15 pd META;
 #X text 16 42 LIST OF OBJECTS;
-#N canvas 150 216 1257 703 externals 0;
+#N canvas 148 216 1257 703 externals 0;
 #X text 30 26 EXTERNALS;
 #X text 33 62 dkadsr~ - triggered adsr envelope generator;
 #X text 20 300 dkmtx - control-rate multiple metro;
@@ -19,9 +19,9 @@
 #X text 18 335 dkeuclid - outputs euclidean rhythms based on the work
 of Godfried Toussaint;
 #X text 17 412 dkgrnrd~ - granular sound buffer player;
-#X text 13 464 dklrnd - random values with triangular (linear) distribution
+#X text 17 482 dklrnd - random values with triangular (linear) distribution
 ;
-#X text 16 511 dkmagikp~ - karplus-strong guitar synthesizer;
+#X text 16 530 dkmagikp~ - karplus-strong guitar synthesizer;
 #X text 533 131 dkrndl - generate list of random numbers within a given
 range;
 #X text 531 240 dksawlim~ - bandlimited sawtooth wave generator;
@@ -33,7 +33,7 @@ and signal amplitude control;
 #X text 536 380 dksqlim~ - bandlimited square wave generator;
 #X text 539 407 dkscldeg - maps scale degrees to midi notes \, ported
 from SuperCollider;
-#X text 17 493 dkfm~ - fm synthesis oscillator;
+#X text 17 512 dkfm~ - fm synthesis oscillator;
 #X text 21 263 dkenv~ - triggered envelope generator from SuperCollider's
 Env;
 #X text 20 439 dkipls~ - impulse oscillator;
@@ -57,10 +57,11 @@ Env;
 ;
 #X text 534 73 dkmkv2 - second-order markov generator;
 #X text 533 58 dkmkv - first-order markov generator;
-#X text 16 534 dkmbang - bang multiplier;
+#X text 16 553 dkmbang - bang multiplier;
 #X text 533 94 dknoiz~ - (un)ramped noise with frequency;
 #X text 21 223 dkdutysaw~ - variable duty saw oscillator;
 #X text 30 178 dkcofork - countrol-outlet forker/router;
+#X text 16 462 dklmunge - list munger;
 #X restore 153 73 pd externals;
 #N canvas 289 176 831 480 abstractions 0;
 #X text 9 7 ABSTRACTIONS;

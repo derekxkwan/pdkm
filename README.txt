@@ -58,6 +58,7 @@ EXTERNALS (compiled c code):
 	- dkernd - random values with exponential distribution
 	- dkgpitch~ - rotating tapehead pitch shifter with four grains
 	- dkgrnrd~ - granular sound buffer player
+	- dklrnd - list munger
 	- dklrnd - random values with triangular (linear) distribution
 	- dkipls~ - impulse oscillator
 	- dkmagikp~ - karplus-strong guitar synthesizer

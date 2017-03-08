@@ -7,6 +7,7 @@ dkrnd := src/dkrnd.c
 dkwtab := src/dkwtab.c
 dktime := src/dktime.c
 dkbuf := src/dkbuf.c
+dkmem:= src/dkmem.c
 
 dkcmb~.class.sources = src/dkcmb.c 
 dkcofork.class.sources = src/dkcofork.c
@@ -17,6 +18,7 @@ dkatmp~.class.sources = src/dkatmp.c
 dkdntl~.class.sources = src/dkdntl.c 
 dkernd.class.sources = src/dkernd.c 
 dkfm~.class.sources = src/dkfm.c $(dkwtab) 
+dklmunge.class.sources = src/dklmunge.c $(dkmem) $(dkrnd)
 dklrnd.class.sources = src/dklrnd.c 
 dkscldeg.class.sources = src/dkscldeg.c 
 dkeuclid.class.sources = src/dkeuclid.c 
