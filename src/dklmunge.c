@@ -1,9 +1,11 @@
-/* Copyright 2016 - Derek Kwan
+/* Copyright 2017 - Derek Kwan
  *  * Distributed under GPL v3 */
 
 #include "m_pd.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
+#include <math.h>
 #include "dkmem.h"
 #include "dkrnd.h"
 
@@ -16,6 +18,7 @@ typedef enum{
     REVROT,
     DRIP,
     STREAM,
+    INTERL,
     DEINTER,
     GROUP,
     SWAP,
@@ -160,6 +163,10 @@ static void dklmunge_setmunger(t_dklmunge *x, t_symbol * s)
     else if(strcmp(cs, "prod") == 0)
     {
         x->x_munger = PROD;
+    }
+    else if(strcmp(cs, "interl") == 0)
+    {
+        x->x_munger = INTERL;
     };
 }   
 
@@ -223,9 +230,10 @@ static void dklmunge_munger(t_dklmunge *x, t_symbol *s, int argc, t_atom * argv)
         };
     };
 }
-static void dklmunge_output(t_dklmunge * x, int argc, t_atom * argv)
+static void dklmunge_output(t_dklmunge * x, t_symbol * s, int argc, t_atom * argv)
 {
-    outlet_anything(x->x_munged, &s_, argc, argv);
+    if(s) outlet_list(x->x_munged, s, argc, argv);
+    else outlet_list(x->x_munged, 0, argc, argv);
 }
 
 static void dklmunge_rev(t_dklmunge *x, int argc, t_atom * argv)
@@ -236,7 +244,7 @@ static void dklmunge_rev(t_dklmunge *x, int argc, t_atom * argv)
     {
         dklmunge_eltset(&argv[argc-i-1],&ret[i]);
     };
-    dklmunge_output(x, argc, ret);
+    dklmunge_output(x, 0, argc, ret);
 
 }
 
@@ -254,7 +262,7 @@ static void dklmunge_revrot(t_dklmunge *x, int argc, t_atom * argv, t_float f)
 
     dklmunge_listcopy(&temp[rot], argc-rot, &ret[0], argc-rot);
    dklmunge_listcopy(&temp[0], rot, &ret[argc-rot], rot);
-   dklmunge_output(x, argc, ret);
+   dklmunge_output(x, 0, argc, ret);
 }
 
 static void dklmunge_fyshuf(t_dklmunge *x, int argc, t_atom * argv)
@@ -268,7 +276,7 @@ static void dklmunge_fyshuf(t_dklmunge *x, int argc, t_atom * argv)
         j = (int)dkrnd_next(x->x_dkrnd);
         dklmunge_eltswap(&ret[i],&ret[j]); 
     };
-   dklmunge_output(x, argc, ret);
+   dklmunge_output(x, 0,  argc, ret);
 }
 
 static void dklmunge_rot(t_dklmunge *x, int argc, t_atom * argv, t_float f)
@@ -280,7 +288,7 @@ static void dklmunge_rot(t_dklmunge *x, int argc, t_atom * argv, t_float f)
     //then argv[0] to argv[4] (5 elts) into dest[2]
    dklmunge_listcopy(&argv[rot], argc-rot, &ret[0], argc-rot);
    dklmunge_listcopy(&argv[0], rot, &ret[argc-rot], rot);
-   dklmunge_output(x, argc, ret);
+   dklmunge_output(x, 0, argc, ret);
 }
 
 static void dklmunge_faro(t_dklmunge *x, int argc, t_atom * argv)
@@ -304,8 +312,65 @@ static void dklmunge_faro(t_dklmunge *x, int argc, t_atom * argv)
         };
     };
 
-   dklmunge_output(x, argc, ret);
+   dklmunge_output(x, 0, argc, ret);
 }
+static int dklmunge_numdigits(int num)
+{
+    int count = 0;
+    while(num)
+    {
+        num /= 10;
+        ++count;
+    };
+    return count;
+}
+static void dklmunge_group(t_dklmunge *x, int argc, t_atom * argv, t_float f)
+{
+    int groupnum, outputnum,  lastgroup =1;
+    int argclen = dklmunge_numdigits(argc);
+    int group = f <= 0 ? 1 : (f >= argc ? argc : (int) f);
+    t_atom ret[group + 1];
+    char groupname[argclen+1];
+    int idx = (int)ceil(argc/(double)group)-1;
+    idx *= group;
+
+    //doesn't work if group = 1
+    //example: group =3, argc = 8, we want: 0 1 2; 3 4 5; 6 7; ceil(8/3) = 3-1 = 2;
+    
+    if(group > 1)
+    {
+        while(idx >= 0)
+        {
+            //have to worry about last group
+            if(lastgroup)
+            {
+                outputnum = (argc - idx) + 1;
+                lastgroup = 0;
+            }
+            else outputnum = group + 1;
+            groupnum = (int)idx/group;
+            sprintf(groupname, "l%d%c", groupnum,0);
+
+            SETSYMBOL(&ret[0], gensym((char *)groupname));
+            dklmunge_listcopy(&argv[idx], outputnum -1, &ret[1], outputnum-1);
+            dklmunge_output(x, 0, outputnum, ret);
+            idx -= group;
+        };
+    }
+    else
+    {
+        for(idx=argc-1;idx>= 0; idx--)
+        {
+            sprintf(groupname, "l%d%c", idx,0); 
+            SETSYMBOL(&ret[0], gensym((char *)groupname));
+            dklmunge_listcopy(&argv[idx], 1, &ret[1], 1);
+            dklmunge_output(x, 0, 2, ret);
+        };
+
+
+    };
+}
+
 
 static void dklmunge_router(t_dklmunge * x)
 {
@@ -316,14 +381,14 @@ static void dklmunge_router(t_dklmunge * x)
     if(x->x_munge == 0)
     {
 
-        dklmunge_output(x, mlen, mungee);
+        dklmunge_output(x, 0, mlen, mungee);
         return;
     }
     else if(mlen)
     {
         switch(x->x_munger)
         {
-            case NONE:dklmunge_output(x, mlen, mungee);
+            case NONE:dklmunge_output(x, 0, mlen, mungee);
                       break;
             case REV: dklmunge_rev(x, mlen, mungee);
                       break;
@@ -343,6 +408,11 @@ static void dklmunge_router(t_dklmunge * x)
                        break;
             case FYSHUF: dklmunge_fyshuf(x, mlen, mungee);
                          break;
+            case GROUP:
+                         if(paramlen)
+                         {
+                            if(params->a_type == A_FLOAT) dklmunge_group(x, mlen, mungee, params->a_w.w_float);
+                         };
             
             default:
                       break;

@@ -1,4 +1,4 @@
-#N canvas 1046 192 460 736 12;
+#N canvas 1044 192 460 736 12;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
@@ -34,7 +34,7 @@
 #X text 18 343 3) list - munger method and its params;
 #X text 19 393 4) f - turn munging on(1) or off (0);
 #X text 109 500 1) list - munged lists;
-#N canvas 565 194 1156 507 dklmunge-mungers 0;
+#N canvas 563 194 1156 507 dklmunge-mungers 0;
 #X text 12 15 MUNGERS:;
 #X text 4 103 faro - faro shuffle;
 #X text 6 53 rev - reverse list;
@@ -53,16 +53,16 @@
 #X text 4 436 max - find list maximum;
 #X text 5 458 avg - find list average;
 #X text 5 484 qsort - quicksort list;
-#X text 559 241 group (f) - output in groups of f (prepended by l0
-\, l1 \, l2...);
-#X text 558 298 deinter(f) - output f lists deinterlaced (prepended
+#X text 5 151 group (f) - output in groups of f (prepended by l0 \,
+l1 \, l2...);
+#X text 547 262 deinter(f) - output f lists deinterlaced (prepended
 by l0 \, l1 \, l2...);
-#X text 559 379 subst (a)(list) - substitute first arg with second
+#X text 548 343 subst (a)(list) - substitute first arg with second
 arg(s);
-#X text 559 406 swap (f f pairs) - swap 1st idx by 2nd \, 3rd by 4th
+#X text 548 370 swap (f f pairs) - swap 1st idx by 2nd \, 3rd by 4th
 \, ...;
-#X text 555 352 randelt (f)- output f random elt(s);
-#X text 556 435 ref (f) - get fth elt;
+#X text 544 316 randelt (f)- output f random elt(s);
+#X text 545 399 ref (f) - get fth elt;
 #X text 5 347 pow (f or list) - raise by list sequentially;
 #X restore 272 237 pd dklmunge-mungers;
 #X text 95 361 see pd dklmunge-mungers;
@@ -75,7 +75,7 @@ arg(s);
 #X msg 257 159 list rot 3;
 #X msg 252 105 list fyshuf;
 #X msg 237 77 list faro;
-#X obj 225 196 tgl 15 0 empty empty munge 17 7 0 12 -262144 -1 -1 0
+#X obj 225 196 tgl 15 0 empty empty munge 17 7 0 12 -262144 -1 -1 1
 1;
 #X obj 375 104 loadbang;
 #X msg 375 129 1;
