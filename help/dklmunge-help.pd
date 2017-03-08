@@ -1,4 +1,4 @@
-#N canvas 903 165 641 720 12;
+#N canvas 901 165 641 720 12;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
@@ -34,13 +34,13 @@
 #X text 18 343 3) list - munger method and its params;
 #X text 19 393 4) f - turn munging on(1) or off (0);
 #X text 109 500 1) list - munged lists;
-#N canvas 555 194 1156 507 dklmunge-mungers 0;
+#N canvas 553 194 1156 507 dklmunge-mungers 0;
 #X text 4 5 MUNGERS:;
-#X text 7 68 faro - faro shuffle;
-#X text 15 164 rev - reverse list;
-#X text 15 185 revrot (f) - reverse then rotate list;
-#X text 20 206 rot (f) - rotate list;
-#X text 9 89 fyshuf - fisher-yates shuffle;
+#X text 5 83 faro - faro shuffle;
+#X text 13 179 rev - reverse list;
+#X text 13 200 revrot (f) - reverse then rotate list;
+#X text 544 31 rot (f) - rotate list;
+#X text 7 104 fyshuf - fisher-yates shuffle;
 #X text 7 25 none - do nothing;
 #X text 4 232 TO COME:;
 #X text 5 264 add (f or list) - add by element sequentially;
@@ -53,7 +53,7 @@
 #X text 4 436 max - find list maximum;
 #X text 5 458 avg - find list average;
 #X text 5 484 qsort - quicksort list;
-#X text 14 118 group (f) - output in groups of f (prepended by l0 \,
+#X text 12 133 group (f) - output in groups of f (prepended by l0 \,
 l1 \, l2...);
 #X text 547 262 deinter(f) - output f lists deinterlaced (prepended
 by l0 \, l1 \, l2...);
@@ -64,12 +64,14 @@ arg(s);
 #X text 544 316 randelt (f)- output f random elt(s);
 #X text 545 399 ref (f) - get fth elt;
 #X text 5 347 pow (f or list) - raise by list sequentially;
-#X text 4 47 everyn (f=n f=offset) - output every nth elt with offset
+#X text 2 62 everyn (f=n f=offset) - output every nth elt with offset
 ;
-#X text 544 57 sum - adds all float args together;
-#X text 546 77 prod - multiplies all float args together;
-#X text 545 20 rpt1 (f=idx \, f=rpt \, pairs) = takes pairs \, repeats
+#X text 544 92 sum - adds all float args together;
+#X text 546 112 prod - multiplies all float args together;
+#X text 545 55 rpt1 (f=idx \, f=rpt \, pairs) = takes pairs \, repeats
 idx rpt times;
+#X text 5 43 avg - sums all float args and divides by number of ALL
+elts;
 #X restore 282 237 pd dklmunge-mungers;
 #X text 95 361 see pd dklmunge-mungers;
 #X obj 68 209 pdkm/dklmunge;
