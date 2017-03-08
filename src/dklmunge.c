@@ -471,6 +471,56 @@ static void dklmunge_avg(t_dklmunge *x, int argc, t_atom * argv)
     outlet_float(x->x_munged, (t_float) avg);
 }
 
+static void dklmunge_min(t_dklmunge *x, int argc, t_atom *argv)
+{
+    double min;
+    double f;
+    int i, firstfl = 1; //first float we encounter
+    for(i=0;i<argc;i++)
+    {
+        if(argv[i].a_type == A_FLOAT)
+        {
+            f = (double)argv[i].a_w.w_float;
+
+            if(firstfl)
+            {
+                min = f;
+                firstfl = 0;
+            }
+            else min = f < min ? f : min;
+        };
+    };
+    if(!firstfl)
+    {
+        outlet_float(x->x_munged, (t_float) min);
+    };
+}
+static void dklmunge_max(t_dklmunge *x, int argc, t_atom *argv)
+{
+    double max;
+    double f;
+    int i, firstfl = 1; //first float we encounter
+    for(i=0;i<argc;i++)
+    {
+        if(argv[i].a_type == A_FLOAT)
+        {
+            f = (double)argv[i].a_w.w_float;
+
+            if(firstfl)
+            {
+                max = f;
+                firstfl = 0;
+            }
+            else max = f > max ? f : max;
+        };
+    };
+    if(!firstfl)
+    {
+        outlet_float(x->x_munged, (t_float) max);
+    };
+}
+
+
 static void dklmunge_rpt1(t_dklmunge * x, int argc, t_atom * argv, int paramlen, t_atom * params)
 {
     int argsz = (int)paramlen/2;
@@ -573,6 +623,12 @@ static void dklmunge_router(t_dklmunge * x)
                          break;
             case AVG:
                          dklmunge_avg(x, mlen, mungee);
+                         break;
+            case MIN:
+                         dklmunge_min(x, mlen, mungee);
+                         break;
+            case MAX:
+                         dklmunge_max(x, mlen, mungee);
                          break;
 
             default:

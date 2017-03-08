@@ -1,4 +1,4 @@
-#N canvas 901 165 641 720 12;
+#N canvas 899 165 641 720 12;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
@@ -34,25 +34,20 @@
 #X text 18 343 3) list - munger method and its params;
 #X text 19 393 4) f - turn munging on(1) or off (0);
 #X text 109 500 1) list - munged lists;
-#N canvas 553 194 1156 507 dklmunge-mungers 0;
+#N canvas 551 194 1156 507 dklmunge-mungers 0;
 #X text 4 5 MUNGERS:;
 #X text 5 83 faro - faro shuffle;
-#X text 13 179 rev - reverse list;
-#X text 13 200 revrot (f) - reverse then rotate list;
+#X text 14 207 rev - reverse list;
+#X text 13 226 revrot (f) - reverse then rotate list;
 #X text 544 31 rot (f) - rotate list;
 #X text 7 104 fyshuf - fisher-yates shuffle;
 #X text 7 25 none - do nothing;
-#X text 4 232 TO COME:;
-#X text 5 264 add (f or list) - add by element sequentially;
-#X text 2 287 sub (f or list) - substract by list sequentially;
-#X text 2 310 mul (f or list) - multiply by list sequentially;
-#X text 1 331 div (f or list) - divide by list sequentially;
-#X text 5 361 sum - add up everything in the list;
-#X text 3 381 prod - multiply up everything in the list;
-#X text 5 410 min - find list minimum;
-#X text 4 436 max - find list maximum;
-#X text 5 458 avg - find list average;
-#X text 5 484 qsort - quicksort list;
+#X text 3 284 TO COME:;
+#X text 4 316 add (f or list) - add by element sequentially;
+#X text 1 339 sub (f or list) - substract by list sequentially;
+#X text 1 362 mul (f or list) - multiply by list sequentially;
+#X text 0 383 div (f or list) - divide by list sequentially;
+#X text 7 426 qsort - quicksort list;
 #X text 12 133 group (f) - output in groups of f (prepended by l0 \,
 l1 \, l2...);
 #X text 547 262 deinter(f) - output f lists deinterlaced (prepended
@@ -63,7 +58,7 @@ arg(s);
 \, ...;
 #X text 544 316 randelt (f)- output f random elt(s);
 #X text 545 399 ref (f) - get fth elt;
-#X text 5 347 pow (f or list) - raise by list sequentially;
+#X text 4 399 pow (f or list) - raise by list sequentially;
 #X text 2 62 everyn (f=n f=offset) - output every nth elt with offset
 ;
 #X text 544 92 sum - adds all float args together;
@@ -72,6 +67,8 @@ arg(s);
 idx rpt times;
 #X text 5 43 avg - sums all float args and divides by number of ALL
 elts;
+#X text 15 186 min - min of all float elts;
+#X text 21 171 max - max of all float elts;
 #X restore 282 237 pd dklmunge-mungers;
 #X text 95 361 see pd dklmunge-mungers;
 #X obj 68 209 pdkm/dklmunge;
