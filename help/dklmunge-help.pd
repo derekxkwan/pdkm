@@ -1,4 +1,4 @@
-#N canvas 905 165 641 720 12;
+#N canvas 903 165 641 720 12;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
 #X text 305 10 Derek Kwan \, 2016;
@@ -34,7 +34,7 @@
 #X text 18 343 3) list - munger method and its params;
 #X text 19 393 4) f - turn munging on(1) or off (0);
 #X text 109 500 1) list - munged lists;
-#N canvas 559 194 1156 507 dklmunge-mungers 0;
+#N canvas 555 194 1156 507 dklmunge-mungers 0;
 #X text 4 5 MUNGERS:;
 #X text 7 68 faro - faro shuffle;
 #X text 15 164 rev - reverse list;
