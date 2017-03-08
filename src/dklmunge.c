@@ -15,6 +15,8 @@ typedef enum{
     NONE,
     REV,
     ROT,
+    RPT1,
+    EVERYN,
     REVROT,
     DRIP,
     STREAM,
@@ -167,8 +169,16 @@ static void dklmunge_setmunger(t_dklmunge *x, t_symbol * s)
     else if(strcmp(cs, "interl") == 0)
     {
         x->x_munger = INTERL;
+    }
+    else if(strcmp(cs, "rpt1") == 0)
+    {
+        x->x_munger = RPT1;
+    }
+    else if(strcmp(cs, "everyn") == 0)
+    {
+        x->x_munger = EVERYN;
     };
-}   
+}
 
 static void dklmunge_eltset(t_atom * src, t_atom * dest)
 {
@@ -324,6 +334,51 @@ static int dklmunge_numdigits(int num)
     };
     return count;
 }
+
+static void dklmunge_help_everyn(int argc, t_atom *argv, \
+        t_atom * ret, int _n, int _offset)
+{
+    int n = _n < 1 ? 1 : (_n > argc ? argc : _n);
+    int offset = _offset % n;
+    int sz = (int)(argc/n);
+    int i, idx;
+    for(i=0;i<sz; i++)
+    {   idx = (i * n) + offset;
+        idx = idx > argc ? argc : idx;
+        dklmunge_eltset(&argv[idx], &ret[i]);
+    };
+
+
+}
+
+static double dklmunge_help_sum(int argc, t_atom * argv)
+{
+    int i;
+    double sum = 0;
+    for(i=0;i<argc; i++)
+    {
+        if(argv[i].a_type == A_FLOAT)
+        {
+            sum += argv[i].a_w.w_float;
+        };
+    };
+    return sum;
+}
+
+static double dklmunge_help_prod(int argc, t_atom * argv)
+{
+    int i;
+    double prod = 1;
+    for(i=0;i<argc; i++)
+    {
+        if(argv[i].a_type == A_FLOAT)
+        {
+            prod *= argv[i].a_w.w_float;
+        };
+    };
+    return prod;
+}
+
 static void dklmunge_group(t_dklmunge *x, int argc, t_atom * argv, t_float f)
 {
     int groupnum, outputnum,  lastgroup =1;
@@ -371,6 +426,83 @@ static void dklmunge_group(t_dklmunge *x, int argc, t_atom * argv, t_float f)
     };
 }
 
+static void dklmunge_everyn(t_dklmunge * x, int argc, t_atom * argv, int paramlen, t_atom * params)
+{
+    int i;
+     int offset = 0;
+    int n = 1;
+    for(i=0;i<2; i++)
+    {
+        if(params[i].a_type == A_FLOAT)
+        {
+            switch(i)
+            {
+                case 0: n = (int)params[i].a_w.w_float;
+                        break;
+                case 1: offset = (int)params[i].a_w.w_float;
+            };
+        };
+    };
+    int sz = (int)argc/n;
+    t_atom ret[sz];
+    dklmunge_help_everyn(argc, argv, ret, n, offset);
+    dklmunge_output(x, 0, sz,ret);
+
+}
+
+static void dklmunge_sum(t_dklmunge *x, int argc, t_atom * argv)
+{
+    double sum = dklmunge_help_sum(argc, argv);
+    outlet_float(x->x_munged, (t_float) sum);
+}
+
+
+static void dklmunge_prod(t_dklmunge *x, int argc, t_atom * argv)
+{
+    double prod = dklmunge_help_prod(argc, argv);
+    outlet_float(x->x_munged, (t_float) prod);
+}
+
+
+static void dklmunge_rpt1(t_dklmunge * x, int argc, t_atom * argv, int paramlen, t_atom * params)
+{
+    int argsz = (int)paramlen/2;
+    int i,j, idx, rpt, actidx =0;
+
+    //actidx = indexer into return array
+    //format: idx, rpt, idx, rpt, ....
+    if(paramlen)
+    {
+        if(paramlen >= 2){
+            t_atom rpts[argsz];
+            //get every other elt starting with 2nd elt, these are the rpts
+            dklmunge_help_everyn(paramlen, params, rpts, 2, 1);
+            int sz = (int)dklmunge_help_sum(argsz,rpts); //number of elts we need
+            t_atom ret[sz];
+            for(i=0; i< argsz; i++)
+            {
+                //use if only both floats, idx is valid, and rpt > 0
+                if(params[i*2].a_type == A_FLOAT && params[(i*2)+1].a_type == A_FLOAT)
+                {
+                    idx = (int)params[(i*2)].a_w.w_float;
+                    rpt = (int)params[(i*2)+1].a_w.w_float;
+                    if ((idx >=0) && (idx < argc) && (rpt > 0))
+                    {
+                        for(j=0;j<rpt;j++)
+                        {
+                            dklmunge_eltset(&argv[idx], &ret[actidx]);
+                            actidx++;
+                        };
+                    };
+                };
+            };
+            if(actidx) dklmunge_output(x, 0, actidx, ret);
+        };
+            
+
+    
+    };
+}
 
 static void dklmunge_router(t_dklmunge * x)
 {
@@ -413,6 +545,25 @@ static void dklmunge_router(t_dklmunge * x)
                          {
                             if(params->a_type == A_FLOAT) dklmunge_group(x, mlen, mungee, params->a_w.w_float);
                          };
+            case EVERYN:
+                         if(paramlen)
+                         {
+                            if(params->a_type == A_FLOAT) dklmunge_everyn(x, mlen, mungee, paramlen, params);
+                         };
+                         break;
+            case RPT1:
+                         if(paramlen >= 2)
+                         {
+                            if(params[0].a_type == A_FLOAT && params[1].a_type == A_FLOAT)
+                                dklmunge_rpt1(x, mlen, mungee, paramlen, params);
+                         };
+                         break;
+            case SUM:
+                         dklmunge_sum(x, mlen, mungee);
+                         break;
+            case PROD:
+                         dklmunge_prod(x, mlen, mungee);
+                         break;
             
             default:
                       break;
