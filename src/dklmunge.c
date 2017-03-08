@@ -463,6 +463,13 @@ static void dklmunge_prod(t_dklmunge *x, int argc, t_atom * argv)
     outlet_float(x->x_munged, (t_float) prod);
 }
 
+static void dklmunge_avg(t_dklmunge *x, int argc, t_atom * argv)
+{
+
+    double avg = dklmunge_help_sum(argc, argv);
+    avg /= (double)argc;
+    outlet_float(x->x_munged, (t_float) avg);
+}
 
 static void dklmunge_rpt1(t_dklmunge * x, int argc, t_atom * argv, int paramlen, t_atom * params)
 {
@@ -564,7 +571,10 @@ static void dklmunge_router(t_dklmunge * x)
             case PROD:
                          dklmunge_prod(x, mlen, mungee);
                          break;
-            
+            case AVG:
+                         dklmunge_avg(x, mlen, mungee);
+                         break;
+
             default:
                       break;
 
