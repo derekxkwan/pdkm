@@ -1,4 +1,4 @@
-#N canvas 228 300 366 130 12;
+#N canvas 226 300 366 130 12;
 #N canvas 536 270 528 213 META 0;
 #X text 2 80 VERSION 0.1;
 #X text 2 98 AUTHOR Derek Kwan;
@@ -11,7 +11,7 @@
 #X text -1 19 LICENSE GPL v3;
 #X restore 14 15 pd META;
 #X text 16 42 LIST OF OBJECTS;
-#N canvas 148 216 1257 703 externals 0;
+#N canvas 146 216 1257 703 externals 0;
 #X text 30 26 EXTERNALS;
 #X text 33 62 dkadsr~ - triggered adsr envelope generator;
 #X text 20 300 dkmtx - control-rate multiple metro;
@@ -61,7 +61,6 @@ Env;
 #X text 533 94 dknoiz~ - (un)ramped noise with frequency;
 #X text 21 223 dkdutysaw~ - variable duty saw oscillator;
 #X text 30 178 dkcofork - countrol-outlet forker/router;
-#X text 16 462 dklmunge - list munger;
 #X restore 153 73 pd externals;
 #N canvas 289 176 831 480 abstractions 0;
 #X text 9 7 ABSTRACTIONS;
