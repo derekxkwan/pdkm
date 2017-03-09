@@ -18,7 +18,6 @@ dkatmp~.class.sources = src/dkatmp.c
 dkdntl~.class.sources = src/dkdntl.c 
 dkernd.class.sources = src/dkernd.c 
 dkfm~.class.sources = src/dkfm.c $(dkwtab) 
-dklmunge.class.sources = src/dklmunge.c $(dkmem) $(dkrnd)
 dklrnd.class.sources = src/dklrnd.c 
 dkscldeg.class.sources = src/dkscldeg.c 
 dkeuclid.class.sources = src/dkeuclid.c 
