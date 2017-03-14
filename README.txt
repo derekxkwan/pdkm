@@ -40,6 +40,7 @@ ABSTRACTIONS (written in pd vanilla):
 	- dkvandrk - vanilla drunk random number generator 
 	- dkvanphs~ - vanilla 3-delay line phaser/chorus effect 
 	- dkvavg - vanilla float averager
+        - dkvgcld~ - vanille grain cloud
 	- dkvisclock - visual clock
 	- dkvuzi - vanilla uzi/multiple banger
 	- dkxor - control-rate bitwise xor
