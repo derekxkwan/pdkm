@@ -218,11 +218,11 @@ static void *dkctr_new(t_symbol *s, int argc, t_atom * argv){
         if(argc){
             switch(argc){
              case 1:
-                    ssize = atom_getfloatarg(0, argc, argv);
+                    hi = atom_getfloatarg(0, argc, argv);
                     break;
             case 2:
-                    hi = (double)atom_getfloatarg(0, argc, argv);
-                    ssize = atom_getfloatarg(1, argc, argv);
+                    lo = (double)atom_getfloatarg(0, argc, argv);
+                    hi = atom_getfloatarg(1, argc, argv);
                     break;
             case 3:
                     lo = (double)atom_getfloatarg(0, argc, argv);

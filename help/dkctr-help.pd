@@ -1,4 +1,4 @@
-#N canvas 607 148 453 778 12;
+#N canvas 605 148 453 778 12;
 #X obj 8 6 cnv 15 420 30 empty empty pdkm 20 12 0 20 -261682 -66577
 0;
 #X text 290 9 Derek Kwan \, 2016;
@@ -34,8 +34,6 @@
 #X text 27 540 defaults: lo = 0 \, hi = inf \, stepsize = 1 \, mode
 = 0;
 #X text 29 570 order depends on number of args:;
-#X text 31 599 1: stepsize;
-#X text 31 622 2: hi \, stepsize;
 #X text 29 642 3: lo \, hi \, stepsize;
 #X text 29 664 4: lo \, hi \, stepsize \, mode;
 #X text 109 453 1) float - count;
@@ -63,6 +61,8 @@
 #X obj 131 276 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 23 245 pdkm/dkctr -5 5 1 2;
-#X connect 31 0 34 0;
-#X connect 34 0 32 0;
-#X connect 34 1 33 0;
+#X text 38 597 1: hi;
+#X text 31 622 2: lo \, hi;
+#X connect 29 0 32 0;
+#X connect 32 0 30 0;
+#X connect 32 1 31 0;
