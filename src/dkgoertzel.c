@@ -1,4 +1,7 @@
-//from http://www.embedded.com/story/OEG20020819S0057
+//http://www.embedded.com/design/configurable-systems/4024443/The-Goertzel-Algorithm
+// for coeffs
+// using standard goertzel iir/fir filter representation otherwise
+
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
@@ -25,10 +28,11 @@ typedef struct _dkgoertzel_tilde
   double x_coeff;
   t_float x_freq;
   //pointers to the delay bufs
-  double  * x_ybuf; 
-  double x_fbstack[DKGOERTZ_STACK];
+  double  * x_xbuf; 
+  double x_ffstack[DKGOERTZ_STACK];
   int     x_alloc; //if we are using allocated bufs
-  unsigned int     x_sz; //actual size of each delay buffer
+  unsigned int     x_sz; //actual allocated size of each delay buffer
+  unsigned int x_bufsz; //actual size of buf we're using
   unsigned int       x_wh;     //writehead
 } t_dkgoertzel_tilde;
 
@@ -42,6 +46,27 @@ static void dkgoertzel_coeffs(t_dkgoertzel_tilde *x)
   x->x_cos = cos(w);
   x->x_sin = sin(w);
   coeff = 2*x->x_cos;
+  
+}
+
+double dkgoertzel_power(t_dkgoertzel_tilde *x, int startpos)
+{
+  int n = x->x_n; //frame size
+  int i;
+  double y0 = 0, y1 = 0, y2 = 0, x0 = 0, power = 0, coeff = x->_coeff;
+  //iir calcuation
+  for(i=0; i<n; i++)
+    {
+      int realidx = (startpos+i)%x->x_bufsz; //realidx takes into account wrapping and startpos
+      x0 = x->x_xbuf[realidx];
+      y0 = x0 + coeff * y1 - y2;
+      y2 = y1;
+      y1 = y0;
+    };
+
+  //final mag squared calculation
+  power = y1*y1 + y2 * y2 - (coeff * y1 * y2);
+  return power;
   
 }
 
