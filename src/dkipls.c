@@ -2,6 +2,7 @@
  *  * Distributed under GPL v3 */
 
 #include <stdlib.h>
+#include <math.h>
 #include "m_pd.h"
 #include "dkrnd.h"
 
@@ -47,7 +48,7 @@ static t_int *dkipls_tilde_perform(t_int *w){
 	int n = (int)(w[4]);
 	
 	while(n--){
-		double freq = (double) abs(*in++);
+		double freq = (double) fabs(*in++);
 		double output;
                 double phs = x->x_phase;
                 int newi = x->x_newi;
