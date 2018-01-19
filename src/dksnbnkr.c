@@ -208,7 +208,12 @@ static t_int *dksnbnkr_tilde_perform(t_int *w){
 				double stamp = x->stamps[i];
 				inamp *= stamp;
 				//inamp *= 1.f/(double)numsin;
-				curamp += inamp;
+				if(inamp >= 0)
+				  {
+				    if(inamp > curamp) curamp = inamp;
+				  }
+				else if(inamp < curamp) curamp  =inamp;
+				
 				if(curamp > SBRLIM){
 					curamp = SBRLIM;
 				}
