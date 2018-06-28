@@ -22,8 +22,6 @@ Released under GPL v3.0
 	- dklrnd - random values with triangular (linear) distribution
 	- dkipls~ - impulse oscillator
 	- dkmagikp~ - karplus-strong guitar synthesizer
-	- dkmkv - first-order markov generator
-	- dkmkv2 - second-order markov generator
 	- dkmtx - control-rate multiple metro
         - dknoiz~ - (un)ramped noise with frequency
 	- dknumpat - number pattern list converter
@@ -32,9 +30,6 @@ Released under GPL v3.0
         - dkrndl - generate list of random numbers within a given range
         - dkrpt - repeater with optional zero-indexed counter
 	- dksawlim~ - bandlimited sawtooth wave generator
-	- dksnbnk~ - sine oscillator bank
-	- dksnbnkd~ - sine oscillator bank with separate envelopes with triggered output
-	- dksnbnkr~ - sine oscillator bank with separate envelopes and signal amplitude control
 	- dkstut~ - windowed stutter effect
 	- dksqlim~ - bandlimited square wave generator
 	- dkscldeg - maps scale degrees to midi notes, ported from SuperCollider
@@ -46,3 +41,8 @@ HOW TO INSTALL:
 	- make sure you have the pure-data source installed (can be found at github.com/pure-data/pure-data )
 	- type "make"
 	- move folder (pdkm) to externals folder
+        
+NOTE FOR WINDOWS USERS:
+        - I don't have an access to a windows machine so these are untested on Windows, I would try the directions up to "Building Pd-Vanilla" on the following link and then follow the regular directions:
+
+        https://puredata.info/docs/developer/WindowsMinGW
