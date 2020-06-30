@@ -1,3 +1,15 @@
+------------------------------------------
+NOTE:
+This is largely unmaintained (since 2016)
+and I've learned a lot of things since I
+last did stuff for this repo (and I'm pretty
+sure some of these things are pretty buggy
+like the granular stuff).
+
+Most of my personal Pd library work goes on
+in abstraction format (like pdkvabs) for 
+portability reasons.
+
 ==========================================
 pdkm v0.1 - pure data external library
 (formerly dxkpure)
